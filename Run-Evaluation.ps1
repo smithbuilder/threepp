@@ -6,6 +6,8 @@ param(
     [switch]$AcknowledgeIncident,
     [ValidateRange(1,3)][int]$Scene = 1,
     [switch]$Capture,
+    [switch]$Sequence,
+    [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
     [ValidateRange(0,2)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
@@ -50,10 +52,17 @@ try {
         $exe = Join-Path $PSScriptRoot "build\windows-gl\bin\Release\$Example.exe"
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
+        if ($Sequence -and ($Capture -or $Example -ne 'timber_rally')) { throw 'Sequence recording is supported only for timber_rally, separately from a still capture.' }
+        if ($Sequence) {
+            $sequenceFreeBytes = (Get-PSDrive -Name ([IO.Path]::GetPathRoot($PSScriptRoot).TrimEnd(':\'))).Free
+            if ($null -eq $sequenceFreeBytes) { throw 'Cannot verify free disk space in this launcher context; sequence recording was not started.' }
+            if ($sequenceFreeBytes -lt 1GB) { throw 'Sequence recording requires at least 1 GiB free disk space.' }
+        }
         if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
         if ($AutoDrive -and $Example -notin @('timber_run','timber_rally')) { throw 'AutoDrive is available only for the driving demos.' }
         if ($Example -eq 'threepp_showcase') { $arguments += @('--scene', [string]$Scene) }
         if ($Capture) { $arguments += @('--shot', ('"' + (Join-Path $session 'capture.png') + '"'), '--frames', [string]$Frames) }
+        if ($Sequence) { $arguments += @('--sequence', ('"' + (Join-Path $session 'frames') + '"'), '--frames',[string]$Frames,'--warmup',[string]$WarmupFrames) }
         if ($AutoDrive) { $arguments += '--autodrive' }
         if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View) }
         if ($Example -in @('timber_run','timber_rally')) { $arguments += @('--telemetry', ('"' + (Join-Path $session 'drive.json') + '"')) }
@@ -87,8 +96,9 @@ try {
     $job.Dispose(); $job=$null
     if (-not $child.WaitForExit(5000)) { throw 'The supervised child did not terminate.' }
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
+    if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;scene=$Scene;capture=[bool]$Capture;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;scene=$Scene;capture=[bool]$Capture;sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }

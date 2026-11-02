@@ -2,6 +2,8 @@
 // Ground-following handling is custom arcade motion, not a PhysX simulation.
 #include "FrameBudget.hpp"
 #include "RallyDetail.hpp"
+#include "RallyHud.hpp"
+#include "RallyPowertrain.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/environments/RoomEnvironment.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
@@ -20,6 +22,8 @@
 #include <iomanip>
 #include <iostream>
 #include <random>
+#include <cstdio>
+#include <array>
 
 using namespace threepp;
 constexpr float PI = 3.14159265359f;
@@ -35,7 +39,8 @@ struct Driver {
     Vector3 position = track(0);
     float heading = PI / 2, velocity = 0, steer = 0, wheelAngle = 0, elapsed = 0, best = 0;
     int next = 1, laps = 0, contacts = 0;
-    bool running = false;
+    bool running = false, finished=false;
+    float throttle=0;
     float message = 0;
     float heave=groundHeight(0,90), heaveVelocity=0, pitch=0, roll=0, yawRate=0, lateral=0, previousVelocity=0;
     float lastLap=0, maxHeave=0, maxRoll=0;
@@ -46,7 +51,7 @@ struct Driver {
 
 int main(int argc, char** argv) {
     try {
-        bool scripted = false; int frames = 0, limit = 0, view=0; std::string shot, telemetry;
+        bool scripted = false; int frames = 0, limit = 0, view=0, warmup=0; std::string shot, telemetry, sequence;
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
             if (a == "--autodrive") scripted = true;
@@ -54,14 +59,21 @@ int main(int argc, char** argv) {
             else if (a == "--shot" && i + 1 < argc) shot = argv[++i];
             else if (a == "--telemetry" && i + 1 < argc) telemetry = argv[++i];
             else if (a == "--view" && i + 1 < argc) view = std::clamp(std::stoi(argv[++i]),0,2);
+            else if (a == "--sequence" && i + 1 < argc) sequence=argv[++i];
+            else if (a == "--warmup" && i + 1 < argc) warmup=std::clamp(std::stoi(argv[++i]),0,900);
         }
+        if(!sequence.empty()&&(!shot.empty()||limit<1||limit>900))throw std::runtime_error("Sequence capture requires 1..900 frames and no --shot");
+        const bool captureMode=!shot.empty()||!sequence.empty();
+        std::ofstream frameData;
+        if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
+            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished\n";}
         const bool bounded = limit > 0;
         auto assetDir=std::filesystem::absolute(argv[0]).parent_path()/"rally-assets";
         TextureLoader textureLoader;
         auto assetTexture=[&](const std::string& name,bool srgb){auto t=textureLoader.load(assetDir/name);
             if(!t)throw std::runtime_error("Missing rally texture: "+name);
             t->colorSpace=srgb?ColorSpace::sRGB:ColorSpace::NoColorSpace;t->wrapS=t->wrapT=TextureWrapping::Repeat;t->anisotropy=2;return t;};
-        Canvas canvas(Canvas::Parameters().title("CINDER FOREST | rally candidate").size(960, 600).vsync(true).headless(!shot.empty()));
+        Canvas canvas(Canvas::Parameters().title("CINDER FOREST | rally candidate").size(960, 600).vsync(true).headless(captureMode));
         GLRenderer renderer(canvas); renderer.checkShaderErrors = true;
         renderer.toneMapping = ToneMapping::ACESFilmic; renderer.toneMappingExposure = .85f;
         renderer.shadowMap().enabled = true; renderer.shadowMap().type = ShadowMap::PFC;
@@ -203,60 +215,93 @@ int main(int argc, char** argv) {
         std::vector<Vector3> dustPos(48); std::vector<float> dustLife(48, 0); int dustIndex = 0;
         Driver driver;
         std::unique_ptr<AudioListener> soundListener;
-        std::unique_ptr<Audio> engineSound;
+        std::array<std::unique_ptr<Audio>,3> exhaust;
+        rally::Powertrain powertrain;
         bool muted=true;
+        auto toggleSound=[&]{
+            if(captureMode)return;
+            try {
+                if(!soundListener){
+                    soundListener=std::make_unique<AudioListener>();soundListener->setMasterVolume(.75f);
+                    const char* names[]={"idle","mid","high"};
+                    for(int i=0;i<3;++i){exhaust[i]=std::make_unique<Audio>(*soundListener,assetDir/(std::string("cinder_exhaust_")+names[i]+".wav"));exhaust[i]->setLooping(true);exhaust[i]->setVolume(0);exhaust[i]->play();}
+                }
+                muted=!muted;
+            }catch(const std::exception& error){std::cerr<<"[audio] "<<error.what()<<'\n';for(auto& e:exhaust)e.reset();soundListener.reset();muted=true;}
+        };
         auto camera = PerspectiveCamera::create(59, canvas.aspect(), .1f, 750);
-        bool paused = false; int inputEvents = 0;
+        bool paused = false, raceStarted=scripted, resetClockRequested=false; float countdown=0; int inputEvents = 0;
         auto snapCamera = [&] { camera->position.copy(driver.position).add(Vector3(-6.2f, 3.2f, 0)); };
         snapCamera();
+        auto resetRun=[&](bool start){driver.reset();powertrain=rally::Powertrain{};paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();};
         EffectComposer::Options options; options.samples = 0; EffectComposer composer(renderer, options);
         composer.addPass(std::make_shared<RenderPass>(*scene, *camera));
         auto bloom = std::make_shared<UnrealBloomPass>(Vector2(960, 600), .14f, .3f, 1.8f); bloom->enabled = false;
         composer.addPass(bloom); composer.addPass(std::make_shared<OutputPass>());
         composer.addPass(std::make_shared<FXAAPass>());
+        ImFont* hudFont=nullptr;
         ImguiFunctionalContext ui(canvas, [&] {
+            auto& hudStyle=ImGui::GetStyle();hudStyle.WindowRounding=4;hudStyle.WindowPadding=ImVec2(16,16);hudStyle.ItemSpacing=ImVec2(8,10);
+            hudStyle.Colors[ImGuiCol_WindowBg]=ImVec4(.05f,.085f,.075f,.96f);hudStyle.Colors[ImGuiCol_Text]=ImVec4(.96f,.94f,.87f,1);
+            hudStyle.Colors[ImGuiCol_Button]=ImVec4(.35f,.31f,.16f,1);hudStyle.Colors[ImGuiCol_ButtonHovered]=ImVec4(.53f,.44f,.20f,1);hudStyle.Colors[ImGuiCol_ButtonActive]=ImVec4(.67f,.54f,.22f,1);
             const auto size=canvas.size();
-            const auto flags=ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings;
-            ImGui::SetNextWindowPos(ImVec2(22,20),ImGuiCond_Always);ImGui::SetNextWindowBgAlpha(.65f);
-            ImGui::Begin("Stage",nullptr,flags);
-            ImGui::TextColored(ImVec4(.95f,.76f,.35f,1),"CINDER FOREST");
-            ImGui::TextDisabled("07 / GRAVEL SPRINT");
-            if(scripted)ImGui::TextDisabled("AUTODRIVE CAPTURE");
-            ImGui::End();
-            ImGui::SetNextWindowPos(ImVec2(size.width()-195.f,20),ImGuiCond_Always);ImGui::SetNextWindowBgAlpha(.65f);
-            ImGui::Begin("Timing",nullptr,flags);ImGui::TextDisabled("STAGE TIME");ImGui::SetWindowFontScale(1.6f);
-            ImGui::Text("%05.2f",driver.elapsed);ImGui::SetWindowFontScale(1);
-            ImGui::Text("SECTOR %d / 8",driver.next==0?8:driver.next);
-            if(driver.best>0)ImGui::Text("BEST  %.2f",driver.best);ImGui::End();
-            ImGui::SetNextWindowPos(ImVec2(24,size.height()-109.f),ImGuiCond_Always);ImGui::SetNextWindowBgAlpha(.6f);
-            ImGui::Begin("Speed",nullptr,flags);ImGui::SetWindowFontScale(2.5f);ImGui::Text("%03.0f",std::abs(driver.velocity)*3.6f);
-            ImGui::SetWindowFontScale(1);ImGui::TextDisabled("KM/H   |   %s",driver.velocity<0?"R":driver.velocity<12?"2":"3");ImGui::End();
-            ImGui::SetNextWindowPos(ImVec2(size.width()*.5f,size.height()-32.f),ImGuiCond_Always,ImVec2(.5f,0));
-            ImGui::SetNextWindowBgAlpha(.65f);ImGui::Begin("Hint",nullptr,flags);
-            ImGui::TextDisabled("WASD drive  SPACE handbrake  C camera  R reset  P pause  M sound");ImGui::End();
-            if(!driver.running&&!scripted) {
-                ImGui::SetNextWindowPos(ImVec2(size.width()*.5f,120),ImGuiCond_Always,ImVec2(.5f,0));
-                ImGui::SetNextWindowBgAlpha(.8f);ImGui::Begin("Start",nullptr,flags);
-                ImGui::Text("ONE LAP. EIGHT SECTORS.");ImGui::TextDisabled("Follow the green markers. W starts the clock.");ImGui::End();
+            const auto near=nearest(driver.position);
+            const auto gate=track(driver.next*2*PI/8);
+            rally::HudState h;
+            h.width=static_cast<float>(size.width());h.height=static_cast<float>(size.height());
+            h.speed=driver.velocity;h.rpm=powertrain.rpm;h.gear=powertrain.gear;
+            h.time=driver.finished?driver.lastLap:driver.elapsed;h.best=driver.best;
+            h.progress=driver.finished?1.f:near.a/(2*PI);h.heading=driver.heading;h.x=driver.position.x;h.z=driver.position.z;
+            h.nextDistance=Vector2(driver.position.x-gate.x,driver.position.z-gate.z).length();h.next=driver.next;
+            h.scripted=scripted;h.finished=driver.finished;h.muted=muted;h.menu=!raceStarted||paused||driver.finished;
+            rally::drawHud(h,hudFont);
+            const auto flags=ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoBackground;
+            ImGui::PushFont(hudFont);
+            auto beginPanel=[&](const char* name){ImGui::SetNextWindowPos(ImVec2(48,162),ImGuiCond_Always);ImGui::SetNextWindowSize(ImVec2(416,0));ImGui::Begin(name,nullptr,flags);ImGui::SetWindowFontScale(.8f);};
+            auto menuText=[&](const std::string& value,float size=19.f,ImU32 color=IM_COL32(246,244,233,255)){
+                auto p=ImGui::GetCursorScreenPos();rally::hudText(ImGui::GetWindowDrawList(),hudFont,p.x,p.y,size,color,value);ImGui::Dummy(ImVec2(384,size+3));
+            };
+            auto action=[&](const char* name){
+                auto p=ImGui::GetCursorScreenPos();ImGui::PushStyleColor(ImGuiCol_Button,ImVec4(0,0,0,0));ImGui::PushStyleColor(ImGuiCol_ButtonHovered,ImVec4(0,0,0,0));ImGui::PushStyleColor(ImGuiCol_ButtonActive,ImVec4(0,0,0,0));ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(0,0,0,0));
+                bool clicked=ImGui::Button(name,ImVec2(340,38));bool focus=ImGui::IsItemHovered()||ImGui::IsItemFocused();ImGui::PopStyleColor(4);
+                auto* d=ImGui::GetWindowDrawList();ImU32 color=focus?IM_COL32(226,193,116,255):IM_COL32(246,244,233,255);
+                rally::hudText(d,hudFont,p.x,p.y+4,21,color,name);d->AddLine(ImVec2(p.x,p.y+36),ImVec2(p.x+340,p.y+36),focus?color:IM_COL32(235,238,225,95),focus?1.5f:.75f);
+                if(focus){d->AddLine(ImVec2(p.x+329,p.y+12),ImVec2(p.x+335,p.y+18),color,1.5f);d->AddLine(ImVec2(p.x+335,p.y+18),ImVec2(p.x+329,p.y+24),color,1.5f);}return clicked;
+            };
+            if(!raceStarted&&!scripted){
+                beginPanel("Race start");menuText("CINDER FOREST",38);menuText("ONE LAP / EIGHT CHECKPOINTS",17);ImGui::Spacing();
+                menuText("WASD / ARROWS   Drive   SPACE   Handbrake",17);
+                menuText("C   Camera     P   Pause     R   Restart",17);ImGui::Spacing();
+                if(action("START RUN + SOUND")){if(muted)toggleSound();raceStarted=true;countdown=3;}
+                menuText("Or press W to start. M toggles exhaust sound.",15);ImGui::End();
+            }else if(paused){
+                beginPanel("Pause menu");menuText("RACE PAUSED",38);ImGui::Spacing();
+                if(action("RESUME"))paused=false;
+                if(action(muted?"EXHAUST SOUND: OFF":"EXHAUST SOUND: ON"))toggleSound();
+                if(action("RESTART STAGE"))resetRun(true);
+                if(action("BACK TO GRID"))resetRun(false);
+                if(action("QUIT"))canvas.close();ImGui::End();
+            }else if(driver.finished){
+                beginPanel("Stage results");menuText("STAGE COMPLETE",30);menuText(rally::raceTime(driver.lastLap),58);ImGui::Spacing();
+                menuText("BEST   "+rally::raceTime(driver.best),17);
+                menuText("CHECKPOINTS  8 / 8     CONTACTS  "+std::to_string(driver.contacts),17);ImGui::Spacing();
+                if(action("RACE AGAIN"))resetRun(true);if(action("BACK TO GRID"))resetRun(false);ImGui::End();
             }
-            if(driver.message>0||paused) {
-                ImGui::SetNextWindowPos(ImVec2(size.width()*.5f,130),ImGuiCond_Always,ImVec2(.5f,0));
-                ImGui::Begin("Result",nullptr,flags);ImGui::TextColored(ImVec4(.95f,.76f,.35f,1),paused?"PAUSED":"STAGE COMPLETE");
-                if(!paused)ImGui::Text("%.2f SECONDS",driver.lastLap);ImGui::End();
+            if(countdown>0){
+                const std::string n=std::to_string(static_cast<int>(std::ceil(countdown)));
+                rally::hudText(ImGui::GetForegroundDrawList(),hudFont,size.width()*.5f-25,225,94,IM_COL32(246,244,233,255),n);
             }
+            ImGui::PopFont();
         });
-        ImGui::StyleColorsDark(); ImGui::GetStyle().WindowRounding = 8; ui.setFontScale(1.f);
+        ImGui::StyleColorsDark();ui.setFontScale(1.f);
+        hudFont=ImGui::GetIO().Fonts->AddFontFromFileTTF((assetDir/"Rajdhani-SemiBold.ttf").string().c_str(),24);
+        if(!hudFont)throw std::runtime_error("Missing licensed rally HUD font");
         canvas.onKeyPressed([&](KeyEvent e) {
-            if (e.key == Key::R) { driver.reset(); snapCamera(); }
+            if (e.key == Key::R) resetRun(true);
             if (e.key == Key::C) view=(view+1)%3;
-            if (e.key == Key::P) paused = !paused;
-            if (e.key == Key::M && shot.empty()) {
-                try {
-                    if(!engineSound){soundListener=std::make_unique<AudioListener>();soundListener->setMasterVolume(.35f);
-                        engineSound=std::make_unique<Audio>(*soundListener,assetDir/"cinder_engine.wav");engineSound->setLooping(true);}
-                    muted=!muted;
-                }catch(const std::exception& error){std::cerr<<"[audio] "<<error.what()<<'\n';muted=true;}
-            }
+            if (e.key == Key::P && raceStarted && countdown<=0 && !driver.finished) paused = !paused;
+            if (e.key == Key::M) toggleSound();
+            if ((e.key==Key::W||e.key==Key::UP)&&!raceStarted&&!scripted){raceStarted=true;countdown=3;}
             if (e.key == Key::ESCAPE) canvas.close();
             if (e.key == Key::W || e.key == Key::A || e.key == Key::S || e.key == Key::D) { ++inputEvents; std::cout << "[input] driving key received\n"; }
         });
@@ -265,7 +310,10 @@ int main(int argc, char** argv) {
         canvas.animate([&] {
             FrameBudget frameBudget;
             float dt = bounded ? 1.f/30 : std::min(clock.getDelta(), .05f);
-            if (!paused) accumulator += dt;
+            if(resetClockRequested){accumulator=0;resetClockRequested=false;}
+            const bool counting=countdown>0;
+            if(counting)countdown=std::max(0.f,countdown-dt);
+            if (!paused && !driver.finished && raceStarted && !counting) accumulator += dt;
             while (accumulator >= 1.f/120) {
                 constexpr float step = 1.f/120; accumulator -= step; worldTime += step;
                 auto near = nearest(driver.position);
@@ -279,6 +327,7 @@ int main(int argc, char** argv) {
                     turn = std::clamp(wrap(std::atan2(aim.x, aim.z)-driver.heading) * 1.35f, -1.f, 1.f);
                     throttle = driver.velocity < 18 ? 1.f : 0; brake = driver.velocity > 20 ? .3f : 0;
                 }
+                driver.throttle=throttle;
                 driver.steer += (turn - driver.steer) * (1-std::exp(-7*step));
                 const float drag = off > 4.2f ? 1.25f : .24f;
                 driver.previousVelocity=driver.velocity;
@@ -317,9 +366,10 @@ int main(int argc, char** argv) {
                 if (driver.running) driver.elapsed += step;
                 Vector3 gate = track(driver.next * 2 * PI / 8);
                 if (driver.running && Vector2(driver.position.x-gate.x, driver.position.z-gate.z).length() < 7) {
-                    if (driver.next == 0) { ++driver.laps; driver.lastLap=driver.elapsed; if (driver.best == 0 || driver.elapsed < driver.best) driver.best = driver.elapsed; driver.elapsed = 0; driver.message = 4; }
+                    if (driver.next == 0) { ++driver.laps; driver.lastLap=driver.elapsed; if (driver.best == 0 || driver.elapsed < driver.best) driver.best = driver.elapsed; driver.elapsed = 0; driver.message = 4;driver.finished=true;driver.velocity=0;driver.throttle=0; }
                     driver.next = (driver.next + 1) % 8;
                 }
+                if(driver.finished){accumulator=0;break;}
                 driver.message = std::max(0.f, driver.message-step);
                 if (std::abs(driver.position.x) > 235 || std::abs(driver.position.z) > 235) { driver.reset(); snapCamera(); }
             }
@@ -337,16 +387,15 @@ int main(int argc, char** argv) {
             if (!paused && std::abs(driver.velocity) > 5) { dustPos[dustIndex] = driver.position.clone().addScaledVector(forward, -1.5f); dustLife[dustIndex] = 1; dustIndex = (dustIndex+1)%48; }
             Object3D puff;
             for (int i = 0; i < 48; ++i) {
-                if (!paused) dustLife[i] = std::max(0.f, dustLife[i]-dt*.6f);
+                if (!paused) dustLife[i] = std::max(0.f, dustLife[i]-dt*(driver.finished?2.6f:.6f));
                 puff.position.copy(dustPos[i]); puff.position.y += .3f + (1-dustLife[i])*1.3f;
                 puff.scale.setScalar(dustLife[i] > 0 ? .4f+(1-dustLife[i])*2.7f : 0); puff.updateMatrix(); dust->setMatrixAt(i,*puff.matrix);
             }
             dust->instanceMatrix()->needsUpdate();
             carShadow->position.copy(driver.position);carShadow->position.y+=.19f;carShadow->rotation.z=-driver.heading;
             roadsideGrass->setTime(worldTime);
-            if(engineSound){float speed=std::abs(driver.velocity);float rev=.35f+.65f*std::fmod(speed,7.f)/7.f;
-                engineSound->setPlaybackRate(.7f+rev*1.6f);engineSound->setVolume(muted||paused?0.f:.18f+speed*.003f);
-                if(!muted&&!paused&&!engineSound->isPlaying())engineSound->play();}
+            powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+            for(int i=0;i<3;++i)if(exhaust[i]){auto band=powertrain.band(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
             Vector3 desired=driver.position.clone().addScaledVector(forward,view==1?-4.8f:view==2?-3.7f:-6.6f).add(Vector3(0,view==1?2.1f:3.0f,0));
             if(view==2)desired.addScaledVector(right,4.1f);
             desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
@@ -355,8 +404,11 @@ int main(int argc, char** argv) {
             Vector3 lightAnchor(std::floor(driver.position.x*8)/8,driver.position.y,std::floor(driver.position.z*8)/8);
             sun->position.copy(lightAnchor).add(Vector3(-35,50,-12)); sunTarget->position.copy(lightAnchor);
             composer.render(dt); ui.render();
+            if(!sequence.empty()&&frames>=warmup){char name[40];std::snprintf(name,sizeof(name),"frame_%05d.png",frames-warmup);
+                renderer.writeFramebuffer(std::filesystem::path(sequence)/name);
+                frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<'\n';}
             ++frames;
-            if (bounded && frames >= limit) {
+            if (bounded && frames >= limit + (sequence.empty()?0:warmup)) {
                 if (!shot.empty()) renderer.writeFramebuffer(shot);
                 std::cout << "[drive] frames=" << frames << " laps=" << driver.laps << " nextGate=" << driver.next << " speed=" << driver.velocity << '\n'; canvas.close();
             }

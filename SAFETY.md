@@ -44,7 +44,10 @@ Local diagnostic records are under `build/incident` and are not committed.
   to the nearby road/car, and excludes alpha-tested canopy from that shadow
   pass. Its 180 detailed trees are supplemented with 240 simpler distant trees
   and 9,000 grass blades. The older demo profiles remain unchanged. Sound is
-  opt-in with M, and capture runs do not open an audio device.
+  opt-in with M or the explicit Start Run + Sound button; capture runs do not
+  open an audio device. Three small real-recorded exhaust loops replace the
+  former synthesized loop. Sequence recording verifies free disk space and
+  the requested output frame count; it retains the same process/watchdog caps.
 - The upstream materials showpiece disables MSAA, shadows, GTAO, bloom and outlines.
   The forest profile reduces terrain resolution, grass to 6,000 blades, tree
   density, bushes and flowers. These changes apply only in the evaluation environment.
