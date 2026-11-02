@@ -2,7 +2,7 @@
 
 The editable film source is here; generated footage and renders stay in the
 ignored `build/cinder-film` folder. HyperFrames CLI is pinned to 0.9.3.
-The local delivery is `build/cinder-film/Cinder-Forest-Rally-UI-Exhaust.mp4`.
+The local delivery is `build/cinder-film/Cinder-Forest-Buggy-Fixes.mp4`.
 
 Build the candidate with `Build-Playground.ps1`. For fresh footage, explicitly
 run these supervisor commands one at a time from the repository root:
@@ -18,7 +18,7 @@ watchdog, FPS/window/memory/disk checks; do not run raw graphics executables.
 Copy this composition project into `build/cinder-film`, preserving any user
 edits there. Run `node scripts/encode-rally-capture.mjs SESSION OUTPUT.mp4`
 for each sequence, using output paths under `build/cinder-film/assets` named
-`chase-final.mp4`, `side-final.mp4` and `finish-final.mp4`. Copy the finish
+`chase-buggy.mp4`, `side-buggy.mp4` and `finish-buggy.mp4`. Copy the finish
 sequence's `frame_00179.png` to `assets/finish-frame.png`.
 
 The encoder uses the same real recorded exhaust bands and captured powertrain
@@ -32,7 +32,7 @@ From `build/cinder-film`, run:
 npx.cmd --yes hyperframes@0.9.3 check --json --no-browser-gpu
 npx.cmd --yes hyperframes@0.9.3 snapshot --review --no-browser-gpu
 npx.cmd --yes hyperframes@0.9.3 preview --background
-npx.cmd --yes hyperframes@0.9.3 render --output Cinder-Forest-Rally-UI-Exhaust.mp4 --fps 30 --workers 1 --no-browser-gpu --low-memory-mode --crf 18 --video-frame-format png --frames-cache-dir off
+npx.cmd --yes hyperframes@0.9.3 render --output Cinder-Forest-Buggy-Fixes.mp4 --fps 30 --workers 1 --no-browser-gpu --low-memory-mode --crf 18 --video-frame-format png --frames-cache-dir off
 ```
 
 Inspect the review sheets and decoded final frames. Confirm full decode,

@@ -1,4 +1,8 @@
 
+if (TARGET RallyVehicle_test)
+    add_test(NAME RallyVehicle_test COMMAND $<TARGET_FILE:RallyVehicle_test>)
+endif ()
+
 function(add_test_executable name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries(${name} PRIVATE threepp Catch2::Catch2WithMain)

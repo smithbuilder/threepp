@@ -24,3 +24,7 @@ gaps, full MP4 decode, duration, H.264/yuv420p/AAC compatibility and fast start.
 Native UI: floating ivory type with a single modest offset shadow, hairline RPM
 and course linework, restrained gold. No rectangular HUD/menu fills. Preserve
 the actual race-state transition into the transparent results screen.
+
+Buggy repair revision: same 24-second camera structure, now from repaired native
+build. Source sessions: chase 20261102-071247-231, side 20261102-071307-735,
+close/finish 20261102-071334-921. Intro subline BUGGY / SUSPENSION / DUST.

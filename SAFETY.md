@@ -52,7 +52,7 @@ Local diagnostic records are under `build/incident` and are not committed.
   The forest profile reduces terrain resolution, grass to 6,000 blades, tree
   density, bushes and flowers. These changes apply only in the evaluation environment.
 - Builds use two parallel jobs. `Build-Playground.ps1 -Action Test` currently runs
-  only the five selected CPU tests. Automated GPU captures are disabled.
+  only the six selected CPU tests. Automated GPU captures are disabled.
 
 These measures reduce load and bound a user-mode process. A watchdog cannot
 guarantee recovery from a kernel-level GPU/driver lock, power fault, or hardware
@@ -73,3 +73,9 @@ A normal validated demo uses the supervisor, never a raw executable:
 
 Any failed or stalled session reinstates a local pause marker. Investigate that
 session's logs before another run; no automatic retry is performed.
+
+The buggy repair keeps the same graphics limits. Its dust uses 96 soft instanced
+quads (one draw) rather than opaque-looking faceted puffs, with bounded particle
+lifetimes. The CPU-only RallyVehicle test checks actual fixed model bounds
+against the full tyre envelope, course contacts and particle render-buffer
+movement/fade. It is included in the evaluation test preset.

@@ -97,3 +97,55 @@ CPU tests passed, the supervisor's harmless timeout self-test passed, and
 three exhaust hashes match their source receipts. Fresh UI review returned
 ship after the subtle-treatment fixes. Physical input and heard audio remain
 unverified. This replaces the earlier panel-backed HUD in the candidate.
+
+
+## Buggy clearance, exhaust and dust repair
+
+The accepted panel-free HUD and recorded exhaust audio are preserved. Geometry
+now lives in `RallyBuggy.hpp`: wider axles, shorter side pods/open wheel bays,
+low rear collector and one hollow rear outlet under the engine. Upper/lower
+suspension links and shocks follow wheel travel. Tyres steer/spin below the
+same chassis frame used by the body, with 0.16-0.68 m available local travel.
+The rig uses four ground samples, feed-forward spring following and bounded
+travel in the tilted chassis frame. It remains an analytic arcade rig.
+
+The old fixed faceted blobs are gone. `RallyDust.hpp` emits soft camera-facing
+quads at the rear tyre contact points by distance travelled. Each has its own
+world velocity, lateral spread, upward drift, drag, growth, spin, opacity fade
+and 0.85-1.25 second lifetime. Pausing freezes them; restarting clears them.
+There are at most 96, in a single instanced draw, with depth testing and no
+depth writes. No new textures, downloads, audio or graphics features are needed.
+
+`RallyVehicle_test` uses the actual model's fixed mesh bounds and a conservative
+union of all tyre positions over full steering and bump/droop. Minimum computed
+separation is 0.17787 m. All 360 sampled course poses pass the analytic contact
+check. Particle checks confirm displacement reaches the uploaded instance
+matrices, opacity decreases in instance data, particles expire and reset, and
+all shader includes resolve. These run without opening graphics or audio.
+
+Final native full-lap session: `build/sessions/20261102-071334-921`. 900 frames,
+one lap in 28.6496 simulated seconds, zero obstacle contacts, exit zero after
+47.54 wall seconds, sampled peak working set 136,904,704 bytes. The analytic
+support model reports max wheel-contact gap 0.000160217 m; this is not a
+triangle-level tyre deformation or physical-suspension accuracy claim. Travel
+stays within limits. It emitted 1,530 short-lived particles with up to 1.98 m/s
+world velocity. Static model bounds and runtime telemetry are engineering
+checks; subjective motion quality and physical driving feel remain human review.
+
+Six CPU evaluation checks pass. A first dust shader used an unavailable include
+name, exited through a caught exception (code 1), and triggered the supervisor's
+pause. The include was corrected, a CPU regression check added, and one explicit
+controlled resumed capture passed before normal supervised captures continued.
+That failure's logs and archived pause marker remain local; no guard was removed
+or relaxed. Current runs have empty stderr. No Windows settings were changed.
+
+Updated footage: `build/cinder-film/Cinder-Forest-Buggy-Fixes.mp4`.
+
+
+The arcade circular obstacle footprint was also increased to follow the wider
+transverse wheel stance. Final post-adjustment native session
+`build/sessions/20261102-072609-729` passed all 900 frames with the same lap,
+contact/travel/dust metrics, exit zero in 43.43 wall seconds and 130,506,752
+bytes sampled peak working set. Its final PNG hash exactly matches the final
+frame used by the new video. Both pause and active-session markers are absent.
+This remains a circular arcade obstacle approximation, not mesh collision.

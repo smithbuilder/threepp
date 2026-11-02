@@ -240,7 +240,7 @@
       "configuration": "Release",
       "jobs": 2,
       "targets": ["threepp_showcase", "timber_run", "timber_rally", "threepp_editor", "showpiece", "tree_demo", "forest_demo", "water",
-        "Vector3_test", "Matrix4_test", "ObjectLoader_test", "GLTFLoader_test", "SceneArchive_test",
+        "RallyVehicle_test", "Vector3_test", "Matrix4_test", "ObjectLoader_test", "GLTFLoader_test", "SceneArchive_test",
         "GLRenderer_test", "GLPostProcessing_test", "GLShadowMap_test", "GLTextureNameReuse_test", "GLSurveyFixes_test"]
     },
     {
@@ -353,7 +353,7 @@
       "configuration": "Release",
       "output": {"outputOnFailure": true},
       "execution": {"noTestsAction": "error"},
-      "filter": {"include": {"name": "^(Vector3|Matrix4|ObjectLoader|GLTFLoader|SceneArchive|GLRenderer|GLPostProcessing|GLShadowMap|GLTextureNameReuse|GLSurveyFixes)_test$"}}
+      "filter": {"include": {"name": "^(RallyVehicle|Vector3|Matrix4|ObjectLoader|GLTFLoader|SceneArchive|GLRenderer|GLPostProcessing|GLShadowMap|GLTextureNameReuse|GLSurveyFixes)_test$"}}
     },
     {
       "name": "base",

@@ -93,15 +93,25 @@ inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wh
     auto hood=make(bodyPanel(.85f,1.4f,.08f,.35f),gold,{0,.91f,.85f});
     make(bodyPanel(.91f,1.2f,.32f,.15f),gold,{0,.64f,-1.15f});
     for(float s:{-1.f,1.f}) {
-        make(bodyPanel(.23f,2.2f,.12f,.12f),gold,{s*.92f,.9f,0});
+        // Short side pods end between the axles, leaving actual wheel bays.
+        make(bodyPanel(.14f,1.1f,.12f,.12f),gold,{s*.87f,.9f,0});
         body.add(rod({s*.82f,.75f,1.3f},{s*.66f,1.95f,.27f},.062f,steel));
         body.add(rod({s*.66f,1.95f,.27f},{s*.74f,1.85f,-.75f},.062f,steel));
         body.add(rod({s*.74f,1.85f,-.75f},{s*.88f,.8f,-1.5f},.062f,steel));
         body.add(rod({s*.85f,.85f,-.8f},{s*.85f,1.45f,.2f},.045f,steel));
         body.add(rod({s*.85f,1.45f,-.8f},{s*.85f,.85f,.2f},.045f,steel));
-        body.add(rod({s*.77f,.66f,-1.25f},{s*1.18f,.8f,-1.5f},.055f,silver));
-        make(CylinderGeometry::create(.09f,.09f,.65f,8),silver,{s*.35f,.95f,-1.65f})->rotation.x=pi/2;
+        body.add(rod({s*.29f,.72f,-1.22f},{s*.4f,.59f,-1.4f},.045f,steel));
+        body.add(rod({s*.4f,.59f,-1.4f},{s*.47f,.4f,-1.57f},.045f,steel));
     }
+    // Rear-mounted collector below the engine/deck, with a single low outlet.
+    auto muffler=make(CylinderGeometry::create(.1f,.1f,.96f,14),silver,{0,.4f,-1.57f});muffler->rotation.z=pi/2;
+    for(float side:{-1.f,1.f})body.add(rod({side*.42f,.64f,-1.55f},{side*.42f,.42f,-1.55f},.018f,steel));
+    body.add(rod({-.48f,.4f,-1.57f},{-.62f,.39f,-1.78f},.063f,steel));
+    const Vector3 outletStart(-.62f,.39f,-1.78f),outletEnd(-.62f,.34f,-1.97f);
+    auto direction=outletEnd.clone().sub(outletStart);auto tip=make(CylinderGeometry::create(.07f,.07f,direction.length(),14,1,true),silver,outletStart.clone().add(outletEnd).multiplyScalar(.5f));
+    tip->quaternion.setFromUnitVectors(Vector3(0,1,0),direction.clone().normalize());
+    auto bore=make(CircleGeometry::create(.055f,14),black,outletEnd.clone().addScaledVector(direction.clone().normalize(),-.035f));
+    bore->material()->side=Side::Double;bore->quaternion.setFromUnitVectors(Vector3(0,0,1),direction.normalize());
     body.add(rod({-.74f,1.85f,-.75f},{.74f,.82f,-1.45f},.045f,steel));
     body.add(rod({.74f,1.85f,-.75f},{-.74f,.82f,-1.45f},.045f,steel));
     for(int i=0;i<6;++i) make(BoxGeometry::create(.8f,.04f,.06f),steel,{0,1.04f+i*.025f,-1.18f+i*.11f});

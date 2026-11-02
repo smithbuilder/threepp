@@ -4,6 +4,8 @@
 #include "RallyDetail.hpp"
 #include "RallyHud.hpp"
 #include "RallyPowertrain.hpp"
+#include "RallyBuggy.hpp"
+#include "RallyDust.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/environments/RoomEnvironment.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
@@ -43,7 +45,7 @@ struct Driver {
     float throttle=0;
     float message = 0;
     float heave=groundHeight(0,90), heaveVelocity=0, pitch=0, roll=0, yawRate=0, lateral=0, previousVelocity=0;
-    float lastLap=0, maxHeave=0, maxRoll=0;
+    float lastLap=0, maxHeave=0, maxRoll=0,previousRoad=0;bool suspensionReady=false;
     float contactCooldown=0;
     Vector3 motion;
     void reset() { float oldBest = best; *this = Driver{}; best = oldBest; }
@@ -66,7 +68,7 @@ int main(int argc, char** argv) {
         const bool captureMode=!shot.empty()||!sequence.empty();
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
-            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished\n";}
+            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted\n";}
         const bool bounded = limit > 0;
         auto assetDir=std::filesystem::absolute(argv[0]).parent_path()/"rally-assets";
         TextureLoader textureLoader;
@@ -184,35 +186,12 @@ int main(int argc, char** argv) {
             auto text=rally::label(i==0?"CINDER / FINISH":("SECTOR 0"+std::to_string(i)),.18f,Color(0x17201b));
             text->position.set(0,3.7f,-.12f);text->rotation.y=PI;gate->add(text);scene->add(gate);
         }
-        // Authored vehicle silhouette: exposed wheels, roll cage, nose, cabin,
-        // lamps and visible suspension travel. It is not a downloaded car model.
-        auto car = Group::create(), body = Group::create(); car->add(body); scene->add(car);
-        auto paint = material(0xefbd43, .3f, .35f), frameMat = material(0x18272a, .45f, .7f), tire = material(0x202324), rim = material(0xd1c5a5, .3f, .8f);
-        auto part = [&](std::shared_ptr<BufferGeometry> g, std::shared_ptr<Material> m, Vector3 p) {
-            auto o = Mesh::create(g, m); o->position.copy(p); o->castShadow = o->receiveShadow = true; body->add(o); return o;
-        };
-        part(BoxGeometry::create(1.6f, .18f, 2.7f), frameMat, {0, .65f, 0});
-        part(BoxGeometry::create(1.5f, .08f, 1.3f), frameMat, {0, 1.98f, -.25f});
-        part(BoxGeometry::create(1.8f, .14f, .15f), rim, {0, .58f, 1.65f});
-        part(BoxGeometry::create(1.8f, .14f, .15f), frameMat, {0, .6f, -1.6f});
-        for (float x : {-.65f, .65f}) for (float z : {-.85f, .4f})
-            part(CylinderGeometry::create(.055f, .055f, 1.05f, 8), frameMat, {x, 1.4f, z});
-        for (float x : {-.4f, .4f}) part(BoxGeometry::create(.5f, .65f, .4f), frameMat, {x, 1.15f, -.4f});
-        auto lightMat = material(0xffecd1); lightMat->emissive = Color(0xffcd7b); lightMat->emissiveIntensity = 1.8f;
-        for (float x : {-.5f, .5f}) part(SphereGeometry::create(.15f, 12, 8), lightMat, {x, .95f, 1.65f});
-        std::vector<std::shared_ptr<Group>> wheelPivots, wheelRolls;
-        for (float z : {1.02f, -1.05f}) for (float x : {-1.0f, 1.0f}) {
-            auto pivot = Group::create(), roll = Group::create(); pivot->position.set(x, .49f, z); pivot->add(roll); car->add(pivot);
-            auto rubber = Mesh::create(CylinderGeometry::create(.48f, .48f, .38f, 20), tire); rubber->rotation.z = PI/2; rubber->castShadow = true; roll->add(rubber);
-            auto hub = Mesh::create(CylinderGeometry::create(.25f, .25f, .4f, 12), rim); hub->rotation.z = PI/2; roll->add(hub);
-            wheelPivots.push_back(pivot); wheelRolls.push_back(roll);
-        }
-        rally::addVehicleDetail(*body,wheelRolls);
-        car->traverseType<Mesh>([](Mesh& mesh){mesh.castShadow=true;});
-        auto carShadow=Mesh::create(PlaneGeometry::create(3.2f,4.6f),rally::shadowMaterial(.55f));carShadow->rotation.x=-PI/2;scene->add(carShadow);
-        auto dustMat = material(0xb79b72); dustMat->transparent = true; dustMat->opacity = .22f; dustMat->depthWrite = false;
-        auto dust = InstancedMesh::create(IcosahedronGeometry::create(.22f), dustMat, 48); dust->frustumCulled = false; scene->add(dust);
-        std::vector<Vector3> dustPos(48); std::vector<float> dustLife(48, 0); int dustIndex = 0;
+        auto buggy=rally::makeBuggy();auto car=buggy.car,body=buggy.body;scene->add(car);
+        auto& wheelPivots=buggy.pivots;auto& wheelRolls=buggy.rolls;
+        auto carShadow=Mesh::create(PlaneGeometry::create(3.9f,4.5f),rally::shadowMaterial(.45f));carShadow->rotation.x=-PI/2;scene->add(carShadow);
+        auto dust=rally::makeDustMesh();scene->add(dust);rally::DustSimulation dustSimulation;
+        std::array<rally::WheelContact,4> wheelContacts;
+        float maxWheelGap=0,minWheelTravel=1,maxWheelTravel=0,maxDustSpeed=0;
         Driver driver;
         std::unique_ptr<AudioListener> soundListener;
         std::array<std::unique_ptr<Audio>,3> exhaust;
@@ -233,7 +212,7 @@ int main(int argc, char** argv) {
         bool paused = false, raceStarted=scripted, resetClockRequested=false; float countdown=0; int inputEvents = 0;
         auto snapCamera = [&] { camera->position.copy(driver.position).add(Vector3(-6.2f, 3.2f, 0)); };
         snapCamera();
-        auto resetRun=[&](bool start){driver.reset();powertrain=rally::Powertrain{};paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();};
+        auto resetRun=[&](bool start){driver.reset();dustSimulation.reset();powertrain=rally::Powertrain{};paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();};
         EffectComposer::Options options; options.samples = 0; EffectComposer composer(renderer, options);
         composer.addPass(std::make_shared<RenderPass>(*scene, *camera));
         auto bloom = std::make_shared<UnrealBloomPass>(Vector2(960, 600), .14f, .3f, 1.8f); bloom->enabled = false;
@@ -310,6 +289,7 @@ int main(int argc, char** argv) {
         canvas.animate([&] {
             FrameBudget frameBudget;
             float dt = bounded ? 1.f/30 : std::min(clock.getDelta(), .05f);
+            if(!driver.suspensionReady){auto road=rally::roadPose(driver.position,driver.heading,groundHeight);driver.heave=driver.previousRoad=road.ride;driver.pitch=road.pitch;driver.roll=road.roll;driver.suspensionReady=true;}
             if(resetClockRequested){accumulator=0;resetClockRequested=false;}
             const bool counting=countdown>0;
             if(counting)countdown=std::max(0.f,countdown-dt);
@@ -341,27 +321,25 @@ int main(int argc, char** argv) {
                 driver.position.x += driver.motion.x * step;
                 driver.position.z += driver.motion.z * step;
                 driver.position.y = groundHeight(driver.position.x, driver.position.z);
-                float heaveTarget=driver.position.y+.16f;
-                driver.heaveVelocity+=((heaveTarget-driver.heave)*90-driver.heaveVelocity*15)*step;
+                const auto road=rally::roadPose(driver.position,driver.heading,groundHeight);
+                const float heaveTarget=road.ride;
+                const float roadVelocity=std::clamp((heaveTarget-driver.previousRoad)/step,-15.f,15.f);driver.previousRoad=heaveTarget;
+                driver.heaveVelocity+=((heaveTarget-driver.heave)*90-(driver.heaveVelocity-roadVelocity)*15)*step;
                 driver.heave+=driver.heaveVelocity*step;
+                driver.heave=std::clamp(driver.heave,heaveTarget-.12f,heaveTarget+.12f);
                 driver.maxHeave=std::max(driver.maxHeave,std::abs(driver.heave-heaveTarget));
-                Vector3 f(std::sin(driver.heading),0,std::cos(driver.heading)),r(std::cos(driver.heading),0,-std::sin(driver.heading));
-                float front=groundHeight(driver.position.x+f.x*1.1f,driver.position.z+f.z*1.1f);
-                float rear=groundHeight(driver.position.x-f.x*1.1f,driver.position.z-f.z*1.1f);
-                float slope=std::atan2(front-rear,2.2f);
-                driver.pitch+=(-slope-driver.pitch)*(1-std::exp(-9*step));
-                float lean=-driver.yawRate*driver.velocity*.008f;
-                float sideSlope=(groundHeight(driver.position.x+r.x,driver.position.z+r.z)-groundHeight(driver.position.x-r.x,driver.position.z-r.z))*.5f;
-                driver.roll+=(std::clamp(sideSlope+lean,-.23f,.23f)-driver.roll)*(1-std::exp(-6*step));
+                driver.pitch+=(road.pitch-driver.pitch)*(1-std::exp(-14*step));
+                const float lean=std::clamp(-driver.yawRate*driver.velocity*.004f,-.035f,.035f);
+                driver.roll+=(road.roll+lean-driver.roll)*(1-std::exp(-14*step));
                 driver.maxRoll=std::max(driver.maxRoll,std::abs(driver.roll));
-                driver.wheelAngle += driver.velocity * step / .48f;
+                driver.wheelAngle += driver.velocity * step / rally::tyreRadius;
                 driver.contactCooldown=std::max(0.f,driver.contactCooldown-step);
                 auto collide=[&](float px,float pz,float radius){float x=driver.position.x-px,z=driver.position.z-pz,d=x*x+z*z;
                     if(d<radius*radius&&d>.0001f){float inv=radius/std::sqrt(d);driver.position.x=px+x*inv;driver.position.z=pz+z*inv;
                         if(driver.contactCooldown==0){driver.velocity*=-.18f;driver.motion.multiplyScalar(-.15f);++driver.contacts;driver.contactCooldown=.5f;}}
                 };
-                for(const auto& p:treePositions)collide(p.x,p.z,1.4f);
-                for(const auto& p:obstacles)collide(p.x,p.z,p.radius+.85f);
+                for(const auto& p:treePositions)collide(p.x,p.z,.55f+rally::obstacleFootprint);
+                for(const auto& p:obstacles)collide(p.x,p.z,p.radius+rally::obstacleFootprint);
                 if (std::abs(driver.velocity) > .5f) driver.running = true;
                 if (driver.running) driver.elapsed += step;
                 Vector3 gate = track(driver.next * 2 * PI / 8);
@@ -373,25 +351,25 @@ int main(int argc, char** argv) {
                 driver.message = std::max(0.f, driver.message-step);
                 if (std::abs(driver.position.x) > 235 || std::abs(driver.position.z) > 235) { driver.reset(); snapCamera(); }
             }
-            car->position.copy(driver.position);car->position.y=driver.heave; car->rotation.y = driver.heading;
-            Vector3 forward(std::sin(driver.heading), 0, std::cos(driver.heading)), right(std::cos(driver.heading), 0, -std::sin(driver.heading));
-            body->rotation.x = driver.pitch; body->rotation.z = driver.roll;
-            body->position.y = .018f * std::sin(worldTime * (10 + std::abs(driver.velocity))) * std::min(1.f, std::abs(driver.velocity)*.1f);
-            for (int i = 0; i < 4; ++i) {
-                auto& pivot = wheelPivots[i]; pivot->rotation.y = i < 2 ? driver.steer * .4f : 0;
-                Vector3 wp = driver.position.clone().addScaledVector(right, pivot->position.x).addScaledVector(forward, pivot->position.z);
-                pivot->position.y = std::clamp(.65f + groundHeight(wp.x, wp.z)-driver.heave,.2f,.9f);
-                wheelRolls[i]->rotation.x = driver.wheelAngle;
+            const auto chassisQ=rally::chassisOrientation(driver.heading,driver.pitch,driver.roll);
+            Vector3 chassis(driver.position.x,driver.heave,driver.position.z);
+            rally::constrainRide(chassis,chassisQ,driver.steer*.4f,groundHeight);driver.heave=chassis.y;
+            car->position.copy(chassis);car->rotation.y=driver.heading;
+            Vector3 forward(std::sin(driver.heading),0,std::cos(driver.heading)),right(std::cos(driver.heading),0,-std::sin(driver.heading));
+            body->rotation.x=driver.pitch;body->rotation.z=driver.roll;body->position.y=0;
+            for(int i=0;i<4;++i){wheelContacts[i]=rally::wheelContact(i,chassis,chassisQ,driver.steer*.4f,groundHeight);
+                wheelPivots[i]->position.copy(wheelContacts[i].local);wheelPivots[i]->rotation.y=i<2?driver.steer*.4f:0;
+                wheelRolls[i]->rotation.x=driver.wheelAngle;maxWheelGap=std::max(maxWheelGap,std::abs(wheelContacts[i].gap));
+                minWheelTravel=std::min(minWheelTravel,wheelContacts[i].local.y);maxWheelTravel=std::max(maxWheelTravel,wheelContacts[i].local.y);}
+            rally::updateSuspension(buggy.links,wheelContacts);
+            for(int i=0;i<8;++i)banners[i]->setMaterial(i==driver.next?activeMat:bannerMat);
+            if(!paused){
+                dustSimulation.update(dt);
+                if(raceStarted&&!counting&&!driver.finished&&std::abs(driver.velocity)>4){dustSimulation.distance+=std::abs(driver.velocity)*dt;
+                    while(dustSimulation.distance>=.65f){dustSimulation.distance-=.65f;
+                        for(int i=2;i<4;++i)if(std::abs(wheelContacts[i].gap)<.08f)dustSimulation.spawn(wheelContacts[i].ground,forward,right,driver.motion,std::abs(driver.velocity),i%2?1.f:-1.f);}}
             }
-            for (int i = 0; i < 8; ++i) banners[i]->setMaterial(i == driver.next ? activeMat : bannerMat);
-            if (!paused && std::abs(driver.velocity) > 5) { dustPos[dustIndex] = driver.position.clone().addScaledVector(forward, -1.5f); dustLife[dustIndex] = 1; dustIndex = (dustIndex+1)%48; }
-            Object3D puff;
-            for (int i = 0; i < 48; ++i) {
-                if (!paused) dustLife[i] = std::max(0.f, dustLife[i]-dt*(driver.finished?2.6f:.6f));
-                puff.position.copy(dustPos[i]); puff.position.y += .3f + (1-dustLife[i])*1.3f;
-                puff.scale.setScalar(dustLife[i] > 0 ? .4f+(1-dustLife[i])*2.7f : 0); puff.updateMatrix(); dust->setMatrixAt(i,*puff.matrix);
-            }
-            dust->instanceMatrix()->needsUpdate();
+            for(const auto& p:dustSimulation.particles)if(p.age<p.life)maxDustSpeed=std::max(maxDustSpeed,p.velocity.length());
             carShadow->position.copy(driver.position);carShadow->position.y+=.19f;carShadow->rotation.z=-driver.heading;
             roadsideGrass->setTime(worldTime);
             powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
@@ -401,19 +379,20 @@ int main(int argc, char** argv) {
             desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
             camera->position.lerp(desired,1-std::exp(-5*dt));camera->lookAt(driver.position.clone().addScaledVector(forward,view==2?0.f:2.8f).add(Vector3(0,1.1f,0)));
             camera->fov=(view==2?50.f:59.f)+std::abs(driver.velocity)*.14f;camera->updateProjectionMatrix();
+            rally::drawDust(*dust,dustSimulation,camera->quaternion);
             Vector3 lightAnchor(std::floor(driver.position.x*8)/8,driver.position.y,std::floor(driver.position.z*8)/8);
             sun->position.copy(lightAnchor).add(Vector3(-35,50,-12)); sunTarget->position.copy(lightAnchor);
             composer.render(dt); ui.render();
             if(!sequence.empty()&&frames>=warmup){char name[40];std::snprintf(name,sizeof(name),"frame_%05d.png",frames-warmup);
                 renderer.writeFramebuffer(std::filesystem::path(sequence)/name);
-                frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<'\n';}
+                frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<','<<wheelContacts[0].local.y<<','<<wheelContacts[1].local.y<<','<<wheelContacts[2].local.y<<','<<wheelContacts[3].local.y<<','<<dustSimulation.serial<<'\n';}
             ++frames;
             if (bounded && frames >= limit + (sequence.empty()?0:warmup)) {
                 if (!shot.empty()) renderer.writeFramebuffer(shot);
                 std::cout << "[drive] frames=" << frames << " laps=" << driver.laps << " nextGate=" << driver.next << " speed=" << driver.velocity << '\n'; canvas.close();
             }
         });
-        if (!telemetry.empty()) { std::ofstream out(telemetry); out << "{\"frames\":" << frames << ",\"x\":" << driver.position.x << ",\"z\":" << driver.position.z << ",\"speed\":" << driver.velocity << ",\"laps\":" << driver.laps << ",\"nextGate\":" << driver.next << ",\"contacts\":" << driver.contacts << ",\"maxHeave\":" << driver.maxHeave << ",\"maxRoll\":" << driver.maxRoll << ",\"lastLap\":" << driver.lastLap << ",\"inputEvents\":" << inputEvents << "}"; }
+        if (!telemetry.empty()) { std::ofstream out(telemetry); out << "{\"frames\":" << frames << ",\"x\":" << driver.position.x << ",\"z\":" << driver.position.z << ",\"speed\":" << driver.velocity << ",\"laps\":" << driver.laps << ",\"nextGate\":" << driver.next << ",\"contacts\":" << driver.contacts << ",\"maxHeave\":" << driver.maxHeave << ",\"maxRoll\":" << driver.maxRoll << ",\"lastLap\":" << driver.lastLap << ",\"maxWheelGap\":"<<maxWheelGap<<",\"minWheelTravel\":"<<minWheelTravel<<",\"maxWheelTravel\":"<<maxWheelTravel<<",\"dustEmitted\":"<<dustSimulation.serial<<",\"maxDustSpeed\":"<<maxDustSpeed << ",\"inputEvents\":" << inputEvents << "}"; }
         return 0;
     } catch (std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
 }

@@ -27,3 +27,8 @@ rendering/CPU encode. Do not publish or upload externally.
 Final UI direction: subtle floating instruments; no black translucent panels
 in HUD or menus/results. Preserve this actual native capture, not an overlay
 that only makes the video look different.
+
+Current revision: correct rear exhaust routing; open wheel bays with checked
+steering/bump/droop clearance and moving links; chassis-relative wheel contacts;
+soft tyre-contact dust with velocity and age-based growth/fade. Show the actual
+native result in motion; preserve the accepted subtle HUD and audio.
