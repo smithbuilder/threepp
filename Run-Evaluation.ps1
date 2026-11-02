@@ -4,6 +4,10 @@ param(
     [string]$Example = 'timber_run',
     [ValidateRange(5,300)][int]$Seconds = 60,
     [switch]$AcknowledgeIncident,
+    [ValidateRange(1,3)][int]$Scene = 1,
+    [switch]$Capture,
+    [switch]$AutoDrive,
+    [ValidateRange(1,900)][int]$Frames = 90,
     [switch]$SelfTest
 )
 $ErrorActionPreference = 'Stop'
@@ -16,12 +20,17 @@ $active = Join-Path $PSScriptRoot 'build\evaluation-active.json'
 if (-not $SelfTest -and ((Test-Path -LiteralPath $trackedPause) -or (Test-Path -LiteralPath $blocked) -or (Test-Path -LiteralPath $active)) -and -not $AcknowledgeIncident) {
     throw 'Graphics launches are paused after a reported full-system lock. Read SAFETY.md. No demo was started. A deliberate controlled trial requires -AcknowledgeIncident.'
 }
+$verified = @('threepp_showcase','timber_run','showpiece','tree_demo','forest_demo')
+if (-not $SelfTest -and $Example -notin $verified -and -not $AcknowledgeIncident) {
+    throw 'This example has not completed the resumed evaluation. Use one of the five verified conservative demos in Explore-Examples.cmd.'
+}
 if (-not ('ThreeppEvaluationJob' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'scripts\EvaluationJob.cs') }
 $mutex = New-Object System.Threading.Mutex($false, 'Local\ThreeppEvaluation-Supervisor')
 $locked = $false
 $child = $null
 $job = $null
 $normal = $false
+$peakMemory = 0L
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss-fff'
 $session = Join-Path $logRoot $stamp
 New-Item -ItemType Directory -Path $session -Force | Out-Null
@@ -40,7 +49,13 @@ try {
         $exe = Join-Path $PSScriptRoot "build\windows-gl\bin\Release\$Example.exe"
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
-        if ($Example -in @('tree_demo','forest_demo')) { $arguments = @('--gl') }
+        if ($Capture -and $Example -notin @('threepp_showcase','timber_run','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
+        if ($AutoDrive -and $Example -ne 'timber_run') { throw 'AutoDrive is available only for timber_run.' }
+        if ($Example -eq 'threepp_showcase') { $arguments += @('--scene', [string]$Scene) }
+        if ($Capture) { $arguments += @('--shot', ('"' + (Join-Path $session 'capture.png') + '"'), '--frames', [string]$Frames) }
+        if ($AutoDrive) { $arguments += '--autodrive' }
+        if ($Example -eq 'showpiece') { $arguments += @('--size','960x600','--samples','0','--no-gtao','--no-bloom','--no-outline') }
+        if ($Example -in @('tree_demo','forest_demo')) { $arguments += '--gl' }
         $deadline = $Seconds + 5
         $env:THREEPP_EVALUATION_MODE = '1'
         $env:THREEPP_EVALUATION_SECONDS = [string]$Seconds
@@ -56,6 +71,7 @@ try {
     $child.PriorityClass = 'BelowNormal'
     $reason = 'exited'
     while (-not $child.HasExited) {
+        try { $peakMemory = [Math]::Max($peakMemory, $child.WorkingSet64) } catch { }
         if ($watch.Elapsed.TotalSeconds -ge $deadline) { $reason='time limit'; break }
         if (-not $SelfTest) {
             if ((Test-Path -LiteralPath $heartbeat)) {
@@ -67,8 +83,9 @@ try {
     }
     $job.Dispose(); $job=$null
     if (-not $child.WaitForExit(5000)) { throw 'The supervised child did not terminate.' }
+    if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds} |
+    @{example=$Example;scene=$Scene;capture=[bool]$Capture;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }

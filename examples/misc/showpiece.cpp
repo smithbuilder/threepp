@@ -115,7 +115,7 @@ int main(int argc, char** argv) {
     GLRenderer renderer(canvas);
     renderer.toneMapping = ToneMapping::ACESFilmic;
     renderer.toneMappingExposure = 1.f;
-    renderer.shadowMap().enabled = true;
+    renderer.shadowMap().enabled = std::getenv("THREEPP_EVALUATION_MODE") == nullptr;
     renderer.shadowMap().type = ShadowMap::PFC;
 
     const Color night(0x04050b);

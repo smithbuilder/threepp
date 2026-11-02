@@ -318,8 +318,9 @@ int main(int argc, char** argv) {
         else if (std::strcmp(argv[i], "--gl") == 0) api = GraphicsAPI::OpenGL;
     }
     const bool capturing = !shotPath.empty();
+    const bool evaluation = std::getenv("THREEPP_EVALUATION_MODE") != nullptr;
 
-    Canvas canvas("Procedural Forest", {{"vsync", !capturing}, {"aa", 4}});
+    Canvas canvas("Procedural Forest", {{"vsync", !capturing}, {"aa", 4}, {"headless", capturing}});
     auto renderer = createRenderer(canvas, api);
 
     bool vulkanBackend = false;
@@ -343,7 +344,7 @@ int main(int argc, char** argv) {
     renderer->setClearColor(Color(0.62f, 0.72f, 0.84f));
     renderer->toneMapping = ToneMapping::Neutral;
     renderer->toneMappingExposure = 1.0f;
-    renderer->shadowMap().enabled = true;
+    renderer->shadowMap().enabled = !evaluation;
     renderer->shadowMap().type = ShadowMap::PFCSoft;
 
     Scene scene;
@@ -377,8 +378,8 @@ int main(int argc, char** argv) {
     // ── Terrain ──────────────────────────────────────────────────────────
     terrain::TerrainParams terr;
     terr.seed = 20260615u;
-    terr.worldSize = 260.f;
-    terr.resolution = 220;
+    terr.worldSize = evaluation ? 160.f : 260.f;
+    terr.resolution = evaluation ? 100 : 220;
     terr.noiseType = terrain::NoiseType::fBm;// gentle rolling hills (no erosion → heightAt matches mesh)
     terr.featureScale = 110.f;
     terr.octaves = 6;
@@ -486,7 +487,7 @@ int main(int argc, char** argv) {
         }
     };
 
-    float spacing = 11.f;
+    float spacing = evaluation ? 16.f : 11.f;
     float fillProb = 0.8f;
     unsigned int scatterSeed = 1u;
     buildForest(scatterSeed, spacing, fillProb);
@@ -506,7 +507,7 @@ int main(int argc, char** argv) {
     // ── Swaying grass ────────────────────────────────────────────────────
     // GL: a dense GrassField (GPU vertex-shader wind, nearly free).
     // Vulkan: a merged GrassMesh (compute deform + one TLAS refit) → sparser.
-    const int bladeCount = shaderGrass ? 90000 : (vulkanBackend ? 9000 : 30000);
+    const int bladeCount = evaluation ? 6000 : (shaderGrass ? 90000 : (vulkanBackend ? 9000 : 30000));
     const float grassRadius = shaderGrass ? 70.f : (vulkanBackend ? 42.f : 58.f);
     const Vector3 windAxis = Vector3(0.6f, 0.f, -0.8f).normalize();// flower CPU-tilt axis ⟂ wind
     const Vector2 windDir2(0.8f, 0.6f);
@@ -596,7 +597,7 @@ int main(int argc, char** argv) {
         Quaternion q;
         const Vector3 up{0.f, 1.f, 0.f};
         Matrix4 m;
-        for (int i = 0; i < 160; ++i) {
+        for (int i = 0; i < (evaluation ? 40 : 160); ++i) {
             const float x = (u01(rng) - 0.5f) * 2.f * groundHalf;
             const float z = (u01(rng) - 0.5f) * 2.f * groundHalf;
             if (!slopeOk(x, z, 0.85f)) continue;
@@ -630,7 +631,7 @@ int main(int argc, char** argv) {
     std::vector<std::vector<Blade>> flowerBlades;
     std::vector<std::shared_ptr<GrassMesh>> flowerFieldsVk;  // Vulkan
     {
-        const int perVariant = shaderGrass ? 1100 : (vulkanBackend ? 800 : 900);
+        const int perVariant = evaluation ? 100 : (shaderGrass ? 1100 : (vulkanBackend ? 800 : 900));
         const Vector3 up{0.f, 1.f, 0.f};
         for (int fv = 0; fv < 3; ++fv) {
             auto mat = MeshStandardMaterial::create(

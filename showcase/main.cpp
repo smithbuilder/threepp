@@ -62,7 +62,7 @@ void sunlight(Exhibit& e, Color color, float intensity, Vector3 position) {
 
 Exhibit kinetic(const std::shared_ptr<Texture>& env) {
     Exhibit e;
-    e.eye.set(13, 9, 17); e.target.set(-1, 2.3f, 0);
+    e.eye.set(13, 9, 17); e.target.set(-4, 2.3f, 0);
     e.scene->background = Color(0x080e19);
     e.scene->fog = FogExp2(Color(0x080e19), .014f);
     e.scene->environment = env;
@@ -108,8 +108,10 @@ Exhibit kinetic(const std::shared_ptr<Texture>& env) {
 
 Exhibit coast() {
     Exhibit e;
-    e.eye.set(28, 17, 34); e.target.set(-2, 1, 0);
+    e.eye.set(28, 17, 34); e.target.set(-8, 1, 0);
     sunlight(e, Color(0xffc38b), 2.5f, {-20, 18, -35});
+    auto fill = DirectionalLight::create(0xffe6c6, 1.4f);
+    fill->position.set(20, 14, 25); e.scene->add(fill);
     auto sky = Sky::create(); sky->scale.setScalar(2000);
     auto& u = sky->materialAs<ShaderMaterial>()->uniforms;
     u.at("turbidity").value<float>() = 4;
@@ -178,7 +180,7 @@ Exhibit coast() {
 
 Exhibit woodland(const std::shared_ptr<Texture>& env) {
     Exhibit e;
-    e.eye.set(17, 12, 20); e.target.set(-1, 2, 0);
+    e.eye.set(17, 12, 20); e.target.set(-4, 2, 0);
     e.scene->background = Color(0xcbd7d2);
     e.scene->fog = FogExp2(Color(0xcbd7d2), .006f);
     e.scene->environment = env; e.scene->environmentIntensity = .35f;
@@ -275,9 +277,9 @@ int main(int argc, char** argv) {
         auto change = [&](int index) { if (exhibit != index) { exhibit = index; resetCamera(); rebuild(); } };
         const char* names[] = {"01  /  ORBITAL FOUNDRY", "02  /  TIDAL OUTPOST", "03  /  LITTLE WOODLAND"};
         const char* descriptions[] = {
-            "192 animated instances.\nPolished metal, studio reflections,\nsoft shadows and bloom.",
-            "Reflective animated water.\nAtmospheric sky, procedural normals,\na lighthouse and a bobbing boat.",
-            "Seeded procedural trees.\nGenerated bark and leaf textures,\nsoft shadows and drifting fireflies."
+            "192 moving instances.\nPolished metal and reflections.\nAll geometry generated locally.",
+            "Reflective animated water.\nSky and procedural wave normals.\nLighthouse and a bobbing boat.",
+            "Seeded procedural trees.\nGenerated bark and leaf textures.\nA cabin and drifting fireflies."
         };
         ImguiFunctionalContext ui(canvas, [&] {
             ImGui::SetNextWindowPos(ImVec2(24, 24), ImGuiCond_Always);
@@ -290,12 +292,12 @@ int main(int argc, char** argv) {
             ImGui::SliderFloat("Exposure", &renderer.toneMappingExposure, .35f, 1.8f, "%.2f");
             ImGui::TextDisabled("Conservative mode: effects reduced");
             if (ImGui::Button("Reset camera [R]", ImVec2(-1, 28))) resetCamera();
-            ImGui::Spacing(); ImGui::TextDisabled("Drag: orbit  |  Wheel: zoom\nRight-drag: pan  |  1 / 2 / 3: scene");
+            ImGui::Spacing(); ImGui::TextDisabled("Drag: orbit  |  Wheel: zoom\nRight-drag: pan\n1 / 2 / 3: switch scene");
             ImGui::TextDisabled("%.0f fps", ImGui::GetIO().Framerate);
             ImGui::End();
         });
         ImGui::StyleColorsDark(); ImGui::GetStyle().WindowRounding = 8;
-        ui.setFontScale(1.15f);
+        ui.setFontScale(1.f);
         canvas.onKeyPressed([&](KeyEvent ev) {
             if (ImGui::GetIO().WantCaptureKeyboard) return;
             if (ev.key == Key::NUM_1) change(0);

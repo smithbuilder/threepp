@@ -20,5 +20,5 @@ if ($Action -eq 'Build') {
     & $ctest --preset evaluation-windows --timeout 180 --exclude-regex '^GL(Renderer|PostProcessing|ShadowMap|TextureNameReuse|SurveyFixes)_test$'
     if ($LASTEXITCODE) { throw 'Tests failed.' }
 } else {
-    throw 'Automatic graphics capture is paused after a reported full-system lock. See SAFETY.md; no GPU workload was started.'
+    throw 'Use Run-Evaluation.ps1 -Capture for an explicit supervised capture. Builds and default tests never start graphics.'
 }

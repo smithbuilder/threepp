@@ -1,19 +1,21 @@
 @echo off
 cd /d "%~dp0"
 echo.
-echo   THREEPP - upstream examples
+echo   THREEPP - conservative demo collection
+echo   960x600 / 30 FPS maximum / 60-second supervised sessions
 echo.
-echo   1. Lighting and materials showpiece
-echo   2. Water and atmospheric sky
-echo   3. Procedural tree workshop
-echo   4. Procedural forest
-echo   5. Our original playground
-echo   6. Scene editor
+echo   1. Timber Run - driving study
+echo   2. Engine Playground - three original scenes
+echo   3. Materials showpiece - upstream
+echo   4. Procedural tree workshop - upstream
+echo   5. Procedural forest - upstream, reduced density
 echo.
-choice /c 123456 /n /m "Choose an example: "
-if errorlevel 6 (call Launch-Editor.cmd & exit /b)
-if errorlevel 5 (call Launch-Playground.cmd & exit /b)
-if errorlevel 4 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example forest_demo & exit /b)
-if errorlevel 3 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example tree_demo & exit /b)
-if errorlevel 2 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example water & exit /b)
-powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example showpiece
+choice /c 12345 /n /m "Choose a demo: "
+if errorlevel 5 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example forest_demo & goto done)
+if errorlevel 4 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example tree_demo & goto done)
+if errorlevel 3 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example showpiece & goto done)
+if errorlevel 2 (call Launch-Playground.cmd & exit /b)
+call Launch-Timber-Run.cmd
+exit /b
+:done
+if errorlevel 1 pause

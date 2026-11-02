@@ -7,9 +7,10 @@ Upstream: https://github.com/markaren/threepp
 Reviewed baseline: `8518a6c22d051775c45dbd0c04a3ba92e92a5366` (master).
 Local work is on `setup/windows-evaluation`; the upstream source is retained.
 
-**Current status: graphics paused after Oliver reported a full-system lock.**
-Read [SAFETY.md](SAFETY.md) before launching anything. No automatic graphics
-retest is part of this handoff.
+**Current status: conservative examples resumed after Oliver authorized continuing.**
+Seven scenes across five executables passed short supervised captures. Use
+`Explore-Examples.cmd`; the safeguards and 60-second session limit remain active.
+Read [SAFETY.md](SAFETY.md). Long-session stability and live-input acceptance remain open.
 
 ## What is built
 
@@ -23,7 +24,9 @@ retest is part of this handoff.
   with generated bark and leaf textures. Drag to orbit, wheel to zoom, 1/2/3
   to switch, Space pause, R reset.
 - Upstream **scene editor**, **showpiece**, **water**, **tree_demo**, and
-  **forest_demo**, available through the example launcher once revalidated.
+  **forest_demo**. Materials, trees and forest passed resumed captures. The editor
+  and standalone water executable still require separate validation; they are
+  excluded from the normal demo menu. The original gallery includes a water scene.
 
 All original showcase art is procedural. Upstream example assets retain their
 separate licenses. Use the supplied supervised launchers; raw executables bypass
@@ -51,7 +54,9 @@ three original scenes rendered, two upstream examples rendered, and an automated
 the bounded software paths, not system stability or physical keyboard feel.
 After the safeguard changes: the full selected build succeeds, five CPU-only
 regressions pass, the supervisor's harmless-child timeout test passes, and a
-paused-launch refusal is confirmed. Graphics were not rerun.
+paused-launch refusal is confirmed. Subsequently, authorized short captures
+passed for the original gallery (three scenes), driving study, materials
+showpiece, tree workshop and reduced forest. See `DEMO-RESULTS.md`.
 
 ## Source review
 

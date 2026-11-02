@@ -1,7 +1,14 @@
-# Evaluation paused after a full-system lock
+# Conservative evaluation after a full-system lock
+
+Update: Oliver authorized continuing the examples. Seven scenes across five
+executables completed short supervised captures on November 1 after the guards
+were installed. The validated conservative profiles are available through
+`Explore-Examples.cmd`; each run defaults to 60 seconds. The editor and the
+standalone upstream water example remain outside the default validated list.
+No live keyboard feel or long-session stability acceptance is claimed.
 
 Oliver reported that the entire computer hard locked during this evaluation on
-November 1, 2026. Graphics testing is paused. Do not interpret a successful build,
+November 1, 2026. Unrestricted graphics testing remains paused. Do not interpret a successful build,
 earlier screenshots, or a scripted lap as proof that this machine is stable.
 
 Windows recorded an unexpected shutdown (Kernel-Power 41 / EventLog 6008) and a
@@ -14,7 +21,9 @@ Local diagnostic records are under `build/incident` and are not committed.
 
 - All supplied launchers go through `Run-Evaluation.ps1` and refuse to start while
   the tracked `EVALUATION-PAUSED.txt` or local `build/GRAPHICS_PAUSED.txt` exists.
-  New clones retain this paused state. Nothing automatically restarts a failed demo.
+  The initial tracked pause was replaced by `EVALUATION-LIMITED.txt` after the
+  authorized trials. Only the five validated conservative profiles launch by
+  default. Nothing automatically restarts a failed demo.
 - The supervisor permits only one evaluation at a time. It logs stdout, stderr,
   outcome and elapsed time in a separate `build/sessions/<timestamp>` folder.
 - A Windows job limits each process to 2 GiB of committed memory and kills the
@@ -28,6 +37,9 @@ Local diagnostic records are under `build/incident` and are not committed.
   minimized. Escape closes the application.
 - Our two demos also cap frames when launched directly, use smaller targets,
   disable shadows/bloom/MSAA, and reduce the driving forest to 180 trees.
+- The upstream materials showpiece disables MSAA, shadows, GTAO, bloom and outlines.
+  The forest profile reduces terrain resolution, grass to 6,000 blades, tree
+  density, bushes and flowers. These changes apply only in the evaluation environment.
 - Builds use two parallel jobs. `Build-Playground.ps1 -Action Test` currently runs
   only the five selected CPU tests. Automated GPU captures are disabled.
 
@@ -38,17 +50,15 @@ failure. Windows driver/security/timeout settings have not been changed.
 ## Validation and next controlled check
 
 The timeout/job cleanup self-test uses a sleeping PowerShell child; it does not
-open a graphics context. Native graphics and live-input acceptance remain pending
-after this incident. Earlier captures in `build/captures` are from the pre-guard
-configuration and are not current stability evidence.
+open a graphics context. Bounded graphics captures now pass; live-input and
+long-session acceptance remain pending. Earlier captures in `build/captures` are
+from the pre-guard configuration. Current captures are in `build/sessions`.
 
-A deliberate later trial can use the following command, starting with only ten
-seconds and one simple scene, after the machine is otherwise ready. It must not
-be run automatically as part of setup or a build:
+A normal validated demo uses the supervisor, never a raw executable:
 
 ```powershell
-.\Run-Evaluation.ps1 -Example threepp_showcase -Seconds 10 -AcknowledgeIncident
+.\Run-Evaluation.ps1 -Example threepp_showcase -Seconds 60
 ```
 
-This acknowledgment only permits that one supervised trial. The pause marker
-remains in place. Remove it only after graphics stability has been established.
+Any failed or stalled session reinstates a local pause marker. Investigate that
+session's logs before another run; no automatic retry is performed.

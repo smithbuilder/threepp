@@ -131,7 +131,7 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    Canvas canvas("Procedural Tree Generator", {{"vsync", !capturing}, {"aa", 4}});
+    Canvas canvas("Procedural Tree Generator", {{"vsync", !capturing}, {"aa", 4}, {"headless", capturing}});
     auto renderer = createRenderer(canvas, api);
 #ifdef THREEPP_WITH_VULKAN
     if (auto* vk = dynamic_cast<VulkanRenderer*>(renderer.get())) {
@@ -142,7 +142,7 @@ int main(int argc, char** argv) {
     renderer->setClearColor(Color(0.18f, 0.22f, 0.28f));
     renderer->toneMapping = ToneMapping::ACESFilmic;
     renderer->toneMappingExposure = 1.0f;
-    renderer->shadowMap().enabled = true;
+    renderer->shadowMap().enabled = std::getenv("THREEPP_EVALUATION_MODE") == nullptr;
     renderer->shadowMap().type = ShadowMap::PFCSoft;
 
     Scene scene;

@@ -194,7 +194,7 @@ int main(int argc, char** argv) {
         auto bloom = std::make_shared<UnrealBloomPass>(Vector2(960, 600), .14f, .3f, 1.8f); bloom->enabled = false;
         composer.addPass(bloom); composer.addPass(std::make_shared<OutputPass>());
         ImguiFunctionalContext ui(canvas, [&] {
-            ImGui::SetNextWindowPos(ImVec2(24, 24), ImGuiCond_Always); ImGui::SetNextWindowSize(ImVec2(270, 0));
+            ImGui::SetNextWindowPos(ImVec2(18, 18), ImGuiCond_Always); ImGui::SetNextWindowSize(ImVec2(225, 0));
             ImGui::Begin("TIMBER RUN", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
             ImGui::TextDisabled("A THREEPP DRIVING STUDY"); ImGui::Spacing();
             ImGui::SetWindowFontScale(1.8f); ImGui::Text("%03.0f", std::abs(driver.velocity) * 3.6f); ImGui::SetWindowFontScale(1); ImGui::SameLine(); ImGui::TextDisabled("km/h");
@@ -203,14 +203,16 @@ int main(int argc, char** argv) {
             ImGui::Text("NEXT GATE   %d / 8", driver.next == 0 ? 8 : driver.next);
             ImGui::Text("LAPS        %d", driver.laps); ImGui::Spacing();
             if (driver.message > 0) ImGui::TextColored(ImVec4(.5f, 1, .8f, 1), "LAP COMPLETE");
-            ImGui::TextWrapped("Follow the dirt loop through the green gates. The timer starts when you drive.");
-            ImGui::Spacing(); ImGui::TextDisabled("W / arrows   Accelerate\nS            Brake / reverse\nA / D        Steer\nSpace        Handbrake\nC            Chase camera\nR            Restart lap\nP            Pause\nEsc          Exit");
+            ImGui::TextWrapped("Follow the green gates. Drive to start the timer.");
+            if (ImGui::CollapsingHeader("Controls")) {
+                ImGui::TextDisabled("W / arrows: accelerate\nS: brake / reverse\nA / D: steer\nSpace: handbrake\nC: camera   R: restart\nP: pause    Esc: exit");
+            }
             ImGui::Spacing(); if (ImGui::Button("Restart [R]", ImVec2(-1, 26))) { driver.reset(); snapCamera(); }
             if (ImGui::Button(paused ? "Resume [P]" : "Pause [P]", ImVec2(-1, 26))) paused = !paused;
             ImGui::TextDisabled("%s  |  %.0f fps", scripted ? "AUTODRIVE" : "LIVE INPUT", ImGui::GetIO().Framerate);
             ImGui::End();
         });
-        ImGui::StyleColorsDark(); ImGui::GetStyle().WindowRounding = 8; ui.setFontScale(1.15f);
+        ImGui::StyleColorsDark(); ImGui::GetStyle().WindowRounding = 8; ui.setFontScale(1.f);
         canvas.onKeyPressed([&](KeyEvent e) {
             if (e.key == Key::R) { driver.reset(); snapCamera(); }
             if (e.key == Key::C) closeCamera = !closeCamera;
