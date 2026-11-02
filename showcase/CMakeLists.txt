@@ -5,3 +5,7 @@ add_executable(threepp_showcase main.cpp)
 target_link_libraries(threepp_showcase PRIVATE threepp imgui::imgui)
 add_executable(timber_run timber_run.cpp)
 target_link_libraries(timber_run PRIVATE threepp imgui::imgui)
+add_executable(timber_rally rally.cpp)
+target_link_libraries(timber_rally PRIVATE threepp imgui::imgui)
+add_custom_command(TARGET timber_rally POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/assets" "$<TARGET_FILE_DIR:timber_rally>/rally-assets")

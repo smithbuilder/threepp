@@ -12,6 +12,11 @@ Seven scenes across five executables passed short supervised captures. Use
 `Explore-Examples.cmd`; the safeguards and 60-second session limit remain active.
 Read [SAFETY.md](SAFETY.md). Long-session stability and live-input acceptance remain open.
 
+The newer isolated [Cinder Forest Rally candidate](RALLY-CANDIDATE.md) is now
+available through `Launch-Cinder-Forest.cmd` and menu option 6. Its full scripted
+lap passed under the supervisor. It adds a single bounded local shadow pass;
+the original demo configurations remain intact.
+
 ## What is built
 
 - **Timber Run**: an original arcade driving study. Procedural forest and rolling

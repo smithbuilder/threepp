@@ -1,5 +1,10 @@
 # Third-party software and assets
 
+The optional local rally candidate uses the CC0-1.0 Poly Haven `forest_ground_04`
+and `gravel_road` texture maps. Their license and provenance are indexed in
+[`showcase/assets/LICENSE.md`](showcase/assets/LICENSE.md) and `SOURCES.json`.
+They are copied beside `timber_rally` by the showcase build.
+
 threepp itself is MIT-licensed — see [LICENSE](LICENSE). This file indexes everything in or
 around the project that is *someone else's*, what license it carries, and where its full license
 text lives. Vendored files keep their original notices in place; this document is the map, not a

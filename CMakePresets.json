@@ -239,7 +239,7 @@
       "configurePreset": "evaluation-windows",
       "configuration": "Release",
       "jobs": 2,
-      "targets": ["threepp_showcase", "timber_run", "threepp_editor", "showpiece", "tree_demo", "forest_demo", "water",
+      "targets": ["threepp_showcase", "timber_run", "timber_rally", "threepp_editor", "showpiece", "tree_demo", "forest_demo", "water",
         "Vector3_test", "Matrix4_test", "ObjectLoader_test", "GLTFLoader_test", "SceneArchive_test",
         "GLRenderer_test", "GLPostProcessing_test", "GLShadowMap_test", "GLTextureNameReuse_test", "GLSurveyFixes_test"]
     },

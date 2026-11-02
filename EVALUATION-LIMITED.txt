@@ -1,4 +1,5 @@
 Conservative evaluation resumed with Oliver's authorization on November 1, 2026.
-Five executables (seven scenes) completed bounded supervised captures.
-Only these validated conservative profiles launch by default. Read SAFETY.md.
+Six executables (eight scenes) completed bounded supervised captures, including
+the isolated Cinder Forest Rally candidate. Read SAFETY.md for its local shadow
+profile and unchanged supervisor limits.
 This is not a declaration of system stability or live-input acceptance.

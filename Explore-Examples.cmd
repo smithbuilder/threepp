@@ -9,8 +9,10 @@ echo   2. Engine Playground - three original scenes
 echo   3. Materials showpiece - upstream
 echo   4. Procedural tree workshop - upstream
 echo   5. Procedural forest - upstream, reduced density
+echo   6. Cinder Forest Rally - new playable candidate
 echo.
-choice /c 12345 /n /m "Choose a demo: "
+choice /c 123456 /n /m "Choose a demo: "
+if errorlevel 6 (call Launch-Cinder-Forest.cmd & exit /b)
 if errorlevel 5 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example forest_demo & goto done)
 if errorlevel 4 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example tree_demo & goto done)
 if errorlevel 3 (powershell -NoProfile -ExecutionPolicy Bypass -File Run-Evaluation.ps1 -Example showpiece & goto done)

@@ -1,12 +1,13 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('timber_run','threepp_showcase','threepp_editor','showpiece','water','tree_demo','forest_demo')]
+    [ValidateSet('timber_run','timber_rally','threepp_showcase','threepp_editor','showpiece','water','tree_demo','forest_demo')]
     [string]$Example = 'timber_run',
     [ValidateRange(5,300)][int]$Seconds = 60,
     [switch]$AcknowledgeIncident,
     [ValidateRange(1,3)][int]$Scene = 1,
     [switch]$Capture,
     [switch]$AutoDrive,
+    [ValidateRange(0,2)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
     [switch]$SelfTest
 )
@@ -20,9 +21,9 @@ $active = Join-Path $PSScriptRoot 'build\evaluation-active.json'
 if (-not $SelfTest -and ((Test-Path -LiteralPath $trackedPause) -or (Test-Path -LiteralPath $blocked) -or (Test-Path -LiteralPath $active)) -and -not $AcknowledgeIncident) {
     throw 'Graphics launches are paused after a reported full-system lock. Read SAFETY.md. No demo was started. A deliberate controlled trial requires -AcknowledgeIncident.'
 }
-$verified = @('threepp_showcase','timber_run','showpiece','tree_demo','forest_demo')
+$verified = @('threepp_showcase','timber_run','timber_rally','showpiece','tree_demo','forest_demo')
 if (-not $SelfTest -and $Example -notin $verified -and -not $AcknowledgeIncident) {
-    throw 'This example has not completed the resumed evaluation. Use one of the five verified conservative demos in Explore-Examples.cmd.'
+    throw 'This example has not completed the resumed evaluation. Use a validated profile from Explore-Examples.cmd.'
 }
 if (-not ('ThreeppEvaluationJob' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'scripts\EvaluationJob.cs') }
 $mutex = New-Object System.Threading.Mutex($false, 'Local\ThreeppEvaluation-Supervisor')
@@ -49,11 +50,13 @@ try {
         $exe = Join-Path $PSScriptRoot "build\windows-gl\bin\Release\$Example.exe"
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
-        if ($Capture -and $Example -notin @('threepp_showcase','timber_run','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
-        if ($AutoDrive -and $Example -ne 'timber_run') { throw 'AutoDrive is available only for timber_run.' }
+        if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
+        if ($AutoDrive -and $Example -notin @('timber_run','timber_rally')) { throw 'AutoDrive is available only for the driving demos.' }
         if ($Example -eq 'threepp_showcase') { $arguments += @('--scene', [string]$Scene) }
         if ($Capture) { $arguments += @('--shot', ('"' + (Join-Path $session 'capture.png') + '"'), '--frames', [string]$Frames) }
         if ($AutoDrive) { $arguments += '--autodrive' }
+        if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View) }
+        if ($Example -in @('timber_run','timber_rally')) { $arguments += @('--telemetry', ('"' + (Join-Path $session 'drive.json') + '"')) }
         if ($Example -eq 'showpiece') { $arguments += @('--size','960x600','--samples','0','--no-gtao','--no-bloom','--no-outline') }
         if ($Example -in @('tree_demo','forest_demo')) { $arguments += '--gl' }
         $deadline = $Seconds + 5

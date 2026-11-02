@@ -5,6 +5,8 @@ executables completed short supervised captures on November 1 after the guards
 were installed. The validated conservative profiles are available through
 `Explore-Examples.cmd`; each run defaults to 60 seconds. The editor and the
 standalone upstream water example remain outside the default validated list.
+The separate Cinder Forest Rally candidate subsequently passed a bounded full
+scripted lap with rock/tree collisions and a single 512-pixel local shadow map.
 No live keyboard feel or long-session stability acceptance is claimed.
 
 Oliver reported that the entire computer hard locked during this evaluation on
@@ -37,6 +39,12 @@ Local diagnostic records are under `build/incident` and are not committed.
   minimized. Escape closes the application.
 - Our two demos also cap frames when launched directly, use smaller targets,
   disable shadows/bloom/MSAA, and reduce the driving forest to 180 trees.
+- Cinder Forest Rally is an isolated additional candidate. It retains the same
+  frame/window/process/time limits, uses a single 512-pixel shadow map confined
+  to the nearby road/car, and excludes alpha-tested canopy from that shadow
+  pass. Its 180 detailed trees are supplemented with 240 simpler distant trees
+  and 9,000 grass blades. The older demo profiles remain unchanged. Sound is
+  opt-in with M, and capture runs do not open an audio device.
 - The upstream materials showpiece disables MSAA, shadows, GTAO, bloom and outlines.
   The forest profile reduces terrain resolution, grass to 6,000 blades, tree
   density, bushes and flowers. These changes apply only in the evaluation environment.

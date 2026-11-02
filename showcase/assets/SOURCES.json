@@ -1,0 +1,34 @@
+[
+  {
+    "asset": "forest_ground_04",
+    "file": "forest_ground_04_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c"
+  },
+  {
+    "asset": "forest_ground_04",
+    "file": "forest_ground_04_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "sha256": "9c3a0200e02ce40edffbbf9f5f623ef08ea9b1b7812b556182ec978f88887151"
+  },
+  {
+    "asset": "gravel_road",
+    "file": "gravel_road_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_road/gravel_road_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "sha256": "bccbb077a825bdd0eb6f607939578a6ee549822824278fb3a828f6eed3d05d45"
+  },
+  {
+    "asset": "gravel_road",
+    "file": "gravel_road_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_road/gravel_road_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "sha256": "0920996cab9f2d62a2eb73a3589804527aa0273c4ca61b9f526ce4cba37edebc"
+  }
+]
