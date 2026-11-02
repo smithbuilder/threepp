@@ -3,6 +3,7 @@
 #include "RallyVehicle.hpp"
 #include "RallySuspension.hpp"
 #include "RallyCockpit.hpp"
+#include "RallyWheels.hpp"
 
 namespace rally {
 struct Buggy {
@@ -14,7 +15,7 @@ struct Buggy {
 inline Buggy makeBuggy(){
     Buggy b;b.car->add(b.body);
     auto mat=[](unsigned c,float rough=.8f,float metal=0.f){auto m=MeshStandardMaterial::create();m->color=Color(c);m->roughness=rough;m->metalness=metal;return m;};
-    auto frame=mat(0x18272a,.45f,.7f),tire=mat(0x202324),rim=mat(0xd1c5a5,.3f,.8f);
+    auto frame=mat(0x18272a,.45f,.7f),rim=mat(0xd1c5a5,.3f,.8f);
     auto part=[&](auto g,auto m,Vector3 p){auto o=Mesh::create(g,m);o->position.copy(p);o->castShadow=o->receiveShadow=true;b.body->add(o);return o;};
     part(BoxGeometry::create(1.6f,.18f,2.7f),frame,{0,.65f,0});
     part(BoxGeometry::create(1.5f,.08f,1.3f),frame,{0,2.15f,-.25f});
@@ -24,10 +25,10 @@ inline Buggy makeBuggy(){
     for(float x:{-.4f,.4f})part(BoxGeometry::create(.5f,.65f,.4f),frame,{x,1.15f,-.4f});
     auto lamp=mat(0xffecd1);lamp->emissive=Color(0xffcd7b);lamp->emissiveIntensity=1.8f;
     for(float x:{-.5f,.5f})part(SphereGeometry::create(.15f,12,8),lamp,{x,.95f,1.65f});
-    for(int i=0;i<4;++i){auto pivot=Group::create(),roll=Group::create();pivot->position.copy(wheelAnchor(i));pivot->position.y=.41f;pivot->add(roll);
-        auto rubber=Mesh::create(CylinderGeometry::create(.48f,.48f,.38f,20),tire);rubber->rotation.z=pi/2;roll->add(rubber);
-        auto hub=Mesh::create(CylinderGeometry::create(.25f,.25f,.4f,12),rim);hub->rotation.z=pi/2;roll->add(hub);b.pivots.push_back(pivot);b.rolls.push_back(roll);}
-    addVehicleDetail(*b.body,b.rolls);
+    const auto wheelResources=makeWheelResources();
+    for(int i=0;i<4;++i){auto pivot=Group::create(),roll=Group::create();pivot->position.copy(hubAtTravel(i,.41f));pivot->add(roll);
+        addWheel(*pivot,*roll,wheelResources,i);b.pivots.push_back(pivot);b.rolls.push_back(roll);}
+    addVehicleDetail(*b.body);
     b.cockpit=addCockpit(*b.body);
     // Capture only static bodywork before attaching wheels and moving links.
     b.body->traverseType<Mesh>([&](Mesh& m){b.fixedMeshes.push_back(&m);});

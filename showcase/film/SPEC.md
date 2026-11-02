@@ -1,27 +1,30 @@
-# Cockpit and suspension motion proof
+# Wheel refinement proof
 
-960x600, 30 FPS, 22 seconds. Native original framing and color.
-0-2: CINDER FOREST / COCKPIT / ARTICULATED SUSPENSION. Existing Oswald/IBM Plex
-Mono, ivory #f2e8d2 and muted gold #d6b058 on charcoal #111713.
-2-12: ten seconds of the new seat-mounted cockpit, simulation 1-11 seconds.
-12-20: eight seconds of side-view suspension, simulation 9-17 seconds. This is a
-camera comparison, so simulation sections intentionally overlap at the cut.
-20-22: deliberate hold on the final native side frame, with no extra overlays.
+960x600, 30 FPS, 22 seconds. Original framing and color.
+0-2: CINDER FOREST / WHEEL REFINEMENT. Existing Oswald/IBM Plex Mono,
+ivory #f2e8d2 and muted gold #d6b058 on charcoal #111713.
+2-10: eight seconds of close-up native wheel inspection, simulation 1-9s.
+10-20: ten seconds of side-view driving, simulation 9-19s.
+20-22: deliberate close-up hold from simulation 6s, no extra overlays.
 
-Cockpit source: build/sessions/20261102-075251-964, View 3, 300 captured frames.
-Side source: build/sessions/20261102-075313-747, View 2, 240 captured frames.
-Separate full-lap verification: 20261102-075345-790, 900 frames in cockpit mode.
+Detail: build/sessions/20261102-090334-762, View 2, WheelInspect, 240 frames,
+30 warmup frames. Driving: 20261102-090354-957, View 2, 300 frames, 270 warmup.
+Hold: detail frame_00150.png. Full lap: 20261102-090432-305, cockpit, 900 frames.
 
-Camera stays at the driver's eye in chassis space, 74-degree vertical FOV,
-0.055m near plane and 30 percent body-roll influence on the up vector. No extra
-shake or speed FOV. Physical steering wheel and instrument needles use the same
-steering, speed and RPM states as gameplay. Capture labels remain visible.
+Rounded tyre carcass and shoulders, 240 staggered bevelled tread blocks per
+wheel, hollow barrel, recessed eight-spoke face, 24 beadlock bolts, five lug
+nuts and brake rotor. Caliper follows steering but not wheel spin. Original
+unbranded CINDER geometry, informed by BFGoodrich Baja T/A KR and Method 101
+Buggy Beadlock reference photographs, not an exact manufacturer replica.
+https://www.bfgoodrichracing.com/race-tires/bfgoodrich-baja-t-a-kr/
+https://www.methodracewheels.com/products/buggy-beadlock-machined
+No reference photographs or third-party wheel models shipped in the game.
 
-Suspension: fixed-length parallel double wishbones, actual arc motion, upright
-joints, hinged pickups, telescoping dampers, constant-thickness 7-turn helical
-springs and ideal Ackermann wheel angles. This is a kinematic rig driven by
-arcade ground following; no full-vehicle physics or handling acceptance claim.
+Rolling radius 0.54m and half-width 0.20m. Rigid tyres; no pneumatic deformation,
+contact-patch simulation or tyre-force model. Existing kinematic suspension
+and arcade handling remain. Still images establish appearance, not motion or
+human driving feel. Capture-only inspection camera is not a player camera.
 
-Sound uses the same three recorded CC0 exhaust bands with captured RPM/load and
-shift cuts. No added music/voice. Quiet opening and last 2-second reading hold.
-Check all scenes/cuts, full decode, H.264/yuv420p/AAC 48k and fast-start metadata.
+Sound: same three CC0 exhaust bands driven by captured RPM/load/shift state.
+Quiet title and final hold. Check all cuts, full decode, H264/yuv420p/AAC48k,
+22s duration and fast-start metadata. Native endpoint audio remains unverified.

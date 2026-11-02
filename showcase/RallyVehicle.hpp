@@ -6,7 +6,7 @@
 
 namespace rally {
 using namespace threepp;
-inline constexpr float tyreRadius=.54f,tyreHalfWidth=.23f,halfTrack=1.5f,halfWheelbase=1.35f;
+inline constexpr float tyreRadius=.54f,tyreHalfWidth=.20f,halfTrack=1.5f,halfWheelbase=1.35f;
 // Existing arcade circle approximation, now sized to the transverse stance.
 inline constexpr float obstacleFootprint=halfTrack+tyreHalfWidth;
 inline constexpr float droop=.16f,bump=.68f;

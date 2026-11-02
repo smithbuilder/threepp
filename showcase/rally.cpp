@@ -54,10 +54,11 @@ struct Driver {
 
 int main(int argc, char** argv) {
     try {
-        bool scripted = false; int frames = 0, limit = 0, initialView=0, warmup=0; std::string shot, telemetry, sequence;
+        bool scripted = false,wheelInspect=false; int frames = 0, limit = 0, initialView=0, warmup=0; std::string shot, telemetry, sequence;
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
             if (a == "--autodrive") scripted = true;
+            else if (a == "--wheel-inspect") wheelInspect=true;
             else if (a == "--frames" && i + 1 < argc) limit = std::max(1, std::stoi(argv[++i]));
             else if (a == "--shot" && i + 1 < argc) shot = argv[++i];
             else if (a == "--telemetry" && i + 1 < argc) telemetry = argv[++i];
@@ -68,6 +69,7 @@ int main(int argc, char** argv) {
         if(!sequence.empty()&&(!shot.empty()||limit<1||limit>900))throw std::runtime_error("Sequence capture requires 1..900 frames and no --shot");
         rally::CameraModes cameras(initialView);int& view=cameras.view;
         const bool captureMode=!shot.empty()||!sequence.empty();
+        if(wheelInspect&&!captureMode)throw std::runtime_error("Wheel inspection is capture-only");
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
             if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted\n";}
@@ -234,7 +236,7 @@ int main(int argc, char** argv) {
             h.time=driver.finished?driver.lastLap:driver.elapsed;h.best=driver.best;
             h.progress=driver.finished?1.f:near.a/(2*PI);h.heading=driver.heading;h.x=driver.position.x;h.z=driver.position.z;
             h.nextDistance=Vector2(driver.position.x-gate.x,driver.position.z-gate.z).length();h.next=driver.next;
-            h.scripted=scripted;h.finished=driver.finished;h.muted=muted;h.menu=!raceStarted||paused||driver.finished;
+            h.scripted=scripted;h.finished=driver.finished;h.muted=muted;h.menu=!raceStarted||paused||driver.finished||wheelInspect;
             rally::drawHud(h,hudFont);
             const auto flags=ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoBackground;
             ImGui::PushFont(hudFont);
@@ -378,7 +380,11 @@ int main(int argc, char** argv) {
             powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
             rally::updateCockpit(buggy.cockpit,driver.steer,driver.velocity,powertrain.rpm);
             for(int i=0;i<3;++i)if(exhaust[i]){auto band=powertrain.band(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
-            if(view==3){
+            if(wheelInspect){
+                const auto center=wheelContacts[3].world;
+                camera->position.copy(center).add(Vector3(1.9f,.40f,-.9f).applyQuaternion(chassisQ));camera->up.set(0,1,0);
+                camera->lookAt(center.clone().add(Vector3(0,.03f,0)));camera->nearPlane=.05f;camera->fov=42;
+            }else if(view==3){
                 const auto pose=rally::cockpitPose(chassis,chassisQ);camera->position.copy(pose.eye);camera->up.copy(pose.up);camera->lookAt(pose.target);
                 camera->nearPlane=.055f;camera->fov=74;
             }else{

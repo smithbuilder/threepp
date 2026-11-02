@@ -22,6 +22,17 @@ int main(){try{
             minClear=std::min(minClear,std::sqrt(x*x+y*y+z*z));}
     }
     require(minClear>.025f,"Insufficient tyre/body clearance");
+    float meshRadius=0,meshHalfWidth=0;
+    for(int wheel=0;wheel<4;++wheel){auto& rolling=*buggy.rolls[wheel];Matrix4 inverse=*rolling.matrixWorld;inverse.invert();
+        rolling.traverseType<Mesh>([&](Mesh& mesh){auto* p=mesh.geometry()->getAttribute<float>("position");Matrix4 relative=inverse;relative.multiply(*mesh.matrixWorld);
+            auto audit=[&](const Matrix4& transform){for(unsigned j=0;j<p->count();++j){auto v=Vector3(p->getX(j),p->getY(j),p->getZ(j)).applyMatrix4(transform);require(std::isfinite(v.x)&&std::isfinite(v.y)&&std::isfinite(v.z),"Wheel contains invalid vertices");meshHalfWidth=std::max(meshHalfWidth,std::abs(v.x));meshRadius=std::max(meshRadius,std::hypot(v.y,v.z));}};
+            if(auto* instanced=dynamic_cast<InstancedMesh*>(&mesh)){for(size_t k=0;k<instanced->count();++k){Matrix4 instance;instanced->getMatrixAt(k,instance);auto transform=relative;transform.multiply(instance);audit(transform);}}else audit(relative);
+        });
+        Mesh* caliper=nullptr;buggy.pivots[wheel]->traverseType<Mesh>([&](Mesh& m){if(m.name=="fixed-brake-caliper")caliper=&m;});require(caliper!=nullptr,"Wheel has no fixed caliper");
+        Vector3 before,after;caliper->getWorldPosition(before);rolling.rotation.x=1.1f;buggy.car->updateMatrixWorld(true);caliper->getWorldPosition(after);require(before.distanceTo(after)<.00001f,"Brake caliper spins with rim");rolling.rotation.x=0;buggy.car->updateMatrixWorld(true);
+    }
+    require(meshRadius<=rally::tyreRadius+.0001f,"Wheel geometry exceeds rolling radius");require(meshHalfWidth<=rally::tyreHalfWidth+.0001f,"Wheel geometry exceeds lateral envelope");
+    require(meshRadius>.53f&&meshHalfWidth>.19f,"Wheel profile unexpectedly undersized");
     float maxGap=0;
     for(int k=0;k<360;++k){float a=k*6.2831853f/360;float x=64*std::sin(a)+8*std::sin(3*a),z=90*std::cos(a);
         float dx=64*std::cos(a)+24*std::cos(3*a),dz=-90*std::sin(a),heading=std::atan2(dx,dz);
@@ -72,6 +83,6 @@ int main(){try{
     for(int i=0;i<180;++i)dust.update(1.f/120);
     require(rally::DustSimulation::opacity(dust.particles[0])==0,"Dust fails to expire");dust.reset();
     require(dust.serial==0&&rally::DustSimulation::opacity(dust.particles[0])==0,"Restart leaves old dust");
-    std::cout<<"PASS: swept tyre/body clearance="<<minClear<<"m; 360 course poses max contact gap="<<maxGap<<"m; rigid wishbones, constant-wire coilovers, Ackermann steering and seated camera pass; dust advects/fades/resets. No graphics/audio context opened.\n";
+    std::cout<<"PASS: swept tyre/body clearance="<<minClear<<"m; 360 course poses max contact gap="<<maxGap<<"m; actual wheel vertices fit radius/width and calipers remain fixed; rigid wishbones, coilovers, Ackermann and seated camera pass; dust advects/fades/resets. No graphics/audio context opened.\n";
     return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

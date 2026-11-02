@@ -84,7 +84,7 @@ inline void bakeOcclusion(BufferGeometry& geometry,const std::vector<Vector3>& t
         c->setXYZ(i,c->getX(i)*shade,c->getY(i)*shade,c->getZ(i)*shade);
     }c->needsUpdate();
 }
-inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wheels) {
+inline void addVehicleDetail(Group& body) {
     auto steel=MeshStandardMaterial::create();steel->color=Color(0x25292b);steel->roughness=.35f;steel->metalness=.75f;
     auto gold=MeshStandardMaterial::create();gold->color=Color(0xf7bc39);gold->roughness=.35f;gold->metalness=.45f;
     auto silver=MeshStandardMaterial::create();silver->color=Color(0x8f9b9e);silver->metalness=.9f;silver->roughness=.3f;
@@ -118,18 +118,7 @@ inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wh
     for(float z:{-.5f,.3f})body.add(rod({-.72f,2.09f,z},{.72f,2.09f,z},.045f,steel));
     auto number=label("07",.35f,Color(0x192021)); number->rotation.x=-pi/2; number->position.set(0,1.2f,.85f);body.add(number);
     auto brand=label("CINDER",.16f,Color(0xf3ca64));brand->rotation.y=pi;brand->position.set(0,.87f,-1.76f);body.add(brand);
-    for(auto& wheel:wheels) {
-        auto lugs=InstancedMesh::create(BoxGeometry::create(.42f,.11f,.16f),black,24);
-        for(int j=0;j<24;++j) {
-            float a=j*2*pi/24;Object3D t;t.position.set(0,std::cos(a)*.475f,std::sin(a)*.475f);
-            t.rotation.x=a;t.updateMatrix();lugs->setMatrixAt(j,*t.matrix);
-        }
-        lugs->instanceMatrix()->needsUpdate();wheel->add(lugs);
-        for(float side:{-.21f,.21f}) for(int j=0;j<6;++j) {
-            float a=j*pi/3;auto spoke=Mesh::create(BoxGeometry::create(.035f,.38f,.055f),silver);
-            spoke->position.x=side;spoke->rotation.x=a;wheel->add(spoke);
-        }
-    }
+
 }
 
 template<class Track,class Nearest>

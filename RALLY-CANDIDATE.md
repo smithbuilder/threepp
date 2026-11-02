@@ -188,3 +188,47 @@ travel stayed bounded. Physical controls/comfort and native heard audio remain
 human acceptance checks. Capture stderr is empty and safeguards are unchanged.
 
 Motion proof: `build/cinder-film/Cinder-Forest-Cockpit-Suspension.mp4`.
+
+
+## Rounded off-road wheels
+
+The earlier flat cylinders, single-row blocks and solid wheel faces were
+stylized placeholders. `RallyWheels.hpp` now builds an original, unbranded
+racing-style assembly: a rounded hollow tyre carcass with bulged sidewalls,
+shaped shoulders, 240 staggered bevelled tread blocks, curved sidewall markings,
+open barrel/recessed eight-spoke face, outer beadlock ring with 24 fasteners,
+five lug nuts, hub cap, valve stem, brake rotor and stationary caliper.
+
+The rolling radius stays 0.54 m. The conservative half-width is reduced from
+0.23 m to 0.20 m to match the narrower mesh, with the same contact/support and
+suspension code. Wheel geometry is shared and tread/fasteners/spokes are
+instanced. No new textures, renderer features, resolution or shader effects.
+The tyres are rigid graphics geometry under the existing arcade model; no
+pneumatic deformation or full tyre-force simulation is claimed.
+
+Visual references were the manufacturer's BFGoodrich Baja T/A KR tyre page
+(39x13.50R17 among its dimensions) and Method's 101 Buggy Beadlock. These inform
+profile/rim proportions and mechanical features, not exact branded replicas
+or real-world fitment. Manufacturer photos stay in ignored local research
+files; the game uses only original code-generated geometry and CINDER markings.
+
+- https://www.bfgoodrichracing.com/race-tires/bfgoodrich-baja-t-a-kr/
+- https://www.methodracewheels.com/products/buggy-beadlock-machined
+
+The CPU rig test now audits every actual vertex, including each tread/spoke/
+fastener instance, against the radius and width envelope. It verifies calipers
+stay fixed when rims spin. Existing full steering/travel clearance, arm/spring,
+camera and dust checks are retained. Current conservative wheel/body clearance
+is 0.0668868 m. All six CPU checks pass. Capture-only `-WheelInspect` provides a
+close native viewpoint under the same supervisor; it requires a still/sequence
+capture and does not change C/V gameplay camera controls.
+
+
+Final wheel verification: `build/sessions/20261102-090432-305`, 900 cockpit
+frames, one 28.6496-second scripted lap, zero obstacle contacts and exit zero.
+Maximum analytic support gap 0.000116825 m; travel 0.16-0.67995 m. Sampled peak
+working set 133,939,200 bytes; 42.60 wall seconds. Stderr empty. Close-up and
+side sequence captures also exited zero. Safety caps/watchdogs unchanged.
+Physical driving and native heard sound remain unverified.
+
+Wheel motion proof: `build/cinder-film/Cinder-Forest-Wheels.mp4`, 22 seconds.
