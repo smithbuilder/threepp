@@ -7,6 +7,26 @@
   },
   "configurePresets": [
     {
+      "name": "evaluation-windows",
+      "inherits": "gl",
+      "displayName": "Our OpenGL playground (Windows)",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/windows-gl",
+      "cacheVariables": {
+        "THREEPP_BUILD_LOCAL_SHOWCASE": "ON",
+        "THREEPP_BUILD_EXAMPLE_PROJECTS": "OFF",
+        "THREEPP_EDITOR_WITH_PYTHON": "OFF",
+        "THREEPP_WITH_PYTHON": "OFF",
+        "THREEPP_WITH_USD": "OFF",
+        "THREEPP_WITH_FBX": "OFF",
+        "THREEPP_WITH_VULKAN": "OFF",
+        "THREEPP_WITH_FSR": "OFF",
+        "THREEPP_WITH_DLSS": "OFF",
+        "THREEPP_WITH_RLTOOLS": "OFF"
+      }
+    },
+    {
       "name": "base",
       "hidden": true,
       "binaryDir": "${sourceDir}/build/${presetName}",
@@ -215,6 +235,15 @@
   ],
   "buildPresets": [
     {
+      "name": "evaluation-windows",
+      "configurePreset": "evaluation-windows",
+      "configuration": "Release",
+      "jobs": 2,
+      "targets": ["threepp_showcase", "timber_run", "threepp_editor", "showpiece", "tree_demo", "forest_demo", "water",
+        "Vector3_test", "Matrix4_test", "ObjectLoader_test", "GLTFLoader_test", "SceneArchive_test",
+        "GLRenderer_test", "GLPostProcessing_test", "GLShadowMap_test", "GLTextureNameReuse_test", "GLSurveyFixes_test"]
+    },
+    {
       "name": "gl",
       "configurePreset": "gl",
       "configuration": "Release"
@@ -318,6 +347,14 @@
     }
   ],
   "testPresets": [
+    {
+      "name": "evaluation-windows",
+      "configurePreset": "evaluation-windows",
+      "configuration": "Release",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error"},
+      "filter": {"include": {"name": "^(Vector3|Matrix4|ObjectLoader|GLTFLoader|SceneArchive|GLRenderer|GLPostProcessing|GLShadowMap|GLTextureNameReuse|GLSurveyFixes)_test$"}}
+    },
     {
       "name": "base",
       "hidden": true,

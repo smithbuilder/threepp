@@ -1,0 +1,7 @@
+if (NOT TARGET imgui)
+    add_subdirectory("${PROJECT_SOURCE_DIR}/examples/external" "${CMAKE_BINARY_DIR}/showcase-imgui")
+endif ()
+add_executable(threepp_showcase main.cpp)
+target_link_libraries(threepp_showcase PRIVATE threepp imgui::imgui)
+add_executable(timber_run timber_run.cpp)
+target_link_libraries(timber_run PRIVATE threepp imgui::imgui)

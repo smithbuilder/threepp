@@ -172,6 +172,11 @@ if (THREEPP_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif ()
 
+option(THREEPP_BUILD_LOCAL_SHOWCASE "Build our procedural evaluation gallery" OFF)
+if (THREEPP_BUILD_LOCAL_SHOWCASE)
+    add_subdirectory(showcase)
+endif ()
+
 if (THREEPP_BUILD_EDITOR)
     add_subdirectory(apps/editor)
     # threepp_player: the same play runtime with no editing machinery, for

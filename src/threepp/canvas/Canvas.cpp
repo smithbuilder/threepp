@@ -20,6 +20,12 @@
 #include <optional>
 #include <stdexcept>
 #include <string_view>
+#ifndef __EMSCRIPTEN__
+#include <algorithm>
+#include <chrono>
+#include <fstream>
+#include <thread>
+#endif
 
 using namespace threepp;
 
@@ -330,12 +336,42 @@ struct Canvas::Impl {
     std::vector<std::function<void(int monitor)>> monitorChangesListener;
     std::function<void()> frameEndCallback_;
     bool insideAnimateLoop_{false};
+#ifndef __EMSCRIPTEN__
+    // Opt-in process-local guard used by our evaluation launcher. No registry,
+    // driver or system settings are changed. Also applies to upstream examples.
+    bool evaluationMode_{false};
+    std::chrono::steady_clock::time_point evaluationStart_{std::chrono::steady_clock::now()};
+    std::chrono::steady_clock::time_point heartbeatAt_{};
+    std::string heartbeatPath_;
+    int evaluationSeconds_{60};
+
+    void evaluationHeartbeat() {
+        const auto now = std::chrono::steady_clock::now();
+        if (!heartbeatPath_.empty() && now - heartbeatAt_ >= std::chrono::seconds(1)) {
+            std::ofstream out(heartbeatPath_, std::ios::trunc);
+            out << std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+            heartbeatAt_ = now;
+        }
+    }
+#endif
 
     explicit Impl(Canvas& scope, const Parameters& params)
         : scope(scope),
           params_(params) {
 
-        initGLfw(params.headless_);
+#ifndef __EMSCRIPTEN__
+        evaluationMode_ = std::getenv("THREEPP_EVALUATION_MODE") != nullptr;
+        if (evaluationMode_) {
+            params_.size(960, 600).antialiasing(0).vsync(true);
+            params_.fullscreen_ = false;
+            if (const char* seconds = std::getenv("THREEPP_EVALUATION_SECONDS"))
+                evaluationSeconds_ = std::clamp(std::atoi(seconds), 1, 300);
+            if (const char* path = std::getenv("THREEPP_EVALUATION_HEARTBEAT")) heartbeatPath_ = path;
+            evaluationHeartbeat();
+        }
+#endif
+
+        initGLfw(params_.headless_);
 
         // Fullscreen takes the monitor's size and ignores any requested one.
         // Headless wins over it: there is no window to make borderless, and a
@@ -343,8 +379,8 @@ struct Canvas::Impl {
         const WindowSize screen = borderlessFullscreen() ? primaryMonitorSize() : WindowSize{0, 0};
         if (screen.width() > 0 && screen.height() > 0) {
             size_ = screen;
-        } else if (params.size_) {
-            size_ = *params.size_;
+        } else if (params_.size_) {
+            size_ = *params_.size_;
         } else {
             const auto fullSize = monitor::monitorSize();
             size_ = {fullSize.width() / 2, fullSize.height() / 2};
@@ -608,6 +644,22 @@ struct Canvas::Impl {
 
         if (!window) initWindow(params_.graphicsApi_);
 
+#ifndef __EMSCRIPTEN__
+        const auto frameStart = std::chrono::steady_clock::now();
+        if (evaluationMode_) {
+            glfwSetWindowSizeLimits(window, 480, 300, 960, 600);
+            if (frameStart - evaluationStart_ >= std::chrono::seconds(evaluationSeconds_) ||
+                glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) close_ = true;
+            if (!close_ && !params_.headless_ &&
+                (!glfwGetWindowAttrib(window, GLFW_FOCUSED) || glfwGetWindowAttrib(window, GLFW_ICONIFIED))) {
+                glfwWaitEventsTimeout(.2);
+                evaluationHeartbeat();
+                if (glfwWindowShouldClose(window)) close_ = true;
+                return !close_;
+            }
+        }
+#endif
+
         if (close_ || glfwWindowShouldClose(window)) {
             close_ = true;
             return false;
@@ -623,6 +675,13 @@ struct Canvas::Impl {
             frameEndCallback_();
         }
         glfwPollEvents();
+
+#ifndef __EMSCRIPTEN__
+        if (evaluationMode_) {
+            evaluationHeartbeat();
+            std::this_thread::sleep_until(frameStart + std::chrono::milliseconds(34));
+        }
+#endif
 
         return true;
     }
