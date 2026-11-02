@@ -7,7 +7,9 @@ available. This candidate is saved on `setup/windows-evaluation`.
 ## Play
 
 - W / Up: accelerate. S / Down: brake and reverse. A / D: steer.
-- Space: handbrake. C: cycle chase, close and side cameras.
+- Space: handbrake. C: cycle chase, close, side and cockpit cameras.
+- V: toggle cockpit and return to the last exterior camera.
+- `Launch-Cockpit.cmd`: start directly in the driver-seat view.
 - R: restart. P: pause. Escape: exit.
 - Start Run + Sound: enable recorded exhaust and enter a three-second countdown.
 - W starts a silent countdown; M enables/mutes exhaust. P opens the pause menu.
@@ -149,3 +151,40 @@ contact/travel/dust metrics, exit zero in 43.43 wall seconds and 130,506,752
 bytes sampled peak working set. Its final PNG hash exactly matches the final
 frame used by the new video. Both pause and active-session markers are absent.
 This remains a circular arcade obstacle approximation, not mesh collision.
+
+
+## Cockpit and articulated coil-over revision
+
+`RallyCamera.hpp` adds View 3. C cycles four views; V toggles cockpit/last exterior.
+`Launch-Cockpit.cmd` uses the existing supervisor and its 60-second limit. The
+camera is seat-mounted, with fixed 74-degree vertical FOV, a 0.055 m near plane,
+partial roll stabilization and no extra shake or speed zoom. View transitions
+snap deliberately so the camera does not travel through the body. The cage has
+more headroom and a slim dash with physical steering wheel and live instruments.
+
+`RallySuspension.hpp` replaces stretching rods with a kinematic parallel
+wishbone arrangement. Wheels follow the fixed arm's arc; upper/lower joints,
+pivot brackets and bolts, uprights, tie rods, damper eyes and lower-arm bridges
+make the connections visible. Damper barrels retain fixed dimensions while
+chrome shafts telescope. Seven-turn springs update helix pitch while preserving
+wire diameter and circular cross section. Ideal Ackermann angles differentiate
+the inside/outside front wheels. The camera/needle/steering animation uses the
+actual gameplay state. Left/right keyboard mapping is corrected for this +Z
+forward model; it is tested against cockpit screen-right geometry.
+
+The support model remains arcade ground following. These are articulated
+kinematics and geometric checks, not a full dynamic suspension/tyre simulation.
+CPU checks cover rigid arm lengths over all travel, constant spring-wire
+thickness, nonintersecting turns, fixed damper dimensions, swept tyre/body
+clearance with Ackermann/arc movement, four camera modes and a seated eye that
+stays outside bodywork. Current conservative minimum fixed-body clearance is
+0.040629 m; all 360 course poses pass the analytic tyre-support check.
+
+All six CPU tests passed. Final cockpit full-lap verification:
+`build/sessions/20261102-075345-790`, 900 frames, lap 28.6496 simulated seconds,
+zero obstacle contacts, exit zero after 42.58 wall seconds, sampled peak working
+set 133,627,904 bytes. Maximum analytic support gap 0.000116765 m; suspension
+travel stayed bounded. Physical controls/comfort and native heard audio remain
+human acceptance checks. Capture stderr is empty and safeguards are unchanged.
+
+Motion proof: `build/cinder-film/Cinder-Forest-Cockpit-Suspension.mp4`.

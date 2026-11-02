@@ -1,30 +1,27 @@
-# Cinder Forest Rally viewing edit
+# Cockpit and suspension motion proof
 
-960x600, 30 FPS, 24 seconds. Preserve source framing and colors. No upscaling,
-grades, mock gameplay, generated footage, voiceover or marketing claims.
+960x600, 30 FPS, 22 seconds. Native original framing and color.
+0-2: CINDER FOREST / COCKPIT / ARTICULATED SUSPENSION. Existing Oswald/IBM Plex
+Mono, ivory #f2e8d2 and muted gold #d6b058 on charcoal #111713.
+2-12: ten seconds of the new seat-mounted cockpit, simulation 1-11 seconds.
+12-20: eight seconds of side-view suspension, simulation 9-17 seconds. This is a
+camera comparison, so simulation sections intentionally overlap at the cut.
+20-22: deliberate hold on the final native side frame, with no extra overlays.
 
-0.0-1.5: dark charcoal title. Pale warm text, muted gold rule, two short lines.
-1.5-9.5: 8 seconds chase camera, simulation time 1-9 seconds.
-9.5-15.5: 6 seconds side camera, simulation time 9-15 seconds.
-15.5-21.5: 6 seconds low chase, simulation time 24-30 seconds, including finish.
-21.5-24.0: finish-frame hold on the real native results panel, without any extra
-overlay hiding the racing UI. This is a deliberate reading hold.
+Cockpit source: build/sessions/20261102-075251-964, View 3, 300 captured frames.
+Side source: build/sessions/20261102-075313-747, View 2, 240 captured frames.
+Separate full-lap verification: 20261102-075345-790, 900 frames in cockpit mode.
 
-Typography: Oswald display, IBM Plex Mono secondary, no extra badges or lists.
-Opening title 58px, secondary 15px. Closing title 32px. Ivory #f2e8d2,
-gold #d6b058, charcoal #111713. All title text inside 80% safe area.
+Camera stays at the driver's eye in chassis space, 74-degree vertical FOV,
+0.055m near plane and 30 percent body-roll influence on the up vector. No extra
+shake or speed FOV. Physical steering wheel and instrument needles use the same
+steering, speed and RPM states as gameplay. Capture labels remain visible.
 
-Sound: use the game's three real-recorded CC0 exhaust bands. Reconstruct
-RPM/load blending and shift cuts from the recorded powertrain telemetry, with gentle per-clip edge fades and a final fade-out.
-No music bed. Preserve real driving motion; cuts change viewpoint/section.
+Suspension: fixed-length parallel double wishbones, actual arc motion, upright
+joints, hinged pickups, telescoping dampers, constant-thickness 7-turn helical
+springs and ideal Ackermann wheel angles. This is a kinematic rig driven by
+arcade ground following; no full-vehicle physics or handling acceptance claim.
 
-Check source frame counts, every edit midpoint and cut boundary, black/frozen
-gaps, full MP4 decode, duration, H.264/yuv420p/AAC compatibility and fast start.
-
-Native UI: floating ivory type with a single modest offset shadow, hairline RPM
-and course linework, restrained gold. No rectangular HUD/menu fills. Preserve
-the actual race-state transition into the transparent results screen.
-
-Buggy repair revision: same 24-second camera structure, now from repaired native
-build. Source sessions: chase 20261102-071247-231, side 20261102-071307-735,
-close/finish 20261102-071334-921. Intro subline BUGGY / SUSPENSION / DUST.
+Sound uses the same three recorded CC0 exhaust bands with captured RPM/load and
+shift cuts. No added music/voice. Quiet opening and last 2-second reading hold.
+Check all scenes/cuts, full decode, H.264/yuv420p/AAC 48k and fast-start metadata.

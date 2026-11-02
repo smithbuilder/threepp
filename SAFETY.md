@@ -79,3 +79,8 @@ quads (one draw) rather than opaque-looking faceted puffs, with bounded particle
 lifetimes. The CPU-only RallyVehicle test checks actual fixed model bounds
 against the full tyre envelope, course contacts and particle render-buffer
 movement/fade. It is included in the evaluation test preset.
+
+The cockpit/suspension revision retains the same evaluation limits. View 3 adds
+a fixed-FOV driver camera; the CPU rig tests also cover the new arm arc, coil
+geometry, camera seat and steering/input mapping. No driver, timeout, MSAA,
+shadow-map or postprocessing limits were raised.

@@ -6,6 +6,7 @@
 #include "RallyPowertrain.hpp"
 #include "RallyBuggy.hpp"
 #include "RallyDust.hpp"
+#include "RallyCamera.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/environments/RoomEnvironment.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
@@ -53,18 +54,19 @@ struct Driver {
 
 int main(int argc, char** argv) {
     try {
-        bool scripted = false; int frames = 0, limit = 0, view=0, warmup=0; std::string shot, telemetry, sequence;
+        bool scripted = false; int frames = 0, limit = 0, initialView=0, warmup=0; std::string shot, telemetry, sequence;
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
             if (a == "--autodrive") scripted = true;
             else if (a == "--frames" && i + 1 < argc) limit = std::max(1, std::stoi(argv[++i]));
             else if (a == "--shot" && i + 1 < argc) shot = argv[++i];
             else if (a == "--telemetry" && i + 1 < argc) telemetry = argv[++i];
-            else if (a == "--view" && i + 1 < argc) view = std::clamp(std::stoi(argv[++i]),0,2);
+            else if (a == "--view" && i + 1 < argc) initialView = std::clamp(std::stoi(argv[++i]),0,3);
             else if (a == "--sequence" && i + 1 < argc) sequence=argv[++i];
             else if (a == "--warmup" && i + 1 < argc) warmup=std::clamp(std::stoi(argv[++i]),0,900);
         }
         if(!sequence.empty()&&(!shot.empty()||limit<1||limit>900))throw std::runtime_error("Sequence capture requires 1..900 frames and no --shot");
+        rally::CameraModes cameras(initialView);int& view=cameras.view;
         const bool captureMode=!shot.empty()||!sequence.empty();
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
@@ -210,7 +212,7 @@ int main(int argc, char** argv) {
         };
         auto camera = PerspectiveCamera::create(59, canvas.aspect(), .1f, 750);
         bool paused = false, raceStarted=scripted, resetClockRequested=false; float countdown=0; int inputEvents = 0;
-        auto snapCamera = [&] { camera->position.copy(driver.position).add(Vector3(-6.2f, 3.2f, 0)); };
+        auto snapCamera = [&] { cameras.cut=true; };
         snapCamera();
         auto resetRun=[&](bool start){driver.reset();dustSimulation.reset();powertrain=rally::Powertrain{};paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();};
         EffectComposer::Options options; options.samples = 0; EffectComposer composer(renderer, options);
@@ -250,7 +252,7 @@ int main(int argc, char** argv) {
             if(!raceStarted&&!scripted){
                 beginPanel("Race start");menuText("CINDER FOREST",38);menuText("ONE LAP / EIGHT CHECKPOINTS",17);ImGui::Spacing();
                 menuText("WASD / ARROWS   Drive   SPACE   Handbrake",17);
-                menuText("C   Camera     P   Pause     R   Restart",17);ImGui::Spacing();
+                menuText("C  Cameras   V  Cockpit   P  Pause   R  Restart",17);ImGui::Spacing();
                 if(action("START RUN + SOUND")){if(muted)toggleSound();raceStarted=true;countdown=3;}
                 menuText("Or press W to start. M toggles exhaust sound.",15);ImGui::End();
             }else if(paused){
@@ -277,7 +279,8 @@ int main(int argc, char** argv) {
         if(!hudFont)throw std::runtime_error("Missing licensed rally HUD font");
         canvas.onKeyPressed([&](KeyEvent e) {
             if (e.key == Key::R) resetRun(true);
-            if (e.key == Key::C) view=(view+1)%3;
+            if (e.key == Key::C) cameras.cycle();
+            if (e.key == Key::V) cameras.toggleCockpit();
             if (e.key == Key::P && raceStarted && countdown<=0 && !driver.finished) paused = !paused;
             if (e.key == Key::M) toggleSound();
             if ((e.key==Key::W||e.key==Key::UP)&&!raceStarted&&!scripted){raceStarted=true;countdown=3;}
@@ -300,7 +303,7 @@ int main(int argc, char** argv) {
                 const float off = Vector2(driver.position.x-near.p.x, driver.position.z-near.p.z).length();
                 float throttle = (canvas.isKeyDown(Key::W) || canvas.isKeyDown(Key::UP)) ? 1.f : 0.f;
                 float brake = (canvas.isKeyDown(Key::S) || canvas.isKeyDown(Key::DOWN)) ? 1.f : 0.f;
-                float turn = (canvas.isKeyDown(Key::D) || canvas.isKeyDown(Key::RIGHT) ? 1.f : 0.f) - (canvas.isKeyDown(Key::A) || canvas.isKeyDown(Key::LEFT) ? 1.f : 0.f);
+                float turn = rally::steerInput(canvas.isKeyDown(Key::A)||canvas.isKeyDown(Key::LEFT),canvas.isKeyDown(Key::D)||canvas.isKeyDown(Key::RIGHT));
                 bool handbrake = canvas.isKeyDown(Key::SPACE);
                 if (scripted) {
                     Vector3 aim = track(near.a + .11f).sub(driver.position);
@@ -358,10 +361,10 @@ int main(int argc, char** argv) {
             Vector3 forward(std::sin(driver.heading),0,std::cos(driver.heading)),right(std::cos(driver.heading),0,-std::sin(driver.heading));
             body->rotation.x=driver.pitch;body->rotation.z=driver.roll;body->position.y=0;
             for(int i=0;i<4;++i){wheelContacts[i]=rally::wheelContact(i,chassis,chassisQ,driver.steer*.4f,groundHeight);
-                wheelPivots[i]->position.copy(wheelContacts[i].local);wheelPivots[i]->rotation.y=i<2?driver.steer*.4f:0;
+                wheelPivots[i]->position.copy(wheelContacts[i].local);wheelPivots[i]->rotation.y=rally::steeringAngle(i,driver.steer*.4f);
                 wheelRolls[i]->rotation.x=driver.wheelAngle;maxWheelGap=std::max(maxWheelGap,std::abs(wheelContacts[i].gap));
                 minWheelTravel=std::min(minWheelTravel,wheelContacts[i].local.y);maxWheelTravel=std::max(maxWheelTravel,wheelContacts[i].local.y);}
-            rally::updateSuspension(buggy.links,wheelContacts);
+            rally::updateSuspension(buggy.suspension,wheelContacts,driver.steer*.4f);
             for(int i=0;i<8;++i)banners[i]->setMaterial(i==driver.next?activeMat:bannerMat);
             if(!paused){
                 dustSimulation.update(dt);
@@ -373,12 +376,21 @@ int main(int argc, char** argv) {
             carShadow->position.copy(driver.position);carShadow->position.y+=.19f;carShadow->rotation.z=-driver.heading;
             roadsideGrass->setTime(worldTime);
             powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+            rally::updateCockpit(buggy.cockpit,driver.steer,driver.velocity,powertrain.rpm);
             for(int i=0;i<3;++i)if(exhaust[i]){auto band=powertrain.band(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
-            Vector3 desired=driver.position.clone().addScaledVector(forward,view==1?-4.8f:view==2?-3.7f:-6.6f).add(Vector3(0,view==1?2.1f:3.0f,0));
-            if(view==2)desired.addScaledVector(right,4.1f);
-            desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
-            camera->position.lerp(desired,1-std::exp(-5*dt));camera->lookAt(driver.position.clone().addScaledVector(forward,view==2?0.f:2.8f).add(Vector3(0,1.1f,0)));
-            camera->fov=(view==2?50.f:59.f)+std::abs(driver.velocity)*.14f;camera->updateProjectionMatrix();
+            if(view==3){
+                const auto pose=rally::cockpitPose(chassis,chassisQ);camera->position.copy(pose.eye);camera->up.copy(pose.up);camera->lookAt(pose.target);
+                camera->nearPlane=.055f;camera->fov=74;
+            }else{
+                camera->up.set(0,1,0);camera->nearPlane=.1f;
+                Vector3 desired=driver.position.clone().addScaledVector(forward,view==1?-4.8f:view==2?-3.7f:-6.6f).add(Vector3(0,view==1?2.1f:3.0f,0));
+                if(view==2)desired.addScaledVector(right,4.1f);
+                desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
+                if(cameras.cut)camera->position.copy(desired);else camera->position.lerp(desired,1-std::exp(-5*dt));
+                camera->lookAt(driver.position.clone().addScaledVector(forward,view==2?0.f:2.8f).add(Vector3(0,1.1f,0)));
+                camera->fov=(view==2?50.f:59.f)+std::abs(driver.velocity)*.14f;
+            }
+            cameras.cut=false;camera->updateProjectionMatrix();
             rally::drawDust(*dust,dustSimulation,camera->quaternion);
             Vector3 lightAnchor(std::floor(driver.position.x*8)/8,driver.position.y,std::floor(driver.position.z*8)/8);
             sun->position.copy(lightAnchor).add(Vector3(-35,50,-12)); sunTarget->position.copy(lightAnchor);

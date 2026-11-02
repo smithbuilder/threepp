@@ -9,7 +9,7 @@ param(
     [switch]$Sequence,
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
-    [ValidateRange(0,2)][int]$View = 0,
+    [ValidateRange(0,3)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
     [switch]$SelfTest
 )

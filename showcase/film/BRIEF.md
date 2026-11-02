@@ -2,33 +2,18 @@
 workflow: hyperframes
 flow: automation
 storyboard: no
-message: "Watch Cinder Forest Rally in motion"
-audience: "Oliver, reviewing the playable engine candidate"
+message: "Show the new cockpit and articulated suspension"
+audience: "Oliver, reviewing the native rally candidate"
 destination: "Local MP4 playback in Codex"
-aspect: "8:5, preserving the actual 960x600 game capture"
-length: 24
+aspect: "8:5, preserving the native 960x600 capture"
+length: 22
 language: English
 ---
 
-Requested: "nice. create a video for me to watch" in the ongoing rally build.
-Execution: an autonomous finished file, using the established go-ahead context.
-
-Inferred direction: a concise gameplay reel, not an explainer or a fabricated
-cinematic. Show the actual game and retain its scripted-capture labeling.
-Chase camera, side camera and low chase/finish. Minimal opening/closing type,
-no narration or added music. The game's three CC0 real-recorded exhaust bands are rebuilt
-against the recorded RPM/load/gear telemetry and mixed modestly; it is not a recording
-of the Windows audio endpoint. No AI-generated gameplay footage or art.
-
-Keep the engine's capped 960x600/30 FPS and supervised recording. One GPU
-workload at a time. HyperFrames assembly uses one worker and software browser
-rendering/CPU encode. Do not publish or upload externally.
-
-Final UI direction: subtle floating instruments; no black translucent panels
-in HUD or menus/results. Preserve this actual native capture, not an overlay
-that only makes the video look different.
-
-Current revision: correct rear exhaust routing; open wheel bays with checked
-steering/bump/droop clearance and moving links; chassis-relative wheel contacts;
-soft tyre-contact dust with velocity and age-based growth/fade. Show the actual
-native result in motion; preserve the accepted subtle HUD and audio.
+User requested an in-car first-person mode and more realistic suspension pieces.
+Actual game footage only. Preserve accepted panel-free HUD, recorded exhaust,
+older demos/launchers and previous delivered MP4 files. No generated footage,
+upscale, grade, music or narration. Existing original HyperFrames opening style.
+One supervised GPU process at a time; one software worker for film assembly.
+No upload or publication. Native sound endpoint stays closed in capture; mix
+exhaust from the logged game powertrain and retain the capture disclosure.

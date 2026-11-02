@@ -95,9 +95,9 @@ inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wh
     for(float s:{-1.f,1.f}) {
         // Short side pods end between the axles, leaving actual wheel bays.
         make(bodyPanel(.14f,1.1f,.12f,.12f),gold,{s*.87f,.9f,0});
-        body.add(rod({s*.82f,.75f,1.3f},{s*.66f,1.95f,.27f},.062f,steel));
-        body.add(rod({s*.66f,1.95f,.27f},{s*.74f,1.85f,-.75f},.062f,steel));
-        body.add(rod({s*.74f,1.85f,-.75f},{s*.88f,.8f,-1.5f},.062f,steel));
+        body.add(rod({s*.82f,.75f,1.3f},{s*.66f,2.12f,.27f},.062f,steel));
+        body.add(rod({s*.66f,2.12f,.27f},{s*.74f,2.02f,-.75f},.062f,steel));
+        body.add(rod({s*.74f,2.02f,-.75f},{s*.88f,.8f,-1.5f},.062f,steel));
         body.add(rod({s*.85f,.85f,-.8f},{s*.85f,1.45f,.2f},.045f,steel));
         body.add(rod({s*.85f,1.45f,-.8f},{s*.85f,.85f,.2f},.045f,steel));
         body.add(rod({s*.29f,.72f,-1.22f},{s*.4f,.59f,-1.4f},.045f,steel));
@@ -112,10 +112,10 @@ inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wh
     tip->quaternion.setFromUnitVectors(Vector3(0,1,0),direction.clone().normalize());
     auto bore=make(CircleGeometry::create(.055f,14),black,outletEnd.clone().addScaledVector(direction.clone().normalize(),-.035f));
     bore->material()->side=Side::Double;bore->quaternion.setFromUnitVectors(Vector3(0,0,1),direction.normalize());
-    body.add(rod({-.74f,1.85f,-.75f},{.74f,.82f,-1.45f},.045f,steel));
-    body.add(rod({.74f,1.85f,-.75f},{-.74f,.82f,-1.45f},.045f,steel));
+    body.add(rod({-.74f,2.02f,-.75f},{.74f,.82f,-1.45f},.045f,steel));
+    body.add(rod({.74f,2.02f,-.75f},{-.74f,.82f,-1.45f},.045f,steel));
     for(int i=0;i<6;++i) make(BoxGeometry::create(.8f,.04f,.06f),steel,{0,1.04f+i*.025f,-1.18f+i*.11f});
-    for(float z:{-.5f,.3f})body.add(rod({-.72f,1.92f,z},{.72f,1.92f,z},.045f,steel));
+    for(float z:{-.5f,.3f})body.add(rod({-.72f,2.09f,z},{.72f,2.09f,z},.045f,steel));
     auto number=label("07",.35f,Color(0x192021)); number->rotation.x=-pi/2; number->position.set(0,1.2f,.85f);body.add(number);
     auto brand=label("CINDER",.16f,Color(0xf3ca64));brand->rotation.y=pi;brand->position.set(0,.87f,-1.76f);body.add(brand);
     for(auto& wheel:wheels) {
