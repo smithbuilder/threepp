@@ -10,6 +10,9 @@ param(
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
     [switch]$WheelInspect,
+    [switch]$VehiclePortrait,
+    [ValidateSet('front','side','rear','top')][string]$PortraitAngle = 'front',
+    [ValidateSet('buggy','safari')][string]$Vehicle = 'buggy',
     [ValidateRange(0,3)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
     [switch]$SelfTest
@@ -61,13 +64,14 @@ try {
         }
         if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
         if ($AutoDrive -and $Example -notin @('timber_run','timber_rally')) { throw 'AutoDrive is available only for the driving demos.' }
-        if ($WheelInspect -and ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence))) { throw 'Wheel inspection is an explicit rally capture/sequence profile only.' }
+        if (($WheelInspect -or $VehiclePortrait) -and ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence))) { throw 'Wheel inspection is an explicit rally capture/sequence profile only.' }
         if ($Example -eq 'threepp_showcase') { $arguments += @('--scene', [string]$Scene) }
         if ($Capture) { $arguments += @('--shot', ('"' + (Join-Path $session 'capture.png') + '"'), '--frames', [string]$Frames) }
         if ($Sequence) { $arguments += @('--sequence', ('"' + (Join-Path $session 'frames') + '"'), '--frames',[string]$Frames,'--warmup',[string]$WarmupFrames) }
         if ($AutoDrive) { $arguments += '--autodrive' }
         if ($WheelInspect) { $arguments += '--wheel-inspect' }
-        if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View) }
+        if ($VehiclePortrait) { $arguments += @('--portrait','--portrait-angle',$PortraitAngle) }
+        if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View,'--vehicle',$Vehicle) }
         if ($Example -in @('timber_run','timber_rally')) { $arguments += @('--telemetry', ('"' + (Join-Path $session 'drive.json') + '"')) }
         if ($Example -eq 'showpiece') { $arguments += @('--size','960x600','--samples','0','--no-gtao','--no-bloom','--no-outline') }
         if ($Example -in @('tree_demo','forest_demo')) { $arguments += '--gl' }
@@ -78,6 +82,10 @@ try {
         @{example=$Example;started=(Get-Date).ToString('o');seconds=$Seconds;supervisor=$PID} |
             ConvertTo-Json | Set-Content -LiteralPath $active
     }
+    $binarySha256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash
+    $vehicleAssetSha256=$null
+    $vehicleAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
+    if ($Example -eq 'timber_rally' -and $Vehicle -eq 'safari' -and (Test-Path -LiteralPath $vehicleAsset)) { $vehicleAssetSha256=(Get-FileHash -LiteralPath $vehicleAsset -Algorithm SHA256).Hash }
     $launch = @{FilePath=$exe;WorkingDirectory=$PSScriptRoot;WindowStyle='Hidden';PassThru=$true;
         RedirectStandardOutput=(Join-Path $session 'stdout.log');RedirectStandardError=(Join-Path $session 'stderr.log')}
     if ($arguments.Count) { $launch.ArgumentList = $arguments }
@@ -101,7 +109,7 @@ try {
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;scene=$Scene;view=$View;wheelInspect=[bool]$WheelInspect;capture=[bool]$Capture;sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitAngle=$PortraitAngle;capture=[bool]$Capture;sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }
@@ -110,6 +118,14 @@ try {
         "Evaluation stopped: $reason. See $session. Graphics launches are paused." | Set-Content -LiteralPath $blocked
         throw "Evaluation stopped: $reason. Logs: $session"
     } else { Write-Output "Evaluation exited cleanly. Logs: $session" }
+} catch {
+    # Preserve startup failures (including OS application-control blocks), which
+    # happen before a child exists and therefore before the normal result file.
+    try {
+        @{example=$Example;vehicle=$Vehicle;error=$_.Exception.Message;binarySha256=$binarySha256;at=(Get-Date).ToString('o')} |
+            ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'failure.json')
+    } catch { }
+    throw
 } finally {
     if ($job) { $job.Dispose() }
     if ($child -and -not $child.HasExited) { $child.Kill(); $child.WaitForExit(5000) | Out-Null }

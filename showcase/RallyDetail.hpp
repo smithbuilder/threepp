@@ -9,6 +9,7 @@
 #include "threepp/materials/MeshBasicMaterial.hpp"
 #include "threepp/geometries/TextGeometry.hpp"
 #include "threepp/loaders/FontLoader.hpp"
+#include "RallySurface.hpp"
 #include <random>
 
 namespace rally {
@@ -85,10 +86,10 @@ inline void bakeOcclusion(BufferGeometry& geometry,const std::vector<Vector3>& t
     }c->needsUpdate();
 }
 inline void addVehicleDetail(Group& body) {
-    auto steel=MeshStandardMaterial::create();steel->color=Color(0x25292b);steel->roughness=.35f;steel->metalness=.75f;
-    auto gold=MeshStandardMaterial::create();gold->color=Color(0xf7bc39);gold->roughness=.35f;gold->metalness=.45f;
-    auto silver=MeshStandardMaterial::create();silver->color=Color(0x8f9b9e);silver->metalness=.9f;silver->roughness=.3f;
-    auto black=MeshStandardMaterial::create();black->color=Color(0x111719);black->roughness=.9f;
+    auto steel=surfaceMaterial(0x25292b,Surface::Paint,.72f,.06f);
+    auto gold=surfaceMaterial(0xf7bc39,Surface::Paint,.59f,.04f);
+    auto silver=surfaceMaterial(0xa0a6a3,Surface::Metal,.47f,.90f);
+    auto black=surfaceMaterial(0x111719,Surface::Rubber,.96f,0);
     auto make=[&](auto g,auto m,Vector3 p){auto o=Mesh::create(g,m);o->position.copy(p);body.add(o);return o;};
     auto hood=make(bodyPanel(.85f,1.4f,.08f,.35f),gold,{0,.91f,.85f});
     make(bodyPanel(.91f,1.2f,.32f,.15f),gold,{0,.64f,-1.15f});

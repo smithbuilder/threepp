@@ -1,0 +1,19 @@
+{
+  "spec": {
+    "halfTrack": 1.08,
+    "halfWheelbase": 1.35,
+    "tyreRadius": 0.49,
+    "tyreHalfWidth": 0.17,
+    "droop": 0.28,
+    "bump": 0.5,
+    "nominal": 0.41
+  },
+  "sourceParts": 1001,
+  "drawMeshes": 79,
+  "vertices": 75708,
+  "triangles": 123000,
+  "bytes": 6007460,
+  "generator": "scripts/generate-safari-body.py",
+  "source": "Original geometry; user safari.jpg silhouette/outfit reference only",
+  "limits": "Body-only model; parent supplies wheels, live suspension and cockpit. Original Safari-inspired vehicle, not Porsche replica or fitment certification."
+}

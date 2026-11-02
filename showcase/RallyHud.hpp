@@ -9,7 +9,7 @@ namespace rally {
 struct HudState {
     float width=960,height=600,speed=0,rpm=1050,time=0,best=0,progress=0,heading=0,x=0,z=0,nextDistance=0;
     int gear=1,next=1;
-    bool scripted=false,finished=false,muted=true,menu=false;
+    bool inspection=false,scripted=false,finished=false,muted=true,menu=false;
 };
 inline std::string raceTime(float time) {
     char s[32];int ms=static_cast<int>(std::max(0.f,time)*1000);
@@ -26,8 +26,8 @@ inline void drawHud(const HudState& s,ImFont* font) {
     auto* d=ImGui::GetBackgroundDrawList();
     constexpr ImU32 ink=IM_COL32(246,244,233,255),quiet=IM_COL32(223,226,216,240),gold=IM_COL32(226,193,116,255),green=IM_COL32(187,213,190,255),edge=IM_COL32(9,18,15,150);
     auto text=[&](float x,float y,float size,ImU32 c,const std::string& v){hudText(d,font,x,y,size,c,v);};
-    text(32,26,25,ink,"CINDER FOREST");text(32,55,14,quiet,"GRAVEL SPRINT  /  LAP 01 OF 01");
-    if(s.scripted)text(s.width*.5f-102,15,13,quiet,"SCRIPTED GAMEPLAY / AUDIO REBUILT");
+    text(32,26,25,ink,"CINDER FOREST");text(32,55,14,quiet,s.inspection?"VEHICLE INSPECTION":"GRAVEL SPRINT  /  LAP 01 OF 01");
+    if(s.scripted)text(s.width*.5f-102,15,13,quiet,s.inspection?"NATIVE ENGINE / INSPECTION COURT":"SCRIPTED GAMEPLAY / AUDIO REBUILT");
     if(s.menu)return;
     for(int i=0;i<8;++i){const bool done=s.finished||i<(s.next==0?7:s.next-1),active=!s.finished&&i==(s.next==0?7:s.next-1);float x=32+i*22.f;
         d->AddLine(ImVec2(x,82),ImVec2(x+15,82),edge,4);d->AddLine(ImVec2(x,82),ImVec2(x+15,82),done?green:active?gold:IM_COL32(232,236,222,95),2);}

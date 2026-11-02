@@ -232,3 +232,47 @@ side sequence captures also exited zero. Safety caps/watchdogs unchanged.
 Physical driving and native heard sound remain unverified.
 
 Wheel motion proof: `build/cinder-film/Cinder-Forest-Wheels.mp4`, 22 seconds.
+
+
+## Reference-led dynamics, materials and second vehicle (under review)
+
+`RallyDynamics.hpp` integrates sprung-body heave/pitch/roll at120Hz from four
+spring/damper loads, acceleration/cornering weight transfer and axle anti-roll
+coupling. Compression/rebound damping differ and increase near bump. Wheels can
+reach droop and lose contact; hard bump projection prevents penetration. The
+horizontal controller remains arcade handling, with rigid tyres and kinematic
+wheel contact rather than an unsprung-mass/friction solver.
+
+Front wishbones keep rigid lengths. Rear wheels now follow boxed trailing-arm
+arcs with drive shafts; telescoping dampers have reservoir/adjustment hardware.
+The CPU checks exercise settling, static weight support, transfer direction,
+heading invariance, render-rate independence, airborne release/landing and rig
+lengths. The same guarded launcher still owns every native graphics run.
+
+Surface detail uses shared original albedo/roughness/normal maps, separate paint,
+coating, rubber and machined-metal response. Outdoor reflections use localCC0
+Epping Forest01 fromPolyHaven, documented inassets/ENVIRONMENT-SOURCE.json and
+ENVIRONMENT-LICENSE.md. The same512shadow map now has focused20m coverage and
+light-space texel stabilization. No runtime network access or extra postprocess.
+
+Dust has192advecting/fading soft quads.64instanced gravel particles follow gravity
+and bounce/expire.768terrain-fixed tyre ribbon segments respond to contact/slip
+and fade within32seconds; restarts clear all pools. The coarse land mesh is cut
+out below the finer road, so its ribbon can sit2cm above analytic support rather
+than floating16cm over the tyre contact height.
+
+The original open buggy remains the default. A separately selectable Safari
+coupe uses its own narrower chassis/wheel dimensions, lower seating and shorter
+travel. `Launch-Safari.cmd` chooses it directly; the grid'sVEHICLE action also
+switches variants. Its original geometry/PBRasset is reproducible from
+scripts/generate-safari-body.py. Userprovided safari.jpg is a visual target,
+not a shipped texture/model. This vehicle is subject to the independent fixed
+8/10 acceptance gate inSAFARI-QUALITY-REVIEW.md; no pass is implied by this section.
+
+Actual body triangles, including real wheel openings, are checked against
+finite tyre cylinders through6468sampled steering/travel poses with20mm padding.
+This replaces whole-meshAABBs for the curved Safari arches, without exempting
+parts. Actual scaled wheel vertices and the driver eye's distance to body
+surfaces are also checked. Native inspection court is capture-only, with a
+flat physical floor and neutral backdrop, same engine/mesh/daylight and explicit
+inspection label; normal forest driving must be checked separately.

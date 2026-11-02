@@ -1,0 +1,36 @@
+{
+  "asset": "epping_forest_01",
+  "file": "epping_forest_01_1k.hdr",
+  "title": "Epping Forest 01",
+  "author": "Andreas Mischok",
+  "sourceUrl": "https://polyhaven.com/a/epping_forest_01",
+  "apiInfo": "https://api.polyhaven.com/info/epping_forest_01",
+  "apiFiles": "https://api.polyhaven.com/files/epping_forest_01",
+  "downloadUrl": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/epping_forest_01_1k.hdr",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "legalDeed": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "bytes": 1923408,
+  "sha256": "ded59e69fb6531c23c20684b33e7c434f3adb32625843d2461e922694e372d24",
+  "verifiedOfficialApiMd5": "d991bbf26bfc11f01b0862698188cda4",
+  "dimensions": [
+    1024,
+    512
+  ],
+  "usage": "Local low-resolution HDR reflection/ambient probe; no runtime network calls; existing GL PMREM only",
+  "orientation": {
+    "loadedWithFlipY": true,
+    "brightestSourcePixel": [
+      581,
+      134
+    ],
+    "sunElevationDegrees": 42.71484375,
+    "environmentRotationYRadians": 3.237741957792748,
+    "alignedWorldSunDirection": [
+      -0.6950232630637493,
+      0.6783500431298615,
+      -0.23829369019328536
+    ]
+  },
+  "notes": "Brightest sky patch used to align analytic key and visible procedural sky. Not a measured on-location probe for this fictional level. 1K source selected to bound memory and startup cost; no per-frame capture. Alternative sunset HDR was researched but is not shipped."
+}

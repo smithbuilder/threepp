@@ -10,8 +10,8 @@ struct CameraModes {
 };
 inline Vector3 driverEye(){return {-.40f,1.68f,-.30f};}
 struct CockpitPose {Vector3 eye,target,up;};
-inline CockpitPose cockpitPose(const Vector3& chassis,const Quaternion& q){
-    auto eye=driverEye().applyQuaternion(q).add(chassis);
+inline CockpitPose cockpitPose(const Vector3& chassis,const Quaternion& q,const Vector3& localEye=driverEye()){
+    auto eye=localEye.clone().applyQuaternion(q).add(chassis);
     auto direction=Vector3(0,-.025f,1).applyQuaternion(q).normalize();
     auto bodyUp=Vector3(0,1,0).applyQuaternion(q);
     // Head position stays in the seat. Partial roll stabilization and a fixed

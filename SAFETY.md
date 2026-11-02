@@ -84,3 +84,25 @@ The cockpit/suspension revision retains the same evaluation limits. View 3 adds
 a fixed-FOV driver camera; the CPU rig tests also cover the new arm arc, coil
 geometry, camera seat and steering/input mapping. No driver, timeout, MSAA,
 shadow-map or postprocessing limits were raised.
+
+
+## Current reference refinement
+
+Resolution/FPS/Windowsjob/deadline/heartbeat limits remain unchanged. Native runs
+stay sequential. New effects have fixed pools:192dust quads,64gravel instances,
+768short-lived tyre segments. The new Safari asset and1KHDRprobe load locally;
+no runtime asset downloads or new graphics backend. Capture results record
+executable/model hashes so visual reviews identify their actual artifact.
+
+`-VehiclePortrait -PortraitAngle front|side|rear|top` is a capture-only diagnostic
+court, never a replacement gameplay camera. It uses the actual vehicle geometry,
+materials and daylight on a flat support plane for unobstructed comparison.
+CPU testing opens no graphics/audio context; native captures use the supervisor.
+
+
+Current execution gate (November2): WindowsApplicationControl rejected the fresh
+unsigned timber_rally.exe before process startup (CodeIntegrity3033/3077), so
+build/GRAPHICS_PAUSED.txt remains in place. This was not a new graphics hang.
+The existing Azure signing workflow is awaiting explicit project authorization;
+no Windows security setting has been changed. A properly signed/verified build
+and a deliberate supervised trial are required before retiring this pause.

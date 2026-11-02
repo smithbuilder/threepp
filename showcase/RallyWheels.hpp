@@ -25,7 +25,7 @@ inline auto bevelTile(float width,float length,float height){
     for(int ring=0;ring<3;++ring)for(auto p:outline){float scale=ring==2?.88f:1;float y=ring==0?-height*.5f:ring==1?height*.28f:height*.5f;points.insert(points.end(),{p.x*scale,y,p.y*scale});}
     for(int ring=0;ring<2;++ring)for(unsigned i=0;i<8;++i){unsigned a=ring*8+i,b=ring*8+(i+1)%8,c=a+8,d=b+8;indices.insert(indices.end(),{a,c,b,b,c,d});}
     for(unsigned i=1;i<7;++i){indices.insert(indices.end(),{16,16+i+1,16+i});indices.insert(indices.end(),{0,i,i+1});}
-    auto g=BufferGeometry::create();g->setAttribute("position",FloatBufferAttribute::create(points,3));g->setIndex(indices);auto flat=g->toNonIndexed();flat->computeVertexNormals();return flat;
+    auto g=BufferGeometry::create();g->setAttribute("position",FloatBufferAttribute::create(points,3));g->setIndex(indices);auto flat=g->toNonIndexed();flat->computeVertexNormals();ensureSurfaceUv(*flat);return flat;
 }
 inline auto curvedSidewallText(const std::string& text,float size,float centerAngle){
     auto g=TextGeometry::create(text,TextGeometry::Options(FontLoader{}.defaultFont(),size,2));g->center();auto* p=g->getAttribute<float>("position");
@@ -35,8 +35,8 @@ inline auto curvedSidewallText(const std::string& text,float size,float centerAn
 inline WheelResources makeWheelResources(){
     WheelResources w;
     auto standard=[](unsigned color,float rough,float metal){auto m=MeshStandardMaterial::create();m->color=Color(color);m->roughness=rough;m->metalness=metal;return m;};
-    auto rubber=standard(0x292d2c,.94f,0);rubber->vertexColors=true;w.rubber=rubber;
-    w.blocks=standard(0x303430,.93f,0);w.metal=standard(0x7e877f,.43f,.72f);w.ring=standard(0xabb0a3,.38f,.78f);w.hardware=standard(0xaaa18a,.4f,.75f);w.brake=standard(0x535a55,.56f,.65f);
+    auto rubber=surfaceMaterial(0x292d2c,Surface::Rubber,.98f,0);rubber->vertexColors=true;w.rubber=rubber;
+    w.blocks=surfaceMaterial(0x303430,Surface::Rubber,.98f,0);w.metal=surfaceMaterial(0x90988f,Surface::Metal,.47f,.84f);w.ring=surfaceMaterial(0xb4b7ac,Surface::Metal,.42f,.90f);w.hardware=standard(0xaaa18a,.4f,.75f);w.brake=standard(0x535a55,.56f,.65f);
     w.carcass=axleLathe({{.230f,-.145f},{.251f,-.174f},{.290f,-.189f},{.330f,-.195f},{.400f,-.193f},{.460f,-.183f},{.500f,-.158f},{.515f,-.120f},{.521f,-.070f},{.523f,0.f},
         {.521f,.070f},{.515f,.120f},{.500f,.158f},{.460f,.183f},{.400f,.193f},{.330f,.195f},{.290f,.189f},{.251f,.174f},{.230f,.145f},
         {.242f,.132f},{.330f,.163f},{.450f,.151f},{.491f,.108f},{.498f,0.f},{.491f,-.108f},{.450f,-.151f},{.330f,-.163f},{.242f,-.132f},{.230f,-.145f}});
@@ -52,9 +52,18 @@ inline WheelResources makeWheelResources(){
     w.markings=mergeBufferGeometries(std::vector<std::shared_ptr<BufferGeometry>>{curvedSidewallText("CINDER OFFROAD",.034f,0),curvedSidewallText("GRAVEL R/T",.027f,pi)});
     return w;
 }
-inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int index){
+inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int index,const VehicleDimensions& dims=buggyDimensions){
     const float side=index%2?1.f:-1.f;
-    rolling.add(Mesh::create(w.carcass,w.rubber));rolling.add(Mesh::create(w.barrel,w.metal));
+    const float widthScale=dims.tyreHalfWidth/buggyDimensions.tyreHalfWidth,radiusScale=dims.tyreRadius/buggyDimensions.tyreRadius;
+    rolling.scale.set(widthScale,radiusScale,radiusScale);
+    // Per-vehicle copies preserve the silver buggy's shared original materials.
+    auto wheelMetal=w.metal,wheelRing=w.ring;
+    if(dims.tyreRadius<buggyDimensions.tyreRadius){
+        wheelMetal=w.metal->clone();wheelRing=w.ring->clone();
+        wheelMetal->as<MeshStandardMaterial>()->color=Color(0x9e8055);
+        wheelRing->as<MeshStandardMaterial>()->color=Color(0xc6a879);
+    }
+    rolling.add(Mesh::create(w.carcass,w.rubber));rolling.add(Mesh::create(w.barrel,wheelMetal));
     constexpr int stations=40,rows=6;auto tread=InstancedMesh::create(w.tread,w.blocks,stations*rows);
     constexpr float across[]={-.173f,-.126f,-.044f,.044f,.126f,.173f};
     for(int row=0;row<rows;++row)for(int i=0;i<stations;++i){float x=across[row],a=(i+(row%2?.46f:0))*2*pi/stations;
@@ -63,9 +72,9 @@ inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int ind
         block.scale.set(row==0||row==5?.46f:1,1,1+(i%3-1)*.055f);block.updateMatrix();int k=row*stations+i;tread->setMatrixAt(k,*block.matrix);float shade=.91f+(i%5)*.018f;tread->setColorAt(k,Color(shade,shade,shade*.97f));}
     tread->instanceMatrix()->needsUpdate();tread->instanceColor()->needsUpdate();rolling.add(tread);
     auto face=Group::create();face->rotation.y=side<0?pi:0;rolling.add(face);
-    face->add(Mesh::create(w.beadRing,w.ring));face->add(Mesh::create(w.mount,w.metal));face->add(Mesh::create(w.sidewall,w.blocks));
+    face->add(Mesh::create(w.beadRing,wheelRing));face->add(Mesh::create(w.mount,wheelMetal));face->add(Mesh::create(w.sidewall,w.blocks));
     auto labelMaterial=MeshStandardMaterial::create();labelMaterial->color=Color(0x454b43);labelMaterial->roughness=1;labelMaterial->side=Side::Double;face->add(Mesh::create(w.markings,labelMaterial));
-    auto spokes=InstancedMesh::create(w.spoke,w.metal,8);for(int i=0;i<8;++i){Object3D o;o.rotation.x=i*pi/4;o.updateMatrix();spokes->setMatrixAt(i,*o.matrix);}spokes->instanceMatrix()->needsUpdate();face->add(spokes);
+    auto spokes=InstancedMesh::create(w.spoke,wheelMetal,8);for(int i=0;i<8;++i){Object3D o;o.rotation.x=i*pi/4;o.updateMatrix();spokes->setMatrixAt(i,*o.matrix);}spokes->instanceMatrix()->needsUpdate();face->add(spokes);
     auto boltGeometry=CylinderGeometry::create(.009f,.009f,.012f,6);boltGeometry->rotateZ(pi/2);
     auto bolts=InstancedMesh::create(boltGeometry,w.hardware,24);for(int i=0;i<24;++i){float a=i*2*pi/24;Object3D o;o.position.set(.188f,.232f*std::cos(a),.232f*std::sin(a));o.rotation.x=a;o.updateMatrix();bolts->setMatrixAt(i,*o.matrix);}bolts->instanceMatrix()->needsUpdate();face->add(bolts);
     auto lugGeometry=CylinderGeometry::create(.012f,.012f,.018f,6);lugGeometry->rotateZ(pi/2);auto lugs=InstancedMesh::create(lugGeometry,w.hardware,5);
@@ -74,6 +83,6 @@ inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int ind
     face->add(Mesh::create(w.rotor,w.ring));
     auto valve=Mesh::create(CylinderGeometry::create(.005f,.005f,.024f,8),w.brake);valve->rotation.z=-pi/2;valve->position.set(.183f,.200f*std::cos(.72f),.200f*std::sin(.72f));face->add(valve);
     // The caliper steers with the upright, but does not spin with the wheel.
-    auto caliper=Mesh::create(BoxGeometry::create(.060f,.096f,.061f),w.brake);caliper->position.set(side*.035f,0,index<2?-.153f:.153f);caliper->name="fixed-brake-caliper";pivot.add(caliper);
+    auto caliper=Mesh::create(BoxGeometry::create(.060f,.096f,.061f),w.brake);caliper->position.set(side*.035f,0,index<2?-.153f:.153f);caliper->position.x*=widthScale;caliper->position.z*=radiusScale;caliper->scale.set(widthScale,radiusScale,radiusScale);caliper->name="fixed-brake-caliper";pivot.add(caliper);
 }
 }

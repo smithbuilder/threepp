@@ -2,6 +2,12 @@
 #include "RallyBuggy.hpp"
 #include "RallyDust.hpp"
 #include "RallyCamera.hpp"
+#include "RallyDynamics.hpp"
+#include "RallyTrails.hpp"
+#include "RallySafari.hpp"
+#include "RallyClearance.hpp"
+#include "threepp/math/Triangle.hpp"
+#include <filesystem>
 #include <iostream>
 #include <stdexcept>
 #include <regex>
@@ -22,6 +28,20 @@ int main(){try{
             minClear=std::min(minClear,std::sqrt(x*x+y*y+z*z));}
     }
     require(minClear>.025f,"Insufficient tyre/body clearance");
+    // Triangle clipping must detect a face spanning the cylinder even when
+    // every triangle vertex is outside its circular cross-section.
+    require(rally::triangleCylinder({0,-2,-2},{0,2,-2},{0,0,2},.5f,.2f),"Cylinder misses spanning triangle");
+    require(!rally::triangleCylinder({.5f,-2,-2},{.5f,2,-2},{.5f,0,2},.5f,.2f),"Cylinder ignores finite axial width");
+    require(!rally::triangleCylinder({0,1,1},{0,2,1},{0,1,2},.5f,.2f),"Cylinder falsely fills arch opening");
+    auto safari=rally::makeSafari(std::filesystem::path(__FILE__).parent_path()/"assets");auto safariTriangles=rally::bodyTriangles(safari);const auto& sd=safari.dimensions;
+    require(sd.halfTrack<buggy.dimensions.halfTrack&&sd.tyreRadius<buggy.dimensions.tyreRadius,"Safari proportions did not reach actual chassis");
+    int safariPoses=0;
+    for(int wheel=0;wheel<4;++wheel)for(int t=0;t<=76;++t)for(int a=0;a<=(wheel<2?40:0);++a){
+        float travel=sd.droop+(sd.bump-sd.droop)*t/76.f,steer=wheel<2?-.4f+.8f*a/40.f:0;
+        auto hit=rally::bodyTyreIntersection(safariTriangles,wheel,travel,steer,sd,.020f);
+        require(!hit,"Safari tyre/body surface collision: "+(hit?hit->name:std::string())+" wheel="+std::to_string(wheel)+" travel="+std::to_string(travel)+" steer="+std::to_string(steer));++safariPoses;}
+    float eyeClearance=1e6f;for(const auto& face:safariTriangles){Vector3 closest;Triangle(face.a,face.b,face.c).closestPointToPoint(safari.eye,closest);eyeClearance=std::min(eyeClearance,closest.distanceTo(safari.eye));}
+    require(eyeClearance>.055f,"Safari cockpit camera too close to actual body surface");
     float meshRadius=0,meshHalfWidth=0;
     for(int wheel=0;wheel<4;++wheel){auto& rolling=*buggy.rolls[wheel];Matrix4 inverse=*rolling.matrixWorld;inverse.invert();
         rolling.traverseType<Mesh>([&](Mesh& mesh){auto* p=mesh.geometry()->getAttribute<float>("position");Matrix4 relative=inverse;relative.multiply(*mesh.matrixWorld);
@@ -33,6 +53,23 @@ int main(){try{
     }
     require(meshRadius<=rally::tyreRadius+.0001f,"Wheel geometry exceeds rolling radius");require(meshHalfWidth<=rally::tyreHalfWidth+.0001f,"Wheel geometry exceeds lateral envelope");
     require(meshRadius>.53f&&meshHalfWidth>.19f,"Wheel profile unexpectedly undersized");
+    // Narrow Safari wheels are physically resized, not only moved inward.
+    safari.car->updateMatrixWorld(true);float safariRadius=0,safariWidth=0;
+    for(int i=0;i<4;++i){Matrix4 inverse=*safari.pivots[i]->matrixWorld;inverse.invert();
+        safari.rolls[i]->traverseType<Mesh>([&](Mesh& mesh){auto* p=mesh.geometry()->getAttribute<float>("position");auto relative=inverse;relative.multiply(*mesh.matrixWorld);
+            auto audit=[&](const Matrix4& transform){for(unsigned n=0;n<p->count();++n){auto v=Vector3(p->getX(n),p->getY(n),p->getZ(n)).applyMatrix4(transform);safariRadius=std::max(safariRadius,std::hypot(v.y,v.z));safariWidth=std::max(safariWidth,std::abs(v.x));}};
+            if(auto* instanced=dynamic_cast<InstancedMesh*>(&mesh)){for(size_t n=0;n<instanced->count();++n){Matrix4 instance;instanced->getMatrixAt(n,instance);auto transform=relative;transform.multiply(instance);audit(transform);}}else audit(relative);});}
+    require(safariRadius<=sd.tyreRadius+.0001f&&safariRadius>sd.tyreRadius*.98f,"Safari actual radius does not match support model");
+    require(safariWidth<=sd.tyreHalfWidth+.0001f&&safariWidth>sd.tyreHalfWidth*.95f,"Safari width does not match support model");
+    rally::RideDynamics safariRide;auto flatSafari=[](float,float){return 0.f;};safariRide.reset(Vector3(),0,flatSafari,sd);safariRide.chassis.y+=.10f;
+    for(int i=0;i<600;++i)safariRide.step(Vector3(),0,0,0,0,1.f/120,flatSafari);
+    require(std::abs(safariRide.chassis.y-(sd.tyreRadius-sd.staticTravel))<.003f,"Safari sprung body fails to settle at its own ride height");
+    std::vector<float> safariArmLengths;std::array<rally::WheelContact,4> safariWheels;
+    for(int i=0;i<4;++i)safariWheels[i].local=rally::hubAtTravel(i,sd.staticTravel,sd);rally::updateSuspension(safari.suspension,safariWheels,0);
+    for(auto& arm:safari.suspension.arms)safariArmLengths.push_back(arm.mesh->scale.y);
+    for(int t=0;t<=76;++t){float travel=sd.droop+(sd.bump-sd.droop)*t/76.f;
+        for(int i=0;i<4;++i)safariWheels[i].local=rally::hubAtTravel(i,travel,sd);rally::updateSuspension(safari.suspension,safariWheels,.4f);
+        for(size_t i=0;i<safariArmLengths.size();++i)require(std::abs(safari.suspension.arms[i].mesh->scale.y-safariArmLengths[i])<.00001f,"Narrow Safari arm stretches through travel");}
     float maxGap=0;
     for(int k=0;k<360;++k){float a=k*6.2831853f/360;float x=64*std::sin(a)+8*std::sin(3*a),z=90*std::cos(a);
         float dx=64*std::cos(a)+24*std::cos(3*a),dz=-90*std::sin(a),heading=std::atan2(dx,dz);
@@ -45,6 +82,43 @@ int main(){try{
             require(std::isfinite(c.gap)&&std::abs(c.gap)<.025f,"Tyre contact lost on course sample "+std::to_string(k));
             require(c.local.y>=rally::droop&&c.local.y<=rally::bump,"Suspension exceeded travel");}
     }
+    // Exercise the exact reduced dynamic model without a graphics context.
+    auto flat=[](float,float){return 0.f;};Vector3 at(0,0,0);rally::RideDynamics settled;settled.reset(at,0,flat);
+    settled.chassis.y+=.12f;float peakAfter=0;bool crossed=false;
+    for(int n=0;n<600;++n){settled.step(at,0,0,0,0,1.f/120,flat);if(settled.chassis.y<.13f)crossed=true;if(n>480)peakAfter=std::max(peakAfter,std::abs(settled.chassis.y-.13f));}
+    require(crossed&&peakAfter<.003f,"Sprung body fails to settle after displacement");
+    require(std::abs(settled.heaveVelocity)<.003f,"Damper leaves persistent bounce");
+    float load=0;for(float f:settled.forces)load+=f;require(std::abs(load-rally::RideDynamics::mass*rally::RideDynamics::gravity)<5,"Static springs fail to support sprung weight");
+    rally::RideDynamics transfer;transfer.reset(at,0,flat);
+    for(int n=0;n<360;++n)transfer.step(at,0,0,8,7,1.f/120,flat);
+    require(transfer.pitch<-.01f&&transfer.roll>.01f,"Acceleration/cornering weight transfer has wrong sign");
+    require(transfer.forces[2]+transfer.forces[3]>transfer.forces[0]+transfer.forces[1],"Acceleration does not transfer load rearward");
+    for(int n=0;n<480;++n)transfer.step(at,0,0,-10,0,1.f/120,flat);
+    require(transfer.pitch>.01f&&transfer.forces[0]+transfer.forces[1]>transfer.forces[2]+transfer.forces[3],"Braking does not load front axle");
+    auto a=settled,b=settled;for(int n=0;n<90;++n)a.step(at,0,.1f,4,3,1.f/30,flat);for(int n=0;n<360;++n)b.step(at,0,.1f,4,3,1.f/120,flat);
+    require(a.chassis.distanceTo(b.chassis)<.0001f&&std::abs(a.roll-b.roll)<.0001f&&std::abs(a.pitch-b.pitch)<.0001f,"Ride depends on render frequency");
+    for(float yaw:{-2.8f,-1.5f,.7f,2.4f}){rally::RideDynamics rotated,reference;rotated.reset(at,yaw,flat);reference.reset(at,0,flat);
+        for(int n=0;n<360;++n){rotated.step(at,yaw,.1f,4,3,1.f/120,flat);reference.step(at,0,.1f,4,3,1.f/120,flat);}
+        require(std::abs(rotated.pitch-reference.pitch)<.0001f&&std::abs(rotated.roll-reference.roll)<.0001f,"Suspension torque changes with world heading");}
+    auto airborne=settled;airborne.chassis.y+=1;airborne.step(at,0,0,0,0,1.f/120,flat);
+    for(int i=0;i<4;++i)require(!airborne.grounded[i]&&airborne.forces[i]==0,"Airborne tyre retains ground load");
+    require(airborne.heaveVelocity<0,"Airborne chassis fails to fall");
+    for(int n=0;n<480;++n){airborne.step(at,0,0,0,0,1.f/120,flat);auto q=rally::chassisOrientation(0,airborne.pitch,airborne.roll);
+        for(int i=0;i<4;++i){auto c=rally::wheelContact(i,airborne.chassis,q,0,flat);require(c.gap>-.002f,"Landing tyre penetrates ground");}}
+    require(std::abs(airborne.chassis.y-.13f)<.003f,"Landing fails to settle");
+    auto splitBump=[](float x,float z){return x>0&&z>0?.14f:0.f;};auto articulationRide=settled;
+    for(int n=0;n<360;++n)articulationRide.step(at,0,.3f,0,0,1.f/120,splitBump);
+    require(articulationRide.travel[1]>articulationRide.travel[0]+.015f,"Four corners fail to react independently");
+    for(float f:articulationRide.forces)require(std::isfinite(f)&&f>=0&&f<=20000,"Corner spring load invalid");
+    rally::TyreTrails trails;trails.contact(0,{0,0,0},true,.3f,flat);trails.contact(0,{0,0,1},true,.3f,flat);trails.update(.2f);
+    require(trails.emitted==1&&trails.mesh->geometry()->getAttribute<float>("strength")->getX(0)>.2f,"Tyre trail not rendered");
+    auto* trailPosition=trails.mesh->geometry()->getAttribute<float>("position");float fixedTrail=trailPosition->getZ(1);trails.update(2);
+    require(trailPosition->getZ(1)==fixedTrail,"Tyre trail drifts away from ground");
+    trails.contact(0,{0,0,2},false,.3f,flat);trails.contact(0,{0,0,3},true,.3f,flat);require(trails.emitted==1,"Trail bridges an airborne wheel");
+    trails.update(33);require(trails.mesh->geometry()->getAttribute<float>("strength")->getX(0)==0,"Old trail fails to fade");trails.reset();require(trails.emitted==0&&!trails.connected[0],"Restart retains tyre trails");
+    rally::GravelSpray gravel;gravel.spawn({0,0,0},{0,0,1},{1,0,0},{0,0,18},1);auto stoneStart=gravel.particles[0].position;
+    gravel.update(.1f,flat);require(gravel.particles[0].position.distanceTo(stoneStart)>.1f,"Gravel remains stationary");
+    for(int n=0;n<180;++n)gravel.update(1.f/120,flat);require(gravel.particles[0].age>=gravel.particles[0].life,"Gravel never expires");gravel.reset();require(gravel.emitted==0,"Restart retains gravel");
     std::vector<float> referenceLengths;std::array<rally::WheelContact,4> articulation;
     for(int i=0;i<4;++i)articulation[i].local=rally::hubAtTravel(i,.41f);
     rally::updateSuspension(buggy.suspension,articulation,0);
@@ -83,6 +157,6 @@ int main(){try{
     for(int i=0;i<180;++i)dust.update(1.f/120);
     require(rally::DustSimulation::opacity(dust.particles[0])==0,"Dust fails to expire");dust.reset();
     require(dust.serial==0&&rally::DustSimulation::opacity(dust.particles[0])==0,"Restart leaves old dust");
-    std::cout<<"PASS: swept tyre/body clearance="<<minClear<<"m; 360 course poses max contact gap="<<maxGap<<"m; actual wheel vertices fit radius/width and calipers remain fixed; rigid wishbones, coilovers, Ackermann and seated camera pass; dust advects/fades/resets. No graphics/audio context opened.\n";
+    std::cout<<"PASS: swept tyre/body clearance="<<minClear<<"m; Safari padded surface poses="<<safariPoses<<", eye clearance="<<eyeClearance<<"m; 360 course poses max contact gap="<<maxGap<<"m; actual wheel vertices fit radius/width and calipers remain fixed; spring settling, weight transfer, render-rate independence, airborne load release and landing pass; rigid wishbones, coilovers, Ackermann and seated camera pass; dust advects/fades/resets. No graphics/audio context opened.\n";
     return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}
