@@ -41,18 +41,38 @@ remain separate. No pass or finished delivery is claimed at these scores.
 
 Latest geometry revision addresses the remaining ducktail/lamp-wing/shoulder/roof
 transition issues identified in geometry-only review. No new visual score is
-claimed.79static meshes,123000triangles;6.007MB originalGLB. It passes the unchanged
-6468padded tyre/body poses and0.178499m actual eye-to-surface clearance. CPU wheel
+claimed.79static meshes,123000triangles;5.918MB originalGLB. It passes the unchanged
+6468padded tyre/body poses and0.221858m actual eye-to-surface clearance. CPU wheel
 size, spring settling and rigid-link checks also pass for the new dimensions.
 
 Native review is paused by WindowsApplicationControl, CodeIntegrity3033/3077,
 which rejected the unsigned freshlybuilt executable before any window opened.
 The existing Azure signing workflow was found, but automatic approval review
 rejected using that external service/publisher identity without explicit project
-authorization. User approval is pending. No security setting was changed and no
+authorization. The user subsequently approved signing current and subsequent
+local review builds. Azure signing succeeded; Authenticode, timestamp and the
+expected Oliver Smith publisher verify. A separate automatic approval review
+then rejected the incident-acknowledged native launch because of residual risk
+after the prior computer lock. Approval to resume guarded native trials is now
+pending. No native launch occurred, no security setting was changed and no
 alternate launch method was attempted. The current frozen source/model/executable
 hashes are inbuild/safari-model/frozen-review-manifest.json.
 
 The previous4.9score belongs to an older mesh. The current candidate remains
 UNSCORED and cannot pass the8/10 gate until fresh native views and normal driving
 are available. CPU painter previews are explicitly not native/PBR acceptance.
+
+Geometry-only review of revision3 found the integrated ducktail and rolled
+shoulders substantially improved. Roof/rear-glass continuity improved, but the
+greenhouse is now too shallow relative to the door and the main lamp seats/nose
+remain blunt. The next revision raises the connected cabin/glazing arc by140mm,
+tilts the main lamp seats19.5degrees and curves the nose back between the raised
+wings. A separate material lane adds clean enamel maps and side-local dirt with
+increased roughness and suppressed clearcoat. All six CPU tests pass.
+
+Independent geometry-only review of that next revision finds both remaining
+major shape blockers materially addressed, with no additional major defect
+justifying another offline rebuild. Reviewer recommends freezing for native
+front/side/rear assessment. Ducktail lip sharpness and lamp-rim blending remain
+smaller points for native judgment. This is readiness for native review, with
+no score or pass; CPU previews cannot establish PBR/lighting acceptance.

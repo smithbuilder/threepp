@@ -12,7 +12,7 @@
   "drawMeshes": 79,
   "vertices": 75708,
   "triangles": 123000,
-  "bytes": 6007460,
+  "bytes": 5918416,
   "generator": "scripts/generate-safari-body.py",
   "source": "Original geometry; user safari.jpg silhouette/outfit reference only",
   "limits": "Body-only model; parent supplies wheels, live suspension and cockpit. Original Safari-inspired vehicle, not Porsche replica or fitment certification."

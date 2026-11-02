@@ -103,6 +103,10 @@ CPU testing opens no graphics/audio context; native captures use the supervisor.
 Current execution gate (November2): WindowsApplicationControl rejected the fresh
 unsigned timber_rally.exe before process startup (CodeIntegrity3033/3077), so
 build/GRAPHICS_PAUSED.txt remains in place. This was not a new graphics hang.
-The existing Azure signing workflow is awaiting explicit project authorization;
-no Windows security setting has been changed. A properly signed/verified build
-and a deliberate supervised trial are required before retiring this pause.
+The user approved the existing Azure workflow for current and subsequent local
+review builds. Signing succeeded; Authenticode, timestamp and the expected
+Oliver Smith publisher verify. Automatic approval review separately rejected
+the incident-acknowledged native launch because of residual disruption risk
+after the prior full-computer lock. Explicit approval to resume guarded native
+trials is pending; no process opened and no Windows security setting changed.
+A successful deliberate supervised trial is required before retiring this pause.

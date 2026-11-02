@@ -7,11 +7,12 @@ The user-provided safari.jpg guides proportions and the expedition outfit;
 no source pixels, manufacturer logos or imported geometry enter this model.
 """
 from pathlib import Path
-import json, math, struct, io
+import json, math, struct, io, copy
 import numpy as np
 from scipy.interpolate import PchipInterpolator
 from scipy.spatial import Delaunay
 from PIL import Image, ImageDraw
+from safari_surface_maps import maps, weather_colors, side_maps, side_uv
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'showcase/assets/safari-body.glb'
@@ -32,6 +33,12 @@ class Model:
         self.materials.append(m);return len(self.materials)-1
     def mesh(self,name,p,faces,mat,uv=None,colors=None):
         p=np.asarray(p,dtype=np.float32);f=np.asarray(faces,dtype=np.uint32).reshape(-1,3)
+        if name.startswith(('body.continuous_','body.side_with_','body.rounded_front','livery.bonnet_band')):
+            # The central nose rolls down/forward between raised lamp wings;
+            # pull its upper edge behind its lower lip without a vertical slab.
+            t=np.clip((p[:,2]-1.90)/.40,0,1);t=t*t*(3-2*t)
+            mask=np.exp(-((p[:,0]/.70)**6));height=np.clip((p[:,1]-.69)/.24,0,1)
+            p[:,2]-=.16*t*mask*height
         n=np.zeros_like(p);fn=np.cross(p[f[:,1]]-p[f[:,0]],p[f[:,2]]-p[f[:,0]])
         for k in range(3):np.add.at(n,f[:,k],fn)
         length=np.linalg.norm(n,axis=1);n/=np.maximum(length[:,None],1e-12)
@@ -49,13 +56,13 @@ class Model:
         self.mesh(name,flat,f,mat,uv,colors)
 
 M=Model()
-paint=M.mat('safari.cream_enamel',0xd7cfb4,.45,.025)
+paint=M.mat('safari.cream_enamel',0xd7cfb4,1.0,0)
 M.materials[paint]['extensions']={'KHR_materials_clearcoat':{'clearcoatFactor':.6,'clearcoatRoughnessFactor':.18}}
-dark=M.mat('safari.charcoal_flare',0x343b39,.83,.04)
+dark=M.mat('safari.charcoal_flare',0x343b39,.83,0)
 rubber=M.mat('safari.rubber',0x272c29,.96)
 metal=M.mat('safari.brushed_alloy',0x91958d,.43,.85)
 bronze=M.mat('safari.bronze',0x887042,.42,.82)
-black=M.mat('safari.coated_steel',0x202a28,.58,.34)
+black=M.mat('safari.coated_steel',0x202a28,.58,0)
 glass=M.mat('safari.smoky_glazing',0x43565b,.11,.06,.58)
 lens=M.mat('safari.clear_lamp_glass',0xd8c793,.11,.08,.48,0x8d703d)
 reflector=M.mat('safari.polished_reflector',0xb7beb7,.19,.94)
@@ -69,14 +76,8 @@ olive=M.mat('safari.olive_case',0x646550,.82,.03)
 canvas=M.mat('safari.canvas',0x444a42,.96)
 tail=M.mat('safari.tail_lens',0x9b2e26,.23,.06,1,0x290908)
 amber=M.mat('safari.amber_lens',0xc8832a,.26,.04,1,0x38220a)
+paint_side=len(M.materials);M.materials.append(copy.deepcopy(M.materials[paint]));M.materials[paint_side]['name']='safari.side_enamel_local_dust'
 
-def weather_colors(p):
-    low=np.clip((.96-p[:,1])/.62,0,1)
-    field=.52+.25*np.sin(p[:,0]*13+p[:,2]*9)+.17*np.sin(p[:,0]*37-p[:,2]*23)
-    near_wheel=np.maximum(np.exp(-((p[:,2]-1.35)/.85)**2),np.exp(-((p[:,2]+1.35)/.85)**2))
-    mud=low*np.clip(field,.12,1)*(.48+.52*near_wheel)*.78
-    # Warm dry mud/deposits visibly collect on sills and around wheel openings.
-    return np.c_[1-mud*.63,1-mud*.76,1-mud*.86,np.ones(len(p))]
 
 def basis(axis):
     y=np.asarray(axis,float);y/=np.linalg.norm(y)
@@ -236,7 +237,7 @@ for z,front in [(2.30,True),(-2.32,False)]:
 # share the same sampled curves; no triangular flat glass tent or loose bars.
 roof_z=np.linspace(-.85,.10,49)
 roof_w=spline([(-.85,.70),(-.62,.735),(-.40,.745),(-.15,.735),(.10,.685)])
-roof_y=spline([(-1.65,1.17),(-1.35,1.285),(-1.05,1.415),(-.75,1.55),(-.40,1.63),(-.15,1.61),(.10,1.56)])
+roof_y=spline([(-1.65,1.17),(-1.35,1.325),(-1.05,1.485),(-.75,1.66),(-.40,1.77),(-.15,1.745),(.10,1.68)])
 p=[]
 for z in roof_z:
     p.append([(float(roof_w(z))*t,float(roof_y(z))-.055*t*t,z) for t in np.linspace(-1,1,41)])
@@ -248,7 +249,7 @@ def glazing(name,z0,z1,w0,w1,y0,y1,mat,curve=0):
         z=z0+(z1-z0)*t;w=w0+(w1-w0)*t;y=y0+(y1-y0)*t+curve*math.sin(t*math.pi)
         p.append([(w*x,y-.035*x*x,z+.032*(1-x*x)) for x in np.linspace(-1,1,37)])
     M.grid(name,p,mat)
-glazing('cabin.front_windscreen',.105,.55,.68,.84,1.55,1.20,glass,.025)
+glazing('cabin.front_windscreen',.105,.55,.68,.84,1.67,1.20,glass,.025)
 rear_glass_w=spline([(-1.65,.86),(-1.35,.83),(-1.05,.76),(-.85,.70)])
 p=[]
 for z in np.linspace(-1.65,-.85,49):
@@ -256,7 +257,7 @@ for z in np.linspace(-1.65,-.85,49):
 M.grid('cabin.rear_glass_same_continuous_roof_arc',p,glass)
 glazing('cabin.front_cowl',.55,.75,.84,.93,1.20,1.20,paint)
 glazing('cabin.rear_deck_join',-1.65,-1.76,.86,.99,1.17,1.15,paint)
-window_top=spline([(-1.57,1.17),(-1.26,1.28),(-.85,1.415),(-.62,1.525),(-.40,1.565),(-.15,1.545),(.10,1.495),(.55,1.17)])
+window_top=spline([(-1.57,1.17)]+[(z,float(roof_y(z))-.065) for z in [-1.35,-1.05,-.85,-.62,-.40,-.15,.10]]+[(.55,1.17)])
 def side_glass_point(side,z,t):
     top=float(window_top(z));y=1.17+(top-1.17)*t
     opening_fraction=np.clip((top-1.17)/.15,0,1)
@@ -270,8 +271,8 @@ for side in [-1,1]:
     for edge in [0,1]:
         pts=[side_glass_point(side,z,edge) for z in zs_window]
         polyline(f'cabin.side_window_seal.{side}.{edge}',pts,.011,black,6)
-    polyline(f'cabin.A_pillar.{side}',[(side*.84,1.20,.55),(side*.70,1.485,.15),(side*.685,1.505,.10)],.035,paint,12)
-    polyline(f'cabin.front_seal.{side}',[(side*.815,1.205,.545),(side*.666,1.505,.115)],.010,black)
+    polyline(f'cabin.A_pillar.{side}',[(side*.84,1.20,.55),(side*.70,1.605,.15),(side*.685,1.625,.10)],.035,paint,12)
+    polyline(f'cabin.front_seal.{side}',[(side*.815,1.205,.545),(side*.666,1.625,.115)],.010,black)
     polyline(f'cabin.C_pillar.{side}',[(side*float(rear_glass_w(z)),float(roof_y(z))-.055,z) for z in np.linspace(-1.65,-.85,33)],.035,paint,10)
     cylinder(f'cabin.B_pillar.{side}',side_glass_point(side,-.36,0),side_glass_point(side,-.36,1),.022,black,10)
     p=[]
@@ -318,7 +319,8 @@ for mat,offset,w in [(red,-.12,.065),(yellow,-.04,.065)]:
     M.grid(f'livery.bonnet_band.{mat}',p,mat)
 
 # Lamp assemblies: physical reflector rim, convex lens, fluting and guard wire.
-def spotlight(name,x,y,z,r,guard=False):
+def spotlight(name,x,y,z,r,guard=False,tilt=0):
+    first_part=len(M.parts)
     cylinder(name+'.bucket',(x,y,z-.065),(x,y,z),r*1.04,black,32)
     torus(name+'.rubber_gasket',(x,y,z+.006),r*1.015,.013,black,(0,0,1),48,8)
     torus(name+'.reflector_rim',(x,y,z+.010),r*.94,.006,metal,(0,0,1),48,6)
@@ -348,19 +350,25 @@ def spotlight(name,x,y,z,r,guard=False):
             cylinder(name+f'.guard_vertical.{j}',(x+t*r,y-extent,z+.060),(x+t*r,y+extent,z+.060),.005,black,6)
             cylinder(name+f'.guard_horizontal.{j}',(x-extent,y+t*r,z+.061),(x+extent,y+t*r,z+.061),.005,black,6)
 
+    if tilt:
+        c=math.cos(tilt);ss=math.sin(tilt);rotation=np.array([[1,0,0],[0,c,ss],[0,-ss,c]])
+        origin=np.array([x,y,z])
+        for part in M.parts[first_part:]:
+            part['p']=(part['p']-origin)@rotation.T+origin;part['n']=part['n']@rotation.T
 for side in [-1,1]:
     p=[]
     for t in np.linspace(0,1,29):
         z=2.35-.85*t;cx=side*.83;cy=1.00-.12*t;rx=.187+.075*t;ry=.187+.013*t
         row=[]
         for a in np.linspace(0,TAU,65):
-            x=cx+rx*math.cos(a);y=cy+ry*math.sin(a)
-            y=max(y,opening(z)+.040)
-            row.append((x,y,z))
+            angle=.34*(1-t)**1.5;dy=ry*math.sin(a)
+            x=cx+rx*math.cos(a);y=cy+dy*math.cos(angle);zz=z-dy*math.sin(angle)
+            y=max(y,opening(zz)+.040)
+            row.append((x,y,zz))
         p.append(row)
     M.grid(f'body.lamp_nacelle_flowing_into_wing.{side}',p,paint,weather=True)
 for side in [-1,1]:
-    spotlight(f'lamps.main.{side}',side*.83,1.00,2.36,.165)
+    spotlight(f'lamps.main.{side}',side*.83,1.00,2.36,.165,tilt=.34)
     box(f'lamps.front_indicator.{side}',(side*.83,.82,2.337),(.30,.075,.045),amber,.015)
     box(f'lamps.rear_tail.{side}',(side*.64,.93,-2.365),(.54,.09,.045),tail,.012)
     for j in range(5):box(f'lamps.tail_flute.{side}.{j}',(side*.64+(j-2)*.085,.93,-2.391),(.004,.072,.003),dark,.001,1)
@@ -408,7 +416,7 @@ for side in [-1,1]:
     for z in [-.65,-.25,.25,.60]:cylinder(f'rack.side_upright.{side}.{z}',(side*.77,2.04,z),(side*.77,2.19,z),.012,black)
     for z in [-.58,-.04]:
         roof_height=float(roof_y(z))-.055*(.67/float(roof_w(z)))**2
-        cylinder(f'rack.gutter_mount.{side}.{z}',(side*.67,roof_height+.31,z),(side*.67,2.05,z),.022,black)
+        cylinder(f'rack.gutter_mount.{side}.{z}',(side*.67,roof_height+.17,z),(side*.67,2.05,z),.022,black)
 for y in [2.04,2.19]:
     for z in [-.81,.70]:cylinder(f'rack.end_rail.{y}.{z}',(-.71,y,z),(.71,y,z),.018,black)
 for j,z in enumerate(np.linspace(-.71,.60,7)):cylinder(f'rack.crossbar.{j}',(-.73,2.04,z),(.73,2.04,z),.012,black)
@@ -475,12 +483,12 @@ for entries in seams.values():
 # curved roof. Translation preserves baked normals and avoids floating props.
 for part in M.parts:
     name=part['name'];delta=0
-    if name.startswith(('rack.','lamps.roof_aux.')):delta=-.31
-    elif name.startswith('cargo.spare'):delta=-.3496
-    elif name.startswith(('cargo.red_fuel','cargo.can_')):delta=-.35
-    elif name.startswith(('cargo.olive','cargo.case_')):delta=-.35
-    elif name.startswith(('cargo.canvas','cargo.duffel')):delta=-.36
-    elif name.startswith(('cargo.traction','cargo.board','cargo.recovery','cargo.jack')):delta=-.31
+    if name.startswith(('rack.','lamps.roof_aux.')):delta=-.17
+    elif name.startswith('cargo.spare'):delta=-.2096
+    elif name.startswith(('cargo.red_fuel','cargo.can_')):delta=-.21
+    elif name.startswith(('cargo.olive','cargo.case_')):delta=-.21
+    elif name.startswith(('cargo.canvas','cargo.duffel')):delta=-.22
+    elif name.startswith(('cargo.traction','cargo.board','cargo.recovery','cargo.jack')):delta=-.17
     part['p'][:,1]+=delta
 
 def strap(name,points,width,mat=black):
@@ -490,10 +498,10 @@ def strap(name,points,width,mat=black):
         across=np.cross(d,[0,1,0]);across/=max(np.linalg.norm(across),1e-8)
         p.append([c-across*width*.5,c+across*width*.5])
     M.grid(name,p,mat)
-strap('cargo.spare_wrap_webbing',[(-.73,1.745,.04),(-.68,2.01,.04),(-.52,2.09,.04),(.02,2.09,.04),(.19,2.01,.04),(.24,1.745,.04)],.045,orange)
-strap('cargo.case_wrap_webbing',[(.10,1.745,-.46),(.10,2.07,-.46),(.68,2.07,-.46),(.68,1.745,-.46)],.035)
-strap('cargo.can_anchor_webbing',[(.36,1.745,.38),(.36,2.22,.38),(.64,2.22,.38),(.64,1.745,.38)],.027)
-for j,(a,b) in enumerate([((.415,1.83,.489),(.585,2.15,.489)),((.585,1.83,.489),(.415,2.15,.489))]):cylinder(f'cargo.can_front_emboss.{j}',a,b,.009,red,8)
+strap('cargo.spare_wrap_webbing',[(-.73,1.885,.04),(-.68,2.15,.04),(-.52,2.23,.04),(.02,2.23,.04),(.19,2.15,.04),(.24,1.885,.04)],.045,orange)
+strap('cargo.case_wrap_webbing',[(.10,1.885,-.46),(.10,2.21,-.46),(.68,2.21,-.46),(.68,1.885,-.46)],.035)
+strap('cargo.can_anchor_webbing',[(.36,1.885,.38),(.36,2.36,.38),(.64,2.36,.38),(.64,1.885,.38)],.027)
+for j,(a,b) in enumerate([((.415,1.97,.489),(.585,2.29,.489)),((.585,1.97,.489),(.415,2.29,.489))]):cylinder(f'cargo.can_front_emboss.{j}',a,b,.009,red,8)
 
 def roundel_png():
     from PIL import ImageFont
@@ -514,15 +522,6 @@ def grain_normal_png():
 # Subtle original paint maps: no image/reference pixels are sampled.
 def png(array):
     out=io.BytesIO();Image.fromarray(array.astype(np.uint8),'RGBA').save(out,format='PNG',optimize=True);return out.getvalue()
-def maps():
-    n=512;rng=np.random.default_rng(1207);yy,xx=np.mgrid[:n,:n]/n
-    low=(np.sin(xx*TAU*5+.7)*np.sin(yy*TAU*7)+np.sin(xx*TAU*11-yy*TAU*9))*.5
-    grain=rng.random((n,n))-.5;value=1+low*.018+grain*.012
-    albedo=np.empty((n,n,4));albedo[...,:3]=np.array([215,207,182])*value[...,None];albedo[...,3]=255
-    rm=np.zeros((n,n,4));rm[...,0]=255;rm[...,1]=175+low*15+grain*6;rm[...,3]=255
-    height=low*.12+grain*.015;dy,dx=np.gradient(height);normal=np.dstack([-dx*4,-dy*4,np.ones((n,n))]);normal/=np.linalg.norm(normal,axis=2)[...,None]
-    normal=np.dstack([(normal*.5+.5)*255,np.full((n,n),255)])
-    return [png(np.clip(x,0,255)) for x in [albedo,rm,normal]]
 
 def save():
     document=dict(extensionsUsed=['KHR_materials_clearcoat'],asset=dict(version='2.0',generator='Cinder original CPU parametric body generator'),scene=0,scenes=[dict(nodes=[])],nodes=[],meshes=[],materials=M.materials,buffers=[dict(byteLength=0)],bufferViews=[],accessors=[],images=[],textures=[],samplers=[dict(magFilter=9729,minFilter=9987,wrapS=10497,wrapT=10497)])
@@ -537,13 +536,19 @@ def save():
         x=dict(bufferView=v,componentType=component,count=len(a),type=type)
         if bounds:x.update(min=a.min(axis=0).tolist(),max=a.max(axis=0).tolist())
         document['accessors'].append(x);return len(document['accessors'])-1
-    image_names=['cream_enamel','enamel_roughness','enamel_normal','911_roundel','cargo_micrograin']
-    for i,data in enumerate(maps()+[roundel_png(),grain_normal_png()]):
+    image_names=['cream_enamel','enamel_roughness','enamel_normal','911_roundel','cargo_micrograin','side_local_dust','side_roughness_clearcoat_mask']
+    for i,data in enumerate(maps()+[roundel_png(),grain_normal_png()]+side_maps()[:2]):
         document['images'].append(dict(name=image_names[i],bufferView=view(data),mimeType='image/png'))
         document['textures'].append(dict(sampler=0,source=i))
     document['materials'][paint]['pbrMetallicRoughness'].update(baseColorFactor=[1,1,1,1],baseColorTexture=dict(index=0),metallicRoughnessTexture=dict(index=1))
     document['materials'][paint]['normalTexture']=dict(index=2,scale=.12)
     document['materials'][roundel]['pbrMetallicRoughness']['baseColorTexture']=dict(index=3)
+    document['materials'][paint_side]['pbrMetallicRoughness'].update(baseColorFactor=[1,1,1,1],baseColorTexture=dict(index=5),metallicRoughnessTexture=dict(index=6))
+    document['materials'][paint_side]['normalTexture']=dict(index=2,scale=.12)
+    document['materials'][paint_side]['extensions']['KHR_materials_clearcoat']['clearcoatTexture']=dict(index=6)
+    for part in M.parts:
+        if part['name'].startswith('body.side_with_open_arches.'):
+            part['mat']=paint_side;part['uv']=side_uv(part['p']);part['colors']=None
     for material in [dark,rubber,olive,canvas]:document['materials'][material]['normalTexture']=dict(index=4,scale=.16 if material!=canvas else .28)
     # Preserve descriptive source parts in extras, batch static draw groups by
     # role/material. Hundreds of bolts/straps do not become hundreds of draws.
