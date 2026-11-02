@@ -13,7 +13,8 @@ Local diagnostic records are under `build/incident` and are not committed.
 ## Safeguards now implemented
 
 - All supplied launchers go through `Run-Evaluation.ps1` and refuse to start while
-  `build/GRAPHICS_PAUSED.txt` exists. Nothing automatically restarts a failed demo.
+  the tracked `EVALUATION-PAUSED.txt` or local `build/GRAPHICS_PAUSED.txt` exists.
+  New clones retain this paused state. Nothing automatically restarts a failed demo.
 - The supervisor permits only one evaluation at a time. It logs stdout, stderr,
   outcome and elapsed time in a separate `build/sessions/<timestamp>` folder.
 - A Windows job limits each process to 2 GiB of committed memory and kills the

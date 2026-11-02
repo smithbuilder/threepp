@@ -11,8 +11,9 @@ Set-Location -LiteralPath $PSScriptRoot
 $logRoot = Join-Path $PSScriptRoot 'build\sessions'
 New-Item -ItemType Directory -Path $logRoot -Force | Out-Null
 $blocked = Join-Path $PSScriptRoot 'build\GRAPHICS_PAUSED.txt'
+$trackedPause = Join-Path $PSScriptRoot 'EVALUATION-PAUSED.txt'
 $active = Join-Path $PSScriptRoot 'build\evaluation-active.json'
-if (-not $SelfTest -and ((Test-Path -LiteralPath $blocked) -or (Test-Path -LiteralPath $active)) -and -not $AcknowledgeIncident) {
+if (-not $SelfTest -and ((Test-Path -LiteralPath $trackedPause) -or (Test-Path -LiteralPath $blocked) -or (Test-Path -LiteralPath $active)) -and -not $AcknowledgeIncident) {
     throw 'Graphics launches are paused after a reported full-system lock. Read SAFETY.md. No demo was started. A deliberate controlled trial requires -AcknowledgeIncident.'
 }
 if (-not ('ThreeppEvaluationJob' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'scripts\EvaluationJob.cs') }
