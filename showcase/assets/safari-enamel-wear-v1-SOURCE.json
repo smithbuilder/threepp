@@ -1,0 +1,38 @@
+{
+  "asset": "safari-enamel-wear-v1.png",
+  "assetSha256": "f2d21e14d28cbd3d29b93f0a20c351a52a70132c7d135caeb359225426807240",
+  "assetPixels": [
+    1254,
+    1254
+  ],
+  "sourceType": "Original AI-generated image, built-in image_gen tool",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in tool, not CLI/API fallback",
+  "inputImages": [],
+  "referencePixelsSampled": false,
+  "prompt": "safari-enamel-wear-v1-PROMPT.md",
+  "rawSelectedImagePreserved": true,
+  "generatedOriginal": "C:/Users/oliver/.codex/generated_images/01a19e17-2215-7790-b9b5-50219fa9295e/exec-e6503d49-b70d-4211-a114-01fa89a5ad5b.png",
+  "use": "Albedo detail sampled isotropically in body-local metres; derived masks control roughness and clearcoat",
+  "nominalConsumedTileMetres": 2.0,
+  "outputs": {
+    "clean": [
+      512,
+      512
+    ],
+    "sideAlbedo": [
+      1024,
+      1024
+    ],
+    "topAlbedo": [
+      1024,
+      1024
+    ],
+    "ORMAndNormal": [
+      512,
+      512
+    ]
+  },
+  "normalDerivation": "Original restrained procedural enamel normal, no image-luminance displacement",
+  "nativeAcceptance": false
+}

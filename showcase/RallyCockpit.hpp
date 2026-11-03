@@ -3,7 +3,7 @@
 
 namespace rally {
 struct Cockpit {std::shared_ptr<Group> steering,speedNeedle,rpmNeedle;};
-inline Cockpit addCockpit(Group& body,float verticalOffset=0){
+inline Cockpit addCockpit(Group& body,float verticalOffset=0,float gaugeDepthOffset=0){
     auto cockpitRoot=Group::create();cockpitRoot->position.y=verticalOffset;body.add(cockpitRoot);
     Cockpit c;auto black=MeshStandardMaterial::create();black->color=Color(0x171f20);black->roughness=.82f;
     auto metal=MeshStandardMaterial::create();metal->color=Color(0x777e7a);metal->roughness=.42f;metal->metalness=.7f;
@@ -15,7 +15,7 @@ inline Cockpit addCockpit(Group& body,float verticalOffset=0){
     c.steering->add(Mesh::create(TorusGeometry::create(.185f,.018f,8,32),black));
     for(int i=0;i<3;++i){float a=i*2*pi/3;auto spoke=rod({0,0,0},{.158f*std::sin(a),.158f*std::cos(a),0},.012f,metal);c.steering->add(spoke);}
     auto hub=Mesh::create(CylinderGeometry::create(.044f,.044f,.05f,12),black);hub->rotation.x=pi/2;c.steering->add(hub);
-    auto gauge=[&](float x){auto root=Group::create();root->position.set(x,1.44f,.438f);root->rotation.y=pi;cockpitRoot->add(root);
+    auto gauge=[&](float x){auto root=Group::create();root->position.set(x,1.44f,.438f+gaugeDepthOffset);root->rotation.y=pi;cockpitRoot->add(root);
         auto housing=Mesh::create(CylinderGeometry::create(.091f,.091f,.05f,24),black);housing->rotation.x=pi/2;housing->position.z=-.03f;root->add(housing);
         auto face=Mesh::create(CircleGeometry::create(.085f,24),black);root->add(face);
         auto rim=Mesh::create(TorusGeometry::create(.087f,.006f,6,24),metal);root->add(rim);

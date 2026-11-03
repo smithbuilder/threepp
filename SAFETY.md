@@ -94,19 +94,41 @@ stay sequential. New effects have fixed pools:192dust quads,64gravel instances,
 no runtime asset downloads or new graphics backend. Capture results record
 executable/model hashes so visual reviews identify their actual artifact.
 
-`-VehiclePortrait -PortraitAngle front|side|rear|top` is a capture-only diagnostic
+`-VehiclePortrait -PortraitAngle front|side|rear|top|tail|rear-detail|front-detail` is a capture-only diagnostic
 court, never a replacement gameplay camera. It uses the actual vehicle geometry,
 materials and daylight on a flat support plane for unobstructed comparison.
 CPU testing opens no graphics/audio context; native captures use the supervisor.
+`-PortraitEnvironment daylight` selects the existing procedural sky/ground
+reflection environment for inspection only. The default `forest` uses the
+accepted HDR probe; normal play remains on that default. This changes no
+texture/framebuffer budget or per-frame render pass, and results record the selection.
+`-PortraitShadows stock|off` is a matched inspection-only control for the
+Safari receiver-plane shadow repair. `default` retains the Safari correction;
+normal gameplay and the original buggy keep their selected rendering paths.
+These controls use the same capture size, process guard and deadline.
 
 
 Current execution gate (November2): WindowsApplicationControl rejected the fresh
-unsigned timber_rally.exe before process startup (CodeIntegrity3033/3077), so
-build/GRAPHICS_PAUSED.txt remains in place. This was not a new graphics hang.
+unsigned timber_rally.exe before process startup (CodeIntegrity3033/3077).
+This was not a new graphics hang.
 The user approved the existing Azure workflow for current and subsequent local
 review builds. Signing succeeded; Authenticode, timestamp and the expected
 Oliver Smith publisher verify. Automatic approval review separately rejected
 the incident-acknowledged native launch because of residual disruption risk
-after the prior full-computer lock. Explicit approval to resume guarded native
-trials is pending; no process opened and no Windows security setting changed.
-A successful deliberate supervised trial is required before retiring this pause.
+after the prior full-computer lock. The user explicitly approved resuming guarded
+native trials. Signed capture221426-178 exited0 with empty stderr,168747008bytes
+sampled peak memory and1.18seconds wall time. That startup-only pause is archived
+with resolution inbuild/incidents/application-control-20261102. Side/rear captures
+also exited0. No Windows security setting changed; all graphics caps remain.
+
+The optional1920x1200 capture profile is implemented but has not been run.
+Automatic approval review rejected raising the explicitly approved960x600 cap
+after the earlier hard lock. A separate user approval is pending; its absence
+does not authorize higher resolution. Current native work remains960x600.
+If approved, the first trial is one still. Higher-resolution video additionally
+requires whole-vehicle review>=8.0/all five categories>=7.0 on the exact runtime
+asset and renderer executable hashes, and at most180total frames including
+warmup. The2GiB/30FPS/watchdog/mutex limits remain. A rear-only visual pass
+cannot satisfy that whole-vehicle gate. `-PortraitOrbit` is a capture-only
+front/side/rear sequence with a bounded20degree camera move; it does not
+change the playable cameras or raise the frame/resolution limits.

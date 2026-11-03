@@ -1,6 +1,7 @@
 #pragma once
 #include "RallyDetail.hpp"
 #include "RallyVehicle.hpp"
+#include "RallyDynamics.hpp"
 #include "RallySuspension.hpp"
 #include "RallyCockpit.hpp"
 #include "RallyWheels.hpp"
@@ -8,10 +9,12 @@
 namespace rally {
 struct Buggy {
     VehicleDimensions dimensions=buggyDimensions;
+    RideContactResponse contactResponse=RideContactResponse::Legacy;
     Vector3 eye{-.40f,1.68f,-.30f};
     std::shared_ptr<Group> car=Group::create(),body=Group::create();
     std::vector<std::shared_ptr<Group>> pivots,rolls;
     std::vector<Mesh*> fixedMeshes;
+    std::vector<Vector3> rearGroundProbes;
     SuspensionRig suspension;Cockpit cockpit;
 };
 inline Buggy makeBuggy(){

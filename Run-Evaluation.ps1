@@ -6,12 +6,17 @@ param(
     [switch]$AcknowledgeIncident,
     [ValidateRange(1,3)][int]$Scene = 1,
     [switch]$Capture,
+    [ValidateSet(1,2)][int]$CaptureScale = 1,
     [switch]$Sequence,
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
     [switch]$WheelInspect,
     [switch]$VehiclePortrait,
-    [ValidateSet('front','side','rear','top')][string]$PortraitAngle = 'front',
+    [switch]$PortraitOrbit,
+    [ValidateSet('front','side','rear','top','tail','rear-detail','front-detail')][string]$PortraitAngle = 'front',
+    [ValidateSet('rear','front')][string]$PortraitLight = 'rear',
+    [ValidateSet('forest','daylight')][string]$PortraitEnvironment = 'forest',
+    [ValidateSet('default','stock','off')][string]$PortraitShadows = 'default',
     [ValidateSet('buggy','safari')][string]$Vehicle = 'buggy',
     [ValidateRange(0,3)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
@@ -57,6 +62,21 @@ try {
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
         if ($Sequence -and ($Capture -or $Example -ne 'timber_rally')) { throw 'Sequence recording is supported only for timber_rally, separately from a still capture.' }
+        if ($CaptureScale -eq 2) {
+            if ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence)) { throw 'The 1920x1200 profile is an explicit rally capture only.' }
+            if ($Capture -and ($Frames -ne 1 -or $WarmupFrames -ne 0)) { throw 'The 1920x1200 inspection profile allows one still, without warmup.' }
+            if ($Sequence) {
+                if (($Frames+$WarmupFrames) -gt 180) { throw 'The 1920x1200 profile allows at most 180 total frames including warmup.' }
+                $acceptanceFile=Join-Path $PSScriptRoot 'build/safari-model/whole-vehicle-acceptance.json'
+                if ($Vehicle -ne 'safari' -or -not (Test-Path -LiteralPath $acceptanceFile)) { throw 'High-resolution video awaits whole-vehicle Safari acceptance.' }
+                $acceptance=Get-Content -LiteralPath $acceptanceFile -Raw | ConvertFrom-Json
+                $acceptedAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
+                if ($acceptance.scope -ne 'whole_vehicle' -or $acceptance.overall -lt 8 -or @($acceptance.categoryScores).Count -ne 5 -or @($acceptance.categoryScores | Where-Object { $_ -lt 7 }).Count -gt 0 -or $acceptance.modelSha256 -ne (Get-FileHash -LiteralPath $acceptedAsset -Algorithm SHA256).Hash -or $acceptance.binarySha256 -ne (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash) { throw 'This model and renderer build have not passed the fixed whole-vehicle visual gate.' }
+                $weights=@(.25,.20,.20,.20,.15);$weighted=0.0
+                for($i=0;$i -lt 5;$i++){ $weighted += [double]$acceptance.categoryScores[$i]*$weights[$i] }
+                if($weighted -lt 8 -or [Math]::Abs($weighted-[double]$acceptance.overall) -gt .11){ throw 'The recorded whole-vehicle score does not meet the weighted quality gate.' }
+            }
+        }
         if ($Sequence) {
             $sequenceFreeBytes = (Get-PSDrive -Name ([IO.Path]::GetPathRoot($PSScriptRoot).TrimEnd(':\'))).Free
             if ($null -eq $sequenceFreeBytes) { throw 'Cannot verify free disk space in this launcher context; sequence recording was not started.' }
@@ -65,12 +85,17 @@ try {
         if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
         if ($AutoDrive -and $Example -notin @('timber_run','timber_rally')) { throw 'AutoDrive is available only for the driving demos.' }
         if (($WheelInspect -or $VehiclePortrait) -and ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence))) { throw 'Wheel inspection is an explicit rally capture/sequence profile only.' }
+        if ($PortraitEnvironment -ne 'forest' -and -not $VehiclePortrait) { throw 'Daylight inspection environment requires a vehicle portrait capture.' }
+        if ($PortraitShadows -ne 'default' -and -not $VehiclePortrait) { throw 'Shadow diagnostic controls require a vehicle portrait capture.' }
+        if ($PortraitOrbit -and (-not $VehiclePortrait -or -not $Sequence -or $PortraitAngle -notin @('front','side','rear'))) { throw 'Portrait orbit is a front/side/rear inspection sequence only.' }
         if ($Example -eq 'threepp_showcase') { $arguments += @('--scene', [string]$Scene) }
         if ($Capture) { $arguments += @('--shot', ('"' + (Join-Path $session 'capture.png') + '"'), '--frames', [string]$Frames) }
+        if ($CaptureScale -eq 2) { $arguments += @('--capture-scale','2') }
         if ($Sequence) { $arguments += @('--sequence', ('"' + (Join-Path $session 'frames') + '"'), '--frames',[string]$Frames,'--warmup',[string]$WarmupFrames) }
         if ($AutoDrive) { $arguments += '--autodrive' }
         if ($WheelInspect) { $arguments += '--wheel-inspect' }
-        if ($VehiclePortrait) { $arguments += @('--portrait','--portrait-angle',$PortraitAngle) }
+        if ($VehiclePortrait) { $arguments += @('--portrait','--portrait-angle',$PortraitAngle,'--portrait-light',$PortraitLight,'--portrait-environment',$PortraitEnvironment,'--portrait-shadows',$PortraitShadows) }
+        if ($PortraitOrbit) { $arguments += '--portrait-orbit' }
         if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View,'--vehicle',$Vehicle) }
         if ($Example -in @('timber_run','timber_rally')) { $arguments += @('--telemetry', ('"' + (Join-Path $session 'drive.json') + '"')) }
         if ($Example -eq 'showpiece') { $arguments += @('--size','960x600','--samples','0','--no-gtao','--no-bloom','--no-outline') }
@@ -109,7 +134,7 @@ try {
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitAngle=$PortraitAngle;capture=[bool]$Capture;sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }

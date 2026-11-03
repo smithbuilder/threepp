@@ -32,16 +32,20 @@ No branded CAD, photographs or manufacturer textures are shipped.
 
 620kg tuned sprung mass;18000N/m corner spring rate;1700/2400Ns/m compression/
 rebound damping;2600N/m axle anti-roll coupling;540/460kgm2 pitch/roll inertia;
-0.68m load-transfer lever. Fixed120Hz integration,0.52m total wheel travel.
+0.68m load-transfer lever. Fixed120Hz integration;0.52m open-buggy wheel
+travel and0.22m Safari wheel travel, with separate dimensions per vehicle.
 These are original gameplay tuning values, not measurements of the reference.
 Spring loads release at droop; airborne wheels do not emit trails/spray. Travel
 end zones add damping and progressive bump force. Hard bump projection is a
-nonpenetration safeguard, counted in telemetry. Camera/input/audio unchanged.
+nonpenetration safeguard, counted in telemetry. Safari selects coupled heave/
+pitch/roll contact projection and support-dependent input moments; the accepted
+open buggy retains its Legacy response. Player controls remain unchanged.
 
 The first native trial exposed a world/chassis torque-axis error; fixed before
 delivery, with a regression that rotates the same flat-ground manoeuvre through
 four headings. Displacement settling, weight-transfer direction, aggregate
-static load, 30/120Hz equivalence, airborne release and landing are CPU checked.
+static load, stationary30/120Hz equivalence, airborne release and landing are
+CPU checked. The moving game advances through its own fixed120Hz accumulator.
 Front wishbone and rear trailing-arm lengths stay constant throughout travel.
 
 This is a three-axis sprung-body model with kinematic wheel contacts and rigid
@@ -66,6 +70,32 @@ session limits remain mandatory. Scripted evidence is not physical acceptance.
 ## Second vehicle
 
 The separate Safari coupe uses original geometry inspired by the rounded roof,
-fastback and round lamps described/shown by Porsche. It retains Cinder's wide
-chassis and suspension, not exact911 dimensions/handling or branding.
+fastback and round lamps described/shown by Porsche. Its half-track is1.08m,
+tyre radius0.49m and wheelbase2.70m, with shorter travel and separate suspension
+packaging. These are original game-model dimensions rather than exact911
+dimensions, handling or branding.
 https://newsroom.porsche.com/en/press-kits/911-Dakar/The-design-and-the-interior.html
+
+Rear packaging clarification: Oliver explicitly prioritizes realism over exact
+reference specifications. The reference sheet guides style; its apparent combined
+exhaust/undertray is not copied as an engineering assembly. The new rear revision
+uses a separate engine/exhaust path, rubber-isolated silencer mounts, heatshield,
+chassis-mounted protective bumper and serviceable engine bash plate. The plate
+ends forward of the outlets. Pipes remain clear of wheel/suspension travel and
+inside the rear bumper's projected extent. These are game-model packaging checks.
+Porsche's [911 history](https://newsroom.porsche.com/en/press-kits/911-Dakar/The-history.html)
+confirms the rear-engine architecture as general context; this fictional custom
+buggy does not claim production Dakar dimensions or its suspension/powertrain.
+
+Enamel detail uses an original built-in image_gen bitmap, sampled into authored
+PBR atlases: showcase/assets/safari-enamel-wear-v1.png. Exact generation prompt
+and source receipt are saved in the adjacent -PROMPT.md and -SOURCE.json files.
+All review images and eventual driving footage are rendered by the game engine.
+
+The repaired native original-speed lap20261103-001725-073 reduced peak roll from
+0.7 to0.334rad and heave from1.467 to0.750m. The next13.5m/s native30s segment
+002743-808 reduced heave to0.250m and wheel gap to0.389m, with zero contacts.
+It reached checkpoint7; it is not a completed lap. Selected rear vertices stayed
+at least0.189m above terrain support in both runs. These frame-boundary probes
+are not exhaustive swept collision checks. Full-solver limitations and the
+independent contact review are recorded inshowcase/SAFARI-DYNAMICS-DIAGNOSIS.md.

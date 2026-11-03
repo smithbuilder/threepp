@@ -48,7 +48,8 @@ struct RallyLighting {
 };
 
 inline RallyLighting makeRallyLighting(GLRenderer& renderer,Scene& scene,
-        const std::filesystem::path& assetDir=std::filesystem::path(__FILE__).parent_path()/"assets"){
+        const std::filesystem::path& assetDir=std::filesystem::path(__FILE__).parent_path()/"assets",
+        bool useForestProbe=true){
     RallyLighting light;
     renderer.toneMapping=ToneMapping::ACESFilmic;
     renderer.toneMappingExposure=.90f;
@@ -61,7 +62,7 @@ inline RallyLighting makeRallyLighting(GLRenderer& renderer,Scene& scene,
     // broad uniform sky/floor fill was making glass and enamel read as plastic.
     // The 1K CC0 source uses the renderer's existing once-only PMREM prefilter.
     const auto probePath=assetDir/"epping_forest_01_1k.hdr";
-    if(std::filesystem::exists(probePath))scene.environment=RGBELoader{}.load(probePath);
+    if(useForestProbe&&std::filesystem::exists(probePath))scene.environment=RGBELoader{}.load(probePath);
     if(scene.environment){scene.environmentRotation.y=3.2377420f;scene.environmentIntensity=.80f;}
     else {
         // Source checkouts without the optional probe retain a coherent sky.

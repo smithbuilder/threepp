@@ -52,6 +52,46 @@ inline WheelResources makeWheelResources(){
     w.markings=mergeBufferGeometries(std::vector<std::shared_ptr<BufferGeometry>>{curvedSidewallText("CINDER OFFROAD",.034f,0),curvedSidewallText("GRAVEL R/T",.027f,pi)});
     return w;
 }
+// Safari-only dry dust in the sidewall/shoulder texture. The underlying wheel
+// profile and the accepted open-buggy materials remain unchanged.
+inline void weatherSafariWheelResources(WheelResources& w){
+    // Own every changed resource. Shared SurfaceMaps remain read-only and the
+    // accepted buggy still receives the unmodified makeWheelResources result.
+    w.rubber=w.rubber->clone();w.blocks=w.blocks->clone();w.metal=w.metal->clone();
+    w.ring=w.ring->clone();w.hardware=w.hardware->clone();
+    // makeWheelResources creates this LatheGeometry per car. Keep its native
+    // type/profile metadata; only its already-owned colour attribute changes.
+    auto* material=w.rubber->as<MeshStandardMaterial>();material->color=Color(0xffffff);material->vertexColors=true;
+    material->roughness=.82f;material->normalScale.setScalar(.14f);
+    auto* blocks=w.blocks->as<MeshStandardMaterial>();blocks->roughness=.95f;blocks->normalScale.setScalar(.16f);
+    auto* alloy=w.metal->as<MeshStandardMaterial>();alloy->roughness=.38f;alloy->metalness=.94f;
+    auto* ring=w.ring->as<MeshStandardMaterial>();ring->roughness=.42f;ring->metalness=.95f;
+    auto* fasteners=w.hardware->as<MeshStandardMaterial>();fasteners->roughness=.38f;fasteners->metalness=.92f;
+    auto* p=w.carcass->getAttribute<float>("position");std::vector<float> colors;colors.reserve(p->count()*3);
+    for(unsigned i=0;i<p->count();++i){float x=p->getX(i),y=p->getY(i),z=p->getZ(i),r=std::hypot(y,z);
+        float side=std::clamp((std::abs(x)-.105f)/.075f,0.f,1.f);
+        float shoulder=std::clamp((r-.435f)/.070f,0.f,1.f);
+        float bead=std::exp(-std::pow((r-.275f)/.019f,2.f));
+        float irregular=.85f+.30f*noise::valueNoise(y*31,z*31,256,1841);
+        // Thin deposits follow the shoulder/bead mouldings. A smooth central
+        // sidewall stays clean instead of carrying centimetre-sized grey clouds.
+        float dust=std::clamp(side*(.018f+shoulder*.075f+bead*.045f)*irregular,0.f,.13f);
+        if(r<.27f)dust*=.20f;
+        Color color(0x242925);color.lerp(Color(0x74674f),dust);colors.insert(colors.end(),{color.r,color.g,color.b});
+    }
+    w.carcass->setAttribute("color",FloatBufferAttribute::create(colors,3));
+}
+inline float safariTreadDust(float angle,int row,int wheel){
+    // Continuous tyre-local history spans adjacent lugs and wraps at2pi.
+    // Normal shoulders carry4..12% darker dust, with one narrow heavier patch;
+    // no complete row receives the former22..44% pale edge treatment.
+    angle+=wheel*.53f;
+    const bool outer=row==0||row==5;
+    float field=noise::valueNoise(std::cos(angle)*2.8f+row*.37f,std::sin(angle)*2.8f+row*.21f,256,1853);
+    float delta=std::atan2(std::sin(angle-1.23f-row*.10f),std::cos(angle-1.23f-row*.10f));
+    float patch=std::exp(-std::pow(delta/.25f,2.f));
+    return std::clamp((outer?.04f:.025f)+field*(outer?.08f:.06f)+patch*(outer?.10f:.045f),0.f,.20f);
+}
 inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int index,const VehicleDimensions& dims=buggyDimensions){
     const float side=index%2?1.f:-1.f;
     const float widthScale=dims.tyreHalfWidth/buggyDimensions.tyreHalfWidth,radiusScale=dims.tyreRadius/buggyDimensions.tyreRadius;
@@ -64,12 +104,18 @@ inline void addWheel(Group& pivot,Group& rolling,const WheelResources& w,int ind
         wheelRing->as<MeshStandardMaterial>()->color=Color(0xc6a879);
     }
     rolling.add(Mesh::create(w.carcass,w.rubber));rolling.add(Mesh::create(w.barrel,wheelMetal));
-    constexpr int stations=40,rows=6;auto tread=InstancedMesh::create(w.tread,w.blocks,stations*rows);
+    const bool safari=dims.tyreRadius<buggyDimensions.tyreRadius;
+    auto treadMaterial=w.blocks;
+    if(safari){treadMaterial=w.blocks->clone();treadMaterial->as<MeshStandardMaterial>()->color=Color(0xffffff);}
+    constexpr int stations=40,rows=6;auto tread=InstancedMesh::create(w.tread,treadMaterial,stations*rows);
     constexpr float across[]={-.173f,-.126f,-.044f,.044f,.126f,.173f};
     for(int row=0;row<rows;++row)for(int i=0;i<stations;++i){float x=across[row],a=(i+(row%2?.46f:0))*2*pi/stations;
         float slope=(treadRadius(x+.001f)-treadRadius(x-.001f))/.002f;Object3D block;Quaternion spin,tilt;spin.setFromAxisAngle(Vector3(1,0,0),a);tilt.setFromAxisAngle(Vector3(0,0,1),std::atan(slope));block.quaternion.copy(spin).multiply(tilt);
         auto normal=Vector3(0,1,0).applyQuaternion(block.quaternion);block.position.set(x,treadRadius(x)*std::cos(a),treadRadius(x)*std::sin(a));block.position.addScaledVector(normal,.0065f);
-        block.scale.set(row==0||row==5?.46f:1,1,1+(i%3-1)*.055f);block.updateMatrix();int k=row*stations+i;tread->setMatrixAt(k,*block.matrix);float shade=.91f+(i%5)*.018f;tread->setColorAt(k,Color(shade,shade,shade*.97f));}
+        block.scale.set(row==0||row==5?.46f:1,1,1+(i%3-1)*.055f);block.updateMatrix();int k=row*stations+i;tread->setMatrixAt(k,*block.matrix);float shade=.91f+(i%5)*.018f;
+        Color color(shade,shade,shade*.97f);
+        if(safari){color=Color(0x303430);color.lerp(Color(0x74674f),safariTreadDust(a,row,index));}
+        tread->setColorAt(k,color);}
     tread->instanceMatrix()->needsUpdate();tread->instanceColor()->needsUpdate();rolling.add(tread);
     auto face=Group::create();face->rotation.y=side<0?pi:0;rolling.add(face);
     face->add(Mesh::create(w.beadRing,wheelRing));face->add(Mesh::create(w.mount,wheelMetal));face->add(Mesh::create(w.sidewall,w.blocks));

@@ -9,7 +9,7 @@ namespace rally {
 struct HudState {
     float width=960,height=600,speed=0,rpm=1050,time=0,best=0,progress=0,heading=0,x=0,z=0,nextDistance=0;
     int gear=1,next=1;
-    bool inspection=false,scripted=false,finished=false,muted=true,menu=false;
+    bool inspection=false,scripted=false,finished=false,muted=true,menu=false,safari=false;
 };
 inline std::string raceTime(float time) {
     char s[32];int ms=static_cast<int>(std::max(0.f,time)*1000);
@@ -22,12 +22,34 @@ inline void hudText(ImDrawList* d,ImFont* font,float x,float y,float size,ImU32 
     d->AddText(font,size,ImVec2(x+.65f,y+1.2f),shadow,value.c_str());
     d->AddText(font,size,ImVec2(x,y),color,value.c_str());
 }
+inline void drawSafariPowertrain(ImDrawList* d,ImFont* font,const HudState& s) {
+    constexpr ImU32 ivory=IM_COL32(246,244,233,255),quiet=IM_COL32(223,226,216,240),ochre=IM_COL32(226,193,116,255),red=IM_COL32(224,111,86,255),edge=IM_COL32(9,18,15,150);
+    const float cx=s.width-113,cy=s.height-108,r=56;
+    auto polar=[&](float a,float radius){return ImVec2(cx+std::cos(a)*radius,cy+std::sin(a)*radius);};
+    auto angle=[](float rpm){return (140+260*rpm/7500.f)*3.14159265f/180;};
+    // An open, period-style tachometer. Tick positions and the needle use the
+    // same real RPM scale; no instrument face covers the road.
+    for(int i=0;i<=30;++i){float a=angle(i*250.f);bool major=i%4==0;
+        auto p=polar(a,r),q=polar(a,r-(major?7.f:3.5f));ImU32 color=i>=26?red:quiet;
+        d->AddLine(p,q,edge,3);d->AddLine(p,q,color,major?1.4f:.8f);
+    }
+    for(int i=1;i<=7;++i){auto p=polar(angle(i*1000.f),r-17);
+        hudText(d,font,p.x-3.5f,p.y-8,13,quiet,std::to_string(i));}
+    auto tip=polar(angle(std::clamp(s.rpm,0.f,7500.f)),r-24),tail=polar(angle(std::clamp(s.rpm,0.f,7500.f)),-7);
+    d->AddLine(tail,tip,edge,3.4f);d->AddLine(tail,tip,ochre,1.5f);d->AddCircleFilled(ImVec2(cx,cy),2.5f,ivory);
+    hudText(d,font,cx-18,cy+13,11,quiet,"RPM x1000");
+    char speed[16];std::snprintf(speed,sizeof(speed),"%02.0f",std::abs(s.speed)*3.6f);
+    hudText(d,font,cx-35,cy+39,43,ivory,speed);hudText(d,font,cx+20,cy+62,12,quiet,"KM/H");
+    hudText(d,font,cx+62,cy+42,29,ivory,s.speed<-.5f?"R":std::to_string(s.gear));
+    hudText(d,font,cx+57,cy+74,10,quiet,"GEAR");
+}
 inline void drawHud(const HudState& s,ImFont* font) {
     auto* d=ImGui::GetBackgroundDrawList();
     constexpr ImU32 ink=IM_COL32(246,244,233,255),quiet=IM_COL32(223,226,216,240),gold=IM_COL32(226,193,116,255),green=IM_COL32(187,213,190,255),edge=IM_COL32(9,18,15,150);
     auto text=[&](float x,float y,float size,ImU32 c,const std::string& v){hudText(d,font,x,y,size,c,v);};
-    text(32,26,25,ink,"CINDER FOREST");text(32,55,14,quiet,s.inspection?"VEHICLE INSPECTION":"GRAVEL SPRINT  /  LAP 01 OF 01");
-    if(s.scripted)text(s.width*.5f-102,15,13,quiet,s.inspection?"NATIVE ENGINE / INSPECTION COURT":"SCRIPTED GAMEPLAY / AUDIO REBUILT");
+    text(32,26,25,ink,s.safari?"CINDER SAFARI":"CINDER FOREST");text(32,55,14,quiet,s.inspection?"VEHICLE INSPECTION":"GRAVEL SPRINT  /  LAP 01 OF 01");
+    if(s.inspection)text(s.width*.5f-102,15,13,quiet,"NATIVE ENGINE / INSPECTION COURT");
+    else if(s.scripted)text(s.width*.5f-102,15,13,quiet,"SCRIPTED GAMEPLAY / AUDIO REBUILT");
     if(s.menu)return;
     for(int i=0;i<8;++i){const bool done=s.finished||i<(s.next==0?7:s.next-1),active=!s.finished&&i==(s.next==0?7:s.next-1);float x=32+i*22.f;
         d->AddLine(ImVec2(x,82),ImVec2(x+15,82),edge,4);d->AddLine(ImVec2(x,82),ImVec2(x+15,82),done?green:active?gold:IM_COL32(232,236,222,95),2);}
@@ -49,6 +71,7 @@ inline void drawHud(const HudState& s,ImFont* font) {
     auto p=point(s.x,s.z);float fx=std::sin(s.heading),fy=-std::cos(s.heading);
     ImVec2 a(p.x+fx*8,p.y+fy*8),b(p.x-fx*4-fy*4,p.y-fy*4+fx*4),c(p.x-fx*4+fy*4,p.y-fy*4-fx*4);
     d->AddTriangleFilled(a,b,c,gold);d->AddTriangle(a,b,c,edge,1.2f);
+    if(s.safari){drawSafariPowertrain(d,font,s);return;}
     const float gx=s.width-119,gy=s.height-70,radius=66;
     for(int i=0;i<30;++i){float a=(140+260*i/29.f)*3.14159265f/180,r=radius+(i%5==0?3:0);
         const auto color=i/29.f<s.rpm/7500.f?(i>26?gold:ink):IM_COL32(237,239,226,100);
