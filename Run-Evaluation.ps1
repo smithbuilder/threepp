@@ -10,6 +10,7 @@ param(
     [switch]$Sequence,
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
+    [switch]$PhysicsAudit,
     [switch]$WheelInspect,
     [switch]$VehiclePortrait,
     [switch]$PortraitOrbit,
@@ -23,7 +24,11 @@ param(
     [switch]$SelfTest
 )
 $ErrorActionPreference = 'Stop'
+if ($PhysicsAudit -and ($Example -ne 'timber_rally' -or $Capture -or $Sequence -or $AutoDrive -or $SelfTest)) {
+    throw 'PhysicsAudit is a CPU-only timber_rally audit and cannot be combined with graphics capture or driving.'
+}
 Set-Location -LiteralPath $PSScriptRoot
+. (Join-Path $PSScriptRoot 'scripts/EvaluationHash.ps1')
 $logRoot = Join-Path $PSScriptRoot 'build\sessions'
 New-Item -ItemType Directory -Path $logRoot -Force | Out-Null
 $blocked = Join-Path $PSScriptRoot 'build\GRAPHICS_PAUSED.txt'
@@ -61,6 +66,7 @@ try {
         $exe = Join-Path $PSScriptRoot "build\windows-gl\bin\Release\$Example.exe"
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
+        if ($PhysicsAudit) { $arguments += @('--physics-audit', ('"' + (Join-Path $session 'physics-audit') + '"')) }
         if ($Sequence -and ($Capture -or $Example -ne 'timber_rally')) { throw 'Sequence recording is supported only for timber_rally, separately from a still capture.' }
         if ($CaptureScale -eq 2) {
             if ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence)) { throw 'The 1920x1200 profile is an explicit rally capture only.' }
@@ -71,7 +77,7 @@ try {
                 if ($Vehicle -ne 'safari' -or -not (Test-Path -LiteralPath $acceptanceFile)) { throw 'High-resolution video awaits whole-vehicle Safari acceptance.' }
                 $acceptance=Get-Content -LiteralPath $acceptanceFile -Raw | ConvertFrom-Json
                 $acceptedAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
-                if ($acceptance.scope -ne 'whole_vehicle' -or $acceptance.overall -lt 8 -or @($acceptance.categoryScores).Count -ne 5 -or @($acceptance.categoryScores | Where-Object { $_ -lt 7 }).Count -gt 0 -or $acceptance.modelSha256 -ne (Get-FileHash -LiteralPath $acceptedAsset -Algorithm SHA256).Hash -or $acceptance.binarySha256 -ne (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash) { throw 'This model and renderer build have not passed the fixed whole-vehicle visual gate.' }
+                if ($acceptance.scope -ne 'whole_vehicle' -or $acceptance.overall -lt 8 -or @($acceptance.categoryScores).Count -ne 5 -or @($acceptance.categoryScores | Where-Object { $_ -lt 7 }).Count -gt 0 -or $acceptance.modelSha256 -ne (Get-EvaluationSha256 -LiteralPath $acceptedAsset) -or $acceptance.binarySha256 -ne (Get-EvaluationSha256 -LiteralPath $exe)) { throw 'This model and renderer build have not passed the fixed whole-vehicle visual gate.' }
                 $weights=@(.25,.20,.20,.20,.15);$weighted=0.0
                 for($i=0;$i -lt 5;$i++){ $weighted += [double]$acceptance.categoryScores[$i]*$weights[$i] }
                 if($weighted -lt 8 -or [Math]::Abs($weighted-[double]$acceptance.overall) -gt .11){ throw 'The recorded whole-vehicle score does not meet the weighted quality gate.' }
@@ -107,10 +113,10 @@ try {
         @{example=$Example;started=(Get-Date).ToString('o');seconds=$Seconds;supervisor=$PID} |
             ConvertTo-Json | Set-Content -LiteralPath $active
     }
-    $binarySha256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash
+    $binarySha256=Get-EvaluationSha256 -LiteralPath $exe
     $vehicleAssetSha256=$null
     $vehicleAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
-    if ($Example -eq 'timber_rally' -and $Vehicle -eq 'safari' -and (Test-Path -LiteralPath $vehicleAsset)) { $vehicleAssetSha256=(Get-FileHash -LiteralPath $vehicleAsset -Algorithm SHA256).Hash }
+    if ($Example -eq 'timber_rally' -and $Vehicle -eq 'safari' -and (Test-Path -LiteralPath $vehicleAsset)) { $vehicleAssetSha256=Get-EvaluationSha256 -LiteralPath $vehicleAsset }
     $launch = @{FilePath=$exe;WorkingDirectory=$PSScriptRoot;WindowStyle='Hidden';PassThru=$true;
         RedirectStandardOutput=(Join-Path $session 'stdout.log');RedirectStandardError=(Join-Path $session 'stderr.log')}
     if ($arguments.Count) { $launch.ArgumentList = $arguments }
@@ -134,13 +140,13 @@ try {
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;physicsAudit=[bool]$PhysicsAudit;graphicsStarted=(-not $PhysicsAudit -and -not $SelfTest);scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }
         Write-Output 'PASS: timeout killed the harmless child through the Windows job; no graphics were started.'
     } elseif (-not $normal) {
-        "Evaluation stopped: $reason. See $session. Graphics launches are paused." | Set-Content -LiteralPath $blocked
+        if (-not $PhysicsAudit) { "Evaluation stopped: $reason. See $session. Graphics launches are paused." | Set-Content -LiteralPath $blocked }
         throw "Evaluation stopped: $reason. Logs: $session"
     } else { Write-Output "Evaluation exited cleanly. Logs: $session" }
 } catch {
@@ -155,7 +161,7 @@ try {
     if ($job) { $job.Dispose() }
     if ($child -and -not $child.HasExited) { $child.Kill(); $child.WaitForExit(5000) | Out-Null }
     if (-not $SelfTest -and $locked -and (Test-Path -LiteralPath $active)) {
-        if (-not $normal) { 'The previous evaluation did not exit cleanly. See build/sessions.' | Set-Content -LiteralPath $blocked }
+        if (-not $normal -and -not $PhysicsAudit) { 'The previous evaluation did not exit cleanly. See build/sessions.' | Set-Content -LiteralPath $blocked }
         Remove-Item -LiteralPath $active
     }
     Remove-Item Env:THREEPP_EVALUATION_MODE,Env:THREEPP_EVALUATION_SECONDS,Env:THREEPP_EVALUATION_HEARTBEAT -ErrorAction SilentlyContinue

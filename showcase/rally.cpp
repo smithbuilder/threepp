@@ -4,6 +4,7 @@
 #include "RallyDetail.hpp"
 #include "RallyHud.hpp"
 #include "RallyPowertrain.hpp"
+#include "RallySafariPowertrain.hpp"
 #include "RallyBuggy.hpp"
 #include "RallyDust.hpp"
 #include "RallyCamera.hpp"
@@ -13,6 +14,10 @@
 #include "RallySafari.hpp"
 #include "RallySafariShadows.hpp"
 #include "RallySafariCameraClearance.hpp"
+#include "RallySafariMotion.hpp"
+#include "RallyRoadContact.hpp"
+#include "RallySafariStage.hpp"
+#include "SafariRideAudit.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
 #include "threepp/extras/vegetation/TreeGenerator.hpp"
@@ -74,6 +79,10 @@ struct Driver {
 
 int main(int argc, char** argv) {
     try {
+        if(argc>1&&std::string(argv[1])=="--physics-audit"){
+            if(argc<3||!std::getenv("THREEPP_EVALUATION_MODE"))throw std::runtime_error("CPU physics audit requires its supervised output directory");
+            return rally::runSafariRideAudit(argv[2]); // No Canvas/audio/renderer.
+        }
         bool scripted = false,wheelInspect=false,portrait=false,portraitOrbit=false,safari=false; int frames = 0, limit = 0, initialView=0, warmup=0,captureScale=1; std::string shot, telemetry, sequence,portraitAngle="front",portraitLight="rear",portraitEnvironment="forest",portraitShadows="default";
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
@@ -108,14 +117,21 @@ int main(int argc, char** argv) {
                 <<"frame,driving,time,dt,x,z,heading,steer,acceleration,lateral\n";
         }
         const float inspectionFloor=groundHeight(0,90)+.02f;
-        auto vehicleHeight=[&](float x,float z){return portrait?inspectionFloor:supportHeight(x,z);};
+        const bool safariStage=safari; // Course stays fixed when switching cars.
+        std::shared_ptr<rally::RoadContactSurface> roadContact,landContact;
+        auto vehicleHeight=[&](float x,float z){
+            if(portrait)return inspectionFloor;
+            if((safari||safariStage)&&roadContact)if(const auto y=roadContact->height(x,z))return *y;
+            if((safari||safariStage)&&landContact)if(const auto y=landContact->height(x,z))return *y;
+            return supportHeight(x,z);
+        };
         if((wheelInspect||portrait)&&!captureMode)throw std::runtime_error("Wheel inspection is capture-only");
         if(portraitEnvironment!="forest"&&!portrait)throw std::runtime_error("Daylight inspection environment requires portrait capture");
         if(portraitShadows!="default"&&!portrait)throw std::runtime_error("Shadow diagnostics require portrait capture");
         if(portraitOrbit&&(!portrait||sequence.empty()||(portraitAngle!="front"&&portraitAngle!="side"&&portraitAngle!="rear")))throw std::runtime_error("Portrait orbit requires an inspection sequence");
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
-            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted,heave,pitch,roll,forceFL,forceFR,forceRL,forceRR,cameraBoomFraction,cameraBlocked,cameraForecastFraction,cameraHardClamped\n";}
+            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted,heave,pitch,roll,forceFL,forceFR,forceRL,forceRR,cameraBoomFraction,cameraBlocked,cameraForecastFraction,cameraHardClamped,exhaustPitch0,exhaustGain0,exhaustPitch1,exhaustGain1,exhaustPitch2,exhaustGain2,gapFL,gapFR,gapRL,gapRR\n";}
         const bool bounded = limit > 0;
         auto assetDir=std::filesystem::absolute(argv[0]).parent_path()/"rally-assets";
         TextureLoader textureLoader;
@@ -139,6 +155,12 @@ int main(int argc, char** argv) {
             colors.insert(colors.end(), {c.r, c.g, c.b});
         }
         land->setAttribute("color", FloatBufferAttribute::create(colors, 3)); land->computeVertexNormals();
+        std::vector<float> landContactVertices;std::vector<unsigned> landContactIndices;
+        landContactVertices.reserve(positions->count()*3);
+        for(unsigned i=0;i<positions->count();++i)landContactVertices.insert(landContactVertices.end(),{positions->getX(i),positions->getY(i),positions->getZ(i)});
+        const auto* landIndex=land->getIndex();landContactIndices.reserve(landIndex->count());
+        for(unsigned i=0;i<landIndex->count();++i)landContactIndices.push_back(landIndex->getX(i));
+        landContact=std::make_shared<rally::RoadContactSurface>(landContactVertices,landContactIndices);
         auto grass = material(0xffffff); grass->vertexColors = true;
         grass->map=assetTexture("forest_ground_04_diff_1k.jpg",true);grass->map->repeat.set(65,65);
         grass->normalMap=assetTexture("forest_ground_04_nor_gl_1k.jpg",false);grass->normalMap->repeat.set(65,65);grass->normalScale.set(.55f,.55f);
@@ -153,7 +175,8 @@ int main(int argc, char** argv) {
             for (int j = 0; j <= across; ++j) {
                 float s = j * 2.f / across - 1;
                 float x = p.x + s * 3.7f * side.x, z = p.z + s * 3.7f * side.z;
-                ribbon.insert(ribbon.end(), {x, groundHeight(x, z) + .02f, z});
+                const float roadY=safariStage?rally::safariStageRoadHeight(x,z,s,groundHeight(x,z)):groundHeight(x,z)+.02f;
+                ribbon.insert(ribbon.end(), {x,roadY,z});
                 roadUv.insert(roadUv.end(), {j * 1.f/across, i * .12f});
                 const float rut = .8f + .2f * std::pow(std::abs(s), .5f);
                 roadColors.insert(roadColors.end(), {rut, rut, rut});
@@ -165,6 +188,7 @@ int main(int argc, char** argv) {
         }
         grass->alphaMap=roadCutout(route);grass->alphaTest=.5f;
         auto road = BufferGeometry::create(); road->setAttribute("position", FloatBufferAttribute::create(ribbon, 3)); road->setIndex(indices); road->computeVertexNormals();
+        roadContact=std::make_shared<rally::RoadContactSurface>(ribbon,indices);
         road->setAttribute("uv", FloatBufferAttribute::create(roadUv, 2)); road->setAttribute("color", FloatBufferAttribute::create(roadColors, 3));
         auto dirt = material(0xffffff); dirt->map = assetTexture("gravel_road_diff_1k.jpg",true); dirt->vertexColors = true; dirt->side = Side::Double;
         dirt->map->repeat.set(2,2);dirt->normalMap=assetTexture("gravel_road_nor_gl_1k.jpg",false);dirt->normalMap->repeat.set(2,2);dirt->normalScale.set(.7f,.7f);
@@ -212,6 +236,7 @@ int main(int argc, char** argv) {
         std::vector<std::shared_ptr<Mesh>> cameraBarriers;
         for (int i = 0; i < 8; ++i) {
             auto p = track(i * 2 * PI / 8); auto ahead = track(i * 2 * PI / 8 + .01f).sub(p);
+            if(safariStage)if(const auto y=roadContact->height(p.x,p.z))p.y=*y;
             float yaw = std::atan2(ahead.x, ahead.z); auto gate = Group::create(); gate->position.copy(p); gate->rotation.y = yaw;
             for (int side : {-1, 1}) {
                 auto post = Mesh::create(BoxGeometry::create(.16f, 3.7f, .16f), postMat); post->position.set(side * 4.3f, 1.85f, 0); post->castShadow = true; gate->add(post);
@@ -230,12 +255,13 @@ int main(int argc, char** argv) {
             auto floorMaterial=material(0x8d8171,.92f);floorMaterial->map=assetTexture("gravel_road_diff_1k.jpg",true);floorMaterial->map->repeat.set(250,250);floorMaterial->normalMap=assetTexture("gravel_road_nor_gl_1k.jpg",false);floorMaterial->normalMap->repeat.set(250,250);floorMaterial->normalScale.set(.30f,.30f);
             auto floor=Mesh::create(PlaneGeometry::create(1000,1000),floorMaterial);floor->rotation.x=-PI/2;floor->position.set(0,inspectionFloor,90);floor->receiveShadow=true;scene->add(floor);
         }
-        auto applySafariShadows=[&](rally::Buggy& vehicle){
+        auto applySafariConfiguration=[&](rally::Buggy& vehicle){
+            if(safari)vehicle.contactResponse=rally::RideContactResponse::Compliant;
             if(safari&&!(portrait&&portraitShadows=="stock"))vehicle.car->traverseType<Mesh>([](Mesh& mesh){
                 for(const auto& mat:mesh.materials())rally::configureSafariReceiverPlaneShadows(*mat);
             });
         };
-        auto buggy=safari?rally::makeSafari(assetDir):rally::makeBuggy();applySafariShadows(buggy);auto car=buggy.car,body=buggy.body;scene->add(car);
+        auto buggy=safari?rally::makeSafari(assetDir):rally::makeBuggy();applySafariConfiguration(buggy);auto car=buggy.car,body=buggy.body;scene->add(car);
         const auto& dimensions=buggy.dimensions;
         auto& wheelPivots=buggy.pivots;auto& wheelRolls=buggy.rolls;
         // Conform the cheap ambient shadow to the actual surface, not a floating plane.
@@ -251,12 +277,15 @@ int main(int argc, char** argv) {
         int cameraBlocks=0,cameraInvalid=0,cameraTargetInside=0,cameraHardClamps=0,cameraForecastRejected=0;
         float minCameraBoom=1,cameraBoomFraction=1,cameraForecastFraction=1;bool cameraWasBlocked=false,cameraHardClamped=false;
         Driver driver;
+        if(safari||safariStage)driver.position.y=vehicleHeight(driver.position.x,driver.position.z);
         // Diagnostic car orientation only: the same world sun, probe and
         // exposure also illuminate the front quarter in a second still.
         if(portrait&&portraitLight=="front")driver.heading=-2.55f;
         std::unique_ptr<AudioListener> soundListener;
         std::array<std::unique_ptr<Audio>,3> exhaust;
         rally::Powertrain powertrain;
+        rally::SafariPowertrain safariPowertrain;
+        auto exhaustBand=[&](int i,bool silent){return safari?safariPowertrain.band(i,silent):powertrain.band(i,silent);};
         bool muted=true;
         auto toggleSound=[&]{
             if(captureMode)return;
@@ -264,7 +293,7 @@ int main(int argc, char** argv) {
                 if(!soundListener){
                     soundListener=std::make_unique<AudioListener>();soundListener->setMasterVolume(.75f);
                     const char* names[]={"idle","mid","high"};
-                    for(int i=0;i<3;++i){exhaust[i]=std::make_unique<Audio>(*soundListener,assetDir/(std::string("cinder_exhaust_")+names[i]+".wav"));exhaust[i]->setLooping(true);exhaust[i]->setVolume(0);exhaust[i]->play();}
+                    for(int i=0;i<3;++i){exhaust[i]=std::make_unique<Audio>(*soundListener,assetDir/(std::string(safari?"safari_exhaust_":"cinder_exhaust_")+names[i]+".wav"));exhaust[i]->setLooping(true);exhaust[i]->setVolume(0);exhaust[i]->play();}
                 }
                 muted=!muted;
             }catch(const std::exception& error){std::cerr<<"[audio] "<<error.what()<<'\n';for(auto& e:exhaust)e.reset();soundListener.reset();muted=true;}
@@ -273,8 +302,16 @@ int main(int argc, char** argv) {
         bool paused = false, raceStarted=scripted, resetClockRequested=false; float countdown=0; int inputEvents = 0;
         auto snapCamera = [&] { cameras.cut=true; };
         snapCamera();
-        auto resetRun=[&](bool start){driver.reset();dustSimulation.reset();tyreTrails.reset();gravelSpray.reset();powertrain=rally::Powertrain{};paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();};
-        auto selectVehicle=[&]{scene->remove(*car);safari=!safari;buggy=safari?rally::makeSafari(assetDir):rally::makeBuggy();applySafariShadows(buggy);car=buggy.car;body=buggy.body;scene->add(car);resetRun(false);};
+        auto resetRun=[&](bool start){
+            driver.reset();if(safari||safariStage)driver.position.y=vehicleHeight(driver.position.x,driver.position.z);
+            dustSimulation.reset();tyreTrails.reset();gravelSpray.reset();powertrain=rally::Powertrain{};safariPowertrain=rally::SafariPowertrain{};
+            paused=false;raceStarted=scripted||start;countdown=start&&!scripted?3.f:0.f;resetClockRequested=true;snapCamera();
+        };
+        auto selectVehicle=[&]{
+            const bool restoreSound=!muted;for(auto& audio:exhaust)audio.reset();soundListener.reset();muted=true;
+            scene->remove(*car);safari=!safari;buggy=safari?rally::makeSafari(assetDir):rally::makeBuggy();applySafariConfiguration(buggy);car=buggy.car;body=buggy.body;scene->add(car);resetRun(false);
+            if(restoreSound)toggleSound();
+        };
         EffectComposer::Options options; options.samples = 0; EffectComposer composer(renderer, options);
         composer.addPass(std::make_shared<RenderPass>(*scene, *camera));
         auto bloom = std::make_shared<UnrealBloomPass>(Vector2(960, 600), .14f, .3f, 1.8f); bloom->enabled = false;
@@ -376,25 +413,35 @@ int main(int argc, char** argv) {
                 if (scripted) {
                     Vector3 aim = track(near.a + .11f).sub(driver.position);
                     turn = std::clamp(wrap(std::atan2(aim.x, aim.z)-driver.heading) * 1.35f, -1.f, 1.f);
-                    // The narrower coupe takes the broken-surface demonstration
-                    // at a measured pace. Actual player controls are unchanged.
-                    const float cruise=safari?13.5f:18.f,brakingSpeed=safari?14.5f:20.f;
-                    throttle = driver.velocity < cruise ? 1.f : 0; brake = driver.velocity > brakingSpeed ? .3f : 0;
+                    // The coupe uses a balanced governor at the same measured
+                    // pace, rather than alternating full throttle and lift.
+                    if(safari){
+                        const auto pedals=rally::safariCruiseCommand(driver.velocity,off>4.2f);
+                        throttle=pedals.throttle;brake=pedals.brake;
+                    }else{
+                        throttle=driver.velocity<18.f?1.f:0;brake=driver.velocity>20.f?.3f:0;
+                    }
                 }
                 driver.throttle=throttle;driver.braking=handbrake?1.f:brake;
                 driver.steer += (turn - driver.steer) * (1-std::exp(-7*step));
-                const float drag = off > 4.2f ? 1.25f : .24f;
                 driver.previousVelocity=driver.velocity;
-                driver.velocity += (throttle * 12 - brake * 18 - driver.velocity * drag - driver.velocity*std::abs(driver.velocity)*.014f - (handbrake ? driver.velocity * 1.5f : 0)) * step;
-                driver.velocity = std::clamp(driver.velocity, -6.f, 30.f);
-                float targetYaw=std::tan(driver.steer*.42f)*driver.velocity/2.45f;
-                driver.yawRate+=(targetYaw-driver.yawRate)*(1-std::exp(-7*step));
-                driver.heading += driver.yawRate*step;
-                Vector3 desiredMotion(std::sin(driver.heading)*driver.velocity,0,std::cos(driver.heading)*driver.velocity);
-                driver.motion.lerp(desiredMotion,1-std::exp(-(handbrake?1.5f:off>4.2f?3.f:7.f)*step));
+                if(safari){
+                    float normalLoad=0;for(float load:driver.ride.forces)normalLoad+=std::max(0.f,load);
+                    const float weight=(rally::SafariRideState::sprungMass+4*rally::SafariRideState::unsprungMass)*rally::SafariRideState::gravity;
+                    rally::safariIntegrateMotion(driver.velocity,driver.yawRate,driver.heading,driver.motion,driver.steer*.4f,
+                                                 throttle,brake,handbrake,off>4.2f,normalLoad,weight,step);
+                }else{
+                    const float drag=off>4.2f?1.25f:.24f;
+                    driver.velocity+=(throttle*12-brake*18-driver.velocity*drag-driver.velocity*std::abs(driver.velocity)*.014f-(handbrake?driver.velocity*1.5f:0))*step;
+                    driver.velocity=std::clamp(driver.velocity,-6.f,30.f);
+                    const float targetYaw=std::tan(driver.steer*.42f)*driver.velocity/2.45f;
+                    driver.yawRate+=(targetYaw-driver.yawRate)*(1-std::exp(-7*step));driver.heading+=driver.yawRate*step;
+                    const Vector3 desiredMotion(std::sin(driver.heading)*driver.velocity,0,std::cos(driver.heading)*driver.velocity);
+                    driver.motion.lerp(desiredMotion,1-std::exp(-(handbrake?1.5f:off>4.2f?3.f:7.f)*step));
+                }
                 driver.position.x += driver.motion.x * step;
                 driver.position.z += driver.motion.z * step;
-                driver.position.y = groundHeight(driver.position.x, driver.position.z);
+                driver.position.y = (safari||safariStage)?vehicleHeight(driver.position.x,driver.position.z):groundHeight(driver.position.x,driver.position.z);
                 driver.wheelAngle += driver.velocity * step / dimensions.tyreRadius;
                 driver.contactCooldown=std::max(0.f,driver.contactCooldown-step);
                 auto collide=[&](float px,float pz,float radius){float x=driver.position.x-px,z=driver.position.z-pz,d=x*x+z*z;
@@ -424,7 +471,7 @@ int main(int argc, char** argv) {
             }
             driver.heave=driver.ride.chassis.y;driver.pitch=driver.ride.pitch;driver.roll=driver.ride.roll;
             const auto chassisQ=rally::chassisOrientation(driver.heading,driver.pitch,driver.roll);
-            Vector3 chassis(driver.position.x,driver.heave,driver.position.z);
+            const Vector3 chassis=driver.ride.chassis;
             car->position.copy(chassis);car->rotation.y=driver.heading;
             Vector3 forward(std::sin(driver.heading),0,std::cos(driver.heading)),right(std::cos(driver.heading),0,-std::sin(driver.heading));
             body->rotation.x=driver.pitch;body->rotation.z=driver.roll;body->position.y=0;
@@ -433,7 +480,7 @@ int main(int argc, char** argv) {
             for(const auto& p:buggy.rearGroundProbes){auto world=p.clone().applyQuaternion(chassisQ).add(chassis);
                 float clearance=world.y-vehicleHeight(world.x,world.z);++rearClearanceSamples;
                 if(clearance<minRearGroundClearance){minRearGroundClearance=clearance;minRearClearanceFrame=frames;}}
-            for(int i=0;i<4;++i){wheelContacts[i]=rally::wheelContact(i,chassis,chassisQ,driver.steer*.4f,vehicleHeight,true,dimensions);
+            for(int i=0;i<4;++i){wheelContacts[i]=driver.ride.contact(i,driver.heading,driver.steer*.4f,vehicleHeight);
                 wheelPivots[i]->position.copy(wheelContacts[i].local);wheelPivots[i]->rotation.y=rally::steeringAngle(i,driver.steer*.4f,dimensions);
                 wheelRolls[i]->rotation.x=driver.wheelAngle;maxWheelGap=std::max(maxWheelGap,std::max(0.f,wheelContacts[i].gap));maxPenetration=std::max(maxPenetration,std::max(0.f,-wheelContacts[i].gap));
                 minWheelTravel=std::min(minWheelTravel,wheelContacts[i].local.y);maxWheelTravel=std::max(maxWheelTravel,wheelContacts[i].local.y);}
@@ -453,19 +500,30 @@ int main(int argc, char** argv) {
             }
             for(const auto& p:dustSimulation.particles)if(p.age<p.life)maxDustSpeed=std::max(maxDustSpeed,p.velocity.length());
             auto* shadowVertices=carShadowGeometry->getAttribute<float>("position");
+            float wheelLift=0;for(const auto& contact:wheelContacts)wheelLift+=std::max(0.f,contact.gap)*.25f;
+            if(safari)carShadow->material()->opacity=.20f*std::exp(-2*wheelLift);
             for(unsigned i=0;i<shadowVertices->count();++i){float x=(static_cast<int>(i%5)-2)*(dimensions.halfTrack*1.8f)/4,z=(static_cast<int>(i/5)-3)*3.6f/6;
-                auto point=driver.position.clone().addScaledVector(right,x).addScaledVector(forward,z);point.y=vehicleHeight(point.x,point.z)+.012f;shadowVertices->setXYZ(i,point.x,point.y,point.z);}
+                auto point=(safari?chassis:driver.position).clone().addScaledVector(right,x).addScaledVector(forward,z);point.y=vehicleHeight(point.x,point.z)+.012f;shadowVertices->setXYZ(i,point.x,point.y,point.z);}
             shadowVertices->needsUpdate();
             for(int i=0;i<4;++i){auto& shadow=contactShadows[i];auto p=wheelContacts[i].ground;p.y+=.014f;shadow->position.copy(p);shadow->scale.set(dimensions.tyreHalfWidth/.20f,dimensions.tyreRadius/.54f,1);
                 float dx=(vehicleHeight(p.x+.15f,p.z)-vehicleHeight(p.x-.15f,p.z))/.30f,dz=(vehicleHeight(p.x,p.z+.15f)-vehicleHeight(p.x,p.z-.15f))/.30f;
                 Quaternion align,yaw;align.setFromUnitVectors(Vector3(0,1,0),Vector3(-dx,1,-dz).normalize());yaw.setFromAxisAngle(Vector3(0,1,0),driver.heading+rally::steeringAngle(i,driver.steer*.4f,dimensions));
                 Quaternion flat;flat.setFromAxisAngle(Vector3(1,0,0),-PI/2);shadow->quaternion.copy(align).multiply(yaw).multiply(flat);
-                shadow->material()->opacity=.48f*std::clamp(1-std::max(0.f,wheelContacts[i].gap)*5,0.f,1.f);}
+                shadow->material()->opacity=.48f*std::clamp(1-std::max(0.f,wheelContacts[i].gap)*5,0.f,1.f);
+                if(safari){
+                    const float lift=std::max(0.f,wheelContacts[i].gap),spread=1+2*std::min(lift,.4f);
+                    shadow->scale.set(dimensions.tyreHalfWidth/.20f*.88f*spread,dimensions.tyreRadius/.54f*.42f*spread,1);
+                    shadow->material()->opacity=.70f*std::exp(-14*lift);
+                }
+            }
 
             roadsideGrass->setTime(worldTime);
-            powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+            if(safari){
+                safariPowertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+                powertrain.gear=safariPowertrain.gear;powertrain.rpm=safariPowertrain.rpm;powertrain.load=safariPowertrain.load;powertrain.shift=safariPowertrain.shift;
+            }else powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
             rally::updateCockpit(buggy.cockpit,driver.steer,driver.velocity,powertrain.rpm);
-            for(int i=0;i<3;++i)if(exhaust[i]){auto band=powertrain.band(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
+            for(int i=0;i<3;++i)if(exhaust[i]){auto band=exhaustBand(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
             cameraBoomFraction=1;cameraWasBlocked=false;cameraForecastFraction=1;cameraHardClamped=false;
             if(portrait){
                 const bool rearDetail=portraitAngle=="rear-detail",frontDetail=portraitAngle=="front-detail";
@@ -493,12 +551,15 @@ int main(int argc, char** argv) {
                 camera->up.set(0,1,0);camera->nearPlane=.1f;
                 Vector3 desired=driver.position.clone().addScaledVector(forward,view==1?-4.8f:view==2?-3.7f:-6.6f).add(Vector3(0,view==1?2.1f:3.0f,0));
                 if(view==2)desired.addScaledVector(right,4.1f);
+                if(safari&&view==2){
+                    desired=rally::safariSideCameraPosition(driver.position,forward,right,vehicleHeight);
+                }
                 desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
                 const auto cameraTarget=driver.position.clone().addScaledVector(forward,view==2?0.f:2.8f).add(Vector3(0,1.1f,0));
                 if(safari){
                     rally::SafariCameraClearanceReport cameraCheck;
                     const auto cameraVelocity=(!paused&&raceStarted&&!counting&&!driver.finished)?driver.motion:Vector3();
-                    camera->position.copy(rally::safariTrackClearCamera(cameraTarget,desired,cameraVelocity,dt,cameras.cut,cameraBarriers,safariCameraTracking,&cameraCheck));
+                    camera->position.copy(rally::safariTrackClearCamera(cameraTarget,desired,cameraVelocity,dt,cameras.cut,cameraBarriers,safariCameraTracking,&cameraCheck,.30f,true));
                     cameraBoomFraction=cameraCheck.boomFraction;cameraWasBlocked=cameraCheck.shortened;
                     cameraForecastFraction=cameraCheck.forecastBoomFraction;cameraHardClamped=cameraCheck.hardClamped;
                     cameraBlocks+=cameraCheck.shortened;cameraInvalid+=cameraCheck.invalidInput;
@@ -514,17 +575,20 @@ int main(int argc, char** argv) {
             composer.render(dt); ui.render();
             if(!sequence.empty()&&frames>=warmup){char name[40];std::snprintf(name,sizeof(name),"frame_%05d.png",frames-warmup);
                 renderer.writeFramebuffer(std::filesystem::path(sequence)/name);
-                frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<','<<wheelContacts[0].local.y<<','<<wheelContacts[1].local.y<<','<<wheelContacts[2].local.y<<','<<wheelContacts[3].local.y<<','<<dustSimulation.serial<<','<<driver.heave<<','<<driver.pitch<<','<<driver.roll;for(float force:driver.ride.forces)frameData<<','<<force;frameData<<','<<cameraBoomFraction<<','<<cameraWasBlocked<<','<<cameraForecastFraction<<','<<cameraHardClamped<<'\n';}
+                frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<','<<wheelContacts[0].local.y<<','<<wheelContacts[1].local.y<<','<<wheelContacts[2].local.y<<','<<wheelContacts[3].local.y<<','<<dustSimulation.serial<<','<<driver.heave<<','<<driver.pitch<<','<<driver.roll;for(float force:driver.ride.forces)frameData<<','<<force;frameData<<','<<cameraBoomFraction<<','<<cameraWasBlocked<<','<<cameraForecastFraction<<','<<cameraHardClamped;
+                for(int i=0;i<3;++i){const auto band=exhaustBand(i,paused);frameData<<','<<band.pitch<<','<<band.gain;}
+                for(const auto& contact:wheelContacts)frameData<<','<<contact.gap;frameData<<'\n';}
             ++frames;
             if (bounded && frames >= limit + (sequence.empty()?0:warmup)) {
                 if (!shot.empty()) renderer.writeFramebuffer(shot);
                 std::cout << "[drive] frames=" << frames << " laps=" << driver.laps << " nextGate=" << driver.next << " speed=" << driver.velocity << '\n'; canvas.close();
             }
         });
-        if (!telemetry.empty()) { std::ofstream out(telemetry); out << "{\"vehicle\":\""<<(safari?"safari":"buggy")<<"\",\"rideModel\":\""<<(driver.ride.contactResponse==rally::RideContactResponse::Projected?"projected":"legacy")<<"\",\"frames\":" << frames << ",\"x\":" << driver.position.x << ",\"z\":" << driver.position.z << ",\"speed\":" << driver.velocity << ",\"laps\":" << driver.laps << ",\"nextGate\":" << driver.next << ",\"contacts\":" << driver.contacts << ",\"maxHeave\":" << driver.maxHeave << ",\"maxRoll\":" << driver.maxRoll << ",\"lastLap\":" << driver.lastLap << ",\"maxWheelGap\":"<<maxWheelGap<<",\"maxPenetration\":"<<maxPenetration<<",\"bumpCorrections\":"<<driver.ride.bumpCorrections<<",\"minWheelTravel\":"<<minWheelTravel<<",\"maxWheelTravel\":"<<maxWheelTravel<<",\"dustEmitted\":"<<dustSimulation.serial<<",\"trailSegments\":"<<tyreTrails.emitted<<",\"gravelEmitted\":"<<gravelSpray.emitted<<",\"maxDustSpeed\":"<<maxDustSpeed
+        if (!telemetry.empty()) { std::ofstream out(telemetry); out << "{\"vehicle\":\""<<(safari?"safari":"buggy")<<"\",\"rideModel\":\""<<(driver.ride.contactResponse==rally::RideContactResponse::Compliant?"compliant-7dof":driver.ride.contactResponse==rally::RideContactResponse::Projected?"projected":"legacy")<<"\",\"frames\":" << frames << ",\"x\":" << driver.position.x << ",\"z\":" << driver.position.z << ",\"speed\":" << driver.velocity << ",\"laps\":" << driver.laps << ",\"nextGate\":" << driver.next << ",\"contacts\":" << driver.contacts << ",\"maxHeave\":" << driver.maxHeave << ",\"maxRoll\":" << driver.maxRoll << ",\"lastLap\":" << driver.lastLap << ",\"maxWheelGap\":"<<maxWheelGap<<",\"maxPenetration\":"<<maxPenetration<<",\"bumpCorrections\":"<<driver.ride.bumpCorrections<<",\"minWheelTravel\":"<<minWheelTravel<<",\"maxWheelTravel\":"<<maxWheelTravel<<",\"dustEmitted\":"<<dustSimulation.serial<<",\"trailSegments\":"<<tyreTrails.emitted<<",\"gravelEmitted\":"<<gravelSpray.emitted<<",\"maxDustSpeed\":"<<maxDustSpeed
             <<",\"rearClearanceSamples\":"<<rearClearanceSamples<<",\"minRearGroundClearance\":"<<(rearClearanceSamples?minRearGroundClearance:0)<<",\"minRearClearanceFrame\":"<<minRearClearanceFrame<<",\"inputEvents\":" << inputEvents
             <<",\"cameraBlocks\":"<<cameraBlocks<<",\"cameraInvalid\":"<<cameraInvalid<<",\"cameraTargetInside\":"<<cameraTargetInside<<",\"minCameraBoom\":"<<minCameraBoom
-            <<",\"cameraHardClamps\":"<<cameraHardClamps<<",\"cameraForecastRejected\":"<<cameraForecastRejected<<"}"; }
+            <<",\"cameraHardClamps\":"<<cameraHardClamps<<",\"cameraForecastRejected\":"<<cameraForecastRejected
+            <<",\"stageProfile\":\""<<(safariStage?"graded-safari-45mm":"original-rough-170mm")<<"\",\"audioProfile\":\""<<(safari?"safari-deep-v1":"cinder-recorded")<<"\"}"; }
         return 0;
     } catch (std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
 }

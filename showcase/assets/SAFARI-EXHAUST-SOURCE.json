@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "author": "kyles",
+  "title": "dune buggy muscle car pass slow loud nearby full engine rev and trail off to right.wav",
+  "page": "https://freesound.org/people/kyles/sounds/413905/",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceSha256": "d94cf3da98ceb2c2890cb44a9a81fac23cfba2e6840cba282065b10e378479fb",
+  "sourceNote": "Existing public HQ MP3 preview retained locally. Bands/gearing are original fictional-car tuning, not measured source RPM or a matched Porsche flat-six recording.",
+  "method": "Recorded waveform only; offline lower register, restrained EQ, mild 250ms pass-by envelope reduction, 240ms equal-power circular join, DC removal and bounded normalization. No oscillator/synthesized bass/subharmonic/noise layer.",
+  "filter": "highpass=f=42:p=2,highpass=f=42:p=2,bass=g=3:f=110:w=0.7,equalizer=f=430:t=q:w=0.7:g=-1,equalizer=f=850:t=q:w=0.6:g=3,treble=g=-1:f=1800,lowpass=f=4600:p=2",
+  "originalBuggyHashes": {
+    "idle": "3f45e1feb7b9e4fe88400ed06b46bb557fc95edb3296633e4f3c4595e9938fa2",
+    "mid": "b0268a5545bdf08376e310a7545fbe36a139401435a295b15d014a3b4984b1e9",
+    "high": "7f8a92833da55a558e92fc1a7c16b674ac3e950382ebfa2946aff2db1aac8391"
+  },
+  "derived": [
+    {
+      "file": "safari_exhaust_idle.wav",
+      "sha256": "978ad72bde6b64dd051d0d0cfc262efd507abd710d1824125059456ee20417eb",
+      "sourceStartSeconds": 28.1,
+      "sourceDurationSeconds": 2.4,
+      "offlinePlaybackRatio": 0.4,
+      "playbackBandRpm": 1050,
+      "statistics": {
+        "seconds": 5.7599583333333335,
+        "rmsDbFS": -14.0002655264188,
+        "peakDbFS": -5.24902709605652,
+        "dc": -2.15240552028552e-08,
+        "powerCentroidHz": 73.30399347866829,
+        "powerFractions": {
+          "0-35Hz": 0.044577015265731,
+          "35-150Hz": 0.9349478132497123,
+          "150-500Hz": 0.01811593584281446,
+          "500-2000Hz": 0.002230188563851453,
+          "2000-12000Hz": 0.000129045739212278
+        },
+        "loopSeamJump": 0.000152587890625,
+        "adjacentJump99": 0.00628662109375
+      }
+    },
+    {
+      "file": "safari_exhaust_mid.wav",
+      "sha256": "30a083b08a89119c3182073d16f08ab4585bf190787fb644fbb7abd52914fb4c",
+      "sourceStartSeconds": 5.0,
+      "sourceDurationSeconds": 2.4,
+      "offlinePlaybackRatio": 0.72,
+      "playbackBandRpm": 2800,
+      "statistics": {
+        "seconds": 3.0933125,
+        "rmsDbFS": -16.153437409222644,
+        "peakDbFS": -5.000377362660108,
+        "dc": -9.45459353679645e-09,
+        "powerCentroidHz": 228.5927318783536,
+        "powerFractions": {
+          "0-35Hz": 0.009139339001504423,
+          "35-150Hz": 0.6112964486813869,
+          "150-500Hz": 0.2590517978744072,
+          "500-2000Hz": 0.11893673585118897,
+          "2000-12000Hz": 0.0015756766637000407
+        },
+        "loopSeamJump": 0.001861572265625,
+        "adjacentJump99": 0.01776123046875
+      }
+    },
+    {
+      "file": "safari_exhaust_high.wav",
+      "sha256": "a9d3d7e1796f23b1275385016cf95e53d4b0914915422ad2c4da5c2e9d84659e",
+      "sourceStartSeconds": 22.0,
+      "sourceDurationSeconds": 2.4,
+      "offlinePlaybackRatio": 1.38,
+      "playbackBandRpm": 4800,
+      "statistics": {
+        "seconds": 1.499125,
+        "rmsDbFS": -16.74891238764759,
+        "peakDbFS": -5.000377362660108,
+        "dc": -2.0356926957391812e-08,
+        "powerCentroidHz": 321.51193973830874,
+        "powerFractions": {
+          "0-35Hz": 0.007056673163000766,
+          "35-150Hz": 0.3325651570972629,
+          "150-500Hz": 0.546074917195806,
+          "500-2000Hz": 0.10314680666560581,
+          "2000-12000Hz": 0.011155949786122154
+        },
+        "loopSeamJump": 0.02239990234375,
+        "adjacentJump99": 0.02577026367187507
+      }
+    }
+  ]
+}

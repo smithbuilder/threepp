@@ -307,7 +307,8 @@ inline float forecastFraction(const PreparedBarriers& prepared, double length,
         const std::vector<std::shared_ptr<threepp::Mesh>>& barriers,
         SafariCameraTracking& state,
         SafariCameraClearanceReport* report = nullptr,
-        float clearance = .30f) {
+        float clearance = .30f,
+        bool carryTargetTranslation = false) {
     SafariCameraClearanceReport result;
     if (!safari_camera_detail::finite(target) || !safari_camera_detail::finite(desired)
         || !std::isfinite(dt) || dt < 0) {
@@ -316,6 +317,7 @@ inline float forecastFraction(const PreparedBarriers& prepared, double length,
         return desired;
     }
     const bool reset = cut || !state.initialized;
+    const auto targetTranslation=target.clone().sub(state.previousTarget);
     auto predictedVelocity = worldVelocity;
     predictedVelocity.y = reset || dt < 1e-6f ? 0 : (target.y - state.previousTarget.y) / dt;
     state.previousTarget = target;
@@ -328,6 +330,10 @@ inline float forecastFraction(const PreparedBarriers& prepared, double length,
         state.boomFraction = 1;
         state.initialized = true;
     } else {
+        // A vehicle-mounted chase camera carries the target's translation.
+        // Smooth only the offset/height/orbit changes; pure world-position
+        // easing added speed/5 metres to the boom and shrank the car at launch.
+        if(carryTargetTranslation)state.unobstructedPosition.add(targetTranslation);
         state.unobstructedPosition.lerp(desired, 1 - std::exp(-5 * dt));
     }
     const auto prepared = safari_camera_detail::prepare(target, state.unobstructedPosition, barriers, clearance, result);

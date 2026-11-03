@@ -14,7 +14,61 @@ records its reviewer evidence separately.
 | Accessories/mechanical detail |20%|
 | In-engine fit/lighting |15%|
 
-## Current accepted candidate
+## Current movement and sound iteration
+
+The user rejected the first film's movement and exhaust. Its technical
+delivery pass did not establish convincing motion or sound. The fresh
+baseline critique in `build/safari-iteration-v2/review-baseline` identifies
+repeated airborne/pitch reversals and camera scale breathing.
+
+The new signed review renderer is
+`6A924C58C0BBA02E4362245157C47EA2BE1385F9E9BC90FFB5B9F7B1FF323787`.
+The body asset remains `82795FE6...71E93BE`. Safari now has sprung-body
+heave/pitch/roll and four finite-mass wheel coordinates, separate tyre and
+suspension forces, dissipative contact impulses, contact-limited horizontal
+controls and a balanced cruise governor. The original buggy keeps Legacy.
+
+The rendered Safari-start road is explicitly graded from170mm to45mm central
+sine amplitude, blending to the original shoulders. Broad hills and banks
+remain; tyre contacts query the actual road/land triangles. This is a visible
+course change, not a hidden flattened collision surface. The old rough stage
+and stress evidence remain. Movement improvements therefore belong to the
+combined suspension/controller/road revision, not the solver alone.
+
+All six selected CPU checks pass, including the new wheel-mass/stop/drop
+regressions. The signed CPU-only audit
+`build/sessions/20261103-073717-285/physics-audit/audit.json` records four
+comparison cases. The graded new profile reaches the same13.5m/s target,
+with68.27deg/s peak120Hz pitch rate versus152.08 in the old case. The remaining
+crest flight lasts0.30s and recovers without the old immediate second relaunch.
+This is not a full six-axis tyre/engine simulation or a claim of strict global
+energy monotonicity. The tyre model allows45mm compression; the visual rubber
+mesh is not deformed. See `showcase/SAFARI-RIDE.md`.
+
+The final continuous native20-second take is
+`build/sessions/20261103-080423-871`;600frames,960x600/30FPS, exit0 and empty
+stderr. Camera translation now follows the car, with ground-relative height
+under the camera and retained gantry clearance. It no longer accumulates the
+speed-dependent world-position lag. Contact shadows are tighter and fade with
+wheel height. The independent motion rebind is under
+`build/safari-iteration-v2/review-final-6a9` and separately assesses changing
+frames; no new static-art score or human acceptance is inferred.
+
+The Safari-specific recorded exhaust has lower wheel/gearing-derived cruise
+RPM, load/shift response and deeper voicing. The original buggy samples remain
+unchanged. The movie uses the exact runtime-logged per-band pitch/gain controls
+and the same new WAVs, reconstructed rather than endpoint-recorded. The final
+artifact is `build/safari-iteration-v2/Cinder-Safari-Revised.mp4`, with native
+sources and encoder proof beside it. See `showcase/SAFARI-EXHAUST.md`.
+
+The actual `Launch-Safari.cmd` start/sound, V cockpit and M mute controls were
+observed through native UI; one W event reached the game. The exact launcher
+shell's missing Get-FileHash problem is fixed with streaming framework SHA256,
+and the CMD preserves failures. This is a control smoke, not sustained driving
+feel, subjective listening or long-session acceptance. Evidence:
+`build/safari-iteration-v2/native-ui-check.json`.
+
+## Body appearance acceptance from the prior gallery
 
 The final model `82795FE6...71E93BE` and signed renderer
 `78516EFC...3865424` pass the unchanged independent whole-vehicle static

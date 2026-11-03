@@ -6,4 +6,6 @@ if not exist "build\windows-gl\bin\Release\timber_rally.exe" (
   exit /b 1
 )
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Run-Evaluation.ps1" -Example timber_rally -Seconds 60 -Vehicle safari
-if errorlevel 1 pause
+set "SAFARI_LAUNCH_EXIT=%errorlevel%"
+if not "%SAFARI_LAUNCH_EXIT%"=="0" pause
+exit /b %SAFARI_LAUNCH_EXIT%

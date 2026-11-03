@@ -1,8 +1,9 @@
 #pragma once
 #include "RallyVehicle.hpp"
+#include "RallySafariRide.hpp"
 
 namespace rally {
-enum class RideContactResponse { Legacy, Projected };
+enum class RideContactResponse { Legacy, Projected, Compliant };
 // Reduced sprung-body model: three dynamic axes supported by four kinematic
 // wheel contacts. SI units, fixed 120 Hz, no tyre forces/unsprung-mass solver.
 struct RideDynamics {
@@ -17,9 +18,22 @@ struct RideDynamics {
     std::array<bool,4> grounded{};
     bool ready=false;
     int bumpCorrections=0;
+    SafariRideState compliant;
+
+    void syncCompliant(){
+        chassis=compliant.chassis;heaveVelocity=compliant.heaveVelocity;
+        pitch=compliant.pitch;roll=compliant.roll;pitchVelocity=compliant.pitchVelocity;rollVelocity=compliant.rollVelocity;
+        forces=compliant.forces;travel=compliant.travel;previousTravel=travel;grounded=compliant.grounded;bumpCorrections=compliant.bumpCorrections;
+    }
+    template<class Height> WheelContact contact(int i,float heading,float steer,Height height)const {
+        if(contactResponse==RideContactResponse::Compliant)return compliant.contact(i,steer,height);
+        return wheelContact(i,chassis,chassisOrientation(heading,pitch,roll),steer,height,true,dimensions);
+    }
 
     template<class Height> void reset(const Vector3& position,float heading,Height height,const VehicleDimensions& dims=buggyDimensions,RideContactResponse response=RideContactResponse::Legacy){
-        const auto selected=dims;*this=RideDynamics{};dimensions=selected;contactResponse=response;auto road=roadPose(position,heading,height,dimensions);
+        const auto selected=dims;*this=RideDynamics{};dimensions=selected;contactResponse=response;
+        if(response==RideContactResponse::Compliant){compliant.reset(position,heading,height,selected);syncCompliant();ready=true;return;}
+        auto road=roadPose(position,heading,height,dimensions);
         chassis={position.x,road.ride,position.z};pitch=road.pitch;roll=road.roll;
         auto q=chassisOrientation(heading,pitch,roll);constrainRide(chassis,q,0,height,dimensions);
         for(int i=0;i<4;++i)previousTravel[i]=wheelContact(i,chassis,q,0,height,false,dimensions).requested;
@@ -36,6 +50,7 @@ struct RideDynamics {
     }
     template<class Height> void step(const Vector3& position,float heading,float steer,float acceleration,float lateralAcceleration,float dt,Height height){
         if(!ready)reset(position,heading,height,dimensions,contactResponse);
+        if(contactResponse==RideContactResponse::Compliant){compliant.step(position,heading,steer,acceleration,lateralAcceleration,dt,height);syncCompliant();return;}
         // Fixed-size internal steps also bound callers with a slow render frame.
         float remaining=std::clamp(dt,0.f,.05f);
         chassis.x=position.x;chassis.z=position.z;

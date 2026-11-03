@@ -37,3 +37,17 @@ Continuous playback and human comfort remain separate from sampled evidence.
 Portrait capture suppresses interactive race menus while keeping the native
 inspection label. The normal interactive start/pause/results menus remain on
 the race route. All capture profiles retain the960x600/30FPS/2GiB supervisor.
+
+The movement revision adds a vehicle-mounted tracking option: advance the
+unobstructed camera by target translation before easing changes in its offset.
+The previous world-position easing added about speed/5 metres of camera lag,
+making the car shrink at launch. Existing clearance callers retain their old
+default; Safari opts into mounted tracking. New flat/uphill tests verify the
+actual boom distance, rather than only a collision fraction.
+
+The side chase position is2.2m across/5.1m behind with2.25m height above the
+actual ground under the camera. An uphill regression catches the former
+trailing camera being raised into a cleared gantry by the car's higher ground.
+The safety forecast and immediate clamp remain active; these changes add no
+render targets or scene passes. Final native motion/framing review is recorded
+under `build/safari-iteration-v2/review-final-6a9`.

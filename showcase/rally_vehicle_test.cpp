@@ -9,6 +9,9 @@
 #include "RallySafariCameraClearance.hpp"
 #include "RallyClearance.hpp"
 #include "SafariSuspensionTest.hpp"
+#include "SafariMotionTest.hpp"
+#include "SafariPowertrainTest.hpp"
+#include "SafariRideTest.hpp"
 #include "threepp/math/Triangle.hpp"
 #include <filesystem>
 #include <fstream>
@@ -170,6 +173,9 @@ void rideContactRegressions(){
 }
 }
 int main(int argc,char** argv){try{
+    safari_motion_test::run();
+    safari_powertrain_test::run();
+    rally::safariRideRegressions();
     verifyThinGlassCompositing();
     verifySafariShadowPlanes();
     const auto cameraRegression=rally::safariCameraClearanceRegressions();

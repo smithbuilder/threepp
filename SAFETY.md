@@ -1,5 +1,19 @@
 # Conservative evaluation after a full-system lock
 
+November3 movement/audio revision: the signed game has a CPU-only
+`Run-Evaluation.ps1 -Example timber_rally -Vehicle safari -PhysicsAudit` mode
+that returns before Canvas/audio/renderer construction. It uses the same
+process/memory/deadline supervision. New physics, camera, tyre-contact and audio
+work adds no GPU targets or higher-resolution profile. All native trials remain
+sequential960x600/30FPS/2GiB. The first film and failed prototypes are retained.
+
+The actual CMD launcher exposed an unavailable Windows PowerShell Get-FileHash
+script module. SHA256 now streams through the built-in framework with verified
+identical hashes; no profile or security-policy change is needed. The diagnosed
+pre-process pause is archived under `build/incidents/launcher-hash-20261103`.
+The successful native launcher smoke is `20261103-080132-589`; it verifies start,
+sound-toggle/cockpit controls and a driving-key event, not human handling feel.
+
 Update: Oliver authorized continuing the examples. Seven scenes across five
 executables completed short supervised captures on November 1 after the guards
 were installed. The validated conservative profiles are available through
