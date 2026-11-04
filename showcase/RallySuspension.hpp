@@ -23,12 +23,17 @@ inline void shapeSpring(BufferGeometry& g,float length){
 struct Coilover {
     std::shared_ptr<Group> assembly;std::shared_ptr<Mesh> barrel,shaft,spring,lowerSeat,lowerEye,lowerPin,bridge;
     std::shared_ptr<Mesh> topPin,lowerNeck;std::shared_ptr<Group> lowerClevis;
+    std::shared_ptr<Mesh> upperSeat,upperEye;
     std::array<std::shared_ptr<Mesh>,2> saddleBraces;
     Vector3 top;int wheel;float length=0;
     Vector3 nominalPinAxis{0,0,1};
     float barrelLength=.31f,shaftStart=.35f,springStart=.06f,lowerInboard=0;
 };
 struct TieRod {std::shared_ptr<Mesh> mesh;Vector3 rack;int wheel;};
+// Body-local conservative capsule around an actual fixed tower tube. Keeping
+// these with the authored rig lets CPU tests check moving parts against their
+// supports, independently of the separate body-shell clearance test.
+struct SuspensionSupport {Vector3 from,to;float radius;int wheel;};
 struct SuspensionRig {
     VehicleDimensions dimensions=buggyDimensions;
     SuspensionProfile profile=SuspensionProfile::Legacy;
@@ -37,6 +42,8 @@ struct SuspensionRig {
     std::array<std::shared_ptr<Mesh>,2> axles;
     std::vector<TieRod> steering;
     std::vector<Mesh*> fixedMeshes;
+    std::vector<SuspensionSupport> rearTowerSupports;
+    std::vector<Mesh*> rearTowerGussets;
 };
 inline Vector3 coiloverFoot(int wheel,const Vector3& hub,const VehicleDimensions& dims,float inboard=0){
     const float side=wheel%2?1.f:-1.f;auto lower=hub;lower.x-=side*.20f;lower.y+=lowerBallOffset;
@@ -87,10 +94,10 @@ inline SuspensionRig addSuspension(Group& body,const VehicleDimensions& dims=bug
         shock.shaft=Mesh::create(CylinderGeometry::create(.018f,.018f,1,10),bright);shock.assembly->add(shock.shaft);
         shock.spring=Mesh::create(springGeometry(),springMat);shock.spring->position.y=shock.springStart;shock.spring->frustumCulled=false;shock.assembly->add(shock.spring);
         auto seatGeometry=CylinderGeometry::create(.099f,.099f,.024f,14);
-        auto topSeat=Mesh::create(seatGeometry,dark);topSeat->position.y=shock.springStart;shock.assembly->add(topSeat);
+        auto topSeat=Mesh::create(seatGeometry,dark);topSeat->position.y=shock.springStart;shock.assembly->add(topSeat);shock.upperSeat=topSeat;
         shock.lowerSeat=Mesh::create(seatGeometry,dark);shock.assembly->add(shock.lowerSeat);
         auto eyeGeometry=TorusGeometry::create(.041f,.013f,6,12);
-        auto eye=Mesh::create(eyeGeometry,dark);shock.assembly->add(eye);shock.lowerEye=Mesh::create(eyeGeometry,dark);shock.assembly->add(shock.lowerEye);
+        auto eye=Mesh::create(eyeGeometry,dark);shock.assembly->add(eye);shock.upperEye=eye;shock.lowerEye=Mesh::create(eyeGeometry,dark);shock.assembly->add(shock.lowerEye);
         auto pinGeometry=CylinderGeometry::create(.022f,.022f,.11f,8);auto pin=Mesh::create(pinGeometry,bright);pin->rotation.x=1.5707963f;shock.topPin=pin;
         if(safari){auto axis=coiloverFoot(i,hubAtTravel(i,dims.staticTravel,dims),dims,shock.lowerInboard).sub(shock.top).normalize();Quaternion q;q.setFromUnitVectors(Vector3(0,1,0),axis);shock.nominalPinAxis=Vector3(0,0,1).applyQuaternion(q);
             pin->position.copy(shock.top);pin->quaternion.setFromUnitVectors(Vector3(0,1,0),shock.nominalPinAxis);body.add(pin);rig.fixedMeshes.push_back(pin.get());
@@ -123,9 +130,39 @@ inline SuspensionRig addSuspension(Group& body,const VehicleDimensions& dims=bug
             frame({x,.34f,rearPickupZ},{x,.34f,1.65f},.0275f,"front.frame.safari-rail");
             for(float z:{1.11f,1.59f})frame({x,.36f,z},{side*.26f,.90f,1.35f},.0275f,"front.frame.safari-tower-leg");
             for(float z:{-.05f,.05f})frame({side*.26f,.90f,1.35f},{x-side*.04f,.92f,1.35f+z},.018f,"front.frame.safari-clevis-gusset");
-            const auto& rear=rig.shocks[side<0?2:3];Quaternion clevis;clevis.setFromUnitVectors(Vector3(0,0,1),rear.nominalPinAxis);
-            for(int j=0;j<2;++j){auto lug=Vector3(-side*.04f,-.02f,j?.05f:-.05f).applyQuaternion(clevis).add(rear.top);
-                frame({side*.60f,.38f,j?-1.05f:-1.45f},lug,.0275f,"rear.frame.safari-shock-tower");}
+            const int wheel=side<0?2:3;const auto& rear=rig.shocks[wheel];Quaternion clevis;clevis.setFromUnitVectors(Vector3(0,0,1),rear.nominalPinAxis);
+            std::array<Vector3,2> lug;for(int j=0;j<2;++j)lug[j]=Vector3(-side*.04f,-.02f,j?.05f:-.05f).applyQuaternion(clevis).add(rear.top);
+            // A braced 45 mm tower follows the rear/inboard side of the whole
+            // seat/coil sweep. The old straight diagonals crossed the upper
+            // spring seat; changing the spring or hiding the tube cannot fix it.
+            // The rear foot is on the existing longitudinal rail. The forward
+            // foot meets its existing z=-1.06 crossmember, forming a real lower
+            // chassis triangle rather than a floating upper support.
+            constexpr float radius=.0225f;
+            const std::array<Vector3,5> spine{{{side*.60f,.38f,-1.45f},{side*.54f,.60f,-1.39f},
+                {side*.44f,.82f,-1.345f},{side*.385f,.96f,-1.31f},{side*.355f,1.04f,-1.29f}}};
+            auto tower=[&](const Vector3& a,const Vector3& b){frame(a,b,radius,"rear.frame.safari-shock-tower");rig.rearTowerSupports.push_back({a,b,radius,wheel});};
+            for(size_t j=1;j<spine.size();++j)tower(spine[j-1],spine[j]);
+            // The drive axle rises toward this diagonal at full bump. Route
+            // the brace above its complete sweep instead of leaving only a
+            // few millimetres beside a rotating shaft. Both real chassis foot
+            // and backbone junction stay fixed; the mitre gets its own plate.
+            const Vector3 forwardFoot(side*.53f,.38f,-1.06f),overAxle(side*.535f,.55f,-1.25f);
+            tower(forwardFoot,overAxle);tower(overAxle,spine[1]);tower(spine.back(),lug[0]);
+            const Vector3 fork(side*.34f,1.06f,-1.20f);tower(spine.back(),fork);tower(fork,lug[1]);
+            // Six mm corner fishplates bridge each mitred junction. Their
+            // 30 mm arms and 3 mm half thickness fit wholly inside the union of
+            // the adjacent 22.5 mm capsules (<=15+3 mm), so the swept capsule
+            // test covers them too; the test also verifies their actual mesh.
+            auto gusset=[&](const Vector3& a,const Vector3& b,const Vector3& c){
+                auto u=a.clone().sub(b).normalize(),v=c.clone().sub(b).normalize();auto normal=u.clone().cross(v);if(normal.lengthSq()<1e-8f)return;normal.normalize().multiplyScalar(.003f);
+                const std::array<Vector3,3> face{{b,b.clone().addScaledVector(u,.03f),b.clone().addScaledVector(v,.03f)}};std::vector<float> p;
+                for(float sign:{-1.f,1.f})for(const auto& point:face){auto q=point.clone().addScaledVector(normal,sign);p.insert(p.end(),{q.x,q.y,q.z});}
+                auto g=BufferGeometry::create();g->setAttribute("position",FloatBufferAttribute::create(p,3));g->setIndex({0,2,1,3,4,5,0,1,4,0,4,3,1,2,5,1,5,4,2,0,3,2,3,5});g->computeVertexNormals();
+                auto mesh=Mesh::create(g,dark);mesh->name="rear.frame.safari-shock-tower-gusset";body.add(mesh);rig.fixedMeshes.push_back(mesh.get());rig.rearTowerGussets.push_back(mesh.get());
+            };
+            for(size_t j=1;j+1<spine.size();++j)gusset(spine[j-1],spine[j],spine[j+1]);
+            gusset(forwardFoot,overAxle,spine[1]);gusset(overAxle,spine[1],spine[2]);gusset(spine[3],spine.back(),lug[0]);gusset(lug[0],spine.back(),fork);gusset(spine.back(),fork,lug[1]);
         }
         frame({-dims.armPivotX,.34f,1.11f},{dims.armPivotX,.34f,1.11f},.030f,"front.frame.safari-crossmember");
         frame({-dims.armPivotX,.34f,1.59f},{dims.armPivotX,.34f,1.59f},.030f,"front.frame.safari-crossmember");

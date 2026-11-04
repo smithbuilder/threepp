@@ -11,6 +11,9 @@ param(
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
     [switch]$PhysicsAudit,
+    [string]$RideReplay = '',
+    [ValidateRange(0,899)][int]$ReplayStartFrame = 0,
+    [ValidateSet('revised','previous')][string]$SafariRideProfile = 'revised',
     [switch]$WheelInspect,
     [switch]$VehiclePortrait,
     [switch]$PortraitOrbit,
@@ -27,6 +30,12 @@ $ErrorActionPreference = 'Stop'
 if ($PhysicsAudit -and ($Example -ne 'timber_rally' -or $Capture -or $Sequence -or $AutoDrive -or $SelfTest)) {
     throw 'PhysicsAudit is a CPU-only timber_rally audit and cannot be combined with graphics capture or driving.'
 }
+if ($RideReplay) {
+    if ($Example -ne 'timber_rally' -or (-not $PhysicsAudit -and (-not $Sequence -or $WarmupFrames -ne 0 -or $VehiclePortrait))) { throw 'Suspension replay requires a CPU audit or native sequence without warmup/portrait.' }
+    $RideReplay = (Resolve-Path -LiteralPath $RideReplay).Path
+}
+if ($ReplayStartFrame -and (-not $RideReplay -or $PhysicsAudit)) { throw 'ReplayStartFrame requires a native suspension replay.' }
+if ($SafariRideProfile -eq 'previous' -and (-not $RideReplay -or $Vehicle -ne 'safari')) { throw 'Previous Safari tuning is available only for a matched suspension replay.' }
 Set-Location -LiteralPath $PSScriptRoot
 . (Join-Path $PSScriptRoot 'scripts/EvaluationHash.ps1')
 $logRoot = Join-Path $PSScriptRoot 'build\sessions'
@@ -67,6 +76,7 @@ try {
         if (-not (Test-Path -LiteralPath $exe)) { throw 'Build the evaluation first with Build-Playground.ps1.' }
         $arguments = @()
         if ($PhysicsAudit) { $arguments += @('--physics-audit', ('"' + (Join-Path $session 'physics-audit') + '"')) }
+        if ($RideReplay) { $arguments += @('--ride-replay', ('"' + $RideReplay + '"'),'--safari-ride-profile',$SafariRideProfile,'--replay-start',[string]$ReplayStartFrame) }
         if ($Sequence -and ($Capture -or $Example -ne 'timber_rally')) { throw 'Sequence recording is supported only for timber_rally, separately from a still capture.' }
         if ($CaptureScale -eq 2) {
             if ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence)) { throw 'The 1920x1200 profile is an explicit rally capture only.' }
@@ -114,6 +124,7 @@ try {
             ConvertTo-Json | Set-Content -LiteralPath $active
     }
     $binarySha256=Get-EvaluationSha256 -LiteralPath $exe
+    $rideReplaySha256=if($RideReplay){Get-EvaluationSha256 -LiteralPath $RideReplay}else{$null}
     $vehicleAssetSha256=$null
     $vehicleAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
     if ($Example -eq 'timber_rally' -and $Vehicle -eq 'safari' -and (Test-Path -LiteralPath $vehicleAsset)) { $vehicleAssetSha256=Get-EvaluationSha256 -LiteralPath $vehicleAsset }
@@ -140,7 +151,7 @@ try {
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;physicsAudit=[bool]$PhysicsAudit;graphicsStarted=(-not $PhysicsAudit -and -not $SelfTest);scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;physicsAudit=[bool]$PhysicsAudit;graphicsStarted=(-not $PhysicsAudit -and -not $SelfTest);rideReplay=$RideReplay;rideReplaySha256=$rideReplaySha256;replayStartFrame=$ReplayStartFrame;safariRideProfile=$SafariRideProfile;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }

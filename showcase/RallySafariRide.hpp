@@ -3,18 +3,33 @@
 #include <limits>
 
 namespace rally {
+struct SafariRideTuning {
+    float pitchInertia=950.f,rollInertia=650.f;
+    float restingTravel=.38f,frontSpringRate=22500.f,rearSpringRate=31500.f;
+    float lowCompression=2100.f,lowRebound=5000.f,damperKnee=.35f;
+    float highCompression=500.f,highRebound=1100.f;
+    static constexpr SafariRideTuning previous(){
+        SafariRideTuning t;t.pitchInertia=1800.f;t.rollInertia=950.f;
+        t.restingTravel=.35f;t.frontSpringRate=22500.f;t.rearSpringRate=31500.f;
+        t.lowCompression=2100.f;t.lowRebound=3200.f;t.damperKnee=.35f;
+        t.highCompression=4200.f;t.highRebound=6400.f;return t;
+    }
+};
 // Seven vertical degrees of freedom: sprung heave/pitch/roll and one unsprung
 // wheel coordinate per corner. Horizontal motion remains the rally controller.
 // Compliant tyre contact and internal bump/droop impulses are distinct;
 // rebound damping may pull on the body without pulling on the ground.
 struct SafariRideState {
     static constexpr float sprungMass=920.f,unsprungMass=38.f,gravity=9.81f;
-    static constexpr float pitchInertia=1800.f,rollInertia=950.f;
+    // Compatibility aliases describe the default tune. Actual integration and
+    // energy calculations use the instance's tuning, including v2 comparisons.
+    static constexpr float pitchInertia=SafariRideTuning{}.pitchInertia,rollInertia=SafariRideTuning{}.rollInertia;
     static constexpr float cgHeight=.68f,cgLongitudinal=-.25f;
-    static constexpr float restingTravel=.35f;
+    static constexpr float restingTravel=SafariRideTuning{}.restingTravel;
     static constexpr float integrationStep=1.f/360;
     static constexpr float tyreStiffness=220000.f,tyreDamping=1500.f,maximumTyreCompression=.045f;
     VehicleDimensions dimensions=safariDimensions;
+    SafariRideTuning tuning;
     Vector3 chassis,previousPosition,planarPosition;
     float heading=0,previousHeading=0,centerY=0;
     float heaveVelocity=0,pitch=0,roll=0,pitchVelocity=0,rollVelocity=0;
@@ -33,10 +48,11 @@ struct SafariRideState {
         const float frontFraction=(dimensions.halfWheelbase+cgLongitudinal)/(2*dimensions.halfWheelbase);
         return sprungMass*gravity*(i<2?frontFraction:1-frontFraction)*.5f;
     }
-    static float springRate(int i){return i<2?22500.f:31500.f;}
-    static float damping(float speed){
-        // Separate low-speed body control and progressive high-speed valving.
-        const float v=std::abs(speed),knee=.35f,low=speed>=0?2100.f:3200.f,high=speed>=0?4200.f:6400.f;
+    static float springRate(int i,const SafariRideTuning& tune=SafariRideTuning{}){return i<2?tune.frontSpringRate:tune.rearSpringRate;}
+    static float damping(float speed,const SafariRideTuning& tune=SafariRideTuning{}){
+        // Low shaft speeds control the body; the revised tune blows off at
+        // impact speeds so the wheel can move rather than kicking the platform.
+        const float v=std::abs(speed),knee=tune.damperKnee,low=speed>=0?tune.lowCompression:tune.lowRebound,high=speed>=0?tune.highCompression:tune.highRebound;
         return std::copysign(low*std::min(v,knee)+high*std::max(0.f,v-knee),speed);
     }
     float travelForHeight(int i,float y,const Quaternion& q)const {
@@ -68,10 +84,10 @@ struct SafariRideState {
         c.gap=c.world.y-floor;return c;
     }
     using Jacobian=std::array<float,4>; // body Y, pitch, roll, this wheel Y
-    float inverseMass(const Jacobian& j)const{return j[0]*j[0]/sprungMass+j[1]*j[1]/pitchInertia+j[2]*j[2]/rollInertia+j[3]*j[3]/unsprungMass;}
+    float inverseMass(const Jacobian& j)const{return j[0]*j[0]/sprungMass+j[1]*j[1]/tuning.pitchInertia+j[2]*j[2]/tuning.rollInertia+j[3]*j[3]/unsprungMass;}
     float normalVelocity(int i,const Jacobian& j)const{return j[0]*heaveVelocity+j[1]*pitchVelocity+j[2]*rollVelocity+j[3]*wheelVelocity[i];}
-    void impulse(int i,const Jacobian& j,float amount){heaveVelocity+=j[0]*amount/sprungMass;pitchVelocity+=j[1]*amount/pitchInertia;rollVelocity+=j[2]*amount/rollInertia;wheelVelocity[i]+=j[3]*amount/unsprungMass;}
-    void project(int i,const Jacobian& j,float amount){centerY+=j[0]*amount/sprungMass;pitch+=j[1]*amount/pitchInertia;roll+=j[2]*amount/rollInertia;wheelY[i]+=j[3]*amount/unsprungMass;updateOrigin();}
+    void impulse(int i,const Jacobian& j,float amount){heaveVelocity+=j[0]*amount/sprungMass;pitchVelocity+=j[1]*amount/tuning.pitchInertia;rollVelocity+=j[2]*amount/tuning.rollInertia;wheelVelocity[i]+=j[3]*amount/unsprungMass;}
+    void project(int i,const Jacobian& j,float amount){centerY+=j[0]*amount/sprungMass;pitch+=j[1]*amount/tuning.pitchInertia;roll+=j[2]*amount/tuning.rollInertia;wheelY[i]+=j[3]*amount/unsprungMass;updateOrigin();}
     template<class Height> float groundConstraint(int i,float steer,Height height)const {const auto c=contact(i,steer,height);return wheelY[i]-c.world.y+c.gap;}
     template<class Height> Jacobian groundJacobian(int i,float steer,Height height){
         Jacobian j;constexpr float e=.0005f;std::array<float*,4> coordinates{&centerY,&pitch,&roll,&wheelY[i]};
@@ -80,8 +96,8 @@ struct SafariRideState {
         return j;
     }
     template<class Height> void reset(const Vector3& position,float yaw,Height height,const VehicleDimensions& dims=safariDimensions){
-        *this=SafariRideState{};dimensions=dims;heading=previousHeading=yaw;previousPosition=planarPosition=position;
-        const auto road=roadPose(position,yaw,height,dims);chassis={position.x,road.ride+dimensions.staticTravel-restingTravel,position.z};pitch=road.pitch;roll=road.roll;
+        const auto selectedTuning=tuning;*this=SafariRideState{};tuning=selectedTuning;dimensions=dims;heading=previousHeading=yaw;previousPosition=planarPosition=position;
+        const auto road=roadPose(position,yaw,height,dims);chassis={position.x,road.ride+dimensions.staticTravel-tuning.restingTravel,position.z};pitch=road.pitch;roll=road.roll;
         auto q=orientation();constrainRide(chassis,q,0,height,dimensions);centerY=chassis.y+cgOffset().applyQuaternion(q).y;updateOrigin();
         for(int i=0;i<4;++i){const auto c=wheelContact(i,chassis,q,0,height,false,dimensions);travel[i]=c.requested;
             wheelY[i]=c.world.y;previousGround[i]=c.world.y-c.gap;grounded[i]=true;forces[i]=preload(i)+unsprungMass*gravity;springForces[i]=preload(i);}
@@ -116,10 +132,10 @@ struct SafariRideState {
                 // The wheel moves relative to its own body attachment. The
                 // derivative comes from velocities, never a projection delta.
                 const float rate=(wheelVelocity[i]-heaveVelocity-jp[i]*pitchVelocity-jr[i]*rollVelocity)/std::max(.6f,Vector3(0,1,0).applyQuaternion(q).y);
-                const float compression=travel[i]-restingTravel;
+                const float compression=travel[i]-tuning.restingTravel;
                 const float bump=std::max(0.f,travel[i]-(dimensions.bump-.035f));
                 const float droop=std::max(0.f,dimensions.droop+.025f-travel[i]);
-                springForces[i]=std::max(0.f,preload(i)+springRate(i)*compression)+damping(rate)+2200000.f*bump*bump-1400000.f*droop*droop;
+                springForces[i]=std::max(0.f,preload(i)+springRate(i,tuning)*compression)+damping(rate,tuning)+2200000.f*bump*bump-1400000.f*droop*droop;
                 const float deflection=roadY[i]-wheelY[i];
                 load[i]=deflection>0?std::max(0.f,tyreStiffness*deflection+tyreDamping*(roadVelocity[i]-normalVelocity(i,groundJ[i]))):0;
             }
@@ -131,7 +147,7 @@ struct SafariRideState {
                 fy+=force+load[i]*groundJ[i][0];tx+=jp[i]*force+load[i]*groundJ[i][1];tz+=jr[i]*force+load[i]*groundJ[i][2];
                 wheelVelocity[i]+=(-unsprungMass*gravity-force+load[i]*groundJ[i][3])/unsprungMass*h;wheelY[i]+=wheelVelocity[i]*h;}
             heaveVelocity+=fy/sprungMass*h;centerY+=heaveVelocity*h;
-            pitchVelocity+=(tx-100*pitchVelocity)/pitchInertia*h;rollVelocity+=(tz-100*rollVelocity)/rollInertia*h;
+            pitchVelocity+=(tx-100*pitchVelocity)/tuning.pitchInertia*h;rollVelocity+=(tz-100*rollVelocity)/tuning.rollInertia*h;
             pitch+=pitchVelocity*h;roll+=rollVelocity*h;updateOrigin();
             // Both constraints retain the finite wheel mass. Alternating their
             // unilateral impulses handles bump-plus-ground contact without

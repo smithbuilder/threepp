@@ -18,6 +18,7 @@
 #include "RallyRoadContact.hpp"
 #include "RallySafariStage.hpp"
 #include "SafariRideAudit.hpp"
+#include "SafariRideComparison.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
 #include "threepp/extras/vegetation/TreeGenerator.hpp"
@@ -81,12 +82,19 @@ int main(int argc, char** argv) {
     try {
         if(argc>1&&std::string(argv[1])=="--physics-audit"){
             if(argc<3||!std::getenv("THREEPP_EVALUATION_MODE"))throw std::runtime_error("CPU physics audit requires its supervised output directory");
+            for(int i=3;i+1<argc;++i)if(std::string(argv[i])=="--ride-replay"){
+                rally::safariRideRegressions();rally::compareRideReplay(argv[i+1],argv[2]);return 0;
+            }
             return rally::runSafariRideAudit(argv[2]); // No Canvas/audio/renderer.
         }
         bool scripted = false,wheelInspect=false,portrait=false,portraitOrbit=false,safari=false; int frames = 0, limit = 0, initialView=0, warmup=0,captureScale=1; std::string shot, telemetry, sequence,portraitAngle="front",portraitLight="rear",portraitEnvironment="forest",portraitShadows="default";
+        std::string rideReplayPath,safariRideProfile="revised";int replayStart=0;
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
             if (a == "--autodrive") scripted = true;
+            else if(a=="--ride-replay"&&i+1<argc)rideReplayPath=argv[++i];
+            else if(a=="--safari-ride-profile"&&i+1<argc)safariRideProfile=argv[++i];
+            else if(a=="--replay-start"&&i+1<argc)replayStart=std::stoi(argv[++i]);
             else if (a == "--wheel-inspect") wheelInspect=true;
             else if (a == "--portrait") portrait=true;
             else if(a=="--portrait-angle"&&i+1<argc)portraitAngle=argv[++i];
@@ -104,6 +112,14 @@ int main(int argc, char** argv) {
             else if (a == "--warmup" && i + 1 < argc) warmup=std::clamp(std::stoi(argv[++i]),0,900);
         }
         if(!sequence.empty()&&(!shot.empty()||limit<1||limit>900))throw std::runtime_error("Sequence capture requires 1..900 frames and no --shot");
+        const auto rideReplay=rideReplayPath.empty()?std::vector<rally::RideReplayInput>{}:rally::readRideReplay(rideReplayPath);
+        const bool comparison=!rideReplay.empty();std::size_t replayCursor=0;
+        if(safariRideProfile!="previous"&&safariRideProfile!="revised")throw std::runtime_error("Unknown Safari ride tuning");
+        if(comparison){
+            if(sequence.empty()||warmup||portrait||replayStart<0||replayStart>899||!std::getenv("THREEPP_EVALUATION_MODE")||limit+replayStart>rideReplay.back().frame+1)throw std::runtime_error("Suspension comparison requires a bounded native sequence and sufficient inputs");
+            scripted=true;
+        }
+        if(safariRideProfile=="previous"&&(!comparison||!safari))throw std::runtime_error("Previous tuning is inspection-only");
         rally::CameraModes cameras(initialView);int& view=cameras.view;
         rally::SafariCameraTracking safariCameraTracking;
         const bool captureMode=!shot.empty()||!sequence.empty();
@@ -117,7 +133,7 @@ int main(int argc, char** argv) {
                 <<"frame,driving,time,dt,x,z,heading,steer,acceleration,lateral\n";
         }
         const float inspectionFloor=groundHeight(0,90)+.02f;
-        const bool safariStage=safari; // Course stays fixed when switching cars.
+        const bool safariStage=safari||comparison; // Course stays fixed when switching cars.
         std::shared_ptr<rally::RoadContactSurface> roadContact,landContact;
         auto vehicleHeight=[&](float x,float z){
             if(portrait)return inspectionFloor;
@@ -131,7 +147,7 @@ int main(int argc, char** argv) {
         if(portraitOrbit&&(!portrait||sequence.empty()||(portraitAngle!="front"&&portraitAngle!="side"&&portraitAngle!="rear")))throw std::runtime_error("Portrait orbit requires an inspection sequence");
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
-            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted,heave,pitch,roll,forceFL,forceFR,forceRL,forceRR,cameraBoomFraction,cameraBlocked,cameraForecastFraction,cameraHardClamped,exhaustPitch0,exhaustGain0,exhaustPitch1,exhaustGain1,exhaustPitch2,exhaustGain2,gapFL,gapFR,gapRL,gapRR\n";}
+            if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<std::setprecision(std::numeric_limits<float>::max_digits10)<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted,heave,pitch,roll,forceFL,forceFR,forceRL,forceRR,cameraBoomFraction,cameraBlocked,cameraForecastFraction,cameraHardClamped,exhaustPitch0,exhaustGain0,exhaustPitch1,exhaustGain1,exhaustPitch2,exhaustGain2,gapFL,gapFR,gapRL,gapRR,shockFL,shockFR,shockRL,shockRR\n";}
         const bool bounded = limit > 0;
         auto assetDir=std::filesystem::absolute(argv[0]).parent_path()/"rally-assets";
         TextureLoader textureLoader;
@@ -264,6 +280,15 @@ int main(int argc, char** argv) {
         auto buggy=safari?rally::makeSafari(assetDir):rally::makeBuggy();applySafariConfiguration(buggy);auto car=buggy.car,body=buggy.body;scene->add(car);
         const auto& dimensions=buggy.dimensions;
         auto& wheelPivots=buggy.pivots;auto& wheelRolls=buggy.rolls;
+        if(safari&&wheelInspect){
+            // Service cutaway, capture-only: expose the working mechanism,
+            // retaining the engine, exhaust, chassis and both shock mounts.
+            body->traverseType<Mesh>([](Mesh& mesh){
+                const auto& name=mesh.name;
+                if(name.starts_with("body.")||name.starts_with("arch.")||name.starts_with("cabin.")||name.starts_with("interior.")||name.starts_with("door.")||name.starts_with("livery."))mesh.visible=false;
+            });
+            wheelPivots[3]->visible=false;
+        }
         // Conform the cheap ambient shadow to the actual surface, not a floating plane.
         auto carShadowGeometry=PlaneGeometry::create(2.7f,3.6f,4,6);carShadowGeometry->rotateX(-PI/2);
         auto carShadow=Mesh::create(carShadowGeometry,rally::shadowMaterial(.20f));carShadow->frustumCulled=false;scene->add(carShadow);
@@ -277,6 +302,7 @@ int main(int argc, char** argv) {
         int cameraBlocks=0,cameraInvalid=0,cameraTargetInside=0,cameraHardClamps=0,cameraForecastRejected=0;
         float minCameraBoom=1,cameraBoomFraction=1,cameraForecastFraction=1;bool cameraWasBlocked=false,cameraHardClamped=false;
         Driver driver;
+        if(safariRideProfile=="previous")driver.ride.compliant.tuning=rally::SafariRideTuning::previous();
         if(safari||safariStage)driver.position.y=vehicleHeight(driver.position.x,driver.position.z);
         // Diagnostic car orientation only: the same world sun, probe and
         // exposure also illuminate the front quarter in a second still.
@@ -331,7 +357,7 @@ int main(int argc, char** argv) {
             h.time=driver.finished?driver.lastLap:driver.elapsed;h.best=driver.best;
             h.progress=driver.finished?1.f:near.a/(2*PI);h.heading=driver.heading;h.x=driver.position.x;h.z=driver.position.z;
             h.nextDistance=Vector2(driver.position.x-gate.x,driver.position.z-gate.z).length();h.next=driver.next;
-            h.inspection=portrait;h.scripted=scripted;h.finished=driver.finished;h.muted=muted;h.menu=!raceStarted||paused||driver.finished||wheelInspect||portrait;h.safari=safari;
+            h.inspection=portrait;h.suspensionCutaway=safari&&wheelInspect;h.scripted=scripted;h.finished=driver.finished;h.muted=muted;h.menu=!raceStarted||paused||driver.finished||wheelInspect||portrait;h.safari=safari;
             rally::drawHud(h,hudFont);
             const auto flags=ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoBackground;
             ImGui::PushFont(hudFont);
@@ -401,7 +427,21 @@ int main(int argc, char** argv) {
             if(resetClockRequested){accumulator=0;resetClockRequested=false;}
             const bool counting=countdown>0;
             if(counting)countdown=std::max(0.f,countdown-dt);
-            if (!paused && !driver.finished && raceStarted && !counting) accumulator += dt;
+            if(comparison){
+                while(replayCursor<rideReplay.size()&&rideReplay[replayCursor].frame<=frames+replayStart){const auto& row=rideReplay[replayCursor++];
+                    auto nextPosition=Vector3(row.x,vehicleHeight(row.x,row.z),row.z);
+                    driver.motion=nextPosition.clone().sub(driver.position);driver.motion.y=0;driver.motion.multiplyScalar(1/row.dt);
+                    driver.velocity=driver.motion.length();driver.heading=row.heading;driver.steer=row.steer/.4f;driver.position=nextPosition;
+                    driver.yawRate=driver.velocity>.001f?row.lateral/driver.velocity:0;driver.throttle=rally::safariCruiseCommand(driver.velocity,false).throttle;
+                    driver.wheelAngle+=driver.velocity*row.dt/dimensions.tyreRadius;worldTime=row.time;driver.elapsed=row.time;
+                    recordRideInput(row.driving,row.dt,row.acceleration,row.lateral);
+                    driver.ride.step(driver.position,row.heading,row.steer,row.acceleration,row.lateral,row.dt,vehicleHeight);
+                    const auto road=rally::roadPose(driver.position,driver.heading,vehicleHeight,dimensions);
+                    driver.maxHeave=std::max(driver.maxHeave,std::abs(driver.ride.chassis.y-road.ride));driver.maxRoll=std::max(driver.maxRoll,std::abs(driver.ride.roll));
+                    const auto gate=track(driver.next*2*PI/8);if(std::hypot(driver.position.x-gate.x,driver.position.z-gate.z)<7)driver.next=(driver.next+1)%8;
+                }
+            }
+            if (!comparison && !paused && !driver.finished && raceStarted && !counting) accumulator += dt;
             while (accumulator >= 1.f/120) {
                 constexpr float step = 1.f/120; accumulator -= step; worldTime += step;
                 auto near = nearest(driver.position);
@@ -541,9 +581,21 @@ int main(int argc, char** argv) {
                 if(frontDetail)target.addScaledVector(forward,1.75f);
                 camera->lookAt(target);camera->nearPlane=.05f;camera->fov=35;
             }else if(wheelInspect){
-                const auto center=wheelContacts[3].world;
-                camera->position.copy(center).add(Vector3(1.9f,.40f,-.9f).applyQuaternion(chassisQ));camera->up.set(0,1,0);
-                camera->lookAt(center.clone().add(Vector3(0,.03f,0)));camera->nearPlane=.05f;camera->fov=42;
+                if(safari){
+                    // The outer tyre hid the mechanism in the old inspection
+                    // angle. Inspect the service cutaway obliquely from beside
+                    // the rear corner, aiming at both actual shock pickups.
+                    const auto& shock=buggy.suspension.shocks[3];
+                    const auto foot=rally::coiloverFoot(3,wheelContacts[3].local,dimensions,shock.lowerInboard);
+                    auto target=shock.top.clone().lerp(foot,.5f).applyQuaternion(chassisQ).add(chassis);
+                    camera->position.copy(Vector3(2.3f,.82f,-1.85f).applyQuaternion(chassisQ).add(chassis));
+                    camera->position.y=std::max(camera->position.y,vehicleHeight(camera->position.x,camera->position.z)+.15f);
+                    camera->up.set(0,1,0);camera->lookAt(target);camera->nearPlane=.05f;camera->fov=48;
+                }else{
+                    const auto center=wheelContacts[3].world;
+                    camera->position.copy(center).add(Vector3(1.9f,.40f,-.9f).applyQuaternion(chassisQ));camera->up.set(0,1,0);
+                    camera->lookAt(center.clone().add(Vector3(0,.03f,0)));camera->nearPlane=.05f;camera->fov=42;
+                }
             }else if(view==3){
                 const auto pose=rally::cockpitPose(chassis,chassisQ,buggy.eye);camera->position.copy(pose.eye);camera->up.copy(pose.up);camera->lookAt(pose.target);
                 camera->nearPlane=.055f;camera->fov=74;
@@ -551,12 +603,12 @@ int main(int argc, char** argv) {
                 camera->up.set(0,1,0);camera->nearPlane=.1f;
                 Vector3 desired=driver.position.clone().addScaledVector(forward,view==1?-4.8f:view==2?-3.7f:-6.6f).add(Vector3(0,view==1?2.1f:3.0f,0));
                 if(view==2)desired.addScaledVector(right,4.1f);
-                if(safari&&view==2){
+                if((safari||comparison)&&view==2){
                     desired=rally::safariSideCameraPosition(driver.position,forward,right,vehicleHeight);
                 }
                 desired.y=std::max(desired.y,groundHeight(desired.x,desired.z)+1.25f);
                 const auto cameraTarget=driver.position.clone().addScaledVector(forward,view==2?0.f:2.8f).add(Vector3(0,1.1f,0));
-                if(safari){
+                if(safari||comparison){
                     rally::SafariCameraClearanceReport cameraCheck;
                     const auto cameraVelocity=(!paused&&raceStarted&&!counting&&!driver.finished)?driver.motion:Vector3();
                     camera->position.copy(rally::safariTrackClearCamera(cameraTarget,desired,cameraVelocity,dt,cameras.cut,cameraBarriers,safariCameraTracking,&cameraCheck,.30f,true));
@@ -577,7 +629,8 @@ int main(int argc, char** argv) {
                 renderer.writeFramebuffer(std::filesystem::path(sequence)/name);
                 frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<','<<wheelContacts[0].local.y<<','<<wheelContacts[1].local.y<<','<<wheelContacts[2].local.y<<','<<wheelContacts[3].local.y<<','<<dustSimulation.serial<<','<<driver.heave<<','<<driver.pitch<<','<<driver.roll;for(float force:driver.ride.forces)frameData<<','<<force;frameData<<','<<cameraBoomFraction<<','<<cameraWasBlocked<<','<<cameraForecastFraction<<','<<cameraHardClamped;
                 for(int i=0;i<3;++i){const auto band=exhaustBand(i,paused);frameData<<','<<band.pitch<<','<<band.gain;}
-                for(const auto& contact:wheelContacts)frameData<<','<<contact.gap;frameData<<'\n';}
+                for(const auto& contact:wheelContacts)frameData<<','<<contact.gap;
+                for(const auto& shock:buggy.suspension.shocks)frameData<<','<<shock.length;frameData<<'\n';}
             ++frames;
             if (bounded && frames >= limit + (sequence.empty()?0:warmup)) {
                 if (!shot.empty()) renderer.writeFramebuffer(shot);
@@ -588,7 +641,7 @@ int main(int argc, char** argv) {
             <<",\"rearClearanceSamples\":"<<rearClearanceSamples<<",\"minRearGroundClearance\":"<<(rearClearanceSamples?minRearGroundClearance:0)<<",\"minRearClearanceFrame\":"<<minRearClearanceFrame<<",\"inputEvents\":" << inputEvents
             <<",\"cameraBlocks\":"<<cameraBlocks<<",\"cameraInvalid\":"<<cameraInvalid<<",\"cameraTargetInside\":"<<cameraTargetInside<<",\"minCameraBoom\":"<<minCameraBoom
             <<",\"cameraHardClamps\":"<<cameraHardClamps<<",\"cameraForecastRejected\":"<<cameraForecastRejected
-            <<",\"stageProfile\":\""<<(safariStage?"graded-safari-45mm":"original-rough-170mm")<<"\",\"audioProfile\":\""<<(safari?"safari-deep-v1":"cinder-recorded")<<"\"}"; }
+            <<",\"stageProfile\":\""<<(safariStage?"graded-safari-45mm":"original-rough-170mm")<<"\",\"suspensionComparison\":"<<comparison<<",\"suspensionCutaway\":"<<(safari&&wheelInspect)<<",\"safariRideProfile\":\""<<safariRideProfile<<"\",\"audioProfile\":\""<<(safari?"safari-deep-v1":"cinder-recorded")<<"\"}"; }
         return 0;
     } catch (std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
 }

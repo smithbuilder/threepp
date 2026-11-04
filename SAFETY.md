@@ -1,5 +1,24 @@
 # Conservative evaluation after a full-system lock
 
+November4 suspension comparison uses the same limits. `-RideReplay` is a
+capture-only prescribed-input diagnostic (or a CPU-only `-PhysicsAudit`).
+Its original buggy, previous Safari and revised Safari share the same actual
+road and planar inputs. `-ReplayStartFrame` advances prior physics on the CPU
+before capturing, without increasing resolution, FPS or GPU warmup frames.
+The previous tune cannot be selected in normal play. Five native takes completed
+sequentially with exit0 and empty stderr; the normal20s drive is session
+`20261104-070154-625`. No graphics pause or active evaluation remains.
+
+The subsequent mechanical audit found and repaired a real moving-seat/tower
+interference and insufficient rotating-shaft room. The final six CPU checks
+pass in25.70s, including221 travel poses, original failure fixtures, body/tyre
+clearance and actual gusset containment. Final signed renderer9184E0FD completed
+cutaway075620-955, front075832-112, rear080041-384 and normal080232-924 sequentially
+on November4, each with exit0/empty stderr. The36s final movie assembles1080
+native960x600 frames across these four separately supervised sessions. It does
+not raise the capture resolution or frame rate. The service cutaway is explicitly
+labelled and is capture-only; the complete car remains in normal driving.
+
 November3 movement/audio revision: the signed game has a CPU-only
 `Run-Evaluation.ps1 -Example timber_rally -Vehicle safari -PhysicsAudit` mode
 that returns before Canvas/audio/renderer construction. It uses the same

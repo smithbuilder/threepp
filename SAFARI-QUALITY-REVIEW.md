@@ -14,7 +14,88 @@ records its reviewer evidence separately.
 | Accessories/mechanical detail |20%|
 | In-engine fit/lighting |15%|
 
-## Current movement and sound iteration
+## Current suspension comparison, November 4
+
+The user rejected the November 3 film's boat-like body motion and stiff wheels.
+Its earlier bounded motion PASS is reopened; it did not establish the requested
+supple wheel response and controlled body return. The original buggy's exposed
+rig and 520 mm travel cannot simply be copied inside the Safari's 220 mm envelope.
+
+The corrected signed review build is `9184E0FDF1D0FC0BCE8B5792A4358B67DD8CEF31AADE0EBD6AD2422009B86F1F`.
+Body `82795FE6` remains unchanged. The revised tune reduces body inertia, provides
+100 mm extension from rest instead of 70 mm and uses genuine digressive damping.
+The actual road, audio, normal driving cameras and original buggy tuning are unchanged.
+
+The service cutaway exposed a genuine mechanical defect that the old body-only
+clearance test missed: the forward rear tower tube passed through the upper
+spring seat at every travel position. Both upper approaches now run around the
+seat/coil sweep in a braced, gusseted tower. A first repair left only 4.17 mm to
+the rotating axle at full bump, so its lower diagonal was rerouted above the axle.
+The original seat collision, close-axle candidate and rejected routes remain in
+`build/safari-suspension-v3/packaging-audit` with reproducible evidence.
+
+The final C++ 221-pose triangle/capsule sweep reports 13.00 mm upper-seat room,
+34.87 mm coil room, 6.31 mm at the articulated eye, 32.85 mm drive-axle room,
+15.92 mm other-hardware room and at least 20.38 mm body/tower room. It explicitly
+rejects the old seat collision in all 221 poses and reproduces the first
+repair's insufficient axle gap. The shaft now has its own 15 mm minimum gate.
+Actual gusset surfaces lie inside the checked support envelopes. Legacy
+geometry and both frozen ride profiles pass their existing checks.
+
+All six selected CPU checks pass in 25.70 s after the final repair. Matched-path CPU audit `065816-439` gives
+36% lower relative-to-road pitch RMS, almost unchanged single-wheel compression
+with 26% less body lift, and 0.322 s isolated bump recovery. Numerical tests support
+the comparison; fresh native images and independent review decide visual quality.
+See `showcase/SAFARI-RIDE.md` for coefficients, preserved failed candidates,
+criterion refinement and the limits of prescribed-input evidence.
+
+Earlier matched takes, all from the suspension-tuning build `97BEB25B`, are `070002-959` (original
+buggy), `065919-482` (previous Safari) and `065835-228` (revised Safari), under the
+November 4 session folders. Each captures source frames 420-599 of the exact
+November 3 ride-input CSV. Their eleven pose/travel/shock fields match the CPU
+replay exactly at all 180 frames; shared time/speed/camera fields match exactly.
+The preserved previous profile also matches the old film within CSV rounding.
+
+The additional wheel/arch closeup is `070115-323`. Much of the physical coilover
+remains behind the wheel and fender, so that view cannot prove that every pin
+and shaft is visually readable. The normal closed-loop drive is `070154-625`:
+600 frames/20 s, zero obstacle contacts, actual travel 302-498 mm, two finite-mass
+travel-stop corrections and 216 mm minimum rear ground clearance. All five
+native sessions exited 0 with empty stderr under the existing guards.
+
+`build/safari-suspension-v3/Safari-Suspension-Comparison.mp4` contains three
+native six-second sections with small labels and no audio. The normal drive
+with runtime-control-reconstructed exhaust is `Safari-Revised-Drive.mp4` in
+that folder. Source manifests, native-data bindings and encoder proof remain
+alongside them. Independent encoded-file review passed the clean-caption
+comparison and normal film from that build; those artifacts predate the tower
+repair and are retained as motion-tuning history. The independent body review
+accepts reduced lingering crest/landing rocking within scope, while noting that
+some crest stills remain detached-looking and the open buggy exposes its
+articulation more clearly. It is not user or physical-control acceptance.
+The corrected mechanism passes its fresh scoped review under
+`review-independent/corrected-mechanism-9184/FINAL-REVIEW.md`. The reviewer
+inspected every adjacent cutaway frame 80-127 plus compression/extension extrema,
+read the separate full-travel C++ results, and independently rebound all 39
+native CSV fields over 600 final driving frames. Fresh driving/front/rear
+portrait samples show no major new regression. Opaque normal bodywork still
+hides much of the mechanism; the explicitly labelled service cutaway exposes it
+for inspection rather than changing the playable car.
+
+The requested final native scene is
+`build/safari-suspension-v3/Cinder-Safari-In-Engine-Scene.mp4`: 36 s at native
+960x600/30 FPS, front orbit 6 s, rear orbit 4 s, normal driving 20 s and labelled
+cutaway 6 s. Its four source sessions are `075832-112`, `080041-384`,
+`080232-924` and `075620-955` (November 4), all from exact signed renderer
+`9184E0FD` and body `82795FE6`. Movie SHA256 is
+`5431A3FEF979242C3AC6D6803C01556AEBAECD75A04F067FD4ADB512082678A7`.
+The encoder's full decode passes and reconstructed recorded exhaust measures
+-19.7 LUFS/-3.0 dBTP. Fresh independent exact-file verification passes all
+1,080 ordered frames, four native source bindings, sampled cuts and explicit
+cutaway disclosure; see `FINAL-SCENE-REVIEW.md/json`. No higher-resolution capture,
+generated picture, human-controls or subjective-audio acceptance is inferred.
+
+## Earlier movement and sound iteration
 
 The user rejected the first film's movement and exhaust. Its technical
 delivery pass did not establish convincing motion or sound. The fresh

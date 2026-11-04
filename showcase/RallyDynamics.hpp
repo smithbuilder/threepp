@@ -31,7 +31,7 @@ struct RideDynamics {
     }
 
     template<class Height> void reset(const Vector3& position,float heading,Height height,const VehicleDimensions& dims=buggyDimensions,RideContactResponse response=RideContactResponse::Legacy){
-        const auto selected=dims;*this=RideDynamics{};dimensions=selected;contactResponse=response;
+        const auto selected=dims;const auto tuning=compliant.tuning;*this=RideDynamics{};dimensions=selected;contactResponse=response;compliant.tuning=tuning;
         if(response==RideContactResponse::Compliant){compliant.reset(position,heading,height,selected);syncCompliant();ready=true;return;}
         auto road=roadPose(position,heading,height,dimensions);
         chassis={position.x,road.ride,position.z};pitch=road.pitch;roll=road.roll;
