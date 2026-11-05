@@ -1,0 +1,30 @@
+[
+  {
+    "name": "baja-ruts",
+    "session": "build/sessions/20261105-065433-926"
+  },
+  {
+    "name": "buggy-whoops",
+    "session": "build/sessions/20261105-065500-273"
+  },
+  {
+    "name": "safari-hills",
+    "session": "build/sessions/20261105-065548-364"
+  },
+  {
+    "name": "safari-ridge",
+    "session": "build/sessions/20261105-065709-733"
+  },
+  {
+    "name": "safari-side-slope",
+    "session": "build/sessions/20261105-065748-633"
+  },
+  {
+    "name": "baja-wind",
+    "session": "build/sessions/20261105-065812-825"
+  },
+  {
+    "name": "baja-wind-side",
+    "session": "build/sessions/20261105-070202-734"
+  }
+]

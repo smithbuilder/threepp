@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-05",
+  "status": "PASS",
+  "binarySha256": "ed6427e687ad00437d1cf34320ef313796530c212a5422a8ce5bbd1062642ed8",
+  "signature": "Valid; Oliver Smith; verified with signing helper and Get-AuthenticodeSignature",
+  "physicsAudit": "build\\sessions\\20261105-062016-252",
+  "physicsChecks": {
+    "status": "PASS",
+    "passed": 79,
+    "failed": 0,
+    "solver": "Bullet 3.25 rigid body and raycast vehicle",
+    "physicsHz": 240,
+    "terrainTriangles": 232320,
+    "vehicles": 3,
+    "stations": 8,
+    "scope": "Static equilibrium, drop decay, free fall, grade hold and release, grip-limited sliding, steering, replay repeatability, wind scaling/load transfer/gusts, relative airflow and six trail stress runs per vehicle. Both jumps leave the ground and land upright. No subjective handling acceptance."
+  },
+  "existingCpuTests": {
+    "passed": 6,
+    "log": "build/suspension-playground/existing-cpu-tests.log"
+  },
+  "preflightChecks": [
+    {
+      "passed": true,
+      "name": "unknown vehicle",
+      "message": "That vehicle is not in the tested playground catalogue."
+    },
+    {
+      "passed": true,
+      "name": "unsupported capture size",
+      "message": "The 1920x1200 profile is an explicit rally capture only."
+    },
+    {
+      "passed": true,
+      "name": "legacy vehicle protection",
+      "message": "This vehicle is available only in the suspension playground."
+    }
+  ],
+  "nativeSessions": [
+    {
+      "label": "safari-jumps",
+      "session": "20261105-062101-565",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 420,
+      "savedFrames": 360,
+      "elapsedSeconds": 23.6327891,
+      "peakWorkingSetBytes": 357150720,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      },
+      "finish": {
+        "z": 188.567,
+        "upY": 0.9999981103089128,
+        "contacts": 4
+      },
+      "airFrames": [
+        15,
+        26
+      ]
+    },
+    {
+      "label": "baja-jumps",
+      "session": "20261105-062134-341",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 420,
+      "savedFrames": 360,
+      "elapsedSeconds": 21.4898927,
+      "peakWorkingSetBytes": 214798336,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      },
+      "finish": {
+        "z": 188.243,
+        "upY": 0.9999876421540068,
+        "contacts": 4
+      },
+      "airFrames": [
+        17,
+        25
+      ]
+    },
+    {
+      "label": "buggy-jumps",
+      "session": "20261105-062314-812",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 420,
+      "savedFrames": 360,
+      "elapsedSeconds": 21.7871159,
+      "peakWorkingSetBytes": 246919168,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      },
+      "finish": {
+        "z": 188.41,
+        "upY": 0.9999580487425237,
+        "contacts": 4
+      },
+      "airFrames": [
+        15,
+        24
+      ]
+    },
+    {
+      "label": "wind-test",
+      "session": "20261105-062414-441",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 150,
+      "savedFrames": 1,
+      "elapsedSeconds": 7.8658525,
+      "peakWorkingSetBytes": 251416576,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      }
+    },
+    {
+      "label": "narrow-ridge",
+      "session": "20261105-062436-400",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 450,
+      "savedFrames": 1,
+      "elapsedSeconds": 22.182802,
+      "peakWorkingSetBytes": 354304000,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      }
+    },
+    {
+      "label": "baja-articulation",
+      "session": "20261105-062826-999",
+      "exitCode": 0,
+      "emptyStderr": true,
+      "renderedFrames": 240,
+      "savedFrames": 1,
+      "elapsedSeconds": 12.1226983,
+      "peakWorkingSetBytes": 208515072,
+      "assets": {
+        "safari-body.glb": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+        "baja-427.glb": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+        "gravel-basecolor.jpg": "BCCBB077A825BDD0EB6F607939578A6EE549822824278FB3A828F6EED3D05D45",
+        "gravel-normal.jpg": "0920996CAB9F2D62A2EB73A3589804527AA0273C4CA61B9F526CE4CBA37EDEBC",
+        "gravel-roughness.jpg": "DE602A8CE72AEA4EF931B25C9B15FB5E38636BFB32C7DF91D0656F7AACE193B0"
+      }
+    }
+  ],
+  "sourceSha256": {
+    "showcase/PlaygroundVehicles.hpp": "238d11f541c9741dd46de1c498c9157ce51ab0067a3c07c2cc4c227e9c2d0e0e",
+    "showcase/PlaygroundTerrain.hpp": "600dbe3f2324098ca18d84851ba4970ee952a0fd4680878b6000685cbbf6ed7e",
+    "showcase/PlaygroundPhysics.hpp": "c9be9b061bbceb03f28b08d8b61820ab037e7d25f9c12575455a4c77f0c3955d",
+    "showcase/PlaygroundAudit.hpp": "36c22f67e2f22c037dc6ca99ba7eddfa280ff0e7525ec6b8d67e6665c0bb69e9",
+    "showcase/suspension_playground.cpp": "1a8ac95d0b9aa8124a4643b9409281710897f18642270d71c98e19e673190277",
+    "showcase/RallyBaja.hpp": "9c36a89ac193eaad6a666623df117f79c42b684a0e51ff4916bb728d7f888d73",
+    "showcase/BajaGeometry.hpp": "49c835970f34d2505d55caf2c8f566ccb6c04e5a6793074cf20ae7ddb1d5aaea",
+    "Run-Evaluation.ps1": "a772378de2a1299e9bf9d5b5d88308911191195dcfd1f8715932da74a01f9a3f",
+    "Test-Suspension-Playground.ps1": "f2c7eb58c82bbd2ddfcd35359e0888b4e5890aa75e825aaa94feed80852a6e2e",
+    "showcase/CMakeLists.txt": "29f4c80d90e34e6c586c54ec11d65222d54628329a0a3766c7e4d52c7540a1c1"
+  },
+  "limitations": [
+    "No subjective handling acceptance or sustained real-time performance claim.",
+    "Windows app-control approval timed out; direct vehicle/world-picker clicks were not verified. The 180-second guarded playable session exited cleanly.",
+    "Raycast wheels have no explicit unsprung mass or deformable tyre. Authored arms and rear axle approximate straight physics queries.",
+    "Aerodynamic coefficients and pressure centre are estimates; the wind arrows indicate uniform applied airflow, not CFD streamlines.",
+    "Existing Cinder Forest keeps its older controller; future games must select/reuse this coupled playground world explicitly."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "output": "outputs\\Vehicle-Playground-Showcase.mp4",
+  "sha256": "1b5247cf4d6f9e6fdc5d783fb8dfe135d435ef8fdb318599d0add4de254a406b",
+  "bytes": 30438416,
+  "durationSeconds": 80,
+  "width": 960,
+  "height": 600,
+  "fps": 30,
+  "frameCount": 2400,
+  "videoCodec": "h264",
+  "audioCodec": "aac",
+  "fullDecode": {
+    "passed": true,
+    "log": "proof/decode.log"
+  },
+  "audio": {
+    "integratedLufs": -17.4,
+    "truePeakDbfs": -5.7,
+    "measurement": "proof/audio-measurement.log",
+    "signalAnalysis": "proof/audio-analysis.json",
+    "listeningReviewed": false
+  },
+  "decodedFrames": [
+    {
+      "timeSeconds": 5,
+      "path": "proof\\decoded-01.png",
+      "sha256": "beff0b669060757d3634c6193ff1e10fa1074880aa30d0877d0e7defdcdcbfe9"
+    },
+    {
+      "timeSeconds": 16,
+      "path": "proof\\decoded-02.png",
+      "sha256": "898ec75e3826f6616e8d9c83bda4bbe2bd2b664868ca4a6f864650e7cd651b42"
+    },
+    {
+      "timeSeconds": 24.5,
+      "path": "proof\\decoded-03.png",
+      "sha256": "e327791cf5a898be9af5a60a883aaa2752f61a2b9f839a88b3dafb14820ad75f"
+    },
+    {
+      "timeSeconds": 28,
+      "path": "proof\\decoded-04.png",
+      "sha256": "936c41d959eda5a5ad017c850f6db630603b463ff180524eb83509f5955cd1a9"
+    },
+    {
+      "timeSeconds": 45,
+      "path": "proof\\decoded-05.png",
+      "sha256": "f64d1ad6b9a8d156e9a79ed21d941ad44c4674696f0620b3cf7896845e140544"
+    },
+    {
+      "timeSeconds": 61,
+      "path": "proof\\decoded-06.png",
+      "sha256": "b17024f767740ac5ea2f45ebfc6c156f24822158b371745b8ead23b9f7bd9842"
+    },
+    {
+      "timeSeconds": 74,
+      "path": "proof\\decoded-07.png",
+      "sha256": "b37425dbd352bdff8e02820096e02986759661b528792954fa68c3db607268ec"
+    },
+    {
+      "timeSeconds": 77.5,
+      "path": "proof\\decoded-08.png",
+      "sha256": "e016f593428258ddee42c93b46249c625a0cdb1643353d011c3e90d9b5cdc63b"
+    }
+  ],
+  "compositionCheck": "proof/check-final.json",
+  "renderLog": "proof/render.log",
+  "renderer": "HyperFrames 0.9.16; software browser; CPU encoding; one worker",
+  "sourceFiles": {
+    "source-manifest.json": "b784f5c521c59093afebc8763f088a428241ba6a0e789832dd69a448c2f8324c",
+    "voice-receipt.json": "2ac175cb93eff76e33ccbb1cacbba39f4582ae72b16630893c63d437a6767a5a",
+    "edit-manifest.json": "41aa0bd411f0b9cd8c386de6ded481cea03058aedf45af4eea47ffc255f871a8",
+    "narration.json": "f3e3a4e288a05984b478eedb1095ec1983f99e6241da27f58c70154406e0660a",
+    "index.html": "c1f5f4f474f1c1ae3948632d2725a22d4f33a0e1391258c4e089b04817f78a90"
+  },
+  "sceneFiles": {
+    "compositions\\future.html": "5480b65f7f882a73f2ab207ca90b4c85a109a652bf535032c783eb7986e364bb",
+    "compositions\\jumps.html": "27a84f71ff1cc64bea3832c5e090fccb60b7ca596b5e16773ffe0b9ffdf5d5ee",
+    "compositions\\lt-clean-bar.html": "b3264493a651f6db103310f71c09276a093a527d5e9a3139ea22c6313952c268",
+    "compositions\\suspension.html": "1e8c6e677539f639b8eb131020d71f00d6a520446cdb1b95f5eceb50a916adcb",
+    "compositions\\terrain.html": "da575f1407b5c4170c8af9d59b914ec38ba7dc2e2e32e15ed40fab07d2f20f57",
+    "compositions\\wind.html": "6124108c99f71e0f5989de168f968d639f0f1052caf85fb5bda6507ce85a68a7",
+    "compositions\\world.html": "1e4f39b234b33c92635ae76cc424f136491a2fad18986d3c300de0cb933e963f"
+  },
+  "limitations": [
+    "Safari stalls before the steep-hill crest in the longer assisted run; disclosed in film.",
+    "Simplified raycast suspension and estimated aero coefficients; not CFD.",
+    "Narration and music levels measured; no human listening review.",
+    "Motion and driving feel remain subject to hands-on user acceptance."
+  ]
+}

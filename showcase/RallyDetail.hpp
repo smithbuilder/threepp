@@ -9,6 +9,7 @@
 #include "threepp/materials/MeshBasicMaterial.hpp"
 #include "threepp/geometries/TextGeometry.hpp"
 #include "threepp/loaders/FontLoader.hpp"
+#include "RallySurface.hpp"
 #include <random>
 
 namespace rally {
@@ -84,42 +85,41 @@ inline void bakeOcclusion(BufferGeometry& geometry,const std::vector<Vector3>& t
         c->setXYZ(i,c->getX(i)*shade,c->getY(i)*shade,c->getZ(i)*shade);
     }c->needsUpdate();
 }
-inline void addVehicleDetail(Group& body,std::vector<std::shared_ptr<Group>>& wheels) {
-    auto steel=MeshStandardMaterial::create();steel->color=Color(0x25292b);steel->roughness=.35f;steel->metalness=.75f;
-    auto gold=MeshStandardMaterial::create();gold->color=Color(0xf7bc39);gold->roughness=.35f;gold->metalness=.45f;
-    auto silver=MeshStandardMaterial::create();silver->color=Color(0x8f9b9e);silver->metalness=.9f;silver->roughness=.3f;
-    auto black=MeshStandardMaterial::create();black->color=Color(0x111719);black->roughness=.9f;
+inline void addVehicleDetail(Group& body) {
+    auto steel=surfaceMaterial(0x25292b,Surface::Paint,.72f,.06f);
+    auto gold=surfaceMaterial(0xf7bc39,Surface::Paint,.59f,.04f);
+    auto silver=surfaceMaterial(0xa0a6a3,Surface::Metal,.47f,.90f);
+    auto black=surfaceMaterial(0x111719,Surface::Rubber,.96f,0);
     auto make=[&](auto g,auto m,Vector3 p){auto o=Mesh::create(g,m);o->position.copy(p);body.add(o);return o;};
     auto hood=make(bodyPanel(.85f,1.4f,.08f,.35f),gold,{0,.91f,.85f});
     make(bodyPanel(.91f,1.2f,.32f,.15f),gold,{0,.64f,-1.15f});
     for(float s:{-1.f,1.f}) {
-        make(bodyPanel(.23f,2.2f,.12f,.12f),gold,{s*.92f,.9f,0});
-        body.add(rod({s*.82f,.75f,1.3f},{s*.66f,1.95f,.27f},.062f,steel));
-        body.add(rod({s*.66f,1.95f,.27f},{s*.74f,1.85f,-.75f},.062f,steel));
-        body.add(rod({s*.74f,1.85f,-.75f},{s*.88f,.8f,-1.5f},.062f,steel));
+        // Short side pods end between the axles, leaving actual wheel bays.
+        make(bodyPanel(.14f,1.1f,.12f,.12f),gold,{s*.87f,.9f,0});
+        body.add(rod({s*.82f,.75f,1.3f},{s*.66f,2.12f,.27f},.062f,steel));
+        body.add(rod({s*.66f,2.12f,.27f},{s*.74f,2.02f,-.75f},.062f,steel));
+        body.add(rod({s*.74f,2.02f,-.75f},{s*.88f,.8f,-1.5f},.062f,steel));
         body.add(rod({s*.85f,.85f,-.8f},{s*.85f,1.45f,.2f},.045f,steel));
         body.add(rod({s*.85f,1.45f,-.8f},{s*.85f,.85f,.2f},.045f,steel));
-        body.add(rod({s*.77f,.66f,-1.25f},{s*1.18f,.8f,-1.5f},.055f,silver));
-        make(CylinderGeometry::create(.09f,.09f,.65f,8),silver,{s*.35f,.95f,-1.65f})->rotation.x=pi/2;
+        body.add(rod({s*.29f,.72f,-1.22f},{s*.4f,.59f,-1.4f},.045f,steel));
+        body.add(rod({s*.4f,.59f,-1.4f},{s*.47f,.4f,-1.57f},.045f,steel));
     }
-    body.add(rod({-.74f,1.85f,-.75f},{.74f,.82f,-1.45f},.045f,steel));
-    body.add(rod({.74f,1.85f,-.75f},{-.74f,.82f,-1.45f},.045f,steel));
+    // Rear-mounted collector below the engine/deck, with a single low outlet.
+    auto muffler=make(CylinderGeometry::create(.1f,.1f,.96f,14),silver,{0,.4f,-1.57f});muffler->rotation.z=pi/2;
+    for(float side:{-1.f,1.f})body.add(rod({side*.42f,.64f,-1.55f},{side*.42f,.42f,-1.55f},.018f,steel));
+    body.add(rod({-.48f,.4f,-1.57f},{-.62f,.39f,-1.78f},.063f,steel));
+    const Vector3 outletStart(-.62f,.39f,-1.78f),outletEnd(-.62f,.34f,-1.97f);
+    auto direction=outletEnd.clone().sub(outletStart);auto tip=make(CylinderGeometry::create(.07f,.07f,direction.length(),14,1,true),silver,outletStart.clone().add(outletEnd).multiplyScalar(.5f));
+    tip->quaternion.setFromUnitVectors(Vector3(0,1,0),direction.clone().normalize());
+    auto bore=make(CircleGeometry::create(.055f,14),black,outletEnd.clone().addScaledVector(direction.clone().normalize(),-.035f));
+    bore->material()->side=Side::Double;bore->quaternion.setFromUnitVectors(Vector3(0,0,1),direction.normalize());
+    body.add(rod({-.74f,2.02f,-.75f},{.74f,.82f,-1.45f},.045f,steel));
+    body.add(rod({.74f,2.02f,-.75f},{-.74f,.82f,-1.45f},.045f,steel));
     for(int i=0;i<6;++i) make(BoxGeometry::create(.8f,.04f,.06f),steel,{0,1.04f+i*.025f,-1.18f+i*.11f});
-    for(float z:{-.5f,.3f})body.add(rod({-.72f,1.92f,z},{.72f,1.92f,z},.045f,steel));
+    for(float z:{-.5f,.3f})body.add(rod({-.72f,2.09f,z},{.72f,2.09f,z},.045f,steel));
     auto number=label("07",.35f,Color(0x192021)); number->rotation.x=-pi/2; number->position.set(0,1.2f,.85f);body.add(number);
     auto brand=label("CINDER",.16f,Color(0xf3ca64));brand->rotation.y=pi;brand->position.set(0,.87f,-1.76f);body.add(brand);
-    for(auto& wheel:wheels) {
-        auto lugs=InstancedMesh::create(BoxGeometry::create(.42f,.11f,.16f),black,24);
-        for(int j=0;j<24;++j) {
-            float a=j*2*pi/24;Object3D t;t.position.set(0,std::cos(a)*.475f,std::sin(a)*.475f);
-            t.rotation.x=a;t.updateMatrix();lugs->setMatrixAt(j,*t.matrix);
-        }
-        lugs->instanceMatrix()->needsUpdate();wheel->add(lugs);
-        for(float side:{-.21f,.21f}) for(int j=0;j<6;++j) {
-            float a=j*pi/3;auto spoke=Mesh::create(BoxGeometry::create(.035f,.38f,.055f),silver);
-            spoke->position.x=side;spoke->rotation.x=a;wheel->add(spoke);
-        }
-    }
+
 }
 
 template<class Track,class Nearest>

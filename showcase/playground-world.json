@@ -1,0 +1,18 @@
+{
+  "id": "vehicle-tuning-playground",
+  "title": "Vehicle Tuning Playground",
+  "mode": "free_drive_and_test",
+  "entrypoint": "Launch-Suspension-Playground.cmd",
+  "supervisor": "Run-Evaluation.ps1",
+  "arguments": { "Example": "suspension_playground", "Vehicle": "safari", "Seconds": 300 },
+  "worldPicker": "Launch-Playground.cmd",
+  "vehicleCatalog": "showcase/PlaygroundVehicles.hpp",
+  "worldCatalog": "showcase/PlaygroundTerrain.hpp",
+  "sharedPhysics": "showcase/PlaygroundPhysics.hpp",
+  "acceptanceSuite": "Test-Suspension-Playground.ps1",
+  "latestAcceptance": "build/suspension-playground/latest-audit.json",
+  "testedVehicleCatalog": "build/suspension-playground/vehicles.json",
+  "physicsHz": 240,
+  "graphics": { "width": 960, "height": 600, "maxFps": 30, "shadowSize": 512 },
+  "futureGameRequirement": "Offer this as a selectable world or mode. Reuse the vehicle specifications and coupled physics for gameplay and testing."
+}

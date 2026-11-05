@@ -1,0 +1,80 @@
+vehicle,check,passed,value,limit
+all,visible terrain equals collision mesh,1,4.90423e-06,0.001
+Safari,static weight balance,1,10518.3,10516.3
+Safari,four supported tyres at rest,1,4,4
+Safari,drop settles without sustained bounce,1,0.00458546,0.035
+Safari,free fall follows gravity,1,-1.23426,-1.22625
+Safari,airborne throttle cannot propel body,1,0,0.002
+Safari,brakes hold steep grade,1,2.41364e-06,0.12
+Safari,released vehicle rolls downhill,1,19.6591,0.4
+Safari,tyre forces turn the body,1,1.42471,0.1
+Safari,side slope hold within tyre grip,1,5.96046e-08,0.04
+Safari,insufficient grip permits a physical slide,1,5.89664,0.3
+Safari,aerodynamic force scales with airspeed squared,1,3.99892,4
+Safari,crosswind changes physical wheel loads,1,606.965,100
+Safari,braked wind test remains on the pad,1,0.000707252,0.1
+Safari,gusts vary the actual applied force,1,3231.47,562.12
+Safari,aerodynamics uses relative air velocity,1,0,0.001
+Safari,off centre airflow creates physical torque,1,0.0593238,0.003
+Safari,fixed input replay is deterministic,1,0,0.0001
+Safari,all five trail simulations stay finite,1,1,1
+Safari,mechanical wheel travel bounds,1,9.14931e-06,0.001
+Safari,bump stops limit actual tyre penetration,1,0.0175274,0.035
+Safari,cross axle produces independent wheel movement,1,0.13467,0.025
+Safari,bounded angular response,1,2.87368,12
+Safari,jump line produces real airborne motion,1,1.3625,0.1
+Safari,vehicle lands after ballistic flight,1,1,1
+Safari,both jumps leave the ground,1,0.520833,0.1
+Safari,both jumps land and continue upright,1,188.56,181
+Original buggy,static weight balance,1,7652.91,7651.8
+Original buggy,four supported tyres at rest,1,4,4
+Original buggy,drop settles without sustained bounce,1,0.00186054,0.035
+Original buggy,free fall follows gravity,1,-1.23417,-1.22625
+Original buggy,airborne throttle cannot propel body,1,0,0.002
+Original buggy,brakes hold steep grade,1,8.14824e-06,0.12
+Original buggy,released vehicle rolls downhill,1,19.7832,0.4
+Original buggy,tyre forces turn the body,1,1.57303,0.1
+Original buggy,side slope hold within tyre grip,1,0,0.04
+Original buggy,insufficient grip permits a physical slide,1,5.42566,0.3
+Original buggy,aerodynamic force scales with airspeed squared,1,3.99884,4
+Original buggy,crosswind changes physical wheel loads,1,629.766,100
+Original buggy,braked wind test remains on the pad,1,0.00201347,0.1
+Original buggy,gusts vary the actual applied force,1,2467.57,429.847
+Original buggy,aerodynamics uses relative air velocity,1,0,0.001
+Original buggy,off centre airflow creates physical torque,1,0.0542427,0.003
+Original buggy,fixed input replay is deterministic,1,0,0.0001
+Original buggy,all five trail simulations stay finite,1,1,1
+Original buggy,mechanical wheel travel bounds,1,1.40071e-05,0.001
+Original buggy,bump stops limit actual tyre penetration,1,0.0211186,0.035
+Original buggy,cross axle produces independent wheel movement,1,0.105197,0.025
+Original buggy,bounded angular response,1,3.51539,12
+Original buggy,jump line produces real airborne motion,1,1.29167,0.1
+Original buggy,vehicle lands after ballistic flight,1,1,1
+Original buggy,both jumps leave the ground,1,0.504166,0.1
+Original buggy,both jumps land and continue upright,1,188.433,181
+Baja 427,static weight balance,1,24332,24328.8
+Baja 427,four supported tyres at rest,1,4,4
+Baja 427,drop settles without sustained bounce,1,0.00299632,0.035
+Baja 427,free fall follows gravity,1,-1.23448,-1.22625
+Baja 427,airborne throttle cannot propel body,1,1.81198e-05,0.002
+Baja 427,brakes hold steep grade,1,3.75151e-06,0.12
+Baja 427,released vehicle rolls downhill,1,19.7371,0.4
+Baja 427,tyre forces turn the body,1,1.13685,0.1
+Baja 427,side slope hold within tyre grip,1,3.8147e-06,0.04
+Baja 427,insufficient grip permits a physical slide,1,5.89965,0.3
+Baja 427,aerodynamic force scales with airspeed squared,1,3.99904,4
+Baja 427,crosswind changes physical wheel loads,1,134.529,100
+Baja 427,braked wind test remains on the pad,1,2.25902e-05,0.1
+Baja 427,gusts vary the actual applied force,1,4462.94,777.073
+Baja 427,aerodynamics uses relative air velocity,1,0,0.001
+Baja 427,off centre airflow creates physical torque,1,0.0411092,0.003
+Baja 427,fixed input replay is deterministic,1,0,0.0001
+Baja 427,all five trail simulations stay finite,1,1,1
+Baja 427,mechanical wheel travel bounds,1,9.89437e-06,0.001
+Baja 427,bump stops limit actual tyre penetration,1,0.0297627,0.035
+Baja 427,cross axle produces independent wheel movement,1,0.14441,0.025
+Baja 427,bounded angular response,1,2.18905,12
+Baja 427,jump line produces real airborne motion,1,1.44167,0.1
+Baja 427,vehicle lands after ballistic flight,1,1,1
+Baja 427,both jumps leave the ground,1,0.554166,0.1
+Baja 427,both jumps land and continue upright,1,188.178,181

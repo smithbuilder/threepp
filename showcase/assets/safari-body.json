@@ -1,0 +1,4059 @@
+{
+  "spec": {
+    "halfTrack": 1.08,
+    "halfWheelbase": 1.35,
+    "tyreRadius": 0.49,
+    "tyreHalfWidth": 0.17,
+    "droop": 0.28,
+    "bump": 0.5,
+    "nominal": 0.41
+  },
+  "flareOpeningRadius": 0.6230000000000001,
+  "sourceParts": 2312,
+  "bodyMetadata": {
+    "rear_recess": {
+      "x_min": -0.76,
+      "x_max": 0.76,
+      "y_min": 0.84,
+      "y_max": 1.045,
+      "front_z": -2.32,
+      "back_z": -2.265
+    },
+    "lamp_seats": [
+      {
+        "x": -0.89,
+        "y": 1.0,
+        "z": 2.14,
+        "radius": 0.174,
+        "lens_radius": 0.165,
+        "tilt": 0.34,
+        "axial_min": -0.15,
+        "axial_max": 0.1
+      },
+      {
+        "x": 0.89,
+        "y": 1.0,
+        "z": 2.14,
+        "radius": 0.174,
+        "lens_radius": 0.165,
+        "tilt": 0.34,
+        "axial_min": -0.15,
+        "axial_max": 0.1
+      }
+    ],
+    "engine_grille_recess": {
+      "x_min": -0.46,
+      "x_max": 0.46,
+      "z_min": -2.07,
+      "z_max": -1.73,
+      "depth": 0.02
+    },
+    "ducktail": {
+      "integrated": true,
+      "root_z": -1.88,
+      "crest_z": -2.275,
+      "tip_z": -2.32,
+      "half_width": 0.87,
+      "rise": 0.245,
+      "tip_y": 1.2804,
+      "thickness": 0.027
+    },
+    "front_intake": {
+      "half_width": 0.58,
+      "v_min": 0.18,
+      "v_max": 0.5,
+      "depth": 0.055,
+      "type": "open curved aperture with folded returns and recessed backing"
+    },
+    "primary_form": "descending central bonnet between raised continuous lamp wings; full rear hips around inset engine deck",
+    "normals": "analytic derivatives of section polynomial/ellipse, ducktail, side contour and rounded nose",
+    "bounds": {
+      "z_min": -2.32,
+      "z_max": 2.08
+    },
+    "front_hardware_delta_z": -0.22,
+    "shell_parts": 24,
+    "shell_triangles": 33158
+  },
+  "greenhouse": [
+    {
+      "name": "cabin.front_screen",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.014,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 150,
+      "shared_outer_boundary_samples": 208
+    },
+    {
+      "name": "cabin.rear_screen",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.014,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 150,
+      "shared_outer_boundary_samples": 206
+    },
+    {
+      "name": "cabin.quarter_window.-1",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.01,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 152,
+      "shared_outer_boundary_samples": 222
+    },
+    {
+      "name": "cabin.door_window.-1",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.01,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 150,
+      "shared_outer_boundary_samples": 186
+    },
+    {
+      "name": "cabin.quarter_window.1",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.01,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 152,
+      "shared_outer_boundary_samples": 222
+    },
+    {
+      "name": "cabin.door_window.1",
+      "rounded_aperture": true,
+      "reveal_m": 0.01,
+      "rubber_seat_m": 0.01,
+      "rubber_seat_construction": "closed EPDM extrusion; physical surface inset; glass-edge contact",
+      "glass_thickness_m": 0.0032,
+      "boundary_samples": 150,
+      "shared_outer_boundary_samples": 186
+    }
+  ],
+  "cabinInteriorLining": [
+    {
+      "source": "body.continuous_bonnet_shoulders_rear_deck.shoulder_-1",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 214
+    },
+    {
+      "source": "body.continuous_bonnet_shoulders_rear_deck.shoulder_1",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 214
+    },
+    {
+      "source": "cabin.rounded_roof_crown",
+      "material": "safari.charcoal_cloth_headliner",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 176
+    },
+    {
+      "source": "cabin.front_screen.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 358
+    },
+    {
+      "source": "cabin.rear_screen.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 356
+    },
+    {
+      "source": "cabin.quarter_window.-1.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 374
+    },
+    {
+      "source": "cabin.door_window.-1.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 336
+    },
+    {
+      "source": "cabin.shared_boundary_C_quarter.-1",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 145
+    },
+    {
+      "source": "cabin.quarter_window.1.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 374
+    },
+    {
+      "source": "cabin.door_window.1.stamped_painted_surround",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 336
+    },
+    {
+      "source": "cabin.shared_boundary_C_quarter.1",
+      "material": "safari.cabin_charcoal_abs_trim",
+      "thickness_m": 0.002,
+      "backing": "existing unchanged exterior painted skin",
+      "retained_apertures": true,
+      "closed_boundary_edges": 145
+    }
+  ],
+  "panelGaps": [
+    {
+      "name": "door.real_panel_gap.-1",
+      "width": 0.004,
+      "depth": 0.004,
+      "clipped_boundary_vertices": 21556
+    },
+    {
+      "name": "door.real_panel_gap.1",
+      "width": 0.004,
+      "depth": 0.004,
+      "clipped_boundary_vertices": 21556
+    },
+    {
+      "name": "body.real_bonnet_gap",
+      "width": 0.004,
+      "depth": 0.004,
+      "clipped_boundary_vertices": 41786
+    },
+    {
+      "name": "rear.real_engine_lid_gap",
+      "width": 0.004,
+      "depth": 0.004,
+      "clipped_boundary_vertices": 21980
+    }
+  ],
+  "rearOptics": {
+    "rear_z": -2.32,
+    "rear_mid": 0.0,
+    "rear_width": 1.46,
+    "parts": 162,
+    "frontmost_z": -2.332,
+    "backmost_z": -2.2735,
+    "garnish_front_z": -2.3284999999999996,
+    "legend_front_z": -2.3289999999999997,
+    "cover_bow": 0.003,
+    "cover_wall": 0.0025,
+    "prisms_inside": true
+  },
+  "frontRecovery": {
+    "parts": 386,
+    "triangles": 20014,
+    "coordinateFrame": "actual chassis metres; call after legacy front translation",
+    "bounds": {
+      "min": [
+        -0.7685816884040833,
+        0.30000001192092896,
+        1.5728387832641602
+      ],
+      "max": [
+        0.7685816884040833,
+        0.6977585554122925,
+        2.2675936222076416
+      ]
+    },
+    "railAnchors": [
+      [
+        -0.38,
+        0.34,
+        1.65
+      ],
+      [
+        0.38,
+        0.34,
+        1.65
+      ]
+    ],
+    "recoveryLoadPaths": [
+      {
+        "rail": [
+          -0.38,
+          0.34,
+          1.65
+        ],
+        "carrier": [
+          -0.69,
+          0.58,
+          2.08
+        ],
+        "welded_lug_neck": [
+          -0.69,
+          0.585,
+          2.055
+        ],
+        "pin": [
+          -0.69,
+          0.585,
+          2.225
+        ],
+        "attachment": "fixed chassis, not body"
+      },
+      {
+        "rail": [
+          0.38,
+          0.34,
+          1.65
+        ],
+        "carrier": [
+          0.69,
+          0.58,
+          2.08
+        ],
+        "welded_lug_neck": [
+          0.69,
+          0.585,
+          2.055
+        ],
+        "pin": [
+          0.69,
+          0.585,
+          2.225
+        ],
+        "attachment": "fixed chassis, not body"
+      }
+    ],
+    "shackle": {
+      "pinCenters": [
+        [
+          -0.69,
+          0.585,
+          2.225
+        ],
+        [
+          0.69,
+          0.585,
+          2.225
+        ]
+      ],
+      "pinAxis": [
+        1,
+        0,
+        0
+      ],
+      "pinRadius": 0.0115,
+      "eyeBoreRadius": 0.0123,
+      "centralLugBoreRadius": 0.0126,
+      "centralLugThickness": 0.02,
+      "eyeThickness": 0.027,
+      "form": "open forged U plus two annular eyes, transverse pin, washer and retaining nut",
+      "stowedBowPlane": "XY; rotates around X pin for a pull",
+      "coating": "dielectric red powder coat over steel; exposed satin metal pin"
+    },
+    "skid": {
+      "sheetThickness": 0.006,
+      "perforations": [
+        {
+          "center": [
+            -0.45833333333333337,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            -0.275,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            -0.09166666666666673,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            0.09166666666666667,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            0.275,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            0.4583333333333335,
+            0.36,
+            1.85
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "radius": 0.0305,
+          "panel": "rear_pan"
+        },
+        {
+          "center": [
+            -0.45833333333333337,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            -0.275,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            -0.09166666666666673,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.09166666666666667,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.275,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.4583333333333335,
+            0.41217741716487455,
+            2.05620614154191
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            -0.45833333333333337,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            -0.275,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            -0.09166666666666673,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.09166666666666667,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.275,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        },
+        {
+          "center": [
+            0.4583333333333335,
+            0.5040591390549582,
+            2.18873538051397
+          ],
+          "normal": [
+            0.0,
+            -0.8218126794333469,
+            0.569757773025154
+          ],
+          "radius": 0.0305,
+          "panel": "kick_panel"
+        }
+      ],
+      "openHoleCount": 18,
+      "holeWalls": true,
+      "centroidFaceMask": false,
+      "rearCenter": [
+        0,
+        0.36,
+        1.73
+      ],
+      "leadingKick": [
+        0.0,
+        0.55,
+        2.255
+      ],
+      "leadingReturn": [
+        0.0,
+        0.5832802176062174,
+        2.2646424539209318
+      ],
+      "rearBendRadius": 0.035,
+      "sideFoldDegrees": 65,
+      "foldedSideHeight": 0.027854130320249953,
+      "mounts": [
+        {
+          "sheet": [
+            -0.3666666666666667,
+            0.36,
+            1.762
+          ],
+          "chassis": [
+            -0.4607441860465117,
+            0.4025116279069768,
+            1.762
+          ],
+          "removable_bolt": true
+        },
+        {
+          "sheet": [
+            -0.3666666666666667,
+            0.4619516661338357,
+            2.128
+          ],
+          "chassis": [
+            -0.3666666666666667,
+            0.58,
+            2.08
+          ],
+          "removable_bolt": true
+        },
+        {
+          "sheet": [
+            0.3666666666666667,
+            0.36,
+            1.762
+          ],
+          "chassis": [
+            0.4607441860465117,
+            0.4025116279069768,
+            1.762
+          ],
+          "removable_bolt": true
+        },
+        {
+          "sheet": [
+            0.3666666666666667,
+            0.4619516661338357,
+            2.128
+          ],
+          "chassis": [
+            0.3666666666666667,
+            0.58,
+            2.08
+          ],
+          "removable_bolt": true
+        }
+      ],
+      "bounds": {
+        "min": [
+          -0.5714411735534668,
+          0.34700000286102295,
+          1.7300000190734863
+        ],
+        "max": [
+          0.5714411735534668,
+          0.5885167121887207,
+          2.2675936222076416
+        ]
+      }
+    },
+    "unchanged": "headlamps, auxiliary lamps, cabin, rear assembly, vehicle/tyre specification",
+    "limits": "Original game geometry; no load rating, stress certification or full moving-suspension acceptance claimed."
+  },
+  "spareWheel": {
+    "parts": 281,
+    "triangles": 12032,
+    "centerBeforeCargoSeating": [
+      -0.25,
+      2.25,
+      0.04
+    ],
+    "axle": [
+      0,
+      1,
+      0
+    ],
+    "roadProfileSource": "showcase/RallyWheels.hpp original Cinder wheel",
+    "scales": {
+      "radius": 0.9074074074074073,
+      "width": 0.85
+    },
+    "actualMaximumRadius": 0.4883366279250155,
+    "actualHalfWidth": 0.16845011711120605,
+    "bounds": {
+      "min": [
+        -0.7382584810256958,
+        2.084249973297119,
+        -0.4481101632118225
+      ],
+      "max": [
+        0.23805871605873108,
+        2.418450117111206,
+        0.5281586050987244
+      ]
+    },
+    "openCenterRadius": 0.0499074074074074,
+    "lugBores": {
+      "count": 5,
+      "centersXZ": [
+        [
+          0.08495107941209713,
+          0.007666307363074792
+        ],
+        [
+          0.01896023565525993,
+          0.08316229690047394
+        ],
+        [
+          -0.07323300934243884,
+          0.04373081870392815
+        ],
+        [
+          -0.06422072452732576,
+          -0.05613516458558671
+        ],
+        [
+          0.0335424188024075,
+          -0.07842425838189016
+        ]
+      ],
+      "radius": 0.009255555555555555
+    },
+    "treadRows": 6,
+    "treadStations": 40,
+    "spokeCount": 8,
+    "openPassageChecks": [
+      {
+        "name": "center",
+        "localXZ": [
+          0.0,
+          0.0
+        ],
+        "hits": 0
+      },
+      {
+        "name": "center_margin.0",
+        "localXZ": [
+          0.035,
+          0.0
+        ],
+        "hits": 0
+      },
+      {
+        "name": "center_margin.1",
+        "localXZ": [
+          2.1431318985078684E-18,
+          0.035
+        ],
+        "hits": 0
+      },
+      {
+        "name": "center_margin.2",
+        "localXZ": [
+          -0.035,
+          4.286263797015737E-18
+        ],
+        "hits": 0
+      },
+      {
+        "name": "center_margin.3",
+        "localXZ": [
+          -6.429395695523605E-18,
+          -0.035
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug.0",
+        "localXZ": [
+          0.08495107941209713,
+          0.007666307363074792
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.0.0",
+        "localXZ": [
+          0.09095107941209714,
+          0.007666307363074792
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.0.1",
+        "localXZ": [
+          0.08495107941209713,
+          0.013666307363074792
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.0.2",
+        "localXZ": [
+          0.07895107941209713,
+          0.007666307363074793
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.0.3",
+        "localXZ": [
+          0.08495107941209713,
+          0.0016663073630747921
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug.1",
+        "localXZ": [
+          0.01896023565525993,
+          0.08316229690047394
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.1.0",
+        "localXZ": [
+          0.024960235655259927,
+          0.08316229690047394
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.1.1",
+        "localXZ": [
+          0.01896023565525993,
+          0.08916229690047395
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.1.2",
+        "localXZ": [
+          0.012960235655259928,
+          0.08316229690047394
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.1.3",
+        "localXZ": [
+          0.01896023565525993,
+          0.07716229690047394
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug.2",
+        "localXZ": [
+          -0.07323300934243884,
+          0.04373081870392815
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.2.0",
+        "localXZ": [
+          -0.06723300934243884,
+          0.04373081870392815
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.2.1",
+        "localXZ": [
+          -0.07323300934243884,
+          0.04973081870392815
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.2.2",
+        "localXZ": [
+          -0.07923300934243885,
+          0.04373081870392815
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.2.3",
+        "localXZ": [
+          -0.07323300934243884,
+          0.03773081870392815
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug.3",
+        "localXZ": [
+          -0.06422072452732576,
+          -0.05613516458558671
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.3.0",
+        "localXZ": [
+          -0.05822072452732576,
+          -0.05613516458558671
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.3.1",
+        "localXZ": [
+          -0.06422072452732576,
+          -0.050135164585586714
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.3.2",
+        "localXZ": [
+          -0.07022072452732576,
+          -0.05613516458558671
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.3.3",
+        "localXZ": [
+          -0.06422072452732576,
+          -0.06213516458558671
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug.4",
+        "localXZ": [
+          0.0335424188024075,
+          -0.07842425838189016
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.4.0",
+        "localXZ": [
+          0.0395424188024075,
+          -0.07842425838189016
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.4.1",
+        "localXZ": [
+          0.0335424188024075,
+          -0.07242425838189015
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.4.2",
+        "localXZ": [
+          0.0275424188024075,
+          -0.07842425838189016
+        ],
+        "hits": 0
+      },
+      {
+        "name": "lug_margin.4.3",
+        "localXZ": [
+          0.0335424188024075,
+          -0.08442425838189016
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.0",
+        "localXZ": [
+          0.13858192987669302,
+          0.05740251485476346
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.1",
+        "localXZ": [
+          0.05740251485476347,
+          0.13858192987669302
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.2",
+        "localXZ": [
+          -0.057402514854763456,
+          0.13858192987669302
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.3",
+        "localXZ": [
+          -0.13858192987669302,
+          0.057402514854763484
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.4",
+        "localXZ": [
+          -0.13858192987669302,
+          -0.05740251485476345
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.5",
+        "localXZ": [
+          -0.057402514854763546,
+          -0.13858192987669296
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.6",
+        "localXZ": [
+          0.0574025148547635,
+          -0.138581929876693
+        ],
+        "hits": 0
+      },
+      {
+        "name": "spoke_gap.7",
+        "localXZ": [
+          0.13858192987669296,
+          -0.05740251485476355
+        ],
+        "hits": 0
+      }
+    ],
+    "detached": true,
+    "hasBrakeRotor": false,
+    "hasAxleCap": false,
+    "hasInstalledLugNuts": false,
+    "limits": "Original game wheel; not certified automotive fitment.",
+    "fittedBounds": {
+      "min": [
+        -0.7382584810256958,
+        1.874650001525879,
+        -0.4481101632118225
+      ],
+      "max": [
+        0.23805871605873108,
+        2.208850145339966,
+        0.5281586050987244
+      ]
+    },
+    "restraint": {
+      "path": [
+        [
+          -0.775,
+          1.9124,
+          0.04
+        ],
+        [
+          -0.741258978843689,
+          2.061944007873535,
+          0.04
+        ],
+        [
+          -0.7403919100761414,
+          2.0945162773132324,
+          0.04
+        ],
+        [
+          -0.7394582629203796,
+          2.1031653881073,
+          0.04
+        ],
+        [
+          -0.7293276190757751,
+          2.1749167442321777,
+          0.04
+        ],
+        [
+          -0.7053269743919373,
+          2.2026312351226807,
+          0.04
+        ],
+        [
+          -0.7014737725257874,
+          2.2068991661071777,
+          0.04
+        ],
+        [
+          -0.5494754314422607,
+          2.2091498374938965,
+          0.04
+        ],
+        [
+          -0.11806120723485947,
+          2.211850166320801,
+          0.04
+        ],
+        [
+          -0.1090407744050026,
+          2.211850166320801,
+          0.04
+        ],
+        [
+          0.20136874914169312,
+          2.206897497177124,
+          0.04
+        ],
+        [
+          0.20512400567531586,
+          2.202634811401367,
+          0.04
+        ],
+        [
+          0.22932852804660797,
+          2.1749215126037598,
+          0.04
+        ],
+        [
+          0.2393323928117752,
+          2.1031503677368164,
+          0.04
+        ],
+        [
+          0.2401924729347229,
+          2.0945041179656982,
+          0.04
+        ],
+        [
+          0.24105896055698395,
+          2.0619523525238037,
+          0.04
+        ],
+        [
+          0.265,
+          1.9124,
+          0.04
+        ]
+      ],
+      "width": 0.045,
+      "projectedHullOffset": 0.003,
+      "fittedAfterCargoSeating": true,
+      "anchorLoopClearWidth": 0.053,
+      "anchorX": [
+        -0.775,
+        0.265
+      ],
+      "anchorSupports": [
+        "left basket rail X=-.77 Y=1.87",
+        "bridge to crossbar Z=-.055 Y=1.87"
+      ],
+      "buckleCenter": [
+        -0.7608287711143493,
+        1.9752084833068848,
+        0.04
+      ],
+      "buckleType": "open two-roller friction buckle"
+    }
+  },
+  "rackMounts": {
+    "coordinate_frame": "authored before legacy rack Y translation",
+    "legacy_lift": 0.17,
+    "parts": 80,
+    "feet": [
+      {
+        "center": [
+          -0.67,
+          1.663543540501062,
+          -0.58
+        ],
+        "roof_normal": [
+          -0.253602512423898,
+          0.8938066613838528,
+          -0.3698586456447077
+        ],
+        "pad_half_xz": [
+          0.035,
+          0.06
+        ],
+        "shoe_half_xz": [
+          0.032,
+          0.054
+        ],
+        "pad_bottom_offset": 0.00055,
+        "pad_thickness_y": 0.0035,
+        "shoe_bottom_offset": 0.00405,
+        "shoe_top_offset": 0.009049999999999999,
+        "socket_top_above_roof": 0.06,
+        "roof_bolts": [
+          {
+            "seat": [
+              -0.67,
+              1.6553149604235504,
+              -0.621
+            ],
+            "axis": [
+              -0.25732698048287983,
+              0.8900581165960051,
+              -0.37627034722010144
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          },
+          {
+            "seat": [
+              -0.67,
+              1.6887217334041331,
+              -0.5389999999999999
+            ],
+            "axis": [
+              -0.25336157319982217,
+              0.9082075632999694,
+              -0.33311699925167954
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          }
+        ],
+        "sleeve_bore_radius": 0.02235,
+        "legacy_leg_radius": 0.022,
+        "reinforced_webs": 2,
+        "transverse_leg_pin": true
+      },
+      {
+        "center": [
+          -0.67,
+          1.6535516514854445,
+          -0.04
+        ],
+        "roof_normal": [
+          -0.2938545075533713,
+          0.9112183443883454,
+          0.2886704994292425
+        ],
+        "pad_half_xz": [
+          0.035,
+          0.06
+        ],
+        "shoe_half_xz": [
+          0.032,
+          0.054
+        ],
+        "pad_bottom_offset": 0.00055,
+        "pad_thickness_y": 0.0035,
+        "shoe_bottom_offset": 0.00405,
+        "shoe_top_offset": 0.009049999999999999,
+        "socket_top_above_roof": 0.06,
+        "roof_bolts": [
+          {
+            "seat": [
+              -0.67,
+              1.6745273882307736,
+              -0.081
+            ],
+            "axis": [
+              -0.2831003138393477,
+              0.9273093905520268,
+              0.2448499673230359
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          },
+          {
+            "seat": [
+              -0.67,
+              1.648620148952826,
+              0.0010000000000000009
+            ],
+            "axis": [
+              -0.3095591468794234,
+              0.8934045194929533,
+              0.3255787141888251
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          }
+        ],
+        "sleeve_bore_radius": 0.02235,
+        "legacy_leg_radius": 0.022,
+        "reinforced_webs": 2,
+        "transverse_leg_pin": true
+      },
+      {
+        "center": [
+          0.67,
+          1.663543540501062,
+          -0.58
+        ],
+        "roof_normal": [
+          0.253602512423898,
+          0.8938066613838528,
+          -0.3698586456447077
+        ],
+        "pad_half_xz": [
+          0.035,
+          0.06
+        ],
+        "shoe_half_xz": [
+          0.032,
+          0.054
+        ],
+        "pad_bottom_offset": 0.00055,
+        "pad_thickness_y": 0.0035,
+        "shoe_bottom_offset": 0.00405,
+        "shoe_top_offset": 0.009049999999999999,
+        "socket_top_above_roof": 0.06,
+        "roof_bolts": [
+          {
+            "seat": [
+              0.67,
+              1.6553149604235504,
+              -0.621
+            ],
+            "axis": [
+              0.25732698048287983,
+              0.8900581165960051,
+              -0.37627034722010144
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          },
+          {
+            "seat": [
+              0.67,
+              1.6887217334041331,
+              -0.5389999999999999
+            ],
+            "axis": [
+              0.25336157319982217,
+              0.9082075632999694,
+              -0.33311699925167954
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          }
+        ],
+        "sleeve_bore_radius": 0.02235,
+        "legacy_leg_radius": 0.022,
+        "reinforced_webs": 2,
+        "transverse_leg_pin": true
+      },
+      {
+        "center": [
+          0.67,
+          1.6535516514854445,
+          -0.04
+        ],
+        "roof_normal": [
+          0.2938545075533713,
+          0.9112183443883454,
+          0.2886704994292425
+        ],
+        "pad_half_xz": [
+          0.035,
+          0.06
+        ],
+        "shoe_half_xz": [
+          0.032,
+          0.054
+        ],
+        "pad_bottom_offset": 0.00055,
+        "pad_thickness_y": 0.0035,
+        "shoe_bottom_offset": 0.00405,
+        "shoe_top_offset": 0.009049999999999999,
+        "socket_top_above_roof": 0.06,
+        "roof_bolts": [
+          {
+            "seat": [
+              0.67,
+              1.6745273882307736,
+              -0.081
+            ],
+            "axis": [
+              0.2831003138393477,
+              0.9273093905520268,
+              0.2448499673230359
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          },
+          {
+            "seat": [
+              0.67,
+              1.648620148952826,
+              0.0010000000000000009
+            ],
+            "axis": [
+              0.3095591468794234,
+              0.8934045194929533,
+              0.3255787141888251
+            ],
+            "shank_radius": 0.0033,
+            "washer_radius": 0.0085
+          }
+        ],
+        "sleeve_bore_radius": 0.02235,
+        "legacy_leg_radius": 0.022,
+        "reinforced_webs": 2,
+        "transverse_leg_pin": true
+      }
+    ],
+    "proof": {
+      "finite": true,
+      "max_unit_normal_error": 8.695015030202313E-08,
+      "min_triangle_area": 5.204349236009875E-06,
+      "triangles": 1936,
+      "all_names_receive_rack_translation": true,
+      "contact_surface": "roof_height_fn(x,z) at every pad and shoe vertex",
+      "pad_roof_dense_samples": 19584,
+      "pad_roof_min_y_clearance": 5.2217598644155316E-05,
+      "pad_roof_max_y_clearance": 0.0005747333008316868,
+      "nominal_pad_to_shoe_gap": 0.0,
+      "socket_to_shoe_overlap": 0.0001,
+      "unchanged_leg_bore_radial_clearance": 0.0003499999999999996,
+      "bolt_count": 8,
+      "transverse_pin_count": 4
+    },
+    "actual_bounds": {
+      "min": [
+        -0.7049999833106995,
+        1.6180953550338746,
+        -0.6399999856948853
+      ],
+      "max": [
+        0.7049999833106995,
+        1.7235434818267823,
+        0.019999999552965164
+      ]
+    },
+    "construction": "conformal rubber pad, curved steel shoe, two webs, hollow leg sleeve, two roof bolts and one transverse leg pin per foot",
+    "limits": "Visible game geometry only; no stress certification or roof load rating."
+  },
+  "mirrors": {
+    "parts": 6,
+    "mirrors": [
+      {
+        "side": -1,
+        "legacyCentre": [
+          -1.035,
+          1.4,
+          0.44
+        ],
+        "legacyRadii": [
+          0.13,
+          0.075,
+          0.08
+        ],
+        "cutPlaneNormal": [
+          0.3447463813429592,
+          0.017071957959362307,
+          -0.9385406122285646
+        ],
+        "cutPlaneOffset": 0.05596872208333753,
+        "apertureCentre": [
+          -0.9917416119631208,
+          1.4006967544150095,
+          0.39626864320196575
+        ],
+        "apertureTransform": [
+          [
+            -0.08286289303299829,
+            -0.0007281669120547427
+          ],
+          [
+            0.0,
+            0.05517347741648307
+          ],
+          [
+            -0.030437342986046483,
+            0.0007361283784416804
+          ]
+        ],
+        "insertFaceCentre": [
+          -0.9919139851537923,
+          1.4006882184360299,
+          0.39673791350808
+        ],
+        "driverFacingCosine": 0.938540611451179,
+        "reflectedCentreDirection": [
+          -2.256515418963545E-09,
+          3.162744371953963E-11,
+          -1.0
+        ],
+        "shellWall": 0.002,
+        "insertBow": 0.001,
+        "insertThickness": 0.002,
+        "insertRecess": 0.0015,
+        "insertApertureScale": 0.97,
+        "stalkStart": [
+          -0.88,
+          1.31,
+          0.48
+        ],
+        "stalkEnd": [
+          -1.02,
+          1.37,
+          0.45
+        ],
+        "stalkRadius": 0.018
+      },
+      {
+        "side": 1,
+        "legacyCentre": [
+          1.035,
+          1.4,
+          0.44
+        ],
+        "legacyRadii": [
+          0.13,
+          0.075,
+          0.08
+        ],
+        "cutPlaneNormal": [
+          -0.521599087543312,
+          0.011216833801723248,
+          -0.8531169758675822
+        ],
+        "cutPlaneOffset": 0.06157515593131242,
+        "apertureCentre": [
+          0.9757828995100655,
+          1.4004141964589885,
+          0.4040343291202744
+        ],
+        "apertureTransform": [
+          [
+            -0.06841839671222556,
+            0.0005962825117145453
+          ],
+          [
+            0.0,
+            0.055272282455393104
+          ],
+          [
+            0.041831277897126734,
+            0.00036215384391045447
+          ]
+        ],
+        "insertFaceCentre": [
+          0.9760436990538371,
+          1.4004085880420876,
+          0.4044608876082082
+        ],
+        "driverFacingCosine": 0.8531169758744899,
+        "reflectedCentreDirection": [
+          -1.324151899240178E-11,
+          7.399636459126668E-14,
+          -0.9999999999999999
+        ],
+        "shellWall": 0.002,
+        "insertBow": 0.001,
+        "insertThickness": 0.002,
+        "insertRecess": 0.0015,
+        "insertApertureScale": 0.97,
+        "stalkStart": [
+          0.88,
+          1.31,
+          0.48
+        ],
+        "stalkEnd": [
+          1.02,
+          1.37,
+          0.45
+        ],
+        "stalkRadius": 0.018
+      }
+    ],
+    "stalksOwned": false,
+    "replaces": "only the two legacy mirror.housing ellipsoids",
+    "source": "scripts/safari_mirrors.py",
+    "sourceSha256": "6202642c10897f5efc2e6b77a15155e29700e2949a9c4e8c860ee82cdd1e33f9",
+    "reflection": "existing scene environment; no scene-camera reflection",
+    "limits": "Finite shell/insert fit and view direction; no physical mirror visibility certification."
+  },
+  "interiorEnclosures": {
+    "interface": "Safari rear FULL SURFACE envelope v4 FINAL; all cylinders <=5mm axial samples plus pins/clevis/necks",
+    "envelope_source": "safari_rear_shock_envelope.json",
+    "clearance_m": 0.02,
+    "sheet_thickness_m": 0.0025,
+    "lower_outboard_collar_inset_m": 0.002,
+    "floor": {
+      "y_top": 0.5475,
+      "y_bottom": 0.4925,
+      "half_width": 0.81,
+      "rear_z": -1.5,
+      "front_z": 0.6,
+      "right_notch_inner_x": 0.4692800103316788,
+      "notch_rear_z": -1.486678955040569,
+      "notch_front_z": -1.0032013161964173
+    },
+    "tower_cap_y": 1.2275,
+    "real_open_underbody": true
+  },
+  "rearAssembly": {
+    "parts": 269,
+    "triangles": 33280,
+    "hinge_crossmember": {
+      "x_end": 0.72,
+      "y": 0.36,
+      "z": -0.3
+    },
+    "frame_rails": {
+      "lowerX": 0.6,
+      "lowerY": 0.38,
+      "aftOuterLowerX": 0.8,
+      "aftUpperX": 0.8,
+      "aftUpperY": 0.72,
+      "upperCradleFrontZ": -1.62,
+      "upperPaths": [
+        {
+          "name": "rear.frame.upper_side_rail.-1",
+          "points": [
+            [
+              -0.8,
+              0.72,
+              -1.62
+            ],
+            [
+              -0.8,
+              0.72,
+              -2.44
+            ]
+          ],
+          "radius": 0.028
+        },
+        {
+          "name": "rear.frame.upper_side_rail.1",
+          "points": [
+            [
+              0.8,
+              0.72,
+              -1.62
+            ],
+            [
+              0.8,
+              0.72,
+              -2.44
+            ]
+          ],
+          "radius": 0.028
+        }
+      ],
+      "rearCrossmember": [
+        [
+          -0.8,
+          0.72,
+          -2.44
+        ],
+        [
+          0.8,
+          0.72,
+          -2.44
+        ]
+      ]
+    },
+    "muffler": {
+      "center": [
+        0,
+        0.53,
+        -2.19
+      ],
+      "length": 1.12,
+      "verticalRadius": 0.11,
+      "foreAftRadius": 0.155,
+      "topology": "two bank end-neck inlets; two separately opened rear-case outlets"
+    },
+    "enginePackaging": {
+      "frontMostZ": -1.58,
+      "lowerCrankcaseRearZ": -1.97,
+      "upperCrankcaseRearZ": -2.11,
+      "sumpCenter": [
+        0,
+        0.55,
+        -1.7675
+      ],
+      "sumpRadii": [
+        0.275,
+        0.11,
+        0.1875
+      ],
+      "mountStations": [
+        -1.66,
+        -1.86
+      ],
+      "limits": "fictional cast relief and compact sump; not a production engine specification"
+    },
+    "tip": {
+      "centers": [
+        [
+          -0.13,
+          0.49,
+          -2.555
+        ],
+        [
+          0.13,
+          0.49,
+          -2.555
+        ]
+      ],
+      "outerRadius": 0.052,
+      "innerRadius": 0.0485,
+      "hasDiskCaps": false
+    },
+    "guard_rear_face_z": -2.625,
+    "actual_tip_rear_z": -2.55745005607605,
+    "tip_setback_inside_guard": 0.0675499439239502,
+    "muffler_top_y": 0.6399999856948853,
+    "heatshield_lower_y": 0.6930612244897959,
+    "muffler_heatshield_airgap": 0.05306123879491065,
+    "body_keepout_reference_y": 0.755,
+    "heatshield_max_y": 0.73,
+    "shield_keepout_plane_gap_at_rear": 0.05118367346938779,
+    "shield_keepout_plane_min_gap": 0.025000000000000022,
+    "airgapMetric": "actual case/shield vertical extents; Y.755 is a nominal packaging plane, not a measured body-triangle clearance",
+    "bashplate_end_z": -2.03,
+    "clearanceAudit": {
+      "version": 1,
+      "hotPaths": [
+        {
+          "name": "rear.exhaust.merge_collector.-1",
+          "points": [
+            [
+              -0.66,
+              0.495,
+              -1.985
+            ],
+            [
+              -0.66,
+              0.495,
+              -2.075
+            ]
+          ],
+          "radius": 0.064,
+          "wall": 0.002,
+          "envelope": "conservative maximum-radius capsule of taper"
+        },
+        {
+          "name": "rear.exhaust.bank_header.-1.0",
+          "points": [
+            [
+              -0.455,
+              0.67,
+              -1.63
+            ],
+            [
+              -0.4803155105382331,
+              0.6711487516896405,
+              -1.6289725048523136
+            ],
+            [
+              -0.5048741211009721,
+              0.6714768074942089,
+              -1.6286790769945756
+            ],
+            [
+              -0.5245010710747524,
+              0.6664618225324013,
+              -1.6331641954539973
+            ],
+            [
+              -0.5378537721207391,
+              0.6547397492956681,
+              -1.6436370311192843
+            ],
+            [
+              -0.5462333486825933,
+              0.6378946770149032,
+              -1.6586601149006257
+            ],
+            [
+              -0.5510421307681567,
+              0.6176235543223595,
+              -1.6766946600862715
+            ],
+            [
+              -0.5536824483852711,
+              0.5956233298502907,
+              -1.6962018799644725
+            ],
+            [
+              -0.5555518198913117,
+              0.5735853674859804,
+              -1.7156512501926957
+            ],
+            [
+              -0.5576609085681051,
+              0.5527520195037625,
+              -1.7341765381281904
+            ],
+            [
+              -0.5603562465624409,
+              0.5335948001794489,
+              -1.7520519299270212
+            ],
+            [
+              -0.5639189697137658,
+              0.5165093201668068,
+              -1.7696639076072176
+            ],
+            [
+              -0.5686302138615275,
+              0.5018911901196034,
+              -1.7873989531868082
+            ],
+            [
+              -0.5747711148451731,
+              0.49013602069160545,
+              -1.8056435486838218
+            ],
+            [
+              -0.5826228085041498,
+              0.4816394225365804,
+              -1.8247841761162866
+            ],
+            [
+              -0.5923593088903243,
+              0.4767054417582152,
+              -1.8451661661539722
+            ],
+            [
+              -0.6031832254020093,
+              0.47480779636302056,
+              -1.8667616797118987
+            ],
+            [
+              -0.6137799483117915,
+              0.4749781006771125,
+              -1.889344185498298
+            ],
+            [
+              -0.6228300575035755,
+              0.4762438572479927,
+              -1.9126853042875296
+            ],
+            [
+              -0.6290141328612664,
+              0.47763256862316267,
+              -1.9365566568539518
+            ],
+            [
+              -0.6311059489293344,
+              0.47820677050920896,
+              -1.9607305423882921
+            ],
+            [
+              -0.630728341352086,
+              0.4780999999999999,
+              -1.9849999999999999
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.bank_header.-1.1",
+          "points": [
+            [
+              -0.455,
+              0.67,
+              -1.8
+            ],
+            [
+              -0.4788731497991911,
+              0.6708122340510166,
+              -1.7998063355692215
+            ],
+            [
+              -0.5025921547117304,
+              0.6711403437283235,
+              -1.7997281029787393
+            ],
+            [
+              -0.5251698314750849,
+              0.6678868461786452,
+              -1.8005060780505513
+            ],
+            [
+              -0.5461773601069786,
+              0.6597914352636308,
+              -1.8025056223752802
+            ],
+            [
+              -0.5658070359032964,
+              0.647637453785802,
+              -1.8056744921547456
+            ],
+            [
+              -0.5842836276587554,
+              0.6323150917527489,
+              -1.8099386101106032
+            ],
+            [
+              -0.6018319041680733,
+              0.6147145391720614,
+              -1.8152238989645075
+            ],
+            [
+              -0.6186753174284221,
+              0.5957255795442781,
+              -1.8214571149216334
+            ],
+            [
+              -0.6348209657817491,
+              0.5761712060825865,
+              -1.828701957946441
+            ],
+            [
+              -0.6498209416823302,
+              0.5567339476574177,
+              -1.8373101296860537
+            ],
+            [
+              -0.6631698495806732,
+              0.5380785860838692,
+              -1.8476697195405136
+            ],
+            [
+              -0.6743622939272859,
+              0.5208699031770386,
+              -1.8601688169098651
+            ],
+            [
+              -0.6828928791726764,
+              0.5057726807520235,
+              -1.8751955111941507
+            ],
+            [
+              -0.6882562097673526,
+              0.49345170062392146,
+              -1.8931378917934143
+            ],
+            [
+              -0.6900829196706331,
+              0.4845424218173656,
+              -1.9142783195422224
+            ],
+            [
+              -0.689632075051443,
+              0.47932927528311814,
+              -1.9376334607725174
+            ],
+            [
+              -0.6891681631100776,
+              0.4777930369242399,
+              -1.9614303421607704
+            ],
+            [
+              -0.689271658647914,
+              0.47809999999999997,
+              -1.9850000000000003
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.bank_header.-1.2",
+          "points": [
+            [
+              -0.455,
+              0.67,
+              -1.97
+            ],
+            [
+              -0.48012548067786776,
+              0.6707601243531406,
+              -1.970652558421142
+            ],
+            [
+              -0.5049758069885628,
+              0.6709000593153419,
+              -1.9707726910515724
+            ],
+            [
+              -0.5282039744591646,
+              0.6673549202445078,
+              -1.9677426403479408
+            ],
+            [
+              -0.54972132112939,
+              0.6594284688875627,
+              -1.9611960413319274
+            ],
+            [
+              -0.5704614615997079,
+              0.6483487536303122,
+              -1.9525955587410193
+            ],
+            [
+              -0.5913875990871326,
+              0.6353995191169599,
+              -1.9434567964692782
+            ],
+            [
+              -0.6132980171752809,
+              0.621750485708526,
+              -1.9352910445703824
+            ],
+            [
+              -0.6345348426925626,
+              0.6068732041325512,
+              -1.9295453468467834
+            ],
+            [
+              -0.6515553276355572,
+              0.5889360358166537,
+              -1.9276174440009912
+            ],
+            [
+              -0.6607753660252177,
+              0.5660849802734922,
+              -1.9309042144850337
+            ],
+            [
+              -0.6614218807641887,
+              0.5409901923007031,
+              -1.9409669733734984
+            ],
+            [
+              -0.6598394700525362,
+              0.5277355316337456,
+              -1.959761417012315
+            ],
+            [
+              -0.66,
+              0.5287999999999998,
+              -1.9849999999999999
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.silencer_bank_inlet.-1",
+          "points": [
+            [
+              -0.66,
+              0.495,
+              -2.075
+            ],
+            [
+              -0.6599829383285285,
+              0.4950169921256539,
+              -2.091691203364201
+            ],
+            [
+              -0.6598807332052821,
+              0.4951177679742755,
+              -2.10838375442863
+            ],
+            [
+              -0.657676384292868,
+              0.49710260859578764,
+              -2.1247995868448895
+            ],
+            [
+              -0.6524191451057861,
+              0.5013153147600932,
+              -2.1400818331975304
+            ],
+            [
+              -0.6446079489803447,
+              0.5067754075206524,
+              -2.153783654356977
+            ],
+            [
+              -0.6345443718191611,
+              0.5128099961516732,
+              -2.1656586623044896
+            ],
+            [
+              -0.6224755897249314,
+              0.5188139001649423,
+              -2.175505972055937
+            ],
+            [
+              -0.6086007481780501,
+              0.5241818832404236,
+              -2.1830748112796887
+            ],
+            [
+              -0.5931775893406219,
+              0.5282141674444726,
+              -2.1880435322643166
+            ],
+            [
+              -0.5766922698774231,
+              0.5299475821288888,
+              -2.189947240348569
+            ],
+            [
+              -0.5599999999999999,
+              0.53,
+              -2.19
+            ]
+          ],
+          "radius": 0.044,
+          "wall": 0.002
+        },
+        {
+          "name": "rear.exhaust.merge_collector.1",
+          "points": [
+            [
+              0.66,
+              0.495,
+              -1.985
+            ],
+            [
+              0.66,
+              0.495,
+              -2.075
+            ]
+          ],
+          "radius": 0.064,
+          "wall": 0.002,
+          "envelope": "conservative maximum-radius capsule of taper"
+        },
+        {
+          "name": "rear.exhaust.bank_header.1.0",
+          "points": [
+            [
+              0.455,
+              0.67,
+              -1.63
+            ],
+            [
+              0.4803155105382331,
+              0.6711487516896405,
+              -1.6289725048523136
+            ],
+            [
+              0.5048741211009721,
+              0.6714768074942089,
+              -1.6286790769945756
+            ],
+            [
+              0.5245010710747524,
+              0.6664618225324013,
+              -1.6331641954539973
+            ],
+            [
+              0.5378537721207391,
+              0.6547397492956681,
+              -1.6436370311192843
+            ],
+            [
+              0.5462333486825933,
+              0.6378946770149032,
+              -1.6586601149006257
+            ],
+            [
+              0.5510421307681567,
+              0.6176235543223595,
+              -1.6766946600862715
+            ],
+            [
+              0.5536824483852711,
+              0.5956233298502907,
+              -1.6962018799644725
+            ],
+            [
+              0.5555518198913117,
+              0.5735853674859804,
+              -1.7156512501926957
+            ],
+            [
+              0.5576609085681051,
+              0.5527520195037625,
+              -1.7341765381281904
+            ],
+            [
+              0.5603562465624409,
+              0.5335948001794489,
+              -1.7520519299270212
+            ],
+            [
+              0.5639189697137658,
+              0.5165093201668068,
+              -1.7696639076072176
+            ],
+            [
+              0.5686302138615275,
+              0.5018911901196034,
+              -1.7873989531868082
+            ],
+            [
+              0.5747711148451731,
+              0.49013602069160545,
+              -1.8056435486838218
+            ],
+            [
+              0.5826228085041498,
+              0.4816394225365804,
+              -1.8247841761162866
+            ],
+            [
+              0.5923593088903243,
+              0.4767054417582152,
+              -1.8451661661539722
+            ],
+            [
+              0.6031832254020093,
+              0.47480779636302056,
+              -1.8667616797118987
+            ],
+            [
+              0.6137799483117915,
+              0.4749781006771125,
+              -1.889344185498298
+            ],
+            [
+              0.6228300575035755,
+              0.4762438572479927,
+              -1.9126853042875296
+            ],
+            [
+              0.6290141328612664,
+              0.47763256862316267,
+              -1.9365566568539518
+            ],
+            [
+              0.6311059489293344,
+              0.47820677050920896,
+              -1.9607305423882921
+            ],
+            [
+              0.630728341352086,
+              0.4780999999999999,
+              -1.9849999999999999
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.bank_header.1.1",
+          "points": [
+            [
+              0.455,
+              0.67,
+              -1.8
+            ],
+            [
+              0.4788731497991911,
+              0.6708122340510166,
+              -1.7998063355692215
+            ],
+            [
+              0.5025921547117304,
+              0.6711403437283235,
+              -1.7997281029787393
+            ],
+            [
+              0.5251698314750849,
+              0.6678868461786452,
+              -1.8005060780505513
+            ],
+            [
+              0.5461773601069786,
+              0.6597914352636308,
+              -1.8025056223752802
+            ],
+            [
+              0.5658070359032964,
+              0.647637453785802,
+              -1.8056744921547456
+            ],
+            [
+              0.5842836276587554,
+              0.6323150917527489,
+              -1.8099386101106032
+            ],
+            [
+              0.6018319041680733,
+              0.6147145391720614,
+              -1.8152238989645075
+            ],
+            [
+              0.6186753174284221,
+              0.5957255795442781,
+              -1.8214571149216334
+            ],
+            [
+              0.6348209657817491,
+              0.5761712060825865,
+              -1.828701957946441
+            ],
+            [
+              0.6498209416823302,
+              0.5567339476574177,
+              -1.8373101296860537
+            ],
+            [
+              0.6631698495806732,
+              0.5380785860838692,
+              -1.8476697195405136
+            ],
+            [
+              0.6743622939272859,
+              0.5208699031770386,
+              -1.8601688169098651
+            ],
+            [
+              0.6828928791726764,
+              0.5057726807520235,
+              -1.8751955111941507
+            ],
+            [
+              0.6882562097673526,
+              0.49345170062392146,
+              -1.8931378917934143
+            ],
+            [
+              0.6900829196706331,
+              0.4845424218173656,
+              -1.9142783195422224
+            ],
+            [
+              0.689632075051443,
+              0.47932927528311814,
+              -1.9376334607725174
+            ],
+            [
+              0.6891681631100776,
+              0.4777930369242399,
+              -1.9614303421607704
+            ],
+            [
+              0.689271658647914,
+              0.47809999999999997,
+              -1.9850000000000003
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.bank_header.1.2",
+          "points": [
+            [
+              0.455,
+              0.67,
+              -1.97
+            ],
+            [
+              0.48012548067786776,
+              0.6707601243531406,
+              -1.970652558421142
+            ],
+            [
+              0.5049758069885628,
+              0.6709000593153419,
+              -1.9707726910515724
+            ],
+            [
+              0.5282039744591646,
+              0.6673549202445078,
+              -1.9677426403479408
+            ],
+            [
+              0.54972132112939,
+              0.6594284688875627,
+              -1.9611960413319274
+            ],
+            [
+              0.5704614615997079,
+              0.6483487536303122,
+              -1.9525955587410193
+            ],
+            [
+              0.5913875990871326,
+              0.6353995191169599,
+              -1.9434567964692782
+            ],
+            [
+              0.6132980171752809,
+              0.621750485708526,
+              -1.9352910445703824
+            ],
+            [
+              0.6345348426925626,
+              0.6068732041325512,
+              -1.9295453468467834
+            ],
+            [
+              0.6515553276355572,
+              0.5889360358166537,
+              -1.9276174440009912
+            ],
+            [
+              0.6607753660252177,
+              0.5660849802734922,
+              -1.9309042144850337
+            ],
+            [
+              0.6614218807641887,
+              0.5409901923007031,
+              -1.9409669733734984
+            ],
+            [
+              0.6598394700525362,
+              0.5277355316337456,
+              -1.959761417012315
+            ],
+            [
+              0.66,
+              0.5287999999999998,
+              -1.9849999999999999
+            ]
+          ],
+          "radius": 0.024,
+          "wall": 0.0015
+        },
+        {
+          "name": "rear.exhaust.silencer_bank_inlet.1",
+          "points": [
+            [
+              0.66,
+              0.495,
+              -2.075
+            ],
+            [
+              0.6599829383285285,
+              0.4950169921256539,
+              -2.091691203364201
+            ],
+            [
+              0.6598807332052821,
+              0.4951177679742755,
+              -2.10838375442863
+            ],
+            [
+              0.657676384292868,
+              0.49710260859578764,
+              -2.1247995868448895
+            ],
+            [
+              0.6524191451057861,
+              0.5013153147600932,
+              -2.1400818331975304
+            ],
+            [
+              0.6446079489803447,
+              0.5067754075206524,
+              -2.153783654356977
+            ],
+            [
+              0.6345443718191611,
+              0.5128099961516732,
+              -2.1656586623044896
+            ],
+            [
+              0.6224755897249314,
+              0.5188139001649423,
+              -2.175505972055937
+            ],
+            [
+              0.6086007481780501,
+              0.5241818832404236,
+              -2.1830748112796887
+            ],
+            [
+              0.5931775893406219,
+              0.5282141674444726,
+              -2.1880435322643166
+            ],
+            [
+              0.5766922698774231,
+              0.5299475821288888,
+              -2.189947240348569
+            ],
+            [
+              0.5599999999999999,
+              0.53,
+              -2.19
+            ]
+          ],
+          "radius": 0.045,
+          "wall": 0.002
+        },
+        {
+          "name": "rear.exhaust.silencer_rear_outlet_neck.-1",
+          "points": [
+            [
+              -0.13,
+              0.49,
+              -2.334388851702158
+            ],
+            [
+              -0.13,
+              0.49,
+              -2.39
+            ]
+          ],
+          "radius": 0.052,
+          "wall": 0.0035
+        },
+        {
+          "name": "rear.exhaust.silencer_rear_outlet_neck.1",
+          "points": [
+            [
+              0.13,
+              0.49,
+              -2.334388851702158
+            ],
+            [
+              0.13,
+              0.49,
+              -2.39
+            ]
+          ],
+          "radius": 0.052,
+          "wall": 0.0035
+        },
+        {
+          "name": "rear.exhaust.twin_open_tailpipe.-1",
+          "points": [
+            [
+              -0.13,
+              0.49,
+              -2.39
+            ],
+            [
+              -0.13,
+              0.49,
+              -2.555
+            ]
+          ],
+          "radius": 0.052,
+          "wall": 0.0035
+        },
+        {
+          "name": "rear.exhaust.twin_open_tailpipe.1",
+          "points": [
+            [
+              0.13,
+              0.49,
+              -2.39
+            ],
+            [
+              0.13,
+              0.49,
+              -2.555
+            ]
+          ],
+          "radius": 0.052,
+          "wall": 0.0035
+        }
+      ],
+      "coldPaths": [
+        {
+          "name": "rear.frame.hinge_crossmember",
+          "points": [
+            [
+              -0.72,
+              0.36,
+              -0.3
+            ],
+            [
+              0.72,
+              0.36,
+              -0.3
+            ]
+          ],
+          "radius": 0.034
+        },
+        {
+          "name": "rear.frame.longitudinal_rail.-1",
+          "points": [
+            [
+              -0.6,
+              0.36,
+              -0.3
+            ],
+            [
+              -0.6,
+              0.38,
+              -0.55
+            ],
+            [
+              -0.6,
+              0.38,
+              -2.17
+            ]
+          ],
+          "radius": 0.033
+        },
+        {
+          "name": "rear.frame.hinge_splice_bolt.-1.-0.34",
+          "points": [
+            [
+              -0.705,
+              0.305,
+              -0.34
+            ],
+            [
+              -0.705,
+              0.415,
+              -0.34
+            ]
+          ],
+          "radius": 0.013
+        },
+        {
+          "name": "rear.frame.hinge_splice_bolt.-1.-0.26",
+          "points": [
+            [
+              -0.705,
+              0.305,
+              -0.26
+            ],
+            [
+              -0.705,
+              0.415,
+              -0.26
+            ]
+          ],
+          "radius": 0.013
+        },
+        {
+          "name": "rear.frame.upper_side_rail.-1",
+          "points": [
+            [
+              -0.8,
+              0.72,
+              -1.62
+            ],
+            [
+              -0.8,
+              0.72,
+              -2.44
+            ]
+          ],
+          "radius": 0.028
+        },
+        {
+          "name": "rear.frame.front_bottom_outrigger.-1",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -1.62
+            ],
+            [
+              -0.8,
+              0.38,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.outer_bottom_side_rail.-1",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -1.62
+            ],
+            [
+              -0.8,
+              0.38,
+              -2.05
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.vertical_engine_support.-1.-1.62",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -1.62
+            ],
+            [
+              -0.8,
+              0.72,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.forward_triangle.-1",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -1.86
+            ],
+            [
+              -0.8,
+              0.72,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.rear_bottom_outrigger.-1",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -2.05
+            ],
+            [
+              -0.8,
+              0.38,
+              -2.05
+            ]
+          ],
+          "radius": 0.024
+        },
+        {
+          "name": "rear.frame.vertical_engine_support.-1.-2.05",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              -0.8,
+              0.72,
+              -2.05
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.rear_triangle.-1",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              -0.8,
+              0.72,
+              -1.72
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.engine_mount_riser.-1.-1.66",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -1.66
+            ],
+            [
+              -0.405,
+              0.535,
+              -1.66
+            ]
+          ],
+          "radius": 0.02
+        },
+        {
+          "name": "rear.frame.engine_mount_riser.-1.-1.86",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -1.86
+            ],
+            [
+              -0.405,
+              0.535,
+              -1.86
+            ]
+          ],
+          "radius": 0.02
+        },
+        {
+          "name": "rear.frame.longitudinal_rail.1",
+          "points": [
+            [
+              0.6,
+              0.36,
+              -0.3
+            ],
+            [
+              0.6,
+              0.38,
+              -0.55
+            ],
+            [
+              0.6,
+              0.38,
+              -2.17
+            ]
+          ],
+          "radius": 0.033
+        },
+        {
+          "name": "rear.frame.hinge_splice_bolt.1.-0.34",
+          "points": [
+            [
+              0.705,
+              0.305,
+              -0.34
+            ],
+            [
+              0.705,
+              0.415,
+              -0.34
+            ]
+          ],
+          "radius": 0.013
+        },
+        {
+          "name": "rear.frame.hinge_splice_bolt.1.-0.26",
+          "points": [
+            [
+              0.705,
+              0.305,
+              -0.26
+            ],
+            [
+              0.705,
+              0.415,
+              -0.26
+            ]
+          ],
+          "radius": 0.013
+        },
+        {
+          "name": "rear.frame.upper_side_rail.1",
+          "points": [
+            [
+              0.8,
+              0.72,
+              -1.62
+            ],
+            [
+              0.8,
+              0.72,
+              -2.44
+            ]
+          ],
+          "radius": 0.028
+        },
+        {
+          "name": "rear.frame.front_bottom_outrigger.1",
+          "points": [
+            [
+              0.6,
+              0.38,
+              -1.62
+            ],
+            [
+              0.8,
+              0.38,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.outer_bottom_side_rail.1",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -1.62
+            ],
+            [
+              0.8,
+              0.38,
+              -2.05
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.vertical_engine_support.1.-1.62",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -1.62
+            ],
+            [
+              0.8,
+              0.72,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.forward_triangle.1",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -1.86
+            ],
+            [
+              0.8,
+              0.72,
+              -1.62
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.rear_bottom_outrigger.1",
+          "points": [
+            [
+              0.6,
+              0.38,
+              -2.05
+            ],
+            [
+              0.8,
+              0.38,
+              -2.05
+            ]
+          ],
+          "radius": 0.024
+        },
+        {
+          "name": "rear.frame.vertical_engine_support.1.-2.05",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              0.8,
+              0.72,
+              -2.05
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.rear_triangle.1",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              0.8,
+              0.72,
+              -1.72
+            ]
+          ],
+          "radius": 0.026
+        },
+        {
+          "name": "rear.frame.engine_mount_riser.1.-1.66",
+          "points": [
+            [
+              0.6,
+              0.38,
+              -1.66
+            ],
+            [
+              0.405,
+              0.535,
+              -1.66
+            ]
+          ],
+          "radius": 0.02
+        },
+        {
+          "name": "rear.frame.engine_mount_riser.1.-1.86",
+          "points": [
+            [
+              0.6,
+              0.38,
+              -1.86
+            ],
+            [
+              0.405,
+              0.535,
+              -1.86
+            ]
+          ],
+          "radius": 0.02
+        },
+        {
+          "name": "rear.frame.crossmember.-0.55.0.38",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -0.55
+            ],
+            [
+              0.6,
+              0.38,
+              -0.55
+            ]
+          ],
+          "radius": 0.029
+        },
+        {
+          "name": "rear.frame.crossmember.-1.06.0.38",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -1.06
+            ],
+            [
+              0.6,
+              0.38,
+              -1.06
+            ]
+          ],
+          "radius": 0.029
+        },
+        {
+          "name": "rear.frame.crossmember.-1.86.0.38",
+          "points": [
+            [
+              -0.6,
+              0.38,
+              -1.86
+            ],
+            [
+              0.6,
+              0.38,
+              -1.86
+            ]
+          ],
+          "radius": 0.029
+        },
+        {
+          "name": "rear.frame.crossmember.-2.44.0.72",
+          "points": [
+            [
+              -0.8,
+              0.72,
+              -2.44
+            ],
+            [
+              0.8,
+              0.72,
+              -2.44
+            ]
+          ],
+          "radius": 0.029
+        },
+        {
+          "name": "rear.bumper.independent_wrap_guard",
+          "points": [
+            [
+              -0.9,
+              0.78,
+              -2.1
+            ],
+            [
+              -0.9468,
+              0.78,
+              -2.2872
+            ],
+            [
+              -0.949987755102041,
+              0.78,
+              -2.3020163265306124
+            ],
+            [
+              -0.952008163265306,
+              0.78,
+              -2.3162938775510202
+            ],
+            [
+              -0.9528612244897958,
+              0.78,
+              -2.3300326530612243
+            ],
+            [
+              -0.9525469387755101,
+              0.78,
+              -2.343232653061224
+            ],
+            [
+              -0.951065306122449,
+              0.78,
+              -2.3558938775510203
+            ],
+            [
+              -0.9484163265306123,
+              0.78,
+              -2.3680163265306122
+            ],
+            [
+              -0.9446,
+              0.78,
+              -2.3796
+            ],
+            [
+              -0.9054,
+              0.78,
+              -2.4804
+            ],
+            [
+              -0.9007306122448981,
+              0.78,
+              -2.4912204081632656
+            ],
+            [
+              -0.8955224489795919,
+              0.78,
+              -2.5010530612244897
+            ],
+            [
+              -0.8897755102040816,
+              0.78,
+              -2.5098979591836734
+            ],
+            [
+              -0.8834897959183674,
+              0.78,
+              -2.5177551020408164
+            ],
+            [
+              -0.876665306122449,
+              0.78,
+              -2.5246244897959187
+            ],
+            [
+              -0.8693020408163266,
+              0.78,
+              -2.5305061224489798
+            ],
+            [
+              -0.8614,
+              0.78,
+              -2.5354
+            ],
+            [
+              -0.7886,
+              0.78,
+              -2.5745999999999998
+            ],
+            [
+              -0.774187755102041,
+              0.78,
+              -2.5786857142857147
+            ],
+            [
+              -0.7472938775510205,
+              0.78,
+              -2.582142857142857
+            ],
+            [
+              -0.7079183673469387,
+              0.78,
+              -2.584971428571428
+            ],
+            [
+              -0.6560612244897959,
+              0.78,
+              -2.5871714285714287
+            ],
+            [
+              -0.5917224489795918,
+              0.78,
+              -2.588742857142857
+            ],
+            [
+              -0.5149020408163265,
+              0.78,
+              -2.5896857142857144
+            ],
+            [
+              -0.4256,
+              0.78,
+              -2.59
+            ],
+            [
+              0.4256,
+              0.78,
+              -2.59
+            ],
+            [
+              0.5149020408163266,
+              0.78,
+              -2.5896857142857144
+            ],
+            [
+              0.5917224489795918,
+              0.78,
+              -2.588742857142857
+            ],
+            [
+              0.6560612244897959,
+              0.78,
+              -2.5871714285714282
+            ],
+            [
+              0.7079183673469387,
+              0.78,
+              -2.5849714285714285
+            ],
+            [
+              0.7472938775510204,
+              0.78,
+              -2.582142857142857
+            ],
+            [
+              0.7741877551020409,
+              0.78,
+              -2.5786857142857142
+            ],
+            [
+              0.7886,
+              0.78,
+              -2.5745999999999998
+            ],
+            [
+              0.8614,
+              0.78,
+              -2.5354
+            ],
+            [
+              0.8693020408163267,
+              0.78,
+              -2.53050612244898
+            ],
+            [
+              0.876665306122449,
+              0.78,
+              -2.5246244897959187
+            ],
+            [
+              0.8834897959183674,
+              0.78,
+              -2.517755102040816
+            ],
+            [
+              0.8897755102040817,
+              0.78,
+              -2.5098979591836734
+            ],
+            [
+              0.8955224489795919,
+              0.78,
+              -2.5010530612244897
+            ],
+            [
+              0.900730612244898,
+              0.78,
+              -2.491220408163265
+            ],
+            [
+              0.9054,
+              0.78,
+              -2.4804
+            ],
+            [
+              0.9446,
+              0.78,
+              -2.3796
+            ],
+            [
+              0.9484163265306123,
+              0.78,
+              -2.3680163265306127
+            ],
+            [
+              0.951065306122449,
+              0.78,
+              -2.3558938775510203
+            ],
+            [
+              0.9525469387755101,
+              0.78,
+              -2.343232653061224
+            ],
+            [
+              0.9528612244897958,
+              0.78,
+              -2.3300326530612248
+            ],
+            [
+              0.9520081632653061,
+              0.78,
+              -2.3162938775510202
+            ],
+            [
+              0.9499877551020408,
+              0.78,
+              -2.3020163265306124
+            ],
+            [
+              0.9468,
+              0.78,
+              -2.2872
+            ],
+            [
+              0.9,
+              0.78,
+              -2.1
+            ]
+          ],
+          "radius": 0.035
+        },
+        {
+          "name": "rear.bumper.chassis_load_strut.-1.False",
+          "points": [
+            [
+              -0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              -0.915,
+              0.4,
+              -2.27
+            ],
+            [
+              -0.948,
+              0.78,
+              -2.34
+            ]
+          ],
+          "radius": 0.033
+        },
+        {
+          "name": "rear.bumper.chassis_load_strut.-1.True",
+          "points": [
+            [
+              -0.8,
+              0.72,
+              -2.28
+            ],
+            [
+              -0.948,
+              0.78,
+              -2.34
+            ]
+          ],
+          "radius": 0.028
+        },
+        {
+          "name": "rear.bumper.mount_bolt.-1.-0.038",
+          "points": [
+            [
+              -0.8380000000000001,
+              0.4,
+              -2.03
+            ],
+            [
+              -0.8380000000000001,
+              0.4,
+              -2.07
+            ]
+          ],
+          "radius": 0.012
+        },
+        {
+          "name": "rear.bumper.mount_bolt.-1.0.038",
+          "points": [
+            [
+              -0.762,
+              0.4,
+              -2.03
+            ],
+            [
+              -0.762,
+              0.4,
+              -2.07
+            ]
+          ],
+          "radius": 0.012
+        },
+        {
+          "name": "rear.bumper.chassis_load_strut.1.False",
+          "points": [
+            [
+              0.8,
+              0.38,
+              -2.05
+            ],
+            [
+              0.915,
+              0.4,
+              -2.27
+            ],
+            [
+              0.948,
+              0.78,
+              -2.34
+            ]
+          ],
+          "radius": 0.033
+        },
+        {
+          "name": "rear.bumper.chassis_load_strut.1.True",
+          "points": [
+            [
+              0.8,
+              0.72,
+              -2.28
+            ],
+            [
+              0.948,
+              0.78,
+              -2.34
+            ]
+          ],
+          "radius": 0.028
+        },
+        {
+          "name": "rear.bumper.mount_bolt.1.-0.038",
+          "points": [
+            [
+              0.762,
+              0.4,
+              -2.03
+            ],
+            [
+              0.762,
+              0.4,
+              -2.07
+            ]
+          ],
+          "radius": 0.012
+        },
+        {
+          "name": "rear.bumper.mount_bolt.1.0.038",
+          "points": [
+            [
+              0.8380000000000001,
+              0.4,
+              -2.03
+            ],
+            [
+              0.8380000000000001,
+              0.4,
+              -2.07
+            ]
+          ],
+          "radius": 0.012
+        }
+      ],
+      "collectors": [
+        {
+          "name": "rear.exhaust.merge_collector.-1",
+          "center": [
+            -0.66,
+            0.495,
+            -1.985
+          ],
+          "stations": [
+            {
+              "z": -1.985,
+              "radius": 0.064
+            },
+            {
+              "z": -2.015,
+              "radius": 0.06
+            },
+            {
+              "z": -2.05,
+              "radius": 0.048
+            },
+            {
+              "z": -2.075,
+              "radius": 0.044
+            }
+          ],
+          "inletCenters": [
+            [
+              -0.630728341352086,
+              0.47809999999999997,
+              -1.985
+            ],
+            [
+              -0.6892716586479141,
+              0.47809999999999997,
+              -1.985
+            ],
+            [
+              -0.66,
+              0.5287999999999999,
+              -1.985
+            ]
+          ],
+          "inletRadius": 0.024,
+          "wall": 0.002
+        },
+        {
+          "name": "rear.exhaust.merge_collector.1",
+          "center": [
+            0.66,
+            0.495,
+            -1.985
+          ],
+          "stations": [
+            {
+              "z": -1.985,
+              "radius": 0.064
+            },
+            {
+              "z": -2.015,
+              "radius": 0.06
+            },
+            {
+              "z": -2.05,
+              "radius": 0.049
+            },
+            {
+              "z": -2.075,
+              "radius": 0.045
+            }
+          ],
+          "inletCenters": [
+            [
+              0.630728341352086,
+              0.47809999999999997,
+              -1.985
+            ],
+            [
+              0.6892716586479141,
+              0.47809999999999997,
+              -1.985
+            ],
+            [
+              0.66,
+              0.5287999999999999,
+              -1.985
+            ]
+          ],
+          "inletRadius": 0.024,
+          "wall": 0.002
+        }
+      ],
+      "requiredHotStructureGap": 0.02,
+      "enginePortInterfaces": [
+        {
+          "header": "rear.exhaust.bank_header.-1.0",
+          "cylinderBank": "rear.engine.cylinder_bank.-1",
+          "center": [
+            -0.455,
+            0.67,
+            -1.63
+          ],
+          "rootEndX": -0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        },
+        {
+          "header": "rear.exhaust.bank_header.-1.1",
+          "cylinderBank": "rear.engine.cylinder_bank.-1",
+          "center": [
+            -0.455,
+            0.67,
+            -1.8
+          ],
+          "rootEndX": -0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        },
+        {
+          "header": "rear.exhaust.bank_header.-1.2",
+          "cylinderBank": "rear.engine.cylinder_bank.-1",
+          "center": [
+            -0.455,
+            0.67,
+            -1.97
+          ],
+          "rootEndX": -0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        },
+        {
+          "header": "rear.exhaust.bank_header.1.0",
+          "cylinderBank": "rear.engine.cylinder_bank.1",
+          "center": [
+            0.455,
+            0.67,
+            -1.63
+          ],
+          "rootEndX": 0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        },
+        {
+          "header": "rear.exhaust.bank_header.1.1",
+          "cylinderBank": "rear.engine.cylinder_bank.1",
+          "center": [
+            0.455,
+            0.67,
+            -1.8
+          ],
+          "rootEndX": 0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        },
+        {
+          "header": "rear.exhaust.bank_header.1.2",
+          "cylinderBank": "rear.engine.cylinder_bank.1",
+          "center": [
+            0.455,
+            0.67,
+            -1.97
+          ],
+          "rootEndX": 0.505,
+          "scope": "named initial 50mm engine-port joint only; actual surface intersection still prohibited"
+        }
+      ],
+      "source": "same authored mesh paths; conservative tube envelopes, not separate fitted proxies",
+      "intendedInterfaces": [
+        "header start at its named engine port/flange",
+        "header end at its separate collector inlet",
+        "collector exit to bank inlet",
+        "bank inlet to axial case neck",
+        "case openings to their outlet necks",
+        "outlet neck to tailpipe",
+        "exhaust clamp/hanger contact; rubber remains off the hot case"
+      ]
+    },
+    "limits": "Original visually plausible rear-engine packaging; not certified mechanical fitment."
+  },
+  "rearComponentBounds": {
+    "frame": {
+      "min": [
+        -0.828000009059906,
+        0.3050000071525574,
+        -2.4690001010894775
+      ],
+      "max": [
+        0.828000009059906,
+        0.7490000128746033,
+        -0.23000000417232513
+      ]
+    },
+    "engine": {
+      "min": [
+        -0.4699999988079071,
+        0.4399999976158142,
+        -2.109999895095825
+      ],
+      "max": [
+        0.4699999988079071,
+        0.9649999737739563,
+        -1.5800000429153442
+      ]
+    },
+    "exhaust": {
+      "min": [
+        -0.800000011920929,
+        0.41600000858306885,
+        -2.55745005607605
+      ],
+      "max": [
+        0.800000011920929,
+        0.7279999852180481,
+        -1.604785442352295
+      ]
+    },
+    "heat_shield": {
+      "min": [
+        -0.8000615239143372,
+        0.6930612325668335,
+        -2.369999885559082
+      ],
+      "max": [
+        0.8000615239143372,
+        0.7300000190734863,
+        -1.9800000190734863
+      ]
+    },
+    "bash_plate": {
+      "min": [
+        -0.6150000095367432,
+        0.36899998784065247,
+        -2.0299999713897705
+      ],
+      "max": [
+        0.6150000095367432,
+        0.4650000035762787,
+        -0.9100000262260437
+      ]
+    },
+    "bumper": {
+      "min": [
+        -0.9878542423248291,
+        0.33000001311302185,
+        -2.625
+      ],
+      "max": [
+        0.9878542423248291,
+        0.8149999976158142,
+        -2.0299999713897705
+      ]
+    }
+  },
+  "atlasBindings": {
+    "safari.side_enamel_local_dust": [
+      "body.side_with_open_arches.-1",
+      "body.side_with_open_arches.1"
+    ],
+    "safari.top_enamel_local_dust": [
+      "body.continuous_bonnet_shoulders_rear_deck.front",
+      "body.continuous_bonnet_shoulders_rear_deck.rear",
+      "body.continuous_bonnet_shoulders_rear_deck.shoulder_-1",
+      "body.continuous_bonnet_shoulders_rear_deck.shoulder_1",
+      "body.rounded_ducktail_trailing_return"
+    ],
+    "safari.front_fascia_enamel_xy": [
+      "body.rounded_front_valance"
+    ],
+    "safari.rear_fascia_enamel_xy": [
+      "body.rounded_rear_valance.lower",
+      "body.rounded_rear_valance.cheek_-1",
+      "body.rounded_rear_valance.cheek_1",
+      "body.rounded_rear_valance.upper"
+    ],
+    "safari.flare_coating_local_dust": [
+      "arch.flare_shell.-1.-1.35",
+      "arch.thick_inner_return.-1.-1.35",
+      "arch.flare_shell.-1.1.35",
+      "arch.thick_inner_return.-1.1.35",
+      "arch.flare_shell.1.-1.35",
+      "arch.thick_inner_return.1.-1.35",
+      "arch.flare_shell.1.1.35",
+      "arch.thick_inner_return.1.1.35"
+    ]
+  },
+  "sourceHashes": {
+    "scripts/generate-safari-body.py": "a3170003c2d5925687a1fc935178772b75257820602c350f236a067b3bc8b113",
+    "scripts/safari_body_shell.py": "60a8556d383a1a3095678efffdfe2a2c5172104ec54331531b9faa84e08a2a76",
+    "scripts/safari_surface_maps.py": "5b76f609e7aa428e4dc9866b5b528c28a014b7d6227069b6af24ae61a3e521a7",
+    "scripts/safari_rear_assembly.py": "1b5000752afb14f474a9a9d086eb27e83c3979f95beaae16a5ee0f607045cdb6",
+    "scripts/safari_front_recovery.py": "06917a4af2d9ef7b42efe8a453228097f531d35512cdb5b50d41a7927ebb73e6",
+    "scripts/safari_spare_wheel.py": "6a77737f527f8a64df5ae4c725275b596d92ebd70013218d59fcff0e14f46e58",
+    "scripts/safari_rack_mounts.py": "29484b88d1c256fc1925b3c3fb27be8eee025efad50a5a77d38589a72665d08f",
+    "scripts/safari_mirrors.py": "6202642c10897f5efc2e6b77a15155e29700e2949a9c4e8c860ee82cdd1e33f9",
+    "scripts/safari_shock_towers.py": "40ed5b27da5e973f8e65c92cc8da23ab0051e72f045bc1adc237d4aa6721279a",
+    "scripts/safari_rear_shock_envelope.json": "8c3da357a6460b2baacecb98d6712299c5646017583ecfbef823428d9c623bd8",
+    "scripts/safari_greenhouse.py": "751903fe0c9b0d5895fbe30ab83b854b3588ff266f7bb3e4e6f5c1f03208c363",
+    "scripts/safari_panel_gaps.py": "9f91ca4390b5ec9c77cc2e144ee32fe74d0979470d74b7e245eed5ed5048b363",
+    "scripts/safari_optics.py": "c0d76011f976f5e882e25e2f90488ac47e15320ae458e50847f4467a5d9513ca",
+    "showcase/assets/safari-enamel-wear-v1.png": "f2d21e14d28cbd3d29b93f0a20c351a52a70132c7d135caeb359225426807240",
+    "showcase/assets/safari-enamel-wear-v1-SOURCE.json": "7c6a2d24e60dfe07f2bfc0eae4c5793647990e984eb48a8005e7fa7ecf80e3f7"
+  },
+  "generator": "scripts/generate-safari-body.py",
+  "source": "Original geometry; user safari.jpg silhouette/outfit reference only",
+  "limits": "Body-only model; parent supplies wheels, live suspension and cockpit. Original Safari-inspired vehicle, not Porsche replica or fitment certification.",
+  "bytes": 69113160,
+  "vertices": 914224,
+  "triangles": 381438,
+  "drawMeshes": 157,
+  "embeddedImages": 18,
+  "imageMetadata": [
+    {
+      "index": 0,
+      "name": "cream_enamel",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 1,
+      "name": "enamel_roughness",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 2,
+      "name": "enamel_normal",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 3,
+      "name": "911_roundel",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 4,
+      "name": "cargo_micrograin",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "index": 5,
+      "name": "side_local_dust",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "index": 6,
+      "name": "side_roughness_clearcoat_mask",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 7,
+      "name": "top_local_dust",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "index": 8,
+      "name": "top_roughness_clearcoat_mask",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 9,
+      "name": "rear_cinder_legend",
+      "width": 512,
+      "height": 128
+    },
+    {
+      "index": 10,
+      "name": "flare_coating_dust",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 11,
+      "name": "flare_roughness",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 12,
+      "name": "flare_micro_normal",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 13,
+      "name": "front_fascia_xy_albedo",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "index": 14,
+      "name": "front_fascia_xy_roughness_coat",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 15,
+      "name": "rear_fascia_xy_albedo",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "index": 16,
+      "name": "rear_fascia_xy_roughness_coat",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "index": 17,
+      "name": "safari.geometry_ambient_occlusion",
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "decodedTextureBytesRgba8": 33030144,
+  "sha256": "82795fe6ea71da661d85d43fda9c932226e9e3b5e53089c16f53271d271e93be",
+  "rawAsset": {
+    "sha256": "a3fe6512acd52137eb3014c3cf54818f928d4cae64e4625c3c40dc01067b8c32",
+    "bytes": 21398504,
+    "vertices": 285346,
+    "triangles": 381438,
+    "drawMeshes": 157,
+    "embeddedImages": 17,
+    "imageMetadata": [
+      {
+        "index": 0,
+        "name": "cream_enamel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 1,
+        "name": "enamel_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 2,
+        "name": "enamel_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 3,
+        "name": "911_roundel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 4,
+        "name": "cargo_micrograin",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "index": 5,
+        "name": "side_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 6,
+        "name": "side_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 7,
+        "name": "top_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 8,
+        "name": "top_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 9,
+        "name": "rear_cinder_legend",
+        "width": 512,
+        "height": 128
+      },
+      {
+        "index": 10,
+        "name": "flare_coating_dust",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 11,
+        "name": "flare_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 12,
+        "name": "flare_micro_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 13,
+        "name": "front_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 14,
+        "name": "front_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 15,
+        "name": "rear_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 16,
+        "name": "rear_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "decodedTextureBytesRgba8": 28835840
+  },
+  "preparation": "scripts/prepare-safari-body.ps1",
+  "rearMechanicalFit": {
+    "status": "pass",
+    "sourceSha256": "1b5000752afb14f474a9a9d086eb27e83c3979f95beaae16a5ee0f607045cdb6",
+    "generatorSha256": "a3170003c2d5925687a1fc935178772b75257820602c350f236a067b3bc8b113",
+    "auditorSha256": "6abb66edb2ac3498b9e5403b09963f6a36eaea10380ca2c48477bdbda80009f0",
+    "checkedPairs": 1288,
+    "openBoreRays": 20,
+    "minimumHotStructureGap": 0.02,
+    "limits": "Conservative exact capsule bounds and actual authored triangle distances. Narrow named engine port/head roots only; all outside portions remain checked. Case containment is a conservative convex pressure-volume keepout. No stress, thermal, internal-flow or dynamic certification."
+  },
+  "postprocess": {
+    "method": "Static geometry AO, cosine hemisphere; ambient only",
+    "sourceSha256": "a3fe6512acd52137eb3014c3cf54818f928d4cae64e4625c3c40dc01067b8c32",
+    "outputSha256": "82795fe6ea71da661d85d43fda9c932226e9e3b5e53089c16f53271d271e93be",
+    "receipt": "safari-body-ao.json",
+    "strength": 0.5,
+    "atlasTexCoord": 1,
+    "toolSourceHashes": {
+      "scripts/prepare-safari-body.ps1": "df7415f52df88284a892291e9dc83790fe2d344046c05c80307674a26c6036e3",
+      "scripts/bake-safari-ao.py": "c33ccde721aa94ef34946632f497c4f7b53fd75fd834536cbfba35be8d151e36",
+      "scripts/audit-safari-cockpit.py": "1d28239614374f7c495f28be6e24789795e30e38d45d36cccd3313d149253a50",
+      "scripts/audit-safari-rear.py": "6abb66edb2ac3498b9e5403b09963f6a36eaea10380ca2c48477bdbda80009f0",
+      "showcase/safari_ao_bake.cpp": "9a516678a790084fde345a384140b44819176297442bb864dca4aabb60463942"
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "method": "Static geometry AO, cosine hemisphere; ambient only",
+  "rawAsset": {
+    "sha256": "a3fe6512acd52137eb3014c3cf54818f928d4cae64e4625c3c40dc01067b8c32",
+    "bytes": 21398504,
+    "vertices": 285346,
+    "triangles": 381438,
+    "drawMeshes": 157,
+    "embeddedImages": 17,
+    "imageMetadata": [
+      {
+        "index": 0,
+        "name": "cream_enamel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 1,
+        "name": "enamel_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 2,
+        "name": "enamel_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 3,
+        "name": "911_roundel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 4,
+        "name": "cargo_micrograin",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "index": 5,
+        "name": "side_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 6,
+        "name": "side_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 7,
+        "name": "top_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 8,
+        "name": "top_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 9,
+        "name": "rear_cinder_legend",
+        "width": 512,
+        "height": 128
+      },
+      {
+        "index": 10,
+        "name": "flare_coating_dust",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 11,
+        "name": "flare_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 12,
+        "name": "flare_micro_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 13,
+        "name": "front_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 14,
+        "name": "front_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 15,
+        "name": "rear_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 16,
+        "name": "rear_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "decodedTextureBytesRgba8": 28835840
+  },
+  "outputAsset": {
+    "sha256": "82795fe6ea71da661d85d43fda9c932226e9e3b5e53089c16f53271d271e93be",
+    "bytes": 69113160,
+    "vertices": 914224,
+    "triangles": 381438,
+    "drawMeshes": 157,
+    "embeddedImages": 18,
+    "imageMetadata": [
+      {
+        "index": 0,
+        "name": "cream_enamel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 1,
+        "name": "enamel_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 2,
+        "name": "enamel_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 3,
+        "name": "911_roundel",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 4,
+        "name": "cargo_micrograin",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "index": 5,
+        "name": "side_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 6,
+        "name": "side_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 7,
+        "name": "top_local_dust",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 8,
+        "name": "top_roughness_clearcoat_mask",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 9,
+        "name": "rear_cinder_legend",
+        "width": 512,
+        "height": 128
+      },
+      {
+        "index": 10,
+        "name": "flare_coating_dust",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 11,
+        "name": "flare_roughness",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 12,
+        "name": "flare_micro_normal",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 13,
+        "name": "front_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 14,
+        "name": "front_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 15,
+        "name": "rear_fascia_xy_albedo",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "index": 16,
+        "name": "rear_fascia_xy_roughness_coat",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "index": 17,
+        "name": "safari.geometry_ambient_occlusion",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "decodedTextureBytesRgba8": 33030144
+  },
+  "samples": 16,
+  "maxDistanceMetres": 0.25,
+  "originBiasMetres": 0.0020000000949949026,
+  "strength": 0.5,
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "rawRgbaBytes": 4194304,
+    "embeddedPngBytes": 9387,
+    "usedCells": 935,
+    "capacityCells": 262144,
+    "triangleReferences": 283302,
+    "reusedTriangleCells": 282367,
+    "cellReuse": "byte-identical quantized A/B/C/D fields; each triangle retains its corner permutation",
+    "minFilter": "LINEAR(9729), no mipmaps",
+    "texCoord": 1,
+    "cornerAssignment": "median",
+    "clippedFourthPixelCells": 0,
+    "clippedFourthPixelTriangles": 0,
+    "maximumBilinearVisibilityErrorBound": 0.0,
+    "sampledCornerAndInteriorPoints": 1983114,
+    "maximumMeasuredVisibilityInterpolationError": 0.0019607843137254832,
+    "maximumAmbientFactorErrorBound": 0.000980392156862745
+  },
+  "visibility": {
+    "min": 0.0,
+    "mean": 0.5611929297447205,
+    "max": 1.0,
+    "quantiles": [
+      0.0,
+      0.0,
+      0.625,
+      1.0,
+      1.0
+    ],
+    "fractionBelow1": 0.8038559558351159,
+    "fractionBelowHalf": 0.39234574176438336
+  },
+  "invariants": {
+    "unchangedTriangleCount": true,
+    "unchangedAllOriginalTriangleCornerAttributes": true,
+    "positionNormalUv0Color0MeshesVerified": 524,
+    "originalSourceUnchanged": true,
+    "noAlbedoDirectLightChanges": true,
+    "unchangedQuantizedTriangleAoFields": true,
+    "identityNodeTransforms": true
+  },
+  "bake": {
+    "occluderTriangles": 279559,
+    "uniqueQueries": 194803,
+    "rayQueries": 3116848,
+    "queryNormalFallbackVertices": 0,
+    "unreferencedReceiverVerticesSkipped": 0
+  },
+  "toolSourceHashes": {
+    "scripts/prepare-safari-body.ps1": "df7415f52df88284a892291e9dc83790fe2d344046c05c80307674a26c6036e3",
+    "scripts/bake-safari-ao.py": "c33ccde721aa94ef34946632f497c4f7b53fd75fd834536cbfba35be8d151e36",
+    "scripts/audit-safari-cockpit.py": "1d28239614374f7c495f28be6e24789795e30e38d45d36cccd3313d149253a50",
+    "scripts/audit-safari-rear.py": "6abb66edb2ac3498b9e5403b09963f6a36eaea10380ca2c48477bdbda80009f0",
+    "showcase/safari_ao_bake.cpp": "9a516678a790084fde345a384140b44819176297442bb864dca4aabb60463942"
+  },
+  "cpuChecks": {
+    "rawVehicleExitCode": 0,
+    "aoVehicleExitCode": 0,
+    "rawCockpitFitExitCode": 0,
+    "aoCockpitFitExitCode": 0,
+    "actualGltfLoader": "passed in AO packer",
+    "vehicleTestExeSha256": "0288065ecff005d4a3fa05e4301b07979ab1aeb718e6356558f76cbc355f074f",
+    "aoHelperExeSha256": "f8c47c57654c295b9e7ddd663280284394c46bcf51d654804bdc8a006d17f0aa"
+  },
+  "rearMechanicalFit": {
+    "status": "pass",
+    "sourceSha256": "1b5000752afb14f474a9a9d086eb27e83c3979f95beaae16a5ee0f607045cdb6",
+    "generatorSha256": "a3170003c2d5925687a1fc935178772b75257820602c350f236a067b3bc8b113",
+    "auditorSha256": "6abb66edb2ac3498b9e5403b09963f6a36eaea10380ca2c48477bdbda80009f0",
+    "checkedPairs": 1288,
+    "openBoreRays": 20,
+    "minimumHotStructureGap": 0.02,
+    "limits": "Conservative exact capsule bounds and actual authored triangle distances. Narrow named engine port/head roots only; all outside portions remain checked. Case containment is a conservative convex pressure-volume keepout. No stress, thermal, internal-flow or dynamic certification."
+  },
+  "preparationLogDirectory": "build/safari-prepare/20261103-050507-400-32acd56e",
+  "nativeAcceptance": "Not performed by this CPU-only preparation; supervised native review remains separate."
+}
