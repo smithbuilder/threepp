@@ -1,0 +1,13 @@
+{
+  "profile_id": "8a999d74-154f-4b7d-a5d8-94f1a3bd16d2",
+  "voice": "Kokoro bm_george",
+  "provider": "fleet Voicebox",
+  "scenes": [
+    {"id":"world","title":"One world. Every vehicle.","text":"This is our vehicle tuning playground: a selectable world for the Safari, original buggy, and Baja four twenty-seven."},
+    {"id":"suspension","title":"Let the wheels work","text":"Cross-axle ruts and repeated bumps reveal wheel travel, grip, and body movement. The wheels, suspension, and chassis now react together."},
+    {"id":"terrain","title":"Find the limits","text":"Steep grades still expose traction limits. The ridge and side slope test balance and braking, helping us find what to tune next."},
+    {"id":"jumps","title":"Three vehicles. One jump line.","text":"Two Excitebike-inspired jumps reveal takeoff attitude, suspension droop, and landing compression. All three vehicles clear the jumps using the same coupled physics."},
+    {"id":"wind","title":"Put the air to work","text":"Steady crosswinds and repeatable gusts change forces and tire loads. The gantry supports aerodynamic tuning, using estimated coefficients rather than measured airflow."},
+    {"id":"future","title":"A proving ground for what's next","text":"Future games can include this same testing world. Seventy-nine physics checks and six regression tests pass. The next step is your hands-on feedback."}
+  ]
+}

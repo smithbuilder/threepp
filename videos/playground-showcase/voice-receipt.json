@@ -1,0 +1,55 @@
+{
+  "provider": "fleet Voicebox",
+  "profile": "8a999d74-154f-4b7d-a5d8-94f1a3bd16d2",
+  "voice": "Kokoro bm_george",
+  "voices": [
+    {
+      "id": "world",
+      "text": "This is our vehicle tuning playground: a selectable world for the Safari, original buggy, and Baja four twenty-seven.",
+      "generation": "b2b3b049-3184-45a1-a064-626b95229302",
+      "file": "assets\\audio\\world-voice.wav",
+      "duration": 8.525,
+      "sha256": "346a95fbd1ab8130a2f493d0ff1f471a03034e30f39ceae5b6cb05343e2038c6"
+    },
+    {
+      "id": "suspension",
+      "text": "Cross-axle ruts and repeated bumps reveal wheel travel, grip, and body movement. The wheels, suspension, and chassis now react together.",
+      "generation": "7dd7d78e-5d22-42aa-9649-398753f72af9",
+      "file": "assets\\audio\\suspension-voice.wav",
+      "duration": 9.7,
+      "sha256": "5e8a3a473250df7938890488f23189e6d49cf8a13fe491dc639cc6d73df328de"
+    },
+    {
+      "id": "terrain",
+      "text": "Steep grades still expose traction limits. The ridge and side slope test balance and braking, helping us find what to tune next.",
+      "generation": "1dc5c202-a4f0-4b62-a7f7-ceabb4dff90f",
+      "file": "assets\\audio\\terrain-voice-v2.wav",
+      "duration": 8.925,
+      "sha256": "dba9d67b6b2e203194c0c85da8670fa106c7e9978b1cfb8fbfa1066f36b78a29"
+    },
+    {
+      "id": "jumps",
+      "text": "Two Excitebike-inspired jumps reveal takeoff attitude, suspension droop, and landing compression. All three vehicles clear the jumps using the same coupled physics.",
+      "generation": "f3474b73-e78e-4cc2-8db8-c1b38a59104c",
+      "file": "assets\\audio\\jumps-voice.wav",
+      "duration": 11.7,
+      "sha256": "3f238901fa067586913fff3a2c9ae6537fe1465403f78feb3f305d134edf6d94"
+    },
+    {
+      "id": "wind",
+      "text": "Steady crosswinds and repeatable gusts change forces and tire loads. The gantry supports aerodynamic tuning, using estimated coefficients rather than measured airflow.",
+      "generation": "531c079d-e497-4325-8fd7-b39aa8db4a93",
+      "file": "assets\\audio\\wind-voice.wav",
+      "duration": 12.5,
+      "sha256": "14e0366042c53b19b63ff3a435b7b2b3b4fdf7fdcf311b802da625d4333673d3"
+    },
+    {
+      "id": "future",
+      "text": "Future games can include this same testing world. Seventy-nine physics checks and six regression tests pass. The next step is your hands-on feedback.",
+      "generation": "ac49bf4f-e8e9-401d-8840-bad4b9e03f81",
+      "file": "assets\\audio\\future-voice.wav",
+      "duration": 10.875,
+      "sha256": "caa93b783735b75b15bda7c648e367dfa4756869d8e9bf0b48307faa0653eb48"
+    }
+  ]
+}

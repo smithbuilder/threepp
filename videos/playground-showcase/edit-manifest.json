@@ -1,0 +1,158 @@
+{
+  "duration": 80,
+  "width": 960,
+  "height": 600,
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "world",
+      "start": 0,
+      "duration": 10,
+      "title": "One world. Every vehicle.",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 3,
+          "source": "baja-ruts",
+          "sourceStart": 1
+        },
+        {
+          "start": 3,
+          "duration": 3,
+          "source": "safari-jumps",
+          "sourceStart": 0
+        },
+        {
+          "start": 6,
+          "duration": 2,
+          "source": "buggy-whoops",
+          "sourceStart": 0
+        },
+        {
+          "start": 8,
+          "duration": 2,
+          "source": "safari-ridge",
+          "sourceStart": 1
+        }
+      ]
+    },
+    {
+      "id": "suspension",
+      "start": 10,
+      "duration": 12,
+      "title": "Let the wheels work",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 7,
+          "source": "baja-ruts",
+          "sourceStart": 0
+        },
+        {
+          "start": 7,
+          "duration": 5,
+          "source": "buggy-whoops",
+          "sourceStart": 1
+        }
+      ]
+    },
+    {
+      "id": "terrain",
+      "start": 22,
+      "duration": 14,
+      "title": "Find the limits",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 5,
+          "source": "safari-hills",
+          "sourceStart": 0
+        },
+        {
+          "start": 5,
+          "duration": 4.5,
+          "source": "safari-ridge",
+          "sourceStart": 1
+        },
+        {
+          "start": 9.5,
+          "duration": 4.5,
+          "source": "safari-side-slope",
+          "sourceStart": 1
+        }
+      ]
+    },
+    {
+      "id": "jumps",
+      "start": 36,
+      "duration": 18,
+      "title": "One jump line, three vehicles",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 4.5,
+          "source": "baja-jumps",
+          "sourceStart": 0.7
+        },
+        {
+          "start": 4.5,
+          "duration": 4.5,
+          "source": "safari-jumps",
+          "sourceStart": 5.1
+        },
+        {
+          "start": 9,
+          "duration": 4.5,
+          "source": "buggy-jumps",
+          "sourceStart": 5.1
+        },
+        {
+          "start": 13.5,
+          "duration": 4.5,
+          "source": "baja-jumps",
+          "sourceStart": 5.1
+        }
+      ]
+    },
+    {
+      "id": "wind",
+      "start": 54,
+      "duration": 14,
+      "title": "Put the air to work",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 7,
+          "source": "baja-wind-side",
+          "sourceStart": 1
+        },
+        {
+          "start": 7,
+          "duration": 7,
+          "source": "baja-wind",
+          "sourceStart": 1
+        }
+      ]
+    },
+    {
+      "id": "future",
+      "start": 68,
+      "duration": 12,
+      "title": "A proving ground for what's next",
+      "shots": [
+        {
+          "start": 0,
+          "duration": 5,
+          "source": "safari-ridge",
+          "sourceStart": 2
+        },
+        {
+          "start": 5,
+          "duration": 7,
+          "source": "baja-ruts",
+          "sourceStart": 4
+        }
+      ]
+    }
+  ]
+}

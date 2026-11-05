@@ -1,0 +1,4 @@
+node_modules/
+.hyperframes/
+!assets/video/*.mp4
+!outputs/Vehicle-Playground-Showcase.mp4

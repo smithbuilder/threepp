@@ -1,0 +1,21 @@
+<template><style>
+@font-face{font-family:Barlow;src:url("assets/fonts/Barlow-Regular.ttf")}@font-face{font-family:BarlowCondensed;src:url("assets/fonts/BarlowCondensed-Bold.ttf");font-weight:700}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Barlow,sans-serif;color:#fff8e8}
+#root .footage{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:0}
+#root .footer{position:absolute;left:0;right:0;top:464px;height:136px;background:#24271f;z-index:4}
+#root .accent{position:absolute;left:0;top:0;width:10px;height:136px;background:#d6813b}
+#root .headline{position:absolute;left:96px;top:14px;font:700 38px/1.05 BarlowCondensed,sans-serif;white-space:nowrap;letter-spacing:.15px}
+#root .subline{position:absolute;left:96px;top:59px;font:20px/1.1 Barlow,sans-serif;white-space:nowrap;color:#eddfc5}
+#root .shotlabel{position:absolute;right:96px;bottom:150px;background:#24271f;padding:7px 12px;font:18px/1.1 Barlow,sans-serif;color:#fff8e8;z-index:3}
+#root .note{position:absolute;left:96px;top:107px;font:16px/1.1 Barlow,sans-serif;color:#eadcc2}
+#root .telemetry{position:absolute;right:96px;top:18px;display:flex;gap:17px;align-items:flex-end}
+#root .sensor{position:relative;width:24px;height:60px;font:16px/1 Barlow,sans-serif;text-align:center}
+#root .sensor-bg{position:absolute;left:4px;top:0;width:16px;height:34px;background:#64705c}
+#root .bar{position:absolute;left:4px;top:0;width:16px;height:34px;background:#e4ad61;transform-origin:50% 100%}
+#root .corner{position:absolute;left:0;top:43px;width:24px}
+#root .metric{position:absolute;left:96px;top:4px;font:700 76px/1 BarlowCondensed,sans-serif;color:#e4ad61}
+#root .metric-copy{position:absolute;left:200px;top:20px;font:25px/1.1 Barlow,sans-serif}
+#root .metric-small{position:absolute;left:200px;top:55px;font:19px/1.1 Barlow,sans-serif;color:#eddfc5}
+</style><div id="root" data-composition-id="jumps" data-width="960" data-height="600">
+    <video id="jumps-shot-0" class="clip footage" data-start="0" data-duration="4.5" data-media-start="0.7" data-track-index="0" src="assets\video\baja-jumps.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video><video id="jumps-shot-1" class="clip footage" data-start="4.5" data-duration="4.5" data-media-start="5.1" data-track-index="0" src="assets\video\safari-jumps.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video><video id="jumps-shot-2" class="clip footage" data-start="9" data-duration="4.5" data-media-start="5.1" data-track-index="0" src="assets\video\buggy-jumps.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video><video id="jumps-shot-3" class="clip footage" data-start="13.5" data-duration="4.5" data-media-start="5.1" data-track-index="0" src="assets\video\baja-jumps.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video><div id="jumps-label-0" class="clip shotlabel" data-start="0" data-duration="4.5" data-track-index="2" data-layout-allow-overlap="true">Small ramp · Baja 427</div><div id="jumps-label-1" class="clip shotlabel" data-start="4.5" data-duration="4.5" data-track-index="2" data-layout-allow-overlap="true">Large jump · Safari</div><div id="jumps-label-2" class="clip shotlabel" data-start="9" data-duration="4.5" data-track-index="2" data-layout-allow-overlap="true">Large jump · Original buggy</div><div id="jumps-label-3" class="clip shotlabel" data-start="13.5" data-duration="4.5" data-track-index="2" data-layout-allow-overlap="true">Large jump · Baja 427</div><div id="jumps-overlay" class="clip" data-start="0" data-duration="18" data-track-index="3" data-layout-allow-overlap="true" data-layout-allow-caption-zone="true"><div id="jumps-footer" class="footer"><span class="accent"></span><div id="jumps-headline" class="headline" style="font-size:38px" data-var-text="jumps-title">One jump line, three vehicles</div><div id="jumps-subline" class="subline" style="font-size:20px">Takeoff, full droop, landing and recovery</div></div></div>
+    </div><script>const tl=gsap.timeline({paused:true});tl.fromTo("#jumps-footer",{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:.48,ease:"power4.out"},.1);window.__timelines["jumps"]=tl;</script></template>
