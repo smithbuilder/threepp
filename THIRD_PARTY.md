@@ -131,6 +131,7 @@ license text.
 | [OpenFBX](https://github.com/nem0/OpenFBX) | FBX loader | MIT, © 2017 Mikulas Florek |
 | [pybind11](https://github.com/pybind/pybind11) | `THREEPP_WITH_PYTHON` / editor scripting | BSD-3, © Wenzel Jakob |
 | [Catch2](https://github.com/catchorg/Catch2) | tests only | Boost Software License 1.0 |
+| [Bullet 3.25](https://github.com/bulletphysics/bullet3/tree/3.25) | local suspension playground only | zlib, Erwin Coumans and contributors; source archive SHA256 `c45afb6399e3f68036ddb641c6bf6f552bf332d5ab6be62f7e6c54eda05ceb77`; only CPU LinearMath/BulletCollision/BulletDynamics are statically linked |
 | [RLtools](https://github.com/rl-tools/rl-tools) | `THREEPP_WITH_RLTOOLS` (opt-in example) | MIT, © 2023 Jonas Eschmann |
 | AMD FidelityFX SDK (FSR) | `THREEPP_WITH_FSR` (opt-in upscaler; Windows, needs `THREEPP_WITH_VULKAN`) | MIT, © AMD — the fetch records the SDK's LICENSE.txt path; the build copies the prebuilt `amd_fidelityfx_vk.dll` beside the executable |
 | **NVIDIA DLSS SDK** | `THREEPP_WITH_DLSS` (opt-in) | **"NVIDIA RTX SDKs License" — proprietary, not open source.** The build fetches the SDK and copies `nvngx_dlss.dll` beside the executable; redistribution of that binary is governed by that license, not by anything in this repository |

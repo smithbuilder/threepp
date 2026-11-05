@@ -1,5 +1,17 @@
 # Conservative evaluation after a full-system lock
 
+November 5 vehicle playground: the isolated `suspension_playground` executable
+retains 960×600, 30 FPS, one 512-pixel local shadow, 2 GiB job, deadline,
+heartbeat and sequential evaluation guards. Bullet is CPU-only. Its 79-check
+physics audit returns before Canvas, vehicle model loading, renderer or audio;
+`Test-Suspension-Playground.ps1` publishes an exact-executable receipt required
+by the native launcher. Six final native review sessions exited 0 with empty
+stderr; source/asset/executable bindings and limitations are recorded in
+`build/suspension-playground/delivery-receipt.json`. A separate 180-second playable
+session exited cleanly, but Windows app-control approval timed out, so direct
+picker clicks/physical controls are not claimed. No graphics pause or active
+evaluation remains. Existing higher-resolution restrictions are unchanged.
+
 November4 suspension comparison uses the same limits. `-RideReplay` is a
 capture-only prescribed-input diagnostic (or a CPU-only `-PhysicsAudit`).
 Its original buggy, previous Safari and revised Safari share the same actual

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "material.gravel-road",
+  "model": "metallic-roughness",
+  "tileSizeMetres": [
+    2.0,
+    2.0
+  ],
+  "metalness": 0,
+  "normalConvention": "OpenGL +Y tangent space",
+  "roughnessChannel": "green (grayscale replicated in RGB)",
+  "textures": {
+    "baseColor": {
+      "file": "basecolor_1k.jpg",
+      "colorSpace": "sRGB",
+      "sha256": "bccbb077a825bdd0eb6f607939578a6ee549822824278fb3a828f6eed3d05d45"
+    },
+    "normal": {
+      "file": "normal_gl_1k.jpg",
+      "colorSpace": "linear",
+      "sha256": "0920996cab9f2d62a2eb73a3589804527aa0273c4ca61b9f526ce4cba37edebc"
+    },
+    "roughness": {
+      "file": "roughness_1k.jpg",
+      "colorSpace": "linear",
+      "sha256": "de602a8ce72aea4ef931b25c9b15fb5e38636bfb32c7df91d0656f7aace193b0"
+    }
+  },
+  "source": "https://polyhaven.com/a/gravel_road",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license"
+}
