@@ -1,0 +1,10 @@
+*.html text eol=lf
+*.json text eol=lf
+*.mp4 binary
+*.mp3 binary
+*.wav binary
+*.ttf binary
+assets/fonts/OFL.txt -whitespace
+assets/vendor/*.min.js -whitespace
+proof/*.log -whitespace
+proof/preview-help.txt -whitespace

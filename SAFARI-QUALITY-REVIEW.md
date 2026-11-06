@@ -14,7 +14,31 @@ records its reviewer evidence separately.
 | Accessories/mechanical detail |20%|
 | In-engine fit/lighting |15%|
 
-## Current suspension comparison, November 4
+## Afternoon environment iteration, November 4
+
+The user requested higher-fidelity surroundings and reusable assets. Current
+signed local executable: `88FE0870014A8D63F234C0F028EE601A7E1C25DEEFA04EB8F30B16D0D097BEA9`;
+body remains `82795FE6`. No historical numeric score transfers to it.
+
+The candidate adds matched photographic sky/lighting, corrected material
+scale/roughness, soil/shoulder variation, grass tufts, portable fieldstone and
+actual mature-fir foliage within the original geometry budgets. Sparse
+decimation and oversized-sapling candidates were rejected and preserved.
+
+Fresh review of 53 native images returns a scoped usable improvement, with no
+major new environment defect observed. Mature forms and the sky-seam fix hold
+in sampled changing frames. Sparse woodland, leaf flecks, distant proxies and
+unverified continuous shimmer remain. This is not a new whole-car scored
+acceptance or an A/AAA claim.
+
+Evidence: `build/fidelity-v1/environment-review/FINAL-REVIEW.md`,
+`delivery-receipt.json`, `asset-library-check.json` and `final-cpu-tests.log`.
+One37.5925s scripted lap completed with no obstacle contacts. Physical controls
+and subjective handling/audio remain user checks. Portable assets, source
+licenses, units, PBR manifests and recipes are in `asset-library/`; the ZIP
+excludes temporary Porsche audio.
+
+## Prior suspension comparison, November 4
 
 The user rejected the November 3 film's boat-like body motion and stiff wheels.
 Its earlier bounded motion PASS is reopened; it did not establish the requested

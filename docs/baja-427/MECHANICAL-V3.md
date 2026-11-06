@@ -1,0 +1,11 @@
+# Baja427 mechanical repair
+
+User feedback:receiver/hitch looked unsupported, components needed coherent fit, and suspension motion did not look natural. The new three-car movie was held while these were repaired. Prior44s movie and v2 asset ZIP remain untouched.
+
+The hitch/bumper now has a continuous route through boxed extensions and crossmember into the rails, a hollow receiver/collar, pin bores and recovery lugs/pins. Added steering uprights, real wishbone pivot forks, coilover towers/clevises, rear link/perch brackets, inboard rear shocks, stationary calipers and separate spinning rotors. Prop/CV shafts meet their corresponding bearings and pinion. New hollow rear wheel wells and fitted raised spare carriers avoid tyre/tower overlap.
+
+The former cosmetic body following/whole-part stretching is replaced with a separate force-based vertical truck ride using2200kg sprung mass and the supplied wheel-rate baseline. Wishbones are fixed four-bar geometry. Damper shells and rods keep their metal lengths while telescoping; only springs change axial length. The rear housing preserves track width and follows trailing-link/Panhard arcs, with small rubber-bush articulation. Authored hub travel is restricted to0.268–0.52m for body clearance. This is a reduced vertical model; the race still uses scripted planar motion. The separate playground chat owns coupled Bullet handling and remains independent.
+
+Serialized geometry audit passes. The assembly audit matches3732 authored parts to exact serialized vertex ranges before testing frame/hitch/mount connections and clearances. Spare-to-wheel-house clearance is32.7mm; rear damper-to-wheel axial clearance37.4mm; receiver pin radial clearance2.50mm. CPU loaded-model audit sweeps243 mechanical poses:maximum front arm length error below0.0001mm, elastic rear-joint displacement at most6.18mm, minimum telescopic engagement47.4mm. Rest/asymmetric bump/30-vs120Hz/drop and acceleration/braking weight-transfer checks pass. Exact current hashes/session receipts accompany the final delivery.
+
+Portable GLB/PNG/manifests:asset-library/models/baja-427. Package:build/baja-427-v3/Baja-427-Modular-v3.zip. Model source changes are confined to this truck; Safari and original buggy geometry remain intact.

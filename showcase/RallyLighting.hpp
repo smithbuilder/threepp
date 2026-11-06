@@ -26,17 +26,62 @@ inline auto daylightSky(){
     return sky;
 }
 
+// A local photographic sky replaces (rather than layers over) the analytic
+// dome for the Safari environment study. The same linear HDR texels light the
+// materials through the existing PMREM. No extra sky pass or render target.
+inline void usePhotographicSky(Sky& sky,Texture& panorama,float rotationY){
+    // atan's longitude seam has a discontinuous implicit derivative. Mip
+    // selection there can produce a dotted vertical bright streak in the sky.
+    // This 1K distant dome uses base-level linear filtering; the separate
+    // existing PMREM still owns roughness prefiltering for scene materials.
+    panorama.minFilter=Filter::Linear;
+    panorama.magFilter=Filter::Linear;
+    panorama.generateMipmaps=false;
+    auto m=sky.materialAs<ShaderMaterial>();
+    m->name="Safari photographic daylight";
+    m->uniforms.clear();
+    m->uniforms.emplace("rallySkyPanorama",Uniform(&panorama));
+    Matrix4 transform;transform.makeRotationFromEuler(Euler(0,rotationY,0));
+    Matrix3 rotation;rotation.setFromMatrix4(transform).transpose();
+    m->uniforms.emplace("rallySkyRotation",Uniform(rotation));
+    m->vertexShader=R"(
+varying vec3 vWorldPosition;
+void main(){
+    vec4 worldPosition=modelMatrix*vec4(position,1.0);
+    vWorldPosition=worldPosition.xyz;
+    gl_Position=projectionMatrix*viewMatrix*worldPosition;
+    gl_Position.z=gl_Position.w;
+})";
+    m->fragmentShader=R"(
+uniform sampler2D rallySkyPanorama;
+uniform mat3 rallySkyRotation;
+varying vec3 vWorldPosition;
+void main(){
+    // Exactly GLPMREM's equirectangular mapping and GLRenderer's inverse
+    // environment rotation. RGBELoader has already decoded RGBE to linear RGB.
+    vec3 direction=rallySkyRotation*normalize(vWorldPosition-cameraPosition);
+    vec2 panoUv=vec2(atan(direction.z,direction.x)*0.15915494309+0.5,
+                     asin(clamp(direction.y,-1.0,1.0))*0.31830988618+0.5);
+    gl_FragColor=vec4(texture2D(rallySkyPanorama,panoUv).rgb,1.0);
+    #include <tonemapping_fragment>
+    #include <encodings_fragment>
+})";
+    m->needsUpdate();
+}
+
 struct RallyLighting {
     static constexpr int shadowSize=512;
     static constexpr float shadowHalfExtent=10.f;
     std::shared_ptr<Sky> sky;
     std::shared_ptr<DirectionalLight> sun;
     std::shared_ptr<Group> target;
+    Vector3 sunDirection=daylightDirection();
+    bool photographicSky=false;
 
     // Snap in the fixed LIGHT basis, rather than world X/Z. World-space
     // snapping still moves a tilted shadow projection by fractional texels.
     void follow(const Vector3& position){
-        const auto n=daylightDirection();
+        const auto& n=sunDirection;
         const auto u=Vector3(0,1,0).cross(n).normalize();
         const auto v=n.clone().cross(u).normalize();
         constexpr float texel=2*shadowHalfExtent/shadowSize;
@@ -49,7 +94,7 @@ struct RallyLighting {
 
 inline RallyLighting makeRallyLighting(GLRenderer& renderer,Scene& scene,
         const std::filesystem::path& assetDir=std::filesystem::path(__FILE__).parent_path()/"assets",
-        bool useForestProbe=true){
+        bool useForestProbe=true,bool safariAtmosphere=false){
     RallyLighting light;
     renderer.toneMapping=ToneMapping::ACESFilmic;
     renderer.toneMappingExposure=.90f;
@@ -61,10 +106,28 @@ inline RallyLighting makeRallyLighting(GLRenderer& renderer,Scene& scene,
     // Real branches, canopy openings and ground supply structured reflections:
     // broad uniform sky/floor fill was making glass and enamel read as plastic.
     // The 1K CC0 source uses the renderer's existing once-only PMREM prefilter.
-    const auto probePath=assetDir/"epping_forest_01_1k.hdr";
-    if(useForestProbe&&std::filesystem::exists(probePath))scene.environment=RGBELoader{}.load(probePath);
-    if(scene.environment){scene.environmentRotation.y=3.2377420f;scene.environmentIntensity=.80f;}
-    else {
+    const auto skyPath=assetDir/"library/environments/kloofendal-partly-cloudy/sky_1k.hdr";
+    if(safariAtmosphere&&useForestProbe&&std::filesystem::exists(skyPath)){
+        scene.environment=RGBELoader{}.load(skyPath);
+        if(scene.environment){
+            // Brightest source pixel609,119 at1024x512: elevation47.988deg.
+            // Keep the established key azimuth; turn the photo and IBL together.
+            light.photographicSky=true;
+            light.sunDirection.set(-.6331052f,.7430080f,-.2170646f);
+            scene.environmentRotation.y=3.4095478f;
+            scene.environmentIntensity=.55f;
+            usePhotographicSky(*light.sky,*scene.environment,scene.environmentRotation.y);
+            // Less uniform veiling restores middle-distance terrain contrast.
+            // This is the existing exponential approximation, not volumetric fog.
+            scene.fog=FogExp2(Color(0xb8c8d3),.0038f);
+        }
+    }
+    if(!light.photographicSky){
+        const auto probePath=assetDir/"epping_forest_01_1k.hdr";
+        if(useForestProbe&&std::filesystem::exists(probePath))scene.environment=RGBELoader{}.load(probePath);
+        if(scene.environment){scene.environmentRotation.y=3.2377420f;scene.environmentIntensity=.80f;}
+    }
+    if(!scene.environment){
         // Source checkouts without the optional probe retain a coherent sky.
         auto environmentScene=Scene::create();environmentScene->name="Cinder daylight fallback";
         auto environmentSky=Mesh::create(light.sky->geometry(),light.sky->material());
@@ -78,8 +141,10 @@ inline RallyLighting makeRallyLighting(GLRenderer& renderer,Scene& scene,
 
     // Modest fill preserves dark undercuts; the probe and shadowed key describe
     // the material instead of washing every surface with uniform hemisphere.
-    scene.add(HemisphereLight::create(0xd7e4f3,0x65543b,.18f));
-    light.sun=DirectionalLight::create(0xffe4bd,3.f);light.sun->castShadow=true;
+    scene.add(HemisphereLight::create(light.photographicSky?0xc6dcf2:0xd7e4f3,
+        light.photographicSky?0x73634d:0x65543b,light.photographicSky?.12f:.18f));
+    light.sun=DirectionalLight::create(light.photographicSky?0xfff4e6:0xffe4bd,
+        light.photographicSky?2.7f:3.f);light.sun->castShadow=true;
     light.sun->shadow->mapSize.set(RallyLighting::shadowSize,RallyLighting::shadowSize);
     // Depth bias -0.0008 over the old 119m depth range detached shadows by
     // nearly 10cm. A smaller bias and 1.5cm normal offset preserve tyre contact.

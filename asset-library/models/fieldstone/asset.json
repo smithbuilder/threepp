@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "model.fieldstone",
+  "type": "obj-model",
+  "format": "OBJ",
+  "file": "boulder.obj",
+  "units": "metres",
+  "upAxis": "Y",
+  "triangles": 56,
+  "vertices": 48,
+  "smoothVertexNormals": true,
+  "material": "material.forest-floor",
+  "materialBinding": {
+    "materialId": "material.forest-floor",
+    "materialManifest": "../../materials/forest-floor/material.json",
+    "uvSet": 0,
+    "uvScale": [
+      2.0,
+      0.52
+    ],
+    "uvOffset": [
+      0.0,
+      0.0
+    ],
+    "wrapS": "repeat",
+    "wrapT": "repeat",
+    "uvConvention": "OBJ vt coordinates with bottom-left origin; V increases from the negative-Y pole to the positive-Y pole",
+    "sampling": "Multiply the OBJ UVs by uvScale, then add uvOffset for every bound texture. The threepp adapter's compensation for shared terrain texture transforms is not part of this portable binding.",
+    "normalConvention": "OpenGL +Y tangent space",
+    "overrides": {
+      "baseColorFactorLinear": [
+        1.1,
+        1.13,
+        1.1
+      ],
+      "roughnessFactor": 0.97,
+      "normalScale": [
+        0.65,
+        0.65
+      ]
+    }
+  },
+  "source": "Original procedural fieldstone authored for this project; offline source scripts/ground-v2-bake-boulder.mjs",
+  "license": "MIT",
+  "licenseFile": "../../LICENSE",
+  "sha256": "95a7b8f5843a629aa15f98b4c34db686fcef9aed228a2fe49c91feb816aba453",
+  "bounds": {
+    "min": [
+      -0.8418866961589025,
+      -0.7968,
+      -0.901475174078032
+    ],
+    "max": [
+      0.9758851226162912,
+      0.7968,
+      0.8253351950827321
+    ]
+  },
+  "notes": "Static portable OBJ with UVs and explicit welded smooth normals; no runtime procedural dependency. Reuses material.forest-floor textures. 56 nondegenerate triangles versus the previous70-slot boulder."
+}

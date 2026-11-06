@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('timber_run','timber_rally','suspension_playground','threepp_showcase','threepp_editor','showpiece','water','tree_demo','forest_demo')]
+    [ValidateSet('timber_run','timber_rally','suspension_playground','baja427_preview','threepp_showcase','threepp_editor','showpiece','water','tree_demo','forest_demo')]
     [string]$Example = 'timber_run',
     [ValidateRange(5,300)][int]$Seconds = 60,
     [switch]$AcknowledgeIncident,
@@ -10,6 +10,12 @@ param(
     [switch]$Sequence,
     [ValidateRange(0,900)][int]$WarmupFrames = 0,
     [switch]$AutoDrive,
+    [switch]$RaceOriginalBuggy,
+    [switch]$RaceTruck,
+    [switch]$ArcadeBoost,
+    [switch]$SuspensionCutaway,
+    [ValidateSet(0.5,1)][double]$PlaybackScale = 1,
+    [ValidateSet('default','hitch','front','rear','underside')][string]$BajaInspect = 'default',
     [switch]$PhysicsAudit,
     [string]$RideReplay = '',
     [ValidateRange(0,899)][int]$ReplayStartFrame = 0,
@@ -22,15 +28,24 @@ param(
     [ValidateSet('forest','daylight')][string]$PortraitEnvironment = 'forest',
     [ValidateSet('default','stock','off')][string]$PortraitShadows = 'default',
     [ValidatePattern('^[a-z][a-z0-9-]{0,47}$')][string]$Vehicle = 'buggy',
-    [ValidateRange(0,3)][int]$View = 0,
+    [ValidateRange(0,6)][int]$View = 0,
     [ValidateRange(1,900)][int]$Frames = 90,
     [switch]$SelfTest
 )
 $ErrorActionPreference = 'Stop'
 if ($Example -ne 'suspension_playground' -and $Vehicle -notin @('buggy','safari')) { throw 'This vehicle is available only in the suspension playground.' }
+if ($View -gt 3 -and $Example -ne 'suspension_playground') { throw 'Close suspension and cabin cameras are available only in the playground.' }
+if ($ArcadeBoost -and ($Example -ne 'suspension_playground' -or $PhysicsAudit)) { throw 'Optional arcade boost is a playground driving feature.' }
+if ($SuspensionCutaway -and ($Example -ne 'suspension_playground' -or $Vehicle -ne 'baja' -or (-not $Capture -and -not $Sequence) -or $View -notin @(4,5) -or $PhysicsAudit)) { throw 'Moving service cutaways require a supervised Baja close-up capture.' }
+if ($PlaybackScale -ne 1 -and ($Example -ne 'suspension_playground' -or (-not $Capture -and -not $Sequence) -or $PhysicsAudit)) { throw 'Half-speed recording is a supervised playground capture only.' }
 if ($Scene -gt 3 -and $Example -ne 'suspension_playground') { throw 'This example has three scenes.' }
-if ($PhysicsAudit -and ($Example -notin @('timber_rally','suspension_playground') -or $Capture -or $Sequence -or $AutoDrive -or $SelfTest)) {
-    throw 'PhysicsAudit is a CPU-only vehicle audit and cannot be combined with graphics capture or driving.'
+if ($RaceTruck) { $RaceOriginalBuggy = $true }
+if ($BajaInspect -ne 'default' -and ($Example -ne 'baja427_preview' -or -not $Capture -or $Sequence -or $PhysicsAudit)) { throw 'Baja mechanical views require a supervised still capture in the asset bench.' }
+if ($RaceOriginalBuggy -and ($Example -ne 'timber_rally' -or $Vehicle -ne 'safari' -or -not $AutoDrive -or (-not $Capture -and -not $Sequence) -or $PhysicsAudit -or $RideReplay -or $VehiclePortrait -or $WheelInspect -or $CaptureScale -ne 1)) {
+    throw 'Two-car staging requires a supervised 960x600 Safari autodrive capture or sequence.'
+}
+if ($PhysicsAudit -and ($Example -notin @('timber_rally','suspension_playground','baja427_preview') -or $Capture -or $Sequence -or $AutoDrive -or $SelfTest)) {
+    throw 'PhysicsAudit is a CPU-only rally or Baja asset audit and cannot be combined with graphics capture or driving.'
 }
 if ($RideReplay) {
     if ($Example -ne 'timber_rally' -or (-not $PhysicsAudit -and (-not $Sequence -or $WarmupFrames -ne 0 -or $VehiclePortrait))) { throw 'Suspension replay requires a CPU audit or native sequence without warmup/portrait.' }
@@ -48,7 +63,9 @@ $active = Join-Path $PSScriptRoot 'build\evaluation-active.json'
 if (-not $SelfTest -and ((Test-Path -LiteralPath $trackedPause) -or (Test-Path -LiteralPath $blocked) -or (Test-Path -LiteralPath $active)) -and -not $AcknowledgeIncident) {
     throw 'Graphics launches are paused after a reported full-system lock. Read SAFETY.md. No demo was started. A deliberate controlled trial requires -AcknowledgeIncident.'
 }
-$verified = @('threepp_showcase','timber_run','timber_rally','suspension_playground','showpiece','tree_demo','forest_demo')
+# Baja's isolated 960x600 test bench passed native loader and bounded inspection
+# checks. It retains this supervisor's existing memory/frame/deadline guards.
+$verified = @('threepp_showcase','timber_run','timber_rally','suspension_playground','baja427_preview','showpiece','tree_demo','forest_demo')
 if (-not $SelfTest -and $Example -notin $verified -and -not $AcknowledgeIncident) {
     throw 'This example has not completed the resumed evaluation. Use a validated profile from Explore-Examples.cmd.'
 }
@@ -109,7 +126,7 @@ try {
             if ($null -eq $sequenceFreeBytes) { throw 'Cannot verify free disk space in this launcher context; sequence recording was not started.' }
             if ($sequenceFreeBytes -lt 1GB) { throw 'Sequence recording requires at least 1 GiB free disk space.' }
         }
-        if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','suspension_playground','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
+        if ($Capture -and $Example -notin @('threepp_showcase','timber_run','timber_rally','suspension_playground','baja427_preview','showpiece','tree_demo','forest_demo')) { throw 'This example has no supported supervised capture option.' }
         if ($AutoDrive -and $Example -notin @('timber_run','timber_rally','suspension_playground')) { throw 'AutoDrive is available only for the driving demos.' }
         if (($WheelInspect -or $VehiclePortrait) -and ($Example -ne 'timber_rally' -or (-not $Capture -and -not $Sequence))) { throw 'Wheel inspection is an explicit rally capture/sequence profile only.' }
         if ($PortraitEnvironment -ne 'forest' -and -not $VehiclePortrait) { throw 'Daylight inspection environment requires a vehicle portrait capture.' }
@@ -120,11 +137,18 @@ try {
         if ($CaptureScale -eq 2) { $arguments += @('--capture-scale','2') }
         if ($Sequence) { $arguments += @('--sequence', ('"' + (Join-Path $session 'frames') + '"'), '--frames',[string]$Frames,'--warmup',[string]$WarmupFrames) }
         if ($AutoDrive) { $arguments += '--autodrive' }
+        if ($ArcadeBoost) { $arguments += '--arcade-boost' }
+        if ($SuspensionCutaway) { $arguments += '--suspension-cutaway' }
+        if ($PlaybackScale -eq 0.5) { $arguments += @('--playback-scale','0.5') }
+        if ($RaceOriginalBuggy) { $arguments += '--race-original-buggy' }
+        if ($RaceTruck) { $arguments += '--race-truck' }
+        if ($BajaInspect -ne 'default') { $arguments += @('--inspect',$BajaInspect) }
         if ($WheelInspect) { $arguments += '--wheel-inspect' }
         if ($VehiclePortrait) { $arguments += @('--portrait','--portrait-angle',$PortraitAngle,'--portrait-light',$PortraitLight,'--portrait-environment',$PortraitEnvironment,'--portrait-shadows',$PortraitShadows) }
         if ($PortraitOrbit) { $arguments += '--portrait-orbit' }
         if ($Example -eq 'timber_rally') { $arguments += @('--view',[string]$View,'--vehicle',$Vehicle) }
         if ($Example -eq 'suspension_playground') { $arguments += @('--view',[string]$View,'--scene',[string]$Scene,'--vehicle',$Vehicle) }
+        if ($Example -eq 'baja427_preview') { $arguments += @('--view',[string]$View,'--scene',[string]$Scene) }
         if ($Example -in @('timber_run','timber_rally','suspension_playground')) { $arguments += @('--telemetry', ('"' + (Join-Path $session 'drive.json') + '"')) }
         if ($Example -eq 'showpiece') { $arguments += @('--size','960x600','--samples','0','--no-gtao','--no-bloom','--no-outline') }
         if ($Example -in @('tree_demo','forest_demo')) { $arguments += '--gl' }
@@ -140,6 +164,11 @@ try {
     $vehicleAssetSha256=$null
     $vehicleAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/safari-body.glb'
     if ($Example -eq 'timber_rally' -and $Vehicle -eq 'safari' -and (Test-Path -LiteralPath $vehicleAsset)) { $vehicleAssetSha256=Get-EvaluationSha256 -LiteralPath $vehicleAsset }
+    if ($Example -eq 'baja427_preview') {
+        $vehicleAsset=Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/baja427-assets/baja-427.glb'
+        if (Test-Path -LiteralPath $vehicleAsset) { $vehicleAssetSha256=Get-EvaluationSha256 -LiteralPath $vehicleAsset }
+    }
+    $truckAssetSha256=$null
     $playgroundAssetSha256=$null
     if ($Example -eq 'suspension_playground') {
         $playgroundAssetSha256=@{}
@@ -150,6 +179,7 @@ try {
         if ($Vehicle -eq 'safari') { $vehicleAssetSha256=$playgroundAssetSha256['safari-body.glb'] }
         if ($Vehicle -eq 'baja') { $vehicleAssetSha256=$playgroundAssetSha256['baja-427.glb'] }
     }
+    if ($RaceTruck) { $truckAssetSha256=Get-EvaluationSha256 -LiteralPath (Join-Path $PSScriptRoot 'build/windows-gl/bin/Release/rally-assets/baja-427.glb') }
     $launch = @{FilePath=$exe;WorkingDirectory=$PSScriptRoot;WindowStyle='Hidden';PassThru=$true;
         RedirectStandardOutput=(Join-Path $session 'stdout.log');RedirectStandardError=(Join-Path $session 'stderr.log')}
     if ($arguments.Count) { $launch.ArgumentList = $arguments }
@@ -173,7 +203,7 @@ try {
     if ($Capture -and -not (Test-Path -LiteralPath (Join-Path $session 'capture.png'))) { $reason = 'capture missing' }
     if ($Sequence -and (@(Get-ChildItem -LiteralPath (Join-Path $session 'frames') -Filter 'frame_*.png' -ErrorAction SilentlyContinue).Count -ne $Frames)) { $reason = 'sequence incomplete' }
     $normal = ($reason -eq 'exited' -and $child.ExitCode -eq 0)
-    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;playgroundAssetSha256=$playgroundAssetSha256;physicsAudit=[bool]$PhysicsAudit;graphicsStarted=(-not $PhysicsAudit -and -not $SelfTest);rideReplay=$RideReplay;rideReplaySha256=$rideReplaySha256;replayStartFrame=$ReplayStartFrame;safariRideProfile=$SafariRideProfile;scene=$Scene;view=$View;vehicle=$Vehicle;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
+    @{example=$Example;binarySha256=$binarySha256;vehicleAssetSha256=$vehicleAssetSha256;playgroundAssetSha256=$playgroundAssetSha256;physicsAudit=[bool]$PhysicsAudit;graphicsStarted=(-not $PhysicsAudit -and -not $SelfTest);rideReplay=$RideReplay;rideReplaySha256=$rideReplaySha256;replayStartFrame=$ReplayStartFrame;safariRideProfile=$SafariRideProfile;scene=$Scene;view=$View;vehicle=$Vehicle;raceOriginalBuggy=[bool]$RaceOriginalBuggy;raceTruck=[bool]$RaceTruck;arcadeBoost=[bool]$ArcadeBoost;suspensionCutaway=[bool]$SuspensionCutaway;playbackScale=$PlaybackScale;bajaInspect=$BajaInspect;truckAssetSha256=$truckAssetSha256;wheelInspect=[bool]$WheelInspect;vehiclePortrait=[bool]$VehiclePortrait;portraitOrbit=[bool]$PortraitOrbit;portraitAngle=$PortraitAngle;portraitLight=$PortraitLight;portraitEnvironment=$PortraitEnvironment;portraitShadows=$PortraitShadows;capture=[bool]$Capture;captureScale=$CaptureScale;renderWidth=(960*$CaptureScale);renderHeight=(600*$CaptureScale);sequence=[bool]$Sequence;requestedFrames=$Frames;warmupFrames=$WarmupFrames;selfTest=[bool]$SelfTest;reason=$reason;exitCode=$child.ExitCode;elapsed=$watch.Elapsed.TotalSeconds;peakObservedWorkingSetBytes=$peakMemory} |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $session 'result.json')
     if ($SelfTest) {
         if ($reason -ne 'time limit' -or $watch.Elapsed.TotalSeconds -gt 10) { throw 'Supervisor self-test failed.' }

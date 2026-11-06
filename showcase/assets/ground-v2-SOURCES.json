@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "purpose": "Missing data maps for Safari's existing Poly Haven forest/gravel scans. Original base-colour and OpenGL-normal assets remain unchanged.",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "file": "ground-v2-forest-rough-1k.jpg",
+      "source": "https://polyhaven.com/a/forest_ground_04",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_rough_1k.jpg",
+      "authors": "Rob Tuytel; minor adjustment by Rico Cilliers",
+      "tileWidthMetres": 3.2,
+      "resolution": [1024, 1024],
+      "sha256": "89d4d50395eb92824a64132c4bc8a5a09009071e0b325ab66dc3104c7a3090ed",
+      "colorSpace": "NoColorSpace",
+      "channel": "green"
+    },
+    {
+      "file": "ground-v2-gravel-rough-1k.jpg",
+      "source": "https://polyhaven.com/a/gravel_road",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_road/gravel_road_rough_1k.jpg",
+      "author": "Amal Kumar",
+      "tileWidthMetres": 2.0,
+      "resolution": [1024, 1024],
+      "sha256": "de602a8ce72aea4ef931b25c9b15fb5e38636bfb32c7df91d0656f7aace193b0",
+      "colorSpace": "NoColorSpace",
+      "channel": "green"
+    }
+  ]
+}

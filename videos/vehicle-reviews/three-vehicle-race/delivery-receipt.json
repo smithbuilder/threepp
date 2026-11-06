@@ -1,0 +1,378 @@
+{
+  "status": "PASS",
+  "checkedAtUtc": "2026-11-05T08:14:04.796461+00:00",
+  "movie": {
+    "path": "build/race-truck-film/Safari-Baja427-Original-Buggy.mp4",
+    "sha256": "4989fb8cec0e7a5f0b03510ca01d4222d2e42c131c0673021768f608864c98ff",
+    "bytes": 61114263
+  },
+  "portablePackage": {
+    "path": "build/baja-427-v3/Baja-427-Modular-v3.zip",
+    "sha256": "36deaf7440867109855dc71e7f51abfb79d49050516bd3e4ceae1081fc0af0b1",
+    "bytes": 4657644
+  },
+  "assetCopies": [
+    {
+      "path": "showcase/assets/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "asset-library/models/baja-427/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "build/windows-gl/bin/Release/rally-assets/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "build/windows-gl/bin/Release/baja427-assets/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    }
+  ],
+  "packageEntriesMatchLibrary": true,
+  "preservedPreviousMovie": {
+    "path": "build/race-film/Safari-vs-Original-Buggy.mp4",
+    "sha256": "4844ac4b3d4a0fdc29ffaa0c855832252755aecfda8f5067d4b154cd74084657",
+    "bytes": 58586961
+  },
+  "preservedPreviousPackage": {
+    "path": "build/baja-427-v2/Baja-427-Modular-v2.zip",
+    "sha256": "16692eab6e9d9d364d83a96f75e7ee2dd9063be539f282852924568b866304d6",
+    "bytes": 4340762
+  },
+  "raceSessions": [
+    {
+      "id": "20261104-235106-153",
+      "result": {
+        "path": "build/sessions/20261104-235106-153/result.json",
+        "sha256": "3d62ca8bc6f266d4dc3f0fec4bb4eb41706ad52abaea73fc45e23e500633a7a6",
+        "bytes": 1249
+      },
+      "binarySha256": "F68C9D34C0A7158CD954A45A7B0F4FD2BE9565CAF3F6977A915E360C54AC9965",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "warmupFrames": 0,
+      "recordedFrames": 720,
+      "exitCode": 0,
+      "peakMiB": 436.62890625
+    },
+    {
+      "id": "20261104-235557-192",
+      "result": {
+        "path": "build/sessions/20261104-235557-192/result.json",
+        "sha256": "a2314cef6f60754cff7a2a732999b6461773575d82958da33e9531a5d41d4be8",
+        "bytes": 1252
+      },
+      "binarySha256": "F68C9D34C0A7158CD954A45A7B0F4FD2BE9565CAF3F6977A915E360C54AC9965",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "warmupFrames": 720,
+      "recordedFrames": 720,
+      "exitCode": 0,
+      "peakMiB": 442.3515625
+    }
+  ],
+  "inspectionSessions": [
+    {
+      "view": "hitch",
+      "session": "20261104-235043-999",
+      "binarySha256": "B9B4ECA964646DFF93FDDA5F313AFB180FD9D6BEAA21B6C39E2E5EEC254AF91D",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "result": {
+        "path": "build/sessions/20261104-235043-999/result.json",
+        "sha256": "b4a67581ce5b15b4c60c4cba8ce50fb3e41665c42af8cda8be2fe1102270d0af",
+        "bytes": 1186
+      },
+      "picture": {
+        "path": "build/baja-427-v3/hitch.png",
+        "sha256": "838bcbccc6ce0568694c58123c58af2f4accc9b6f5d9b2bbcf72742f8d5f1dd4",
+        "bytes": 322800
+      }
+    },
+    {
+      "view": "front-service",
+      "session": "20261105-000010-374",
+      "binarySha256": "C8E6AB652DEBFFD69F75E8B2B472C802BE06317362211EA06B1FC7CA794D78DE",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "result": {
+        "path": "build/sessions/20261105-000010-374/result.json",
+        "sha256": "fc3967251c0e953b6e5870d7a1366c7089b56a4849c0d20671463d0dc974819f",
+        "bytes": 1186
+      },
+      "picture": {
+        "path": "build/baja-427-v3/front-service.png",
+        "sha256": "dd991d5aa6b2c359df87564dfee527c36c09e6736a580772061379278be26116",
+        "bytes": 277662
+      }
+    },
+    {
+      "view": "rear-service",
+      "session": "20261105-000011-351",
+      "binarySha256": "C8E6AB652DEBFFD69F75E8B2B472C802BE06317362211EA06B1FC7CA794D78DE",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "result": {
+        "path": "build/sessions/20261105-000011-351/result.json",
+        "sha256": "de9862368b2a2787d05688663bc14b13a99858f62e288749a881d98addd8b93b",
+        "bytes": 1185
+      },
+      "picture": {
+        "path": "build/baja-427-v3/rear-service.png",
+        "sha256": "3ebac25d37da0f90b1ef896990c6163a3c228eaeb314e7a459b2dbb182847916",
+        "bytes": 253045
+      }
+    },
+    {
+      "view": "underside",
+      "session": "20261104-235046-828",
+      "binarySha256": "B9B4ECA964646DFF93FDDA5F313AFB180FD9D6BEAA21B6C39E2E5EEC254AF91D",
+      "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+      "result": {
+        "path": "build/sessions/20261104-235046-828/result.json",
+        "sha256": "479d99ac05d5e02d9adbd12dc3764ba67d601cfea66ee940e0a3eb5644715c05",
+        "bytes": 1190
+      },
+      "picture": {
+        "path": "build/baja-427-v3/underside.png",
+        "sha256": "08afb3a456f859c0e3b74cedc684ff574192d50508e3d083d0ae733de4c79c89",
+        "bytes": 293282
+      }
+    }
+  ],
+  "render": {
+    "picture": "Continuous 960x600 30fps native framebuffer race; no upscaling, interpolation or invented pictures.",
+    "audio": "Three exhaust voices reconstructed from per-vehicle runtime bands, continuous sample phases and camera-relative stereo; not endpoint audio.",
+    "staging": "Three-lane capture-only 13m road with shifted existing rocks, markers and grass, same instance/road vertex budgets. Independent scripted AI with catch-up governors; not a fair performance comparison.",
+    "frames": 1440,
+    "seconds": 48.0,
+    "minimumEnvelopeGapMetres": 0.385067701,
+    "safariFinishSeconds": 36.1838226,
+    "originalFinishSeconds": 37.3007278,
+    "continuity": "Second take warmup states exactly match all first-take states. No duplicated or omitted picture frames.",
+    "binarySha256": "F68C9D34C0A7158CD954A45A7B0F4FD2BE9565CAF3F6977A915E360C54AC9965",
+    "safariAssetSha256": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+    "movieGainDb": 8.7,
+    "audioMeasurement": {
+      "lufs": -18.1,
+      "truePeakDb": -5.0
+    },
+    "fullDecodePassed": true,
+    "outputSha256": "4989fb8cec0e7a5f0b03510ca01d4222d2e42c131c0673021768f608864c98ff",
+    "bytes": 61114263,
+    "truckAssetSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+    "scriptSha256": "5c7e06771e3764f1b13941225991512c456c5943a54f4a9f84d9dc27429ecf04",
+    "limits": [
+      "Native body centres are inside the logged framing bounds. Moving pixels are reviewed separately.",
+      "Human listening/handling acceptance and sustained real-time performance are not established."
+    ],
+    "truckFinishSeconds": 36.4005356,
+    "truckMotion": "Mechanically repaired Baja v3: force-based2200kg seven-coordinate vertical ride, fixed-length wishbones and steel links, rigid rear axle with elastic bushes, telescopic dampers and rotating brake discs. Authored travel0.268\u20130.52m. Scripted planar motion; not complete coupled vehicle physics.",
+    "truckAudio": "Temporary adaptation of existing CC0 generic buggy engine loops with lower truck RPM mapping; not a recording of this truck."
+  },
+  "encodedReview": {
+    "encodedSamples": [
+      {
+        "frame": 0,
+        "meanRgbError": 2.0828506944444443
+      },
+      {
+        "frame": 600,
+        "meanRgbError": 2.3189369212962965
+      },
+      {
+        "frame": 719,
+        "meanRgbError": 2.58712962962963
+      },
+      {
+        "frame": 720,
+        "meanRgbError": 2.2277291666666668
+      },
+      {
+        "frame": 721,
+        "meanRgbError": 2.4795127314814813
+      },
+      {
+        "frame": 1250,
+        "meanRgbError": 2.383949074074074
+      }
+    ],
+    "minimumPairwiseGapMetres": 0.385067701,
+    "maximumCentreScreenCoordinate": 0.46565479,
+    "allFinish": true,
+    "allStopped": true,
+    "maxTruckFrameSpeedDrop": 0.26666689
+  },
+  "geometryAudit": {
+    "status": "pass",
+    "scope": "serialized GLB geometry, finite attributes, hierarchy, pivots, mesh budget, images and stationary tyre ground alignment",
+    "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+    "bytes": 11295608,
+    "meshes": 150,
+    "nodes": 218,
+    "vertices": 221120,
+    "triangles": 246048,
+    "minimumTriangleArea": 5.727213761019811e-07,
+    "worldBounds": {
+      "min": [
+        -1.409999966621399,
+        -0.07150000929832456,
+        -2.619499921798706
+      ],
+      "max": [
+        1.409999966621399,
+        1.8849999904632568,
+        2.6768970489501953
+      ]
+    },
+    "wheelMinimumY": {
+      "wheel.FL.steer": -0.07150000929832456,
+      "wheel.FR.steer": -0.07150000929832456,
+      "wheel.RL.steer": -0.07150000929832456,
+      "wheel.RR.steer": -0.07150000929832456
+    },
+    "worldGroundOffset": 0.07,
+    "images": [
+      {
+        "name": "ivory_stripes_dust",
+        "size": [
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "427_roundel",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "surface_roughness",
+        "size": [
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "surface_normal",
+        "size": [
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "ivory_panel_dust",
+        "size": [
+          1024,
+          512
+        ]
+      }
+    ],
+    "windingWarnings": [],
+    "limits": [
+      "No renderer or audio device opened.",
+      "Does not validate dynamic suspension closure or steering/travel envelope.",
+      "No claim of user handling or visual acceptance."
+    ]
+  },
+  "assemblyAudit": {
+    "path": "build/baja-427-v3/assembly-audit.json",
+    "sha256": "8de2dbb0ef80ad11e3783eaa7db9867966f1a432fd88783c1552c92d22b2c9f0",
+    "bytes": 4780
+  },
+  "mechanicalAudit": {
+    "status": "PASS",
+    "mechanicalPoses": 243,
+    "maximumRigidArmLengthError": 8.9407e-08,
+    "maximumElasticRearJointDeflection": 0.00617242,
+    "minimumDamperEngagement": 0.0474322,
+    "renderRatePositionDifference": 5.97194e-08,
+    "restHeight": 0.0521114,
+    "scope": "Loaded v3 GLB, rigid wishbones, rigid axle, fixed damper bodies/rods and bushing clearances. Force-based2200kg seven-coordinate ride passes rest, asymmetric bump,30/120Hz and airborne-drop settling."
+  },
+  "cpuTests": {
+    "count": 6,
+    "passed": 6,
+    "seconds": 27.17,
+    "log": {
+      "path": "build/race-truck-film/cpu-tests.log",
+      "sha256": "36cde53812ca5458241c9bd48584b26cd1c8f6900179af0ca0c75b49b7868a68",
+      "bytes": 751
+    }
+  },
+  "invalidCaptureProfilesRejected": 5,
+  "currentSourceSnapshot": [
+    {
+      "path": "scripts/baja427_generate.py",
+      "sha256": "bde8456127da209318026ef8429563caee69ca27a9a8fcd354c1ba877afff70f",
+      "bytes": 56592
+    },
+    {
+      "path": "scripts/baja427_audit.py",
+      "sha256": "5812dd0000d4ab5e4999d3ad0550a5d703a71cc90cadeb9c027270e227ec55b8",
+      "bytes": 5598
+    },
+    {
+      "path": "scripts/baja427_assembly_audit.py",
+      "sha256": "d8c4daf434d4e20a5f83cd78709c3565c68ba4882a29f9f608d254e856f8881c",
+      "bytes": 6567
+    },
+    {
+      "path": "scripts/render-race-review.py",
+      "sha256": "5c7e06771e3764f1b13941225991512c456c5943a54f4a9f84d9dc27429ecf04",
+      "bytes": 10848
+    },
+    {
+      "path": "showcase/BajaGeometry.hpp",
+      "sha256": "49c835970f34d2505d55caf2c8f566ccb6c04e5a6793074cf20ae7ddb1d5aaea",
+      "bytes": 2732
+    },
+    {
+      "path": "showcase/BajaRide.hpp",
+      "sha256": "8fde4277a09b6212b50fef0120019e2768ab5c32c32e914afd40a448ee8ead6e",
+      "bytes": 14970
+    },
+    {
+      "path": "showcase/RallyBaja.hpp",
+      "sha256": "9c36a89ac193eaad6a666623df117f79c42b684a0e51ff4916bb728d7f888d73",
+      "bytes": 13563
+    },
+    {
+      "path": "showcase/RallyRace.hpp",
+      "sha256": "a7f5dc7ef3ba02b9dd9e8f36c5c48c097b24aa573eaae69b1e0cc481b0c7c2cb",
+      "bytes": 7986
+    },
+    {
+      "path": "showcase/rally.cpp",
+      "sha256": "8000c762ba4b1979e261cd267745a76c5ce613135bc9cbe5822a41cf46d1eb89",
+      "bytes": 70513
+    },
+    {
+      "path": "showcase/baja427_preview.cpp",
+      "sha256": "fe954554d023f3f27c8cf79a787dfde7db01fc8dbe0676b416a588537be453de",
+      "bytes": 14084
+    },
+    {
+      "path": "showcase/assets/baja-427.json",
+      "sha256": "379b6fc40d13bcd9fbf8090b7188b538122c32ff62d526e37a84dcc8164ed8db",
+      "bytes": 7582
+    },
+    {
+      "path": "asset-library/models/baja-427/asset.json",
+      "sha256": "66e274109481394fd48749b140d8dc65f8d5118c43e1262102ec33e563122250",
+      "bytes": 7103
+    },
+    {
+      "path": "asset-library/models/baja-427/README.md",
+      "sha256": "75dcfc7f20faf38ad311ae2e4adeb4bc81404194c18f863ef6f383dc19ecc047",
+      "bytes": 2052
+    }
+  ],
+  "guardStateAtCheck": {
+    "EVALUATION-PAUSED.txt": false,
+    "build/GRAPHICS_PAUSED.txt": false,
+    "build/evaluation-active.json": false
+  },
+  "scope": "Actual native film and targeted mechanical checks. Reduced vertical truck ride with scripted planar racing; no full coupled physics or human handling/audio acceptance. Snapshot hashes do not claim commit/publication."
+}

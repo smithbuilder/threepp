@@ -38,6 +38,20 @@ inline SafariCruiseCommand safariCruiseCommand(float speed,bool offRoad){
     return {std::clamp(effort/12.f,0.f,1.f),std::clamp(-effort/18.f,0.f,1.f)};
 }
 
+inline float safariPedalAcceleration(float speed,float throttle,float brake){
+    throttle=std::clamp(throttle,0.f,1.f);brake=std::clamp(brake,0.f,1.f);
+    // S first brakes forward motion, then gives controllable low-speed reverse.
+    // Previously the 18m/s2 brake became reverse propulsion until a hard -6m/s
+    // cutoff, which repeatedly switched force on/off at that speed.
+    if(brake>0){
+        const float blend=std::clamp((speed-.15f)/.85f,0.f,1.f);
+        const float reverse=4.f*std::clamp((6.f+speed)/2.f,0.f,1.f);
+        return -brake*(reverse+(18.f-reverse)*blend);
+    }
+    // W brakes while reversing and smoothly resumes the normal forward drive.
+    return throttle*12.f;
+}
+
 // Shared by the native controller and CPU closed-loop replay. This remains a
 // horizontal arcade bicycle model; it adds contact-limited forces and uses the
 // same 2.7m wheelbase/central steering angle as the visible Safari wheels.
@@ -53,7 +67,7 @@ inline void safariIntegrateMotion(float& speed,float& yawRate,float& heading,thr
     heading+=yawRate*dt;
     const threepp::Vector3 forward(std::sin(heading),0,std::cos(heading)),right(std::cos(heading),0,-std::sin(heading));
     const float rolling=safariCoastAcceleration(speed,offRoad,support)-.001f*speed*std::abs(speed);
-    const float drive=throttle*12-(speed> -6.f?brake*18:0)-(handbrake?speed*1.5f:0)-rolling;
+    const float drive=safariPedalAcceleration(speed,throttle,brake)-(handbrake?speed*1.5f:0)-rolling;
     const float side=-motion.dot(right)*(handbrake?1.5f:offRoad?3.f:7.f);
     const auto traction=safariTractionCommand(drive,side,normalLoad,weight);
     // Apply the bounded acceleration itself. A velocity lerp could bypass the

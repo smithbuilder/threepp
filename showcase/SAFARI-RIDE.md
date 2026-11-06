@@ -150,3 +150,18 @@ retune. Coil span, shaft insertion, arm ends and pins already used live wheel
 contacts; the original buggy exposes them while the Safari's arches conceal
 much of their movement. The force model uses wheel-equivalent rates, not a
 finite-element simulation of the visible coil wire.
+
+## Afternoon controls and environment iteration
+
+The suspension profile and actual collision heights remain unchanged.
+`safariPedalAcceleration` repairs the old full-braking-force reverse propulsion
+and hard cutoff chatter: S brakes, then provides bounded low-speed reverse;
+W recovers forward motion. CPU checks cover opposing pedals, reverse settling
+and forward recovery. Reverse pedal demand also feeds the cosmetic audio.
+
+The signed 88FE candidate completed a 37.5925-second scripted lap with zero contacts
+in session 20261104-131227-078. Travel was 0.301934–0.500000 m, minimum rear room
+.216406m, with 18 finite stop corrections and 3 camera hard clamps. This is bounded
+automated evidence, not physical handling acceptance. Environment and recorded
+Dakar voice changes are described in SESSION-HANDOFF.md. The original Legacy
+response remains covered by its replay.

@@ -1,0 +1,27 @@
+[
+  {
+    "case": "cab_outside_playground",
+    "reason": "Close suspension and cabin cameras are available only in the playground.",
+    "rejectedBeforeLaunch": true
+  },
+  {
+    "case": "cutaway_wrong_vehicle",
+    "reason": "Moving service cutaways require a supervised Baja close-up capture.",
+    "rejectedBeforeLaunch": true
+  },
+  {
+    "case": "cutaway_cabin",
+    "reason": "Moving service cutaways require a supervised Baja close-up capture.",
+    "rejectedBeforeLaunch": true
+  },
+  {
+    "case": "half_without_capture",
+    "reason": "Half-speed recording is a supervised playground capture only.",
+    "rejectedBeforeLaunch": true
+  },
+  {
+    "case": "boost_outside_playground",
+    "reason": "Optional arcade boost is a playground driving feature.",
+    "rejectedBeforeLaunch": true
+  }
+]

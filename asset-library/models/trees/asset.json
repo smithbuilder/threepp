@@ -1,0 +1,860 @@
+{
+  "schemaVersion": 1,
+  "id": "model.mature-conifers",
+  "title": "Mature fir B, C and mirrored C",
+  "kind": "models",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "authors": "Rico Cilliers(modeling), Rob Tuytel(photography)",
+  "sourceUrl": "https://polyhaven.com/a/fir_tree_01",
+  "sourceBlend": {
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/blend/1k/fir_tree_01/fir_tree_01_1k.blend",
+    "bytes": 218986261,
+    "sha256": "153d20aae6d7c63a4c52689d91e8bead78f6d17a70e11ef4d03d19953383de00",
+    "officialMd5Verified": true
+  },
+  "sourceTextureMaps": [
+    {
+      "semantic": "bark_diff",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_bark_diff_1k.png",
+      "sha256": "508ca0a40d118beec98e8375b4611e8a16123eec94b5d2b4870617cf4d24e6fa",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "bark_nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_bark_nor_gl_1k.png",
+      "sha256": "b889e7080d6efb0592f83e64cc5a5afa5fb7787b4b7d1ae13a65602689e793e8",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "bark_rough",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_bark_rough_1k.png",
+      "sha256": "b198105d3022db6c459ae9c307ecdb7b644832ee20bcbfd89c3741cecc77881f",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_b_diff",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_b_diff_1k.png",
+      "sha256": "41bd8a65e0a827646b3a33dc1607eba2082ddc25fe714752259447c49d0600cc",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_b_nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_b_nor_gl_1k.png",
+      "sha256": "fe5f1dafe611a7f04142abf7878622a6212ed7c1737711d548ec3301b3210cf7",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_b_rough",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_b_rough_1k.png",
+      "sha256": "ff399f6d054f903deee0e4d455c09f12ac3441f5c9547a0e9d06c163e6958dee",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_c_diff",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_c_diff_1k.png",
+      "sha256": "edbceb8657a036e98831a3550433ab2d78928fcf9060e400ca84748cedcaf962",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_c_nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_c_nor_gl_1k.png",
+      "sha256": "08a40a7486ad3a8d97cf3da0afe5951f1a038cb51395020e2c4a2113f46d1610",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "trunk_c_rough",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_trunk_c_rough_1k.png",
+      "sha256": "48fcced840b4beed4e03e09a352a67dd36185c9cd4247090069391bfb9746de9",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "twig_alpha",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_alpha_1k.png",
+      "sha256": "3f399629337e7ac3af27a01b08ffb9c0d60224a9dd374a1427761a5c2eea9d6e",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "twig_diff",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_diff_1k.png",
+      "sha256": "76f6d0c0044d76bac08fbbd3d2ac1c9b66bb046de7d0b1a22aa9b319308f3833",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "twig_nor_gl",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_nor_gl_1k.png",
+      "sha256": "cbb6b8179a9f7f6e84fd15d1f422bc342841d20845b2bad437612f03fb0067de",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "semantic": "twig_rough",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_rough_1k.png",
+      "sha256": "a4f0a4c8bc93946dea229def779ffe5d32c555c717e4bf7b0e4b4d86bc21987a",
+      "officialMd5Verified": true,
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "format": "Self-contained standard glTF2.0 GLB; no Draco, external images, runtime shader or backend dependency",
+  "coordinateSystem": {
+    "up": "+Y",
+    "units": "metres",
+    "pivot": "ground at y=0, centered X/Z",
+    "heights": "Original adult14.08\u201314.55m retained in portable files"
+  },
+  "derivation": {
+    "near": "Authored sourceLOD2. All27,952combined foliage triangles retained exactly; onlywoodgeometry collapse-simplified. SourceCORNER/FLOAT_VECTOR UVMap restored to ordinary glTF2D UVs. Original sprig diffuse/alpha/GLnormal/roughness retained at1K. Sourcewoodmaterialnetworks consolidated using the common original bark PBR maps to retain two material draws per prototype.",
+    "far": "Complete authored adult silhouettes CPU-baked at512px/view using unlit diffuse, view-relative normal and first-hit depth; packed into1024 four-view atlases. Two depth-shaped sheets and a900triangle connected3Dtrunk. No needle-geometry deletion is used to obtain opacity coverage.",
+    "mirror": "C mirror applied directly to X vertex positions; polygon winding reversed before normal/tangent export; all exported node transforms have positive determinant.",
+    "processing": "Blender4.5.9 LTS CPU only, two threads; no GPU rendering. Runtime images converted to8bits/channel. No directional illumination baked into baseColor.",
+    "history": "Needle-collapse candidate rejected as empty stems. Sapling coverage candidate restored opacity but was rejected as immature/cactus-like. Both exact model/capture/header snapshots remain underbuild/fidelity-v1/rejected-needle-lod andcoverage-sapling-candidate."
+  },
+  "lodAdvisory": {
+    "lod1": "Full authored3Dbough foliage for roadside/medium distance; original14m adult proportions.",
+    "lod2": "Distant fixed-view impostor, advisory>50m. It is not a close-up hero mesh or dynamically view-blended LOD."
+  },
+  "runtimeAdapter": {
+    "nearInstances": 180,
+    "nearDrawBatches": 6,
+    "nearVariants": [
+      "fir_tree_01-c-lod1.glb",
+      "fir_tree_01-b-lod1.glb",
+      "fir_tree_01-c-mirrored-lod1.glb"
+    ],
+    "nearHeightMetres": [
+      7,
+      14
+    ],
+    "nearRoadsideOffsetMetres": "80%8\u201314m,20%14\u201322m; minimum7.5m road-center clearance",
+    "farInstances": 240,
+    "farDrawBatches": 2,
+    "farVariant": "fir_tree_01-c-lod2.glb",
+    "farHeightMetres": [
+      10,
+      18
+    ],
+    "aspect": "Authoredcrown/trunkaspect retained with small near width variation",
+    "materials": "All near prototypes share original sprig PBR maps and consolidated bark PBR maps. Far shares bark only and uses its own full-silhouette atlas/normal.",
+    "leafShadows": false
+  },
+  "verification": {
+    "scope": "CPU structural/source/image validation only; native appearance pending fresh root review",
+    "combinedNearPrototypeTriangles": 40883,
+    "exactPreviousNearLimit": 41744,
+    "farCLimit": 1920,
+    "fullAuthoredNearFoliageRetained": true,
+    "finitePositionsNormalsUVs": true,
+    "validIndices": true,
+    "allImagesDecodedMax1K8bit": true,
+    "positiveExportedNodeDeterminants": true,
+    "officialSourceMd5Verified": true
+  },
+  "qualityLimitations": [
+    "Wood uses a consolidated common bark material to keep the original two-draw prototype budget; variant-specific original multi-layer trunk shader networks are not reproduced.",
+    "Far trees use two fixed-view depth sheets, with limited close-range parallax and no view blending.",
+    "The stage has finite repeated prototypes and no added foliage wind, transmission shader or antialiasing.",
+    "Technical validation does not establish AAA quality, final native appearance, frame rate or user acceptance."
+  ],
+  "models": [
+    {
+      "file": "fir_tree_01-c-lod1.glb",
+      "sourceVariant": "c",
+      "mirrored": false,
+      "lod": 1,
+      "heightMetres": 14.552308432757854,
+      "vertices": 13304,
+      "triangles": 9317,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 5152,
+          "triangles": 4301,
+          "material": "fir_tree_01.bark.003",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 8152,
+          "triangles": 5016,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "twig_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 678193,
+          "sha256": "31a66a52b944c060a50bbdd8be838e585d69bddb1a17512f6c82c00fb622b4cf"
+        },
+        {
+          "name": "twig_basecolor_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 961252,
+          "sha256": "1c13c947706a16d1117c890f8111a118fb3b61ed6a07d2a999f7712ea7ada33b",
+          "alphaCoverageAt0_3": 0.24757766723632812
+        },
+        {
+          "name": "twig_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        }
+      ],
+      "bytes": 6416836,
+      "sha256": "d57e23c55ae9f46d293c17b08166f1b879541140070bb3c2d2f8d31aa4d788e4"
+    },
+    {
+      "file": "fir_tree_01-c-lod2.glb",
+      "sourceVariant": "c",
+      "mirrored": false,
+      "lod": 2,
+      "heightMetres": 14.552308432757854,
+      "vertices": 2167,
+      "triangles": 1028,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 2077,
+          "triangles": 900,
+          "material": "fir_tree_01.bark.001",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 90,
+          "triangles": 128,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "fir_tree_01-c-canopy-normal-1k",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 414797,
+          "sha256": "dc1cce5ae2f48dd2410192760d9def976f4780b0ae3f0fcbf971525d11caddfe"
+        },
+        {
+          "name": "fir_tree_01-c-canopy-albedo-1k",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 353073,
+          "sha256": "f36407210f200751770ce3356970715481b5110c2e27712d296a77246060e213",
+          "alphaCoverageAt0_3": 0.05522346496582031
+        }
+      ],
+      "bytes": 4809884,
+      "sha256": "f92e12fe3bb9beee4705e6b3849e199e597e1278c2a86b09a6cbead994efa2c9"
+    },
+    {
+      "file": "fir_tree_01-b-lod1.glb",
+      "sourceVariant": "b",
+      "mirrored": false,
+      "lod": 1,
+      "heightMetres": 14.077526301145554,
+      "vertices": 33638,
+      "triangles": 22255,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 5222,
+          "triangles": 4335,
+          "material": "fir_tree_01.bark.003",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 28416,
+          "triangles": 17920,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "twig_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 678193,
+          "sha256": "31a66a52b944c060a50bbdd8be838e585d69bddb1a17512f6c82c00fb622b4cf"
+        },
+        {
+          "name": "twig_basecolor_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 961252,
+          "sha256": "1c13c947706a16d1117c890f8111a118fb3b61ed6a07d2a999f7712ea7ada33b",
+          "alphaCoverageAt0_3": 0.24757766723632812
+        },
+        {
+          "name": "twig_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        }
+      ],
+      "bytes": 7714520,
+      "sha256": "a8bfa1cd0bd350e2192452b5a3b33b1608d5451e53b05d877df06d5ed4f15537"
+    },
+    {
+      "file": "fir_tree_01-b-lod2.glb",
+      "sourceVariant": "b",
+      "mirrored": false,
+      "lod": 2,
+      "heightMetres": 14.077526301145554,
+      "vertices": 2394,
+      "triangles": 1027,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 2304,
+          "triangles": 899,
+          "material": "fir_tree_01.bark.001",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 90,
+          "triangles": 128,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "fir_tree_01-b-canopy-normal-1k",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 546618,
+          "sha256": "4763602efd1e06f1f3b5c49ec322d9e2c62bca9658edf0feb03af9eee60a5733"
+        },
+        {
+          "name": "fir_tree_01-b-canopy-albedo-1k",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 455313,
+          "sha256": "636291bdb0d766a97a850b58a7afbe2e8f466ad75c515240b3ef45dca03eefe3",
+          "alphaCoverageAt0_3": 0.10459136962890625
+        }
+      ],
+      "bytes": 5057560,
+      "sha256": "aa468a48ad89547039605bbe96cfe10757038d68e4cb23432a0a77c57b79be0e"
+    },
+    {
+      "file": "fir_tree_01-c-mirrored-lod1.glb",
+      "sourceVariant": "c",
+      "mirrored": true,
+      "lod": 1,
+      "heightMetres": 14.552308432757854,
+      "vertices": 13303,
+      "triangles": 9311,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 5151,
+          "triangles": 4295,
+          "material": "fir_tree_01.bark.003",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 8152,
+          "triangles": 5016,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "twig_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 678193,
+          "sha256": "31a66a52b944c060a50bbdd8be838e585d69bddb1a17512f6c82c00fb622b4cf"
+        },
+        {
+          "name": "twig_basecolor_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 961252,
+          "sha256": "1c13c947706a16d1117c890f8111a118fb3b61ed6a07d2a999f7712ea7ada33b",
+          "alphaCoverageAt0_3": 0.24757766723632812
+        },
+        {
+          "name": "twig_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        }
+      ],
+      "bytes": 6416760,
+      "sha256": "ba2f8322ad90e839597033a5f1c756231fdf0e58a107d6b23558a05e0dbb9e95"
+    },
+    {
+      "file": "fir_tree_01-c-mirrored-lod2.glb",
+      "sourceVariant": "c",
+      "mirrored": true,
+      "lod": 2,
+      "heightMetres": 14.552308432757854,
+      "vertices": 2165,
+      "triangles": 1027,
+      "parts": [
+        {
+          "role": "bark",
+          "vertices": 2075,
+          "triangles": 899,
+          "material": "fir_tree_01.bark.001",
+          "alphaMode": "OPAQUE",
+          "alphaCutoff": null,
+          "doubleSided": false
+        },
+        {
+          "role": "foliage",
+          "vertices": 90,
+          "triangles": 128,
+          "material": "fir_tree_01.foliage",
+          "alphaMode": "MASK",
+          "alphaCutoff": 0.3,
+          "doubleSided": true
+        }
+      ],
+      "embeddedTextures": [
+        {
+          "name": "bark_nor_gl_8bit",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 2152837,
+          "sha256": "4fc322dc111d154845a2dbbecbdf62717e3967ce86bb0eda29b70dc26439e14c"
+        },
+        {
+          "name": "bark_diff_8bit",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 1734332,
+          "sha256": "dfc99d324adad47fb3f82ab8c075d457e3eaa257c46dd766003c9f28927cf794"
+        },
+        {
+          "name": "bark_rough_8bit",
+          "semantic": "metallicRoughnessGB",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGB",
+          "bytes": 15886,
+          "sha256": "bdea23770958f6d6b4e8a984c836c77a28dc867331e4cace68414e9761d85719"
+        },
+        {
+          "name": "fir_tree_01-c-mirrored-canopy-normal-1k",
+          "semantic": "normalGL",
+          "colorSpace": "linear",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 414222,
+          "sha256": "4b4730c7027ea71ed85c64bb87c02a9e8790b9127f8c162a2204a7ab5dbba115"
+        },
+        {
+          "name": "fir_tree_01-c-mirrored-canopy-albedo-1k",
+          "semantic": "baseColorRGBA",
+          "colorSpace": "sRGB",
+          "width": 1024,
+          "height": 1024,
+          "bitsPerChannel": 8,
+          "mode": "RGBA",
+          "bytes": 354932,
+          "sha256": "862bb24fe5b2cc93bfc59ca2b940142878a32b679b95a2b146d9ebab4b88b7f4",
+          "alphaCoverageAt0_3": 0.0552825927734375
+        }
+      ],
+      "bytes": 4811076,
+      "sha256": "442b3490e20882ff03b88b0363762948810df43e3268cfa6ff8b6df0bbc8d489"
+    }
+  ],
+  "standaloneAtlases": [
+    {
+      "file": "textures/fir_tree_01-b-canopy-albedo-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "sRGB",
+      "sha256": "636291bdb0d766a97a850b58a7afbe2e8f466ad75c515240b3ef45dca03eefe3",
+      "bytes": 455313,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    },
+    {
+      "file": "textures/fir_tree_01-b-canopy-normal-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "linear",
+      "sha256": "4763602efd1e06f1f3b5c49ec322d9e2c62bca9658edf0feb03af9eee60a5733",
+      "bytes": 546618,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    },
+    {
+      "file": "textures/fir_tree_01-c-canopy-albedo-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "sRGB",
+      "sha256": "f36407210f200751770ce3356970715481b5110c2e27712d296a77246060e213",
+      "bytes": 353073,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    },
+    {
+      "file": "textures/fir_tree_01-c-canopy-normal-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "linear",
+      "sha256": "dc1cce5ae2f48dd2410192760d9def976f4780b0ae3f0fcbf971525d11caddfe",
+      "bytes": 414797,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    },
+    {
+      "file": "textures/fir_tree_01-c-mirrored-canopy-albedo-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "sRGB",
+      "sha256": "862bb24fe5b2cc93bfc59ca2b940142878a32b679b95a2b146d9ebab4b88b7f4",
+      "bytes": 354932,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    },
+    {
+      "file": "textures/fir_tree_01-c-mirrored-canopy-normal-1k.png",
+      "width": 1024,
+      "height": 1024,
+      "colorSpace": "linear",
+      "sha256": "4b4730c7027ea71ed85c64bb87c02a9e8790b9127f8c162a2204a7ab5dbba115",
+      "bytes": 414222,
+      "layout": "2x2views0/45/90/135degrees, row-major fromupper-left"
+    }
+  ],
+  "recipe": {
+    "entrypoint": "recipe/prepare-mature-conifers.py",
+    "repositoryEntryPoint": "scripts/prepare-mature-conifers.py",
+    "command": "python recipe/prepare-mature-conifers.py --blender <Blender4.5.9 executable> --workdir <source cache> --out <tree asset folder>",
+    "requirements": [
+      "Blender4.5.9 or compatible",
+      "Python with numpy, Pillow, scipy"
+    ],
+    "process": "Downloads only pinned CC0 blend and1Kmaps, verifies MD5+SHA256, restores named UVs, retains authored3Dnear foliage, simplifieswoodonly, CPU-bakes far views, exports standard GLBs and validates them. No GPU, engine or ignored cache dependency.",
+    "reproductionCheck": "Stable repository recipe ran with pinned local sources into a separate output folder. All six glTF structures, position/normal/UV/index/image blocks match; one B tangent component differs by0.0001 from exporter rounding. Tangent tolerance0.000101 is recorded explicitly; byte-identical regeneration is not claimed. Current native candidate files retain their exact hashes. This is asset reproduction, not native appearance acceptance."
+  },
+  "recipeFiles": [
+    {
+      "file": "recipe/forest-assets/audit-mature-trees.py",
+      "sha256": "469677cd1a02fa0cee2f35e914eb4d3e2d7ffe90e7c13cf48cb2b84d63e0ba2a",
+      "bytes": 9053
+    },
+    {
+      "file": "recipe/forest-assets/bake-mature-far.py",
+      "sha256": "b4aa4e1aef58f62910cc2ad14b73f6c9db5bbca5b3df293c5de4301348de32f7",
+      "bytes": 5429
+    },
+    {
+      "file": "recipe/forest-assets/export-mature-trees.py",
+      "sha256": "e3f0c2990adbd9f5fe95fe5222870cb8bbc44982319137d408bc90be5b4c4b04",
+      "bytes": 7245
+    },
+    {
+      "file": "recipe/forest-assets/fir-tree-source.json",
+      "sha256": "7f889d57cf42270dd39b96b1034dfb073f091471b1dbf8c7719c9e28c5d06127",
+      "bytes": 18758
+    },
+    {
+      "file": "recipe/forest-assets/mature-common.py",
+      "sha256": "a6bfa6cd57f2db5c2c6d2d203c70538d95d8826363b8ad6feb3637409b214130",
+      "bytes": 2335
+    },
+    {
+      "file": "recipe/forest-assets/prepare-mature-atlases.py",
+      "sha256": "f73ea979fddce4b9a998c11b09d24a53478306e28f36f7c0ee6651e0f3675dcb",
+      "bytes": 1907
+    },
+    {
+      "file": "recipe/forest-assets/prepare-mature-maps.py",
+      "sha256": "51cb2b4024ed8670045e0ff654098b28680e26a28e4df5353eef9dff013a02ce",
+      "bytes": 623
+    },
+    {
+      "file": "recipe/prepare-mature-conifers.py",
+      "sha256": "940988748bc94678a990bb1d8ecf7bf779e31a6e926da9596062a7ef2494c364",
+      "bytes": 2832
+    }
+  ]
+}

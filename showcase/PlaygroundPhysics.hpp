@@ -1,6 +1,7 @@
 #pragma once
 #include "PlaygroundTerrain.hpp"
 #include "PlaygroundVehicles.hpp"
+#include "PlaygroundArcade.hpp"
 #include <btBulletDynamicsCommon.h>
 #include <BulletDynamics/Vehicle/btRaycastVehicle.h>
 #include <memory>
@@ -114,6 +115,7 @@ public:
     float steer=0,time=0;
     float throttle=0,brake=0;
     bool reverse=false;
+    ArcadeBoost boost;
     Vector3 windVelocity,aerodynamicForce;
     bool windGusts=false;
     std::array<float,4> travel{},load{},spin{};
@@ -185,7 +187,7 @@ public:
         p.y=road.ride+.07f;tr.setOrigin(bt(p)+tr.getBasis()*bt(cg()));
         chassis->setWorldTransform(tr);chassis->setInterpolationWorldTransform(tr);chassis->setLinearVelocity({0,0,0});chassis->setAngularVelocity({0,0,0});chassis->clearForces();
         vehicle->resetSuspension();world.getBroadphase()->getOverlappingPairCache()->cleanProxyFromPairs(chassis->getBroadphaseHandle(),&dispatcher);
-        steer=0;throttle=brake=0;spin.fill(0);time=0;sync();
+        steer=0;throttle=brake=0;boost={};spin.fill(0);time=0;sync();
     }
     void lift(float y){auto t=chassis->getWorldTransform();t.getOrigin().setY(t.getOrigin().y()+y);chassis->setWorldTransform(t);}
     void kick(const Vector3& v){chassis->setLinearVelocity(bt(v));}
@@ -196,11 +198,12 @@ public:
         if(!raycaster->castRay(from,from+dir*(w.getSuspensionRestLength()+w.m_wheelsRadius),result))return 0;
         return std::max(0.f,w.getSuspensionRestLength()-w.m_maxSuspensionTravelCm*.01f-raycaster->requestedLength[i]);
     }
-    void tick(float gas,float stop,float turn,bool handbrake=false){
+    void tick(float gas,float stop,float turn,bool handbrake=false,bool requestBoost=false){
         throttle=std::clamp(gas,0.f,1.f);brake=std::clamp(stop,0.f,1.f);
         const float target=std::clamp(turn,-1.f,1.f)*.48f/(1+std::abs(speed())*.025f);
         steer+=std::clamp(target-steer,-1.1f*fixedStep,1.1f*fixedStep);
-        const float force=tune.driveForce*throttle*(reverse?-1.f:1.f)/(1+std::pow(std::abs(speed())/14.f,2));
+        const float boostFactor=boost.step(requestBoost,handbrake?0:contactCount(),throttle,brake,reverse,fixedStep);
+        const float force=tune.driveForce*throttle*boostFactor*(reverse?-1.f:1.f)/(1+std::pow(std::abs(speed())/14.f,2));
         for(int i=0;i<4;++i){
             vehicle->setSteeringValue(i<2?rally::steeringAngle(i,steer,tune.dims):0,i);
             vehicle->applyEngineForce(force*.25f,i); // AWD and a bounded low-range drive force.

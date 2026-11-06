@@ -1,0 +1,93 @@
+{
+  "verifiedAtUtc": "2026-11-06T05:24:06.211686+00:00",
+  "branch": "setup/windows-evaluation",
+  "head": "06ec693469d8d71c86115cf393ebaccb5f5fc8c5",
+  "artifacts": [
+    {
+      "path": "build/windows-gl/bin/Release/suspension_playground.exe",
+      "sha256": "3f2bdfbfb84649675e8858cea38840634e4fb3ed43f0afba649678efb1271d9c",
+      "bytes": 4478216
+    },
+    {
+      "path": "showcase/assets/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "asset-library/models/baja-427/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "build/windows-gl/bin/Release/playground-assets/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "bytes": 11295608
+    },
+    {
+      "path": "build/truck-suspension-film/Baja427-Suspension-Cabin-Boost.mp4",
+      "sha256": "16d053b788309e277cbf3c841afed96297225030f425c85bad2b52054c12ed00",
+      "bytes": 11182885
+    },
+    {
+      "path": "build/race-truck-film/Safari-Baja427-Original-Buggy.mp4",
+      "sha256": "4989fb8cec0e7a5f0b03510ca01d4222d2e42c131c0673021768f608864c98ff",
+      "bytes": 61114263
+    },
+    {
+      "path": "build/race-film/Safari-vs-Original-Buggy.mp4",
+      "sha256": "4844ac4b3d4a0fdc29ffaa0c855832252755aecfda8f5067d4b154cd74084657",
+      "bytes": 58586961
+    },
+    {
+      "path": "build/baja-427-v3/Baja-427-Modular-v3.zip",
+      "sha256": "36deaf7440867109855dc71e7f51abfb79d49050516bd3e4ceae1081fc0af0b1",
+      "bytes": 4657644
+    },
+    {
+      "path": "build/fidelity-v1/Cinder-Environment-Assets.zip",
+      "sha256": "4d76de7d8f076b51b87c25fe8941150026b244015d8225f01e7780f9482721ea",
+      "bytes": 41248275
+    },
+    {
+      "path": "videos/playground-showcase/outputs/Vehicle-Playground-Showcase.mp4",
+      "sha256": "1b5247cf4d6f9e6fdc5d783fb8dfe135d435ef8fdb318599d0add4de254a406b",
+      "bytes": 30438416
+    },
+    {
+      "path": "showcase/assets/safari-body.glb",
+      "sha256": "82795fe6ea71da661d85d43fda9c932226e9e3b5e53089c16f53271d271e93be",
+      "bytes": 69113160
+    },
+    {
+      "path": "safari.jpg",
+      "sha256": "d7167a0082f10bf8e5971b1ac824b649699ba6f30da685be7785e8bfc84dcccc",
+      "bytes": 2442294
+    }
+  ],
+  "currentAcceptance": {
+    "binarySha256": "3F2BDFBFB84649675E8858CEA38840634E4FB3ED43F0AFBA649678EFB1271D9C",
+    "vehicles": 3,
+    "checks": 90,
+    "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261105-101516-206",
+    "stations": 8
+  },
+  "latestMovieSourceSnapshotMatches": true,
+  "guardState": {
+    "EVALUATION-PAUSED.txt": false,
+    "build/GRAPHICS_PAUSED.txt": false,
+    "build/evaluation-active.json": false
+  },
+  "priorHandoffArchive": {
+    "path": "SESSION-HANDOFF-HISTORY-2026-11-05.md",
+    "sha256": "14c6b3c7186434ca32fc01510e09ff5188fe6095659487eda52227db78234c75"
+  },
+  "scope": "Read-only artifact/source/receipt verification for documentation handoff. No build, tests or native graphics rerun; no commit/push/publication.",
+  "handoffDocument": {
+    "path": "SESSION-HANDOFF.md",
+    "sha256": "d5e1d00597bc57cefb106ba2bb51a230e0592a603f0b5ad622c76021af16a85e",
+    "lines": 104,
+    "linksChecked": 4,
+    "priorArchiveUnchanged": true
+  },
+  "playgroundSignatureAtHandoff": "Valid; verified with Get-AuthenticodeSignature"
+}

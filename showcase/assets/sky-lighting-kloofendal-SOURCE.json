@@ -1,0 +1,28 @@
+{
+  "asset": "kloofendal_48d_partly_cloudy_puresky",
+  "file": "sky-lighting-kloofendal-1k.hdr",
+  "title": "Kloofendal 48d Partly Cloudy (Pure Sky)",
+  "authors": {"Greg Zaal": "Original", "Jarod Guest": "Sky edits"},
+  "sourceUrl": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+  "apiInfo": "https://api.polyhaven.com/info/kloofendal_48d_partly_cloudy_puresky",
+  "apiFiles": "https://api.polyhaven.com/files/kloofendal_48d_partly_cloudy_puresky",
+  "downloadUrl": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "legalDeed": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "bytes": 1435119,
+  "dimensions": [1024, 512],
+  "sha256": "fd94c84997b8a3c353b62c2125a9b44e19509956986a126e472684432a02d798",
+  "verifiedOfficialApiMd5": "c69498687e876bf68d2a8b8a62234eb9",
+  "processing": "Unmodified official 1K Radiance HDR. No generated pixels, resampling, baked exposure or texture edits.",
+  "orientation": {
+    "loadedWithFlipY": true,
+    "brightestSourcePixel": [609, 119],
+    "sunElevationDegrees": 47.98828125,
+    "environmentRotationYRadians": 3.409547842819958,
+    "alignedWorldSunDirection": [-0.6331051591232184, 0.7430079521351217, -0.21706459995940575],
+    "method": "Brightest linear-luminance RGBE pixel centre. Preserve prior key azimuth and use the photograph's actual elevation. Visible dome uses inverse environment rotation and the same equirectangular convention as GLPMREM."
+  },
+  "usage": "Optional Safari environment study only. Replaces the existing 1K forest input for both visible sky and existing PMREM lighting; same sky-cube draw, same 512-pixel shadow, no added framebuffer or per-frame pass. Panorama is linear and goes through the existing ACES/output encoding once. Legacy buggy and portrait profiles stay unchanged.",
+  "limitations": "One static distant sky photograph, not volumetric clouds or local weather. PureSky lower hemisphere is an artist-supplied sky extension, not measured local terrain irradiance. Environment intensity and weak warm hemisphere fill are art direction for the fictional stage. Native visual/performance review remains required."
+}

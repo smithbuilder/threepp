@@ -14,7 +14,9 @@ struct SafariPowertrain {
     float shiftCooldown=0;
     static constexpr float tyreRadius=.49f,finalDrive=4.7f,shiftDuration=.24f;
     static constexpr float ratios[5]={3.60f,2.15f,1.48f,1.12f,.89f};
-    static constexpr float recordedBandRpm[3]={1050.f,2800.f,4800.f};
+    // Actual Dakar driving/coast recording; approximate firing-harmonic
+    // calibration (Doppler-affected), not measured production tachometer data.
+    static constexpr float recordedBandRpm[3]={900.f,2200.f,2800.f};
 
     void update(float speed,float throttle,float dt,bool stopped) {
         dt=std::clamp(dt,0.f,.1f);
@@ -42,10 +44,10 @@ struct SafariPowertrain {
     using Band=Powertrain::Band;
     Band band(int i,bool silent) const {
         auto smooth=[](float x){x=std::clamp(x,0.f,1.f);return x*x*(3-2*x);};
-        const float a=smooth((rpm-1300.f)/1300.f),b=smooth((rpm-3300.f)/2100.f);
+        const float a=smooth((rpm-1050.f)/450.f),b=smooth((rpm-2400.f)/1200.f);
         const float weight=i==0?std::sqrt(1-a):i==1?std::sqrt(a*(1-b)):std::sqrt(a*b);
-        const float lower=i==0?.74f:i==1?.56f:.64f;
-        const float upper=i==0?1.58f:i==1?1.45f:1.38f;
+        const float lower=i==0?.76f:i==1?.45f:.64f;
+        const float upper=i==0?1.70f:i==1?1.65f:2.36f;
         const float pitch=std::clamp(rpm/recordedBandRpm[i],lower,upper);
         // Recorded pressure/texture opens with load. The upper band falls back
         // on lift, retaining low exhaust body rather than a constant bright rev.

@@ -1,91 +1,72 @@
 {
-  "version": 1,
-  "author": "kyles",
-  "title": "dune buggy muscle car pass slow loud nearby full engine rev and trail off to right.wav",
-  "page": "https://freesound.org/people/kyles/sounds/413905/",
-  "license": "CC0-1.0",
-  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "sourceSha256": "d94cf3da98ceb2c2890cb44a9a81fac23cfba2e6840cba282065b10e378479fb",
-  "sourceNote": "Existing public HQ MP3 preview retained locally. Bands/gearing are original fictional-car tuning, not measured source RPM or a matched Porsche flat-six recording.",
-  "method": "Recorded waveform only; offline lower register, restrained EQ, mild 250ms pass-by envelope reduction, 240ms equal-power circular join, DC removal and bounded normalization. No oscillator/synthesized bass/subharmonic/noise layer.",
-  "filter": "highpass=f=42:p=2,highpass=f=42:p=2,bass=g=3:f=110:w=0.7,equalizer=f=430:t=q:w=0.7:g=-1,equalizer=f=850:t=q:w=0.6:g=3,treble=g=-1:f=1800,lowpass=f=4600:p=2",
-  "originalBuggyHashes": {
-    "idle": "3f45e1feb7b9e4fe88400ed06b46bb557fc95edb3296633e4f3c4595e9938fa2",
-    "mid": "b0268a5545bdf08376e310a7545fbe36a139401435a295b15d014a3b4984b1e9",
-    "high": "7f8a92833da55a558e92fc1a7c16b674ac3e950382ebfa2946aff2db1aac8391"
-  },
+  "version": 2,
+  "source": "Porsche AG:911 Dakar in Dubai, driving footage",
+  "page": "https://newstv.porsche.com/en/article/229332.html",
+  "download": "https://newstv.porsche.com/porschevideos/newstv.porsche.com_229332_en.mp4",
+  "sourceSnippet": "build\\fidelity-v1\\audio-review\\dakar-driving-15-60.m4a",
+  "sourceSnippetSha256": "6c31483343e246c4b9f7595a520891dbf703b8e4c8b7bea96f993a3a455831fd",
+  "sourceSnippetOfficialStartSeconds": 15,
+  "license": "Copyright Porsche AG; temporary personal-project sample requested by project owner; no redistribution license established.",
+  "portableLibrary": false,
+  "notes": [
+    "Low band is recorded low-energy coast adapted as provisional idle; no stationary idle take was established.",
+    "No genuine steady highRPM take was found; upper register is playback of recorded loaded Dakar pressure waves.",
+    "Driving snippet had no linguistic words in CPUWhisper screening. This is not subjective listening acceptance.",
+    "Rejected walkaround narration and studio logo sting were not used.",
+    "Original buggy audio and previous Safari samples remain preserved."
+  ],
   "derived": [
     {
       "file": "safari_exhaust_idle.wav",
-      "sha256": "978ad72bde6b64dd051d0d0cfc262efd507abd710d1824125059456ee20417eb",
-      "sourceStartSeconds": 28.1,
-      "sourceDurationSeconds": 2.4,
-      "offlinePlaybackRatio": 0.4,
-      "playbackBandRpm": 1050,
+      "sha256": "35f796358dfd11493957b7c4372e1d812927cff25916861291847fea16c99900",
+      "officialSourceStartSeconds": 39.6,
+      "sourceDurationSeconds": 1.2,
+      "nominalBandRpm": 900,
+      "calibration": "Approximate six-cylinder firing-harmonic estimate; Doppler/load uncertain.",
+      "processing": "highpass=f=32:p=2,bass=g=4:f=95:w=.7,equalizer=f=900:t=q:w=.7:g=-1.5,lowpass=f=3500:p=2; phase-selected55ms complementary raised-cosine circular join; DC removal; peak<=-5dBFS",
       "statistics": {
-        "seconds": 5.7599583333333335,
-        "rmsDbFS": -14.0002655264188,
-        "peakDbFS": -5.24902709605652,
-        "dc": -2.15240552028552e-08,
-        "powerCentroidHz": 73.30399347866829,
-        "powerFractions": {
-          "0-35Hz": 0.044577015265731,
-          "35-150Hz": 0.9349478132497123,
-          "150-500Hz": 0.01811593584281446,
-          "500-2000Hz": 0.002230188563851453,
-          "2000-12000Hz": 0.000129045739212278
-        },
-        "loopSeamJump": 0.000152587890625,
-        "adjacentJump99": 0.00628662109375
+        "seconds": 1.0423333333333333,
+        "rmsDbFS": -17.999615451955886,
+        "peakDbFS": -5.000377362660108,
+        "dc": 1.1650258678195955e-07,
+        "loopSeamJump": 0.005828857421875,
+        "adjacentJump99": 0.010955810546875
       }
     },
     {
       "file": "safari_exhaust_mid.wav",
-      "sha256": "30a083b08a89119c3182073d16f08ab4585bf190787fb644fbb7abd52914fb4c",
-      "sourceStartSeconds": 5.0,
-      "sourceDurationSeconds": 2.4,
-      "offlinePlaybackRatio": 0.72,
-      "playbackBandRpm": 2800,
+      "sha256": "cf62e5879e5b79148bcb4b52c489586546d5a178ae5b5a0f6922c74d8c106804",
+      "officialSourceStartSeconds": 23.1,
+      "sourceDurationSeconds": 0.7,
+      "nominalBandRpm": 2200,
+      "calibration": "Approximate six-cylinder firing-harmonic estimate; Doppler/load uncertain.",
+      "processing": "highpass=f=32:p=2,bass=g=1.5:f=105:w=.7,lowpass=f=6500:p=2; phase-selected55ms complementary raised-cosine circular join; DC removal; peak<=-5dBFS",
       "statistics": {
-        "seconds": 3.0933125,
-        "rmsDbFS": -16.153437409222644,
-        "peakDbFS": -5.000377362660108,
-        "dc": -9.45459353679645e-09,
-        "powerCentroidHz": 228.5927318783536,
-        "powerFractions": {
-          "0-35Hz": 0.009139339001504423,
-          "35-150Hz": 0.6112964486813869,
-          "150-500Hz": 0.2590517978744072,
-          "500-2000Hz": 0.11893673585118897,
-          "2000-12000Hz": 0.0015756766637000407
-        },
-        "loopSeamJump": 0.001861572265625,
-        "adjacentJump99": 0.01776123046875
+        "seconds": 0.5461666666666667,
+        "rmsDbFS": -16.00026660171057,
+        "peakDbFS": -5.699509351971189,
+        "dc": 4.6563286733292645e-08,
+        "loopSeamJump": 0.00042724609375,
+        "adjacentJump99": 0.0146484375
       }
     },
     {
       "file": "safari_exhaust_high.wav",
-      "sha256": "a9d3d7e1796f23b1275385016cf95e53d4b0914915422ad2c4da5c2e9d84659e",
-      "sourceStartSeconds": 22.0,
-      "sourceDurationSeconds": 2.4,
-      "offlinePlaybackRatio": 1.38,
-      "playbackBandRpm": 4800,
+      "sha256": "26c0b6229022408c544cea24744cc3792cbdf29f2a34148b304e585d281d8b06",
+      "officialSourceStartSeconds": 22.1,
+      "sourceDurationSeconds": 0.7,
+      "nominalBandRpm": 2800,
+      "calibration": "Approximate six-cylinder firing-harmonic estimate; Doppler/load uncertain.",
+      "processing": "highpass=f=32:p=2,lowpass=f=6500:p=2; phase-selected55ms complementary raised-cosine circular join; DC removal; peak<=-5dBFS",
       "statistics": {
-        "seconds": 1.499125,
-        "rmsDbFS": -16.74891238764759,
-        "peakDbFS": -5.000377362660108,
-        "dc": -2.0356926957391812e-08,
-        "powerCentroidHz": 321.51193973830874,
-        "powerFractions": {
-          "0-35Hz": 0.007056673163000766,
-          "35-150Hz": 0.3325651570972629,
-          "150-500Hz": 0.546074917195806,
-          "500-2000Hz": 0.10314680666560581,
-          "2000-12000Hz": 0.011155949786122154
-        },
-        "loopSeamJump": 0.02239990234375,
-        "adjacentJump99": 0.02577026367187507
+        "seconds": 0.5615,
+        "rmsDbFS": -16.000265724236197,
+        "peakDbFS": -6.845856296124979,
+        "dc": -1.585211092868804e-08,
+        "loopSeamJump": 0.002471923828125,
+        "adjacentJump99": 0.0160675048828125
       }
     }
-  ]
+  ],
+  "userDirection": "Deeper at lowRPM:4dB/95Hz idle shelf with -17dBFS RMS target constrained by -5dBFS peak;1.5dB/105Hz mid shelf. No playback slowdown or synthetic bass."
 }

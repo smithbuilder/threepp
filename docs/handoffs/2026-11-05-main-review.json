@@ -1,0 +1,63 @@
+{
+  "datePacific": "2026-11-05",
+  "purpose": "Consolidate all completed work on main at Oliver's request. No new driving or rendering behavior.",
+  "integrationBases": {
+    "local": "06ec693469d8d71c86115cf393ebaccb5f5fc8c5",
+    "publishedPlayground": "ee63383fdd5b08ec8725a6f3933db9c78bbf0cee",
+    "priorDefaultMaster": "8518a6c22d051775c45dbd0c04a3ba92e92a5366"
+  },
+  "vehicleAcceptance": {
+    "binarySha256": "3F2BDFBFB84649675E8858CEA38840634E4FB3ED43F0AFBA649678EFB1271D9C",
+    "vehicles": 3,
+    "checks": 90,
+    "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261105-214209-624",
+    "stations": 8
+  },
+  "graphicsStarted": false,
+  "cpuRegressionSuites": {
+    "passed": [
+      "RallyVehicle_test",
+      "Vector3_test",
+      "Matrix4_test",
+      "ObjectLoader_test",
+      "GLTFLoader_test",
+      "SceneArchive_test"
+    ],
+    "note": "First four passed in the default CPU-only runner. GLTFLoader and SceneArchive initially could not rename temporary files in the restricted tool temp folder; both passed with TEMP and TMP set to build/main-check/temp. No test or engine code changed."
+  },
+  "bajaAudits": {
+    "serializedGeometry": "PASS",
+    "assembly": "PASS",
+    "modelSha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a"
+  },
+  "portableLibrary": {
+    "passed": true,
+    "files": 45,
+    "manifests": 9,
+    "archiveSha256": "292ca3c4ea01af1b8f84953515ca14794f7a41b7f73a83f86147f43752b901af",
+    "historicalArchivePreserved": "build/fidelity-v1/history/Cinder-Environment-Assets-4d76de7d8f07.zip"
+  },
+  "latestFilmSourceSnapshotMatches": true,
+  "previousResumeArtifactHashesMatchedBeforeIntegration": 12,
+  "publishedShowcasePortabilityFixesPreserved": true,
+  "localVideoVersionsBackedUp": "build/main-check/pre-integration-video.zip",
+  "guardState": {
+    "EVALUATION-PAUSED.txt": false,
+    "build/GRAPHICS_PAUSED.txt": false,
+    "build/evaluation-active.json": false
+  },
+  "scope": "CPU and artifact verification. No graphics run, human feel/audio acceptance, release publication or deployment.",
+  "latestFilmSourceSnapshotMatchesAfterMerge": true,
+  "showcaseReceiptSourceHashesMatch": true,
+  "lineEndings": "Pinned each source in the latest film snapshot to its recorded LF or CRLF checkout bytes; no content or behavior changes.",
+  "supersededLocalIntegrationMerge": "8266ce4bc5cdd863edca42b538fb4e25e3917e83",
+  "allThreeFinalMoviesMatchLocalCheckpointBytes": true,
+  "videoPolicy": {
+    "userDirection": "Keep videos local; exclude them from GitHub.",
+    "excludedFiles": 14,
+    "localBackupBranch": "codex/local-video-checkpoint-836ddcfb",
+    "newHistoryBase": "cca75b589fbd776ae5004263976a174ece49f558",
+    "previousUpload": "Cancelled; remote main was absent afterward.",
+    "existingPublishedPlaygroundHistory": "Preserved on its existing branch; not rewritten."
+  }
+}

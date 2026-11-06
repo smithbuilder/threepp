@@ -1,0 +1,61 @@
+◆  Capturing 6 frames at [5s, 16s, 28s, 45s, 61s, 74s] from playground-showcase
+
+   Fonts: 2 loaded
+[hyperframes] snapshot: frame 1/6 at 5s
+[hyperframes] snapshot: frame 2/6 at 16s
+[hyperframes] snapshot: frame 3/6 at 28s
+[hyperframes] snapshot: frame 4/6 at 45s
+[hyperframes] snapshot: frame 5/6 at 61s
+[hyperframes] snapshot: frame 6/6 at 74s
+   Revision: none (inputs-changed)
+   State: C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\video-state.json
+
+◇  6 snapshots saved to C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-00-at-5s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-01-at-16s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-02-at-28s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-03-at-45s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-04-at-61s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\frame-05-at-74s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\contact-sheet.jpg (grid view for AI review)
+{
+  "ok": true,
+  "outputDir": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a",
+  "frames": [
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-00-at-5s.png",
+      "time": 5
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-01-at-16s.png",
+      "time": 16
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-02-at-28s.png",
+      "time": 28
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-03-at-45s.png",
+      "time": 45
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-04-at-61s.png",
+      "time": 61
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\frame-05-at-74s.png",
+      "time": 74
+    }
+  ],
+  "contactSheets": [
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\4a32fd28-c874-4b8e-a6f2-fb0e807ab79a\\contact-sheet.jpg"
+  ],
+  "_meta": {
+    "version": "0.9.16",
+    "latestVersion": "0.9.16",
+    "updateAvailable": false,
+    "checkedAt": "2026-11-05T14:50:45.306Z",
+    "skillsOutdated": 0,
+    "skillsMissing": 0
+  }
+}

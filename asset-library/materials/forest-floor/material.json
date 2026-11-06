@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "material.forest-floor",
+  "model": "metallic-roughness",
+  "tileSizeMetres": [
+    3.2,
+    3.2
+  ],
+  "metalness": 0,
+  "normalConvention": "OpenGL +Y tangent space",
+  "roughnessChannel": "green (grayscale replicated in RGB)",
+  "textures": {
+    "baseColor": {
+      "file": "basecolor_1k.jpg",
+      "colorSpace": "sRGB",
+      "sha256": "50a4dda30875020c64385261aa7e00e2155b592302fa6794165f58fae73cbd2c"
+    },
+    "normal": {
+      "file": "normal_gl_1k.jpg",
+      "colorSpace": "linear",
+      "sha256": "9c3a0200e02ce40edffbbf9f5f623ef08ea9b1b7812b556182ec978f88887151"
+    },
+    "roughness": {
+      "file": "roughness_1k.jpg",
+      "colorSpace": "linear",
+      "sha256": "89d4d50395eb92824a64132c4bc8a5a09009071e0b325ab66dc3104c7a3090ed"
+    }
+  },
+  "source": "https://polyhaven.com/a/forest_ground_04",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license"
+}

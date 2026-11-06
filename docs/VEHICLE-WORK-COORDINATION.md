@@ -1,0 +1,10 @@
+# Historical vehicle work coordination — November 5
+
+The two lanes below are complete at the current root handoff. Their former ownership boundaries are preserved as history, not active claims. No external message was sent. Start with `SESSION-HANDOFF.md` for the combined checkpoint and current open quality work.
+
+- Iterating on additional vehicles and environment art (01a1a81e-2583-76b0-a4a9-c5916dc6ade4): completed mechanical v3 truck, native inspection and48s three-car race. Owns scripts/baja427_generate.py, serialized/assembly audits, BajaGeometry.hpp, BajaRide.hpp, RallyBaja.hpp, truckGLB and inspection bench, rally.cpp capture staging and race assembly. Current GLB SHA256 f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a;246048triangles/150meshes. Preserve prior44s movie andv2pack. Current checkpoint:docs/baja-427/HANDOFF-MECHANICS-AND-RACE-V3.md.
+- Build suspension playground (01a1aa76-1425-7f53-957c-c479b40b9271): observed active work owns Playground* and suspension_playground.cpp, coupled Bullet physics, facility/UI/launcher route. Do not overwrite those files or remove its additions to shared supervisor/CMake. This root will avoid native launches while its evaluation owns the mutex.
+
+RallyBaja::present(position,orientation,travel,steering,spin,height) remains public/stable for independent physics. Rigid front wishbones, telescopic dampers, rear axle and joint/mount geometry passed targeted243-pose checks. Currentv3travel is .268-.52m versus .4m rest. New rotor/telescopic/spring-seat/slip interfaces are recorded in the current manifest. Actual prop slip node is driveline.slip. Earlier CPU error232750-814 was this corrected missing-node binding, not a graphics failure; no pause was set.
+
+Root lane is complete with no further native run. Its reduced vertical race solver does not replace playground coupled physics. Before current Baja acceptance in playground, rebuild that target and verify its cached GLB/manifest against the final hash; previous cache was interimv3. See build/suspension-playground/BAJA-V3-ASSIST-NOTE.md. Shared launch/supervision guards and all960x600/30fps/2GiB/signature limits remain.

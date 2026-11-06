@@ -1,0 +1,12 @@
+bed    music-bed (--bed)
+voice  voice-world (--voice)
+voice  voice-suspension (--voice)
+voice  voice-terrain (--voice)
+voice  voice-jumps (--voice)
+voice  voice-wind (--voice)
+voice  voice-future (--voice)
+carve  strength 0.8, 6 voices
+bands  160Hz -9.85dB q2.06, 400Hz -7.4dB q2.06, 630Hz -7.4dB q2.06, 1000Hz -7.4dB q2.06, 1600Hz -14.8dB q2.06, 2500Hz -10.59dB q2.06
+level  399-point envelope, floor -19.2 dB
+lanes  7 carve
+wrote index.html (id="music-bed")

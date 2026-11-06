@@ -1,0 +1,52 @@
+{
+  "units": "metres",
+  "space": "truck root local, +Y up, +Z forward",
+  "modelSha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+  "cameras": {
+    "frontSuspension": {
+      "eye": [
+        -3.1,
+        0.82,
+        3.15
+      ],
+      "target": [
+        -0.56,
+        0.57,
+        1.56
+      ],
+      "verticalFovDegrees": 43
+    },
+    "rearSuspension": {
+      "eye": [
+        -3.15,
+        0.74,
+        -2.8
+      ],
+      "target": [
+        -0.45,
+        0.54,
+        -1.57
+      ],
+      "verticalFovDegrees": 43
+    },
+    "driver": {
+      "eye": [
+        -0.47,
+        1.55,
+        0.13
+      ],
+      "target": [
+        -0.47,
+        1.48,
+        9
+      ],
+      "verticalFovDegrees": 78,
+      "nearPlane": 0.025
+    }
+  },
+  "notes": [
+    "Transform eye/target/body-up by authoritative chassis quaternion.",
+    "Cabin view reduces smoked-glass opacity to0.12 in the presentation adapter only; exterior restores original.",
+    "Service cutaway is labelled capture-only; body/cargo/near wheel hidden, physics unchanged."
+  ]
+}

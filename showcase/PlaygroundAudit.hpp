@@ -41,6 +41,14 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
         auto fall=s.origin().sub(start);
         check(s.tune.name,"free fall follows gravity",std::abs(fall.y+9.81f*.5f*.5f*.5f)<.04f,fall.y,-1.22625f);
         check(s.tune.name,"airborne throttle cannot propel body",std::hypot(fall.x,fall.z)<.002f,std::hypot(fall.x,fall.z),.002f);
+        // Optional arcade force uses the same tyres and chassis. It cannot
+        // propel an airborne body or override the brake, and defaults off.
+        s.select(n,stations[0]);for(int k=0;k<480;++k)s.tick(1,0,0);float normalSpeed=s.speed();
+        s.select(n,stations[0]);for(int k=0;k<480;++k)s.tick(1,0,0,false,true);float boostedSpeed=s.speed();
+        check(s.tune.name,"ground boost increases acceleration",boostedSpeed>normalSpeed+.4f,boostedSpeed-normalSpeed,.4f);
+        s.tick(1,1,0,false,true);check(s.tune.name,"brake cancels optional boost",!s.boost.active,s.boost.active,0);
+        s.select(n,stations[0]);s.lift(8);start=s.origin();for(int k=0;k<120;++k)s.tick(1,0,0,false,true);fall=s.origin().sub(start);
+        check(s.tune.name,"boost cannot propel an airborne body",std::hypot(fall.x,fall.z)<.002f&&!s.boost.active,std::hypot(fall.x,fall.z),.002f);
         Station incline{"slope","",0,30,0};s.select(n,incline);
         for(int k=0;k<240*3;++k)s.tick(0,1,0);
         auto held=s.origin();for(int k=0;k<240*3;++k)s.tick(0,1,0);
@@ -119,6 +127,22 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
         check(s.tune.name,"vehicle lands after ballistic flight",landed,landed,1);
         check(s.tune.name,"both jumps leave the ground",jumpTimes[0]>.10f&&jumpTimes[1]>.10f,std::min(jumpTimes[0],jumpTimes[1]),.10f);
         check(s.tune.name,"both jumps land and continue upright",jumpLanded[0]&&jumpLanded[1]&&jumpProgress>181&&jumpUp>.65f,jumpProgress,181);
+        if(tunes[n].visualRig==VisualRig::Baja){
+            s.select(n,stations[6]);float airTime=0,peak=0;bool touchedDown=false;float boostSeconds=0;
+            for(int k=0;k<240*12;++k){
+                auto p=s.origin(),f=Vector3(0,0,1).applyQuaternion(s.rotation());bool boost=p.z>=103&&p.z<110;
+                float demand=((boost?14.f:10.f)-s.speed())*.55f+s.tune.mass*9.81f*f.y/s.tune.driveForce;
+                float turn=std::clamp((Terrain::trailCenter(6,p.z)-p.x)*.22f-std::atan2(f.x,f.z)*1.5f,-1.f,1.f);
+                s.tick(std::clamp(demand,0.f,1.f),std::clamp(-demand*s.tune.driveForce/(s.tune.mass*9.81f*1.8f),0.f,1.f),turn,false,boost);
+                boostSeconds+=s.boost.active?Simulation::fixedStep:0;
+                if(p.z>113&&p.z<140){if(s.contactCount()==0)airTime+=Simulation::fixedStep;else if(airTime>.1f&&s.contactCount()>=2)touchedDown=true;
+                    peak=std::max(peak,p.y-terrain.height(p.x,p.z));}
+                if(k%240==0)pulse();
+            }
+            float up=Vector3(0,1,0).applyQuaternion(s.rotation()).y;
+            check(s.tune.name,"boosted ramp has airborne arc and landing",airTime>.1f&&touchedDown&&boostSeconds>.1f&&peak>.5f,airTime,.1f);
+            check(s.tune.name,"boosted jump continues upright",s.origin().z>140&&up>.65f,s.origin().z,140);
+        }
     }
     std::ofstream out(output/"result.json");out<<"{\"status\":\""<<(failed?"FAIL":"PASS")<<"\",\"passed\":"<<passed<<",\"failed\":"<<failed
         <<",\"solver\":\"Bullet 3.25 rigid body and raycast vehicle\",\"physicsHz\":240,\"terrainTriangles\":"<<terrain.indices.size()/3

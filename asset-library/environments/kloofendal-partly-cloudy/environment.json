@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "environment.kloofendal-partly-cloudy",
+  "file": "sky_1k.hdr",
+  "projection": "equirectangular",
+  "dimensions": [
+    1024,
+    512
+  ],
+  "colorSpace": "linear HDR Radiance RGBE",
+  "source": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+  "authors": {
+    "Greg Zaal": "Original",
+    "Jarod Guest": "Sky edits"
+  },
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "sha256": "fd94c84997b8a3c353b62c2125a9b44e19509956986a126e472684432a02d798",
+  "sunPixelTopLeft": [
+    609,
+    119
+  ],
+  "note": "Static distant sky; lower hemisphere is an artist-supplied extension. World rotation, exposure, fog and lighting belong to the consuming scene."
+}

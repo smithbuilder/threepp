@@ -1,0 +1,2 @@
+# Keep final review films on this machine, outside Git history.
+*.mp4

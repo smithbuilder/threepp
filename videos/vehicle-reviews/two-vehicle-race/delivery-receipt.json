@@ -1,0 +1,59 @@
+{
+  "raceVideo": {
+    "frames": 1320,
+    "seconds": 44.0,
+    "outputSha256": "4844ac4b3d4a0fdc29ffaa0c855832252755aecfda8f5067d4b154cd74084657",
+    "bytes": 58586961,
+    "binarySha256": "268C127170A0E9D4075FF2339DCEFF37C953D0CA750261EF72F49EBC0FF482E6",
+    "safariAssetSha256": "82795FE6EA71DA661D85D43FDA9C932226E9E3B5E53089C16F53271D271E93BE",
+    "minimumEnvelopeGapMetres": 0.400923491,
+    "safariFinishSeconds": 37.1590309,
+    "originalFinishSeconds": 37.4757652,
+    "audioMeasurement": {
+      "lufs": -18.1,
+      "truePeakDb": -3.7
+    },
+    "fullDecodePassed": true
+  },
+  "raceSources": {
+    "showcase\\rally.cpp": "e70b3e5ed16af9f8b9c8e4ec4a0bbf5da4461397bb063146c9c926da3edc231d",
+    "showcase\\RallyRace.hpp": "6848693cc1bb817ec96ea1bbd1946a655b1ef4c6bad2683e7fb6f072dd5e53be",
+    "Run-Evaluation.ps1": "3ca09e1e66c45aa0f61539f1bee52004413a52e53da66d1524e79430363c9f19",
+    "scripts\\render-race-review.py": "e99378ad7ceae966a5ca8aa420ae97452f4b07189361f6abf6056b4162d5acfe"
+  },
+  "truck": {
+    "glbSha256": "3055f1f63f4ef9489561257386a9c118ad93e6550d2cc9be8025cfcc315efe77",
+    "zipSha256": "16692eab6e9d9d364d83a96f75e7ee2dd9063be539f282852924568b866304d6",
+    "triangles": 209600,
+    "meshes": 104,
+    "images": 5,
+    "inputs": [
+      {
+        "download": "C:\\Users\\oliver\\Downloads\\Baja 427 Rally Truck Blueprint.png",
+        "projectCopy": "docs\\baja-427\\references\\Baja 427 Rally Truck Blueprint.png",
+        "sha256": "2a386aacf53a008e188689c7baa7359a7d9405aeec9e3fdd0f25a33c449564df"
+      },
+      {
+        "download": "C:\\Users\\oliver\\Downloads\\Baja-427-Master-Reference.jpg",
+        "projectCopy": "docs\\baja-427\\references\\Baja-427-Master-Reference.jpg",
+        "sha256": "c879e3749fa287016fc8d1ac79d20adf4739c54f201eaa0276e3b6f92da84e5f"
+      },
+      {
+        "download": "C:\\Users\\oliver\\Downloads\\Baja-427-Suspension-Baseline.xlsx",
+        "projectCopy": "docs\\baja-427\\references\\Baja-427-Suspension-Baseline.xlsx",
+        "sha256": "d052dd2d0e74c65a1b60e706a33d69fa3e8960bfdeb9919aa8cb3d77d1c908a8"
+      }
+    ]
+  },
+  "checks": [
+    "All 11 selected preset tests passed (six CPU plus five renderer checks inadvertently selected; see validation note).",
+    "Four unsupported two-car profiles rejected before launch.",
+    "Final native takes exited cleanly with empty stderr.",
+    "Second take warmup exactly reproduces all first take states.",
+    "1320 native frames, 960x600, 30 fps; complete video/audio decode passed.",
+    "Six encoded frames match original PNGs within 2.54 mean RGB levels.",
+    "Truck serialized and native loader checks passed; six native views inspected."
+  ],
+  "humanAcceptance": "Audio reconstructed; no endpoint recording, human listening acceptance or sustained real-time performance result.",
+  "publication": "None. All work remains local; no commit/push."
+}

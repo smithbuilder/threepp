@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "title": "Cinder portable environment and vehicle assets",
+  "units": "metres",
+  "models": "glTF 2.0 / GLB, right handed, +Y up",
+  "runtimeDependencies": [],
+  "assets": [
+    {
+      "id": "material.forest-floor",
+      "type": "pbr-material",
+      "manifest": "materials/forest-floor/material.json"
+    },
+    {
+      "id": "material.gravel-road",
+      "type": "pbr-material",
+      "manifest": "materials/gravel-road/material.json"
+    },
+    {
+      "id": "environment.kloofendal-partly-cloudy",
+      "type": "hdr-environment",
+      "manifest": "environments/kloofendal-partly-cloudy/environment.json"
+    },
+    {
+      "id": "vehicle.baja-427",
+      "type": "gltf-model",
+      "manifest": "models/baja-427/asset.json"
+    },
+    {
+      "id": "model.fieldstone",
+      "type": "obj-model",
+      "manifest": "models/fieldstone/asset.json"
+    },
+    {
+      "id": "model.mature-conifers",
+      "type": "gltf-model",
+      "manifest": "models/trees/asset.json"
+    }
+  ],
+  "exclusions": [
+    "Temporary Porsche personal-project exhaust samples are not part of this portable environment library."
+  ],
+  "adapters": "Game-specific lighting, terrain mixing and instancing are in showcase/; no threepp binary, shader or C++ header is required to use these source assets."
+}

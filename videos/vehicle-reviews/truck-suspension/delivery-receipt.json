@@ -1,0 +1,285 @@
+{
+  "status": "PASS",
+  "checkedAtUtc": "2026-11-05T18:27:02.681493+00:00",
+  "movie": {
+    "path": "build/truck-suspension-film/Baja427-Suspension-Cabin-Boost.mp4",
+    "sha256": "16d053b788309e277cbf3c841afed96297225030f425c85bad2b52054c12ed00",
+    "bytes": 11182885
+  },
+  "render": {
+    "status": "PASS",
+    "output": "build\\truck-suspension-film\\Baja427-Suspension-Cabin-Boost.mp4",
+    "sha256": "16d053b788309e277cbf3c841afed96297225030f425c85bad2b52054c12ed00",
+    "bytes": 11182885,
+    "frames": 1380,
+    "seconds": 46.0,
+    "binarySha256": "3F2BDFBFB84649675E8858CEA38840634E4FB3ED43F0AFBA649678EFB1271D9C",
+    "modelSha256": "F3AEA63858C923F1DE2AE97A922341758A978A2DDC3215A0FFFBBFDE6AC0F72A",
+    "fullDecodePassed": true,
+    "audioMeasurement": {
+      "lufs": -18.0,
+      "truePeakDb": -4.9
+    },
+    "audioSources": [
+      {
+        "path": "showcase\\assets\\cinder_exhaust_idle.wav",
+        "sha256": "3f45e1feb7b9e4fe88400ed06b46bb557fc95edb3296633e4f3c4595e9938fa2"
+      },
+      {
+        "path": "showcase\\assets\\cinder_exhaust_mid.wav",
+        "sha256": "b0268a5545bdf08376e310a7545fbe36a139401435a295b15d014a3b4984b1e9"
+      },
+      {
+        "path": "showcase\\assets\\cinder_exhaust_high.wav",
+        "sha256": "7f8a92833da55a558e92fc1a7c16b674ac3e950382ebfa2946aff2db1aac8391"
+      }
+    ],
+    "audio": "Temporary reconstructed generic engine, tyres and procedural landing thumps driven by native logs; not endpoint audio.",
+    "picture": "Actual native960x600/30fps. Half-speed shots integrate the same240Hz physics at half rate; no interpolated frames or authored jump trajectory.",
+    "matchedReplayChecks": {
+      "articulation": true,
+      "jump": true
+    },
+    "assemblerSha256": "09466889e9efc9aa3d1bf3d016c0e1b6f7ebbe453d34186828f1fd907655b134"
+  },
+  "nativeSessions": [
+    {
+      "session": "20261105-101709-774",
+      "resultSha256": "3065ee70d0f4fadd8dd616b64d30f5857cd98b16a98834f225c2c8f5f681b550",
+      "elapsedSeconds": 19.2098796,
+      "peakMiB": 202.99609375,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    },
+    {
+      "session": "20261105-101904-652",
+      "resultSha256": "41d50c5d2b3faf34788791a42d5b1c4bf9c107bf020c39bbaa81f9c73bee42f5",
+      "elapsedSeconds": 26.3669066,
+      "peakMiB": 195.015625,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    },
+    {
+      "session": "20261105-101948-141",
+      "resultSha256": "49b25a91c46281581cd1a342935f36f2a70518c7da05d2db0c48fecbfcf6fe50",
+      "elapsedSeconds": 26.892376,
+      "peakMiB": 196.27734375,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    },
+    {
+      "session": "20261105-102102-759",
+      "resultSha256": "6bc02e5a3f92a13d2077165fe517d800130c6439986b11c7d0200de005555b25",
+      "elapsedSeconds": 29.093225699999998,
+      "peakMiB": 194.66796875,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    },
+    {
+      "session": "20261105-101546-066",
+      "resultSha256": "0b795103853b36e34f852d07d56507b0972c8b5e1d51e2ede7f98cb91fb73db7",
+      "elapsedSeconds": 17.0974971,
+      "peakMiB": 201.50390625,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    },
+    {
+      "session": "20261105-102226-633",
+      "resultSha256": "5947b234127e74512e9514fe6d9ee4be57e8f89b8576c6e66e3f116ae9568c05",
+      "elapsedSeconds": 14.130053799999999,
+      "peakMiB": 203.609375,
+      "exitCode": 0,
+      "emptyStderr": true,
+      "discardedPhysicsBacklogs": 0
+    }
+  ],
+  "currentAcceptance": {
+    "binarySha256": "3F2BDFBFB84649675E8858CEA38840634E4FB3ED43F0AFBA649678EFB1271D9C",
+    "vehicles": 3,
+    "checks": 90,
+    "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261105-101516-206",
+    "stations": 8
+  },
+  "baselineComparison": {
+    "baselineChecks": 79,
+    "currentChecks": 90,
+    "allBaselineRequirementsPass": true,
+    "changedValues": []
+  },
+  "guardValidation": [
+    {
+      "case": "cab_outside_playground",
+      "reason": "Close suspension and cabin cameras are available only in the playground.",
+      "rejectedBeforeLaunch": true
+    },
+    {
+      "case": "cutaway_wrong_vehicle",
+      "reason": "Moving service cutaways require a supervised Baja close-up capture.",
+      "rejectedBeforeLaunch": true
+    },
+    {
+      "case": "cutaway_cabin",
+      "reason": "Moving service cutaways require a supervised Baja close-up capture.",
+      "rejectedBeforeLaunch": true
+    },
+    {
+      "case": "half_without_capture",
+      "reason": "Half-speed recording is a supervised playground capture only.",
+      "rejectedBeforeLaunch": true
+    },
+    {
+      "case": "boost_outside_playground",
+      "reason": "Optional arcade boost is a playground driving feature.",
+      "rejectedBeforeLaunch": true
+    }
+  ],
+  "encodedReview": {
+    "status": "PASS",
+    "samples": [
+      {
+        "movieFrame": 0,
+        "meanRgbError": 1.7209479166666666,
+        "source": "build\\sessions\\20261105-101709-774\\frames\\frame_00000.png"
+      },
+      {
+        "movieFrame": 179,
+        "meanRgbError": 1.930546875,
+        "source": "build\\sessions\\20261105-101709-774\\frames\\frame_00179.png"
+      },
+      {
+        "movieFrame": 180,
+        "meanRgbError": 1.6662679398148148,
+        "source": "build\\sessions\\20261105-101904-652\\frames\\frame_00000.png"
+      },
+      {
+        "movieFrame": 419,
+        "meanRgbError": 1.7201782407407407,
+        "source": "build\\sessions\\20261105-101904-652\\frames\\frame_00239.png"
+      },
+      {
+        "movieFrame": 420,
+        "meanRgbError": 1.5560827546296296,
+        "source": "build\\sessions\\20261105-101948-141\\frames\\frame_00000.png"
+      },
+      {
+        "movieFrame": 659,
+        "meanRgbError": 1.6573107638888889,
+        "source": "build\\sessions\\20261105-101948-141\\frames\\frame_00239.png"
+      },
+      {
+        "movieFrame": 660,
+        "meanRgbError": 1.3265324074074074,
+        "source": "build\\sessions\\20261105-102102-759\\frames\\frame_00000.png"
+      },
+      {
+        "movieFrame": 839,
+        "meanRgbError": 1.4113304398148148,
+        "source": "build\\sessions\\20261105-102102-759\\frames\\frame_00179.png"
+      },
+      {
+        "movieFrame": 840,
+        "meanRgbError": 1.6131417824074075,
+        "source": "build\\sessions\\20261105-101546-066\\frames\\frame_00030.png"
+      },
+      {
+        "movieFrame": 903,
+        "meanRgbError": 1.7518333333333334,
+        "source": "build\\sessions\\20261105-101546-066\\frames\\frame_00093.png"
+      },
+      {
+        "movieFrame": 1040,
+        "meanRgbError": 1.752207175925926,
+        "source": "build\\sessions\\20261105-101546-066\\frames\\frame_00230.png"
+      },
+      {
+        "movieFrame": 1109,
+        "meanRgbError": 1.7757453703703703,
+        "source": "build\\sessions\\20261105-101546-066\\frames\\frame_00299.png"
+      },
+      {
+        "movieFrame": 1110,
+        "meanRgbError": 1.3323391203703703,
+        "source": "build\\sessions\\20261105-102226-633\\frames\\frame_00030.png"
+      },
+      {
+        "movieFrame": 1173,
+        "meanRgbError": 1.3351689814814816,
+        "source": "build\\sessions\\20261105-102226-633\\frames\\frame_00093.png"
+      },
+      {
+        "movieFrame": 1310,
+        "meanRgbError": 1.3488680555555554,
+        "source": "build\\sessions\\20261105-102226-633\\frames\\frame_00230.png"
+      },
+      {
+        "movieFrame": 1379,
+        "meanRgbError": 1.3369774305555555,
+        "source": "build\\sessions\\20261105-102226-633\\frames\\frame_00299.png"
+      }
+    ],
+    "maxMeanRgbError": 1.930546875
+  },
+  "sourceSnapshot": [
+    {
+      "path": "showcase/PlaygroundArcade.hpp",
+      "sha256": "14d54f2e3b124f80d2e62c1d3619888afcc3e1b2cbc0113f799e25e47b13a04f",
+      "bytes": 797
+    },
+    {
+      "path": "showcase/PlaygroundPhysics.hpp",
+      "sha256": "0219f17b6cabf0e7b3303b9b0ceb4d7be4be2e8ba6bb2913fb226786dd2d6093",
+      "bytes": 17692
+    },
+    {
+      "path": "showcase/PlaygroundAudit.hpp",
+      "sha256": "07566efbd3d109de9d00693088d4344451b11b5c37e2515a2ad0eba2dd93f151",
+      "bytes": 13602
+    },
+    {
+      "path": "showcase/suspension_playground.cpp",
+      "sha256": "054c1b7d96160a8d3da9a469cbebf6994a9cc1ea53b7d4bd1fdaf681227caf2a",
+      "bytes": 21989
+    },
+    {
+      "path": "Run-Evaluation.ps1",
+      "sha256": "d255c80fa6f5488f4d1fd3f2b925d9e1bd60a7a8e49694889224b2b515aad1f6",
+      "bytes": 20133
+    },
+    {
+      "path": "scripts/render-truck-suspension-review.py",
+      "sha256": "09466889e9efc9aa3d1bf3d016c0e1b6f7ebbe453d34186828f1fd907655b134",
+      "bytes": 10568
+    },
+    {
+      "path": "docs/baja-427/DRIVER-AND-SUSPENSION-CAMERAS.json",
+      "sha256": "0c83cb392099e86e07e6e4a35e4bed15ae46875b91a0530d8bfaa4ce43770e4a",
+      "bytes": 1141
+    }
+  ],
+  "preservedPreviousRace": {
+    "path": "build/race-truck-film/Safari-Baja427-Original-Buggy.mp4",
+    "sha256": "4989fb8cec0e7a5f0b03510ca01d4222d2e42c131c0673021768f608864c98ff",
+    "bytes": 61114263
+  },
+  "preservedModularPack": {
+    "path": "build/baja-427-v3/Baja-427-Modular-v3.zip",
+    "sha256": "36deaf7440867109855dc71e7f51abfb79d49050516bd3e4ceae1081fc0af0b1",
+    "bytes": 4657644
+  },
+  "preservedBaseline": {
+    "path": "build/truck-suspension-film/baseline/build/windows-gl/bin/Release/suspension_playground.exe",
+    "sha256": "ed6427e687ad00437d1cf34320ef313796530c212a5422a8ce5bbd1062642ed8",
+    "bytes": 4464904
+  },
+  "guardState": {
+    "EVALUATION-PAUSED.txt": false,
+    "build/GRAPHICS_PAUSED.txt": false,
+    "build/evaluation-active.json": false
+  },
+  "review": "Six views and16 encoded/source comparisons visually reviewed, including every hard cut and airborne/landing samples. Prototype interior; no human listening/handling/input acceptance claimed."
+}

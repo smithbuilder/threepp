@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "revision": 3,
+  "id": "vehicle.baja-427",
+  "type": "gltf-model",
+  "file": "baja-427.glb",
+  "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+  "units": "metres",
+  "up": "+Y",
+  "forward": "+Z",
+  "groundOffset": 0.07,
+  "runtimeDependencies": [],
+  "source": "Original authored geometry and PBR textures; supplied reference sheets guide appearance. No source images or imported geometry copied.",
+  "license": "Original project asset; reusable in other projects. User-supplied reference sheets excluded.",
+  "worldBounds": {
+    "min": [
+      -1.409999966621399,
+      -0.07150000929832456,
+      -2.619499921798706
+    ],
+    "max": [
+      1.409999966621399,
+      1.8849999904632568,
+      2.6768970489501953
+    ]
+  },
+  "rig": {
+    "wheelNodes": {
+      "FL": {
+        "steer": "wheel.FL.steer",
+        "roll": "wheel.FL.roll"
+      },
+      "FR": {
+        "steer": "wheel.FR.steer",
+        "roll": "wheel.FR.roll"
+      },
+      "RL": {
+        "steer": "wheel.RL.steer",
+        "roll": "wheel.RL.roll"
+      },
+      "RR": {
+        "steer": "wheel.RR.steer",
+        "roll": "wheel.RR.roll"
+      }
+    },
+    "rearAxle": {
+      "node": "rear_axle",
+      "origin": [
+        0,
+        0.4,
+        -1.59
+      ],
+      "rotationAxis": [
+        0,
+        0,
+        1
+      ]
+    },
+    "frontArms": [
+      {
+        "node": "front.L.lower_arm",
+        "mount": [
+          -0.68,
+          0.27,
+          1.59
+        ],
+        "end": [
+          -0.97,
+          0.31,
+          1.59
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "node": "front.L.upper_arm",
+        "mount": [
+          -0.7,
+          0.4,
+          1.59
+        ],
+        "end": [
+          -0.97,
+          0.46,
+          1.59
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "node": "front.R.lower_arm",
+        "mount": [
+          0.68,
+          0.27,
+          1.59
+        ],
+        "end": [
+          0.97,
+          0.31,
+          1.59
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "node": "front.R.upper_arm",
+        "mount": [
+          0.7,
+          0.4,
+          1.59
+        ],
+        "end": [
+          0.97,
+          0.46,
+          1.59
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "mounts": [
+      {
+        "node": "front.L.halfshaft",
+        "a": [
+          -0.17,
+          0.37,
+          1.59
+        ],
+        "b": [
+          -0.9,
+          0.4,
+          1.59
+        ]
+      },
+      {
+        "node": "front.L.tie_rod",
+        "a": [
+          -0.58,
+          0.32,
+          1.34
+        ],
+        "b": [
+          -0.988,
+          0.34,
+          1.48
+        ]
+      },
+      {
+        "node": "rear.L.spring",
+        "a": [
+          -0.69,
+          0.89,
+          -1.59
+        ],
+        "b": [
+          -0.76,
+          0.44,
+          -1.59
+        ]
+      },
+      {
+        "node": "rear.L.lower_link",
+        "a": [
+          -0.64,
+          0.3,
+          -0.72
+        ],
+        "b": [
+          -0.77,
+          0.31,
+          -1.59
+        ],
+        "rigid": true
+      },
+      {
+        "node": "rear.L.upper_link",
+        "a": [
+          -0.64,
+          0.48,
+          -0.72
+        ],
+        "b": [
+          -0.77,
+          0.49,
+          -1.59
+        ],
+        "rigid": true
+      },
+      {
+        "node": "front.R.halfshaft",
+        "a": [
+          0.17,
+          0.37,
+          1.59
+        ],
+        "b": [
+          0.9,
+          0.4,
+          1.59
+        ]
+      },
+      {
+        "node": "front.R.tie_rod",
+        "a": [
+          0.58,
+          0.32,
+          1.34
+        ],
+        "b": [
+          0.988,
+          0.34,
+          1.48
+        ]
+      },
+      {
+        "node": "rear.R.spring",
+        "a": [
+          0.69,
+          0.89,
+          -1.59
+        ],
+        "b": [
+          0.76,
+          0.44,
+          -1.59
+        ]
+      },
+      {
+        "node": "rear.R.lower_link",
+        "a": [
+          0.64,
+          0.3,
+          -0.72
+        ],
+        "b": [
+          0.77,
+          0.31,
+          -1.59
+        ],
+        "rigid": true
+      },
+      {
+        "node": "rear.R.upper_link",
+        "a": [
+          0.64,
+          0.48,
+          -0.72
+        ],
+        "b": [
+          0.77,
+          0.49,
+          -1.59
+        ],
+        "rigid": true
+      },
+      {
+        "node": "rear.panhard",
+        "a": [
+          -0.72,
+          0.58,
+          -1.36
+        ],
+        "b": [
+          0.76,
+          0.43,
+          -1.36
+        ],
+        "rigid": true
+      }
+    ],
+    "dampers": [
+      {
+        "node": "front.L.coilover",
+        "a": [
+          -0.67,
+          0.94,
+          1.59
+        ],
+        "b": [
+          -0.9149,
+          0.3024,
+          1.59
+        ],
+        "bodyLength": 0.3619980585486613,
+        "rodLength": 0.4098091228852769,
+        "spring": true
+      },
+      {
+        "node": "rear.L.damper",
+        "a": [
+          -0.7,
+          0.96,
+          -1.92
+        ],
+        "b": [
+          -0.76,
+          0.41,
+          -1.76
+        ],
+        "bodyLength": 0.3052450327196169,
+        "rodLength": 0.3916351363195085,
+        "spring": false
+      },
+      {
+        "node": "front.R.coilover",
+        "a": [
+          0.67,
+          0.94,
+          1.59
+        ],
+        "b": [
+          0.9149,
+          0.3024,
+          1.59
+        ],
+        "bodyLength": 0.3619980585486613,
+        "rodLength": 0.4098091228852769,
+        "spring": true
+      },
+      {
+        "node": "rear.R.damper",
+        "a": [
+          0.7,
+          0.96,
+          -1.92
+        ],
+        "b": [
+          0.76,
+          0.41,
+          -1.76
+        ],
+        "bodyLength": 0.3052450327196169,
+        "rodLength": 0.3916351363195085,
+        "spring": false
+      }
+    ],
+    "visualTravel": {
+      "droop": 0.268,
+      "bump": 0.52,
+      "rest": 0.4
+    },
+    "assemblyVersion": 3
+  },
+  "tailgate": {
+    "node": "tailgate.hinge",
+    "pivot": [
+      0,
+      0.71,
+      -2.407
+    ],
+    "axis": [
+      1,
+      0,
+      0
+    ],
+    "openAngleRadians": -1.45
+  },
+  "spareNodes": [
+    "spare.L.steer",
+    "spare.R.steer"
+  ],
+  "limits": [
+    "Game visual asset and reduced rig, not manufacturing geometry.",
+    "Available authored hub travel is0.268\u20130.52m; it does not claim the full workbook travel.",
+    "Rear fore/aft steel links stay rigid; up to6.2mm rubber-bush articulation in the reduced pose adapter."
+  ]
+}

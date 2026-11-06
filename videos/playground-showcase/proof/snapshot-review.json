@@ -1,0 +1,566 @@
+◆  Capturing review frames (beats, seams, phone) from playground-showcase
+
+   Fonts: 2 loaded
+   Review: 12 beat(s) and 5 seam(s) within 0–80s
+[hyperframes] snapshot: frame 1/37 at 0.3s
+[hyperframes] snapshot: frame 2/37 at 5s
+[hyperframes] snapshot: frame 3/37 at 10.3s
+[hyperframes] snapshot: frame 4/37 at 16s
+[hyperframes] snapshot: frame 5/37 at 22.3s
+[hyperframes] snapshot: frame 6/37 at 29s
+[hyperframes] snapshot: frame 7/37 at 36.3s
+[hyperframes] snapshot: frame 8/37 at 45s
+[hyperframes] snapshot: frame 9/37 at 54.3s
+[hyperframes] snapshot: frame 10/37 at 61s
+[hyperframes] snapshot: frame 11/37 at 68.3s
+[hyperframes] snapshot: frame 12/37 at 74s
+[hyperframes] snapshot: frame 13/37 at 9.8s
+[hyperframes] snapshot: frame 14/37 at 9.9s
+[hyperframes] snapshot: frame 15/37 at 10s
+[hyperframes] snapshot: frame 16/37 at 10.1s
+[hyperframes] snapshot: frame 17/37 at 10.2s
+[hyperframes] snapshot: frame 18/37 at 21.8s
+[hyperframes] snapshot: frame 19/37 at 21.9s
+[hyperframes] snapshot: frame 20/37 at 22s
+[hyperframes] snapshot: frame 21/37 at 22.1s
+[hyperframes] snapshot: frame 22/37 at 22.2s
+[hyperframes] snapshot: frame 23/37 at 35.8s
+[hyperframes] snapshot: frame 24/37 at 35.9s
+[hyperframes] snapshot: frame 25/37 at 36s
+[hyperframes] snapshot: frame 26/37 at 36.1s
+[hyperframes] snapshot: frame 27/37 at 36.2s
+[hyperframes] snapshot: frame 28/37 at 53.8s
+[hyperframes] snapshot: frame 29/37 at 53.9s
+[hyperframes] snapshot: frame 30/37 at 54s
+[hyperframes] snapshot: frame 31/37 at 54.1s
+[hyperframes] snapshot: frame 32/37 at 54.2s
+[hyperframes] snapshot: frame 33/37 at 67.8s
+[hyperframes] snapshot: frame 34/37 at 67.9s
+[hyperframes] snapshot: frame 35/37 at 68s
+[hyperframes] snapshot: frame 36/37 at 68.1s
+[hyperframes] snapshot: frame 37/37 at 68.2s
+   Revision: none (inputs-changed)
+   State: C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\video-state.json
+
+◇  37 snapshots saved to C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-01-at-0.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-02-at-5s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-03-at-10.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-04-at-16s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-05-at-22.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-06-at-29s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-07-at-36.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-08-at-45s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-09-at-54.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-10-at-61s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-11-at-68.3s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\beat-12-at-74s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-01-1-at-9.8s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-01-2-at-9.9s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-01-3-at-10s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-01-4-at-10.1s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-01-5-at-10.2s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-02-1-at-21.8s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-02-2-at-21.9s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-02-3-at-22s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-02-4-at-22.1s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-02-5-at-22.2s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-03-1-at-35.8s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-03-2-at-35.9s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-03-3-at-36s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-03-4-at-36.1s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-03-5-at-36.2s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-04-1-at-53.8s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-04-2-at-53.9s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-04-3-at-54s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-04-4-at-54.1s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-04-5-at-54.2s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-05-1-at-67.8s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-05-2-at-67.9s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-05-3-at-68s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-05-4-at-68.1s.png
+   C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\seam-05-5-at-68.2s.png
+   Beat sheet (settled frame per scene): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-beats.jpg
+     0.3s world · 5s world mid · 10.3s suspension · 16s suspension mid · 22.3s terrain · 29s terrain mid · 36.3s jumps · 45s jumps mid · 54.3s wind · 61s wind mid · 68.3s future · 74s future mid
+   Seam 1 at 10s (world -> suspension): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-seam-01.jpg
+   Seam 2 at 22s (suspension -> terrain): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-seam-02.jpg
+   Seam 3 at 36s (terrain -> jumps): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-seam-03.jpg
+   Seam 4 at 54s (jumps -> wind): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-seam-04.jpg
+   Seam 5 at 68s (wind -> future): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-seam-05.jpg
+   Phone sheet (beats at 360 px wide): C:\Users\oliver\Projects\engine-threepp\videos\playground-showcase\.hyperframes\artifacts\snapshots\6f05cd2f-fecd-478f-ab2a-8efd2972910b\review-phone.jpg
+   world holds several timed clips; run --review --composition world to review its cuts.
+   suspension holds several timed clips; run --review --composition suspension to review its cuts.
+   terrain holds several timed clips; run --review --composition terrain to review its cuts.
+   jumps holds several timed clips; run --review --composition jumps to review its cuts.
+   wind holds several timed clips; run --review --composition wind to review its cuts.
+   future holds several timed clips; run --review --composition future to review its cuts.
+{
+  "ok": true,
+  "outputDir": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b",
+  "frames": [
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-01-at-0.3s.png",
+      "time": 0.3,
+      "role": "beat",
+      "label": "world"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-02-at-5s.png",
+      "time": 5,
+      "role": "beat",
+      "label": "world mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-03-at-10.3s.png",
+      "time": 10.3,
+      "role": "beat",
+      "label": "suspension"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-04-at-16s.png",
+      "time": 16,
+      "role": "beat",
+      "label": "suspension mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-05-at-22.3s.png",
+      "time": 22.3,
+      "role": "beat",
+      "label": "terrain"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-06-at-29s.png",
+      "time": 29,
+      "role": "beat",
+      "label": "terrain mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-07-at-36.3s.png",
+      "time": 36.3,
+      "role": "beat",
+      "label": "jumps"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-08-at-45s.png",
+      "time": 45,
+      "role": "beat",
+      "label": "jumps mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-09-at-54.3s.png",
+      "time": 54.3,
+      "role": "beat",
+      "label": "wind"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-10-at-61s.png",
+      "time": 61,
+      "role": "beat",
+      "label": "wind mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-11-at-68.3s.png",
+      "time": 68.3,
+      "role": "beat",
+      "label": "future"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-12-at-74s.png",
+      "time": 74,
+      "role": "beat",
+      "label": "future mid"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-1-at-9.8s.png",
+      "time": 9.8,
+      "role": "seam",
+      "label": "cut -0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-2-at-9.9s.png",
+      "time": 9.9,
+      "role": "seam",
+      "label": "-0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-3-at-10s.png",
+      "time": 10,
+      "role": "seam",
+      "label": "cut world -> suspension"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-4-at-10.1s.png",
+      "time": 10.1,
+      "role": "seam",
+      "label": "+0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-5-at-10.2s.png",
+      "time": 10.2,
+      "role": "seam",
+      "label": "+0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-1-at-21.8s.png",
+      "time": 21.8,
+      "role": "seam",
+      "label": "cut -0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-2-at-21.9s.png",
+      "time": 21.9,
+      "role": "seam",
+      "label": "-0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-3-at-22s.png",
+      "time": 22,
+      "role": "seam",
+      "label": "cut suspension -> terrain"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-4-at-22.1s.png",
+      "time": 22.1,
+      "role": "seam",
+      "label": "+0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-5-at-22.2s.png",
+      "time": 22.2,
+      "role": "seam",
+      "label": "+0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-1-at-35.8s.png",
+      "time": 35.8,
+      "role": "seam",
+      "label": "cut -0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-2-at-35.9s.png",
+      "time": 35.9,
+      "role": "seam",
+      "label": "-0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-3-at-36s.png",
+      "time": 36,
+      "role": "seam",
+      "label": "cut terrain -> jumps"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-4-at-36.1s.png",
+      "time": 36.1,
+      "role": "seam",
+      "label": "+0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-5-at-36.2s.png",
+      "time": 36.2,
+      "role": "seam",
+      "label": "+0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-1-at-53.8s.png",
+      "time": 53.8,
+      "role": "seam",
+      "label": "cut -0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-2-at-53.9s.png",
+      "time": 53.9,
+      "role": "seam",
+      "label": "-0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-3-at-54s.png",
+      "time": 54,
+      "role": "seam",
+      "label": "cut jumps -> wind"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-4-at-54.1s.png",
+      "time": 54.1,
+      "role": "seam",
+      "label": "+0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-5-at-54.2s.png",
+      "time": 54.2,
+      "role": "seam",
+      "label": "+0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-1-at-67.8s.png",
+      "time": 67.8,
+      "role": "seam",
+      "label": "cut -0.2"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-2-at-67.9s.png",
+      "time": 67.9,
+      "role": "seam",
+      "label": "-0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-3-at-68s.png",
+      "time": 68,
+      "role": "seam",
+      "label": "cut wind -> future"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-4-at-68.1s.png",
+      "time": 68.1,
+      "role": "seam",
+      "label": "+0.1"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-5-at-68.2s.png",
+      "time": 68.2,
+      "role": "seam",
+      "label": "+0.2"
+    }
+  ],
+  "contactSheets": [
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-beats.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-01.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-02.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-03.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-04.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-05.jpg",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-phone.jpg"
+  ],
+  "review": {
+    "window": [
+      0,
+      80
+    ],
+    "scenes": [
+      {
+        "id": "world",
+        "start": 0,
+        "end": 10
+      },
+      {
+        "id": "suspension",
+        "start": 10,
+        "end": 22
+      },
+      {
+        "id": "terrain",
+        "start": 22,
+        "end": 36
+      },
+      {
+        "id": "jumps",
+        "start": 36,
+        "end": 54
+      },
+      {
+        "id": "wind",
+        "start": 54,
+        "end": 68
+      },
+      {
+        "id": "future",
+        "start": 68,
+        "end": 80
+      }
+    ],
+    "beats": [
+      {
+        "time": 0.3,
+        "label": "world",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-01-at-0.3s.png"
+      },
+      {
+        "time": 5,
+        "label": "world mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-02-at-5s.png"
+      },
+      {
+        "time": 10.3,
+        "label": "suspension",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-03-at-10.3s.png"
+      },
+      {
+        "time": 16,
+        "label": "suspension mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-04-at-16s.png"
+      },
+      {
+        "time": 22.3,
+        "label": "terrain",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-05-at-22.3s.png"
+      },
+      {
+        "time": 29,
+        "label": "terrain mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-06-at-29s.png"
+      },
+      {
+        "time": 36.3,
+        "label": "jumps",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-07-at-36.3s.png"
+      },
+      {
+        "time": 45,
+        "label": "jumps mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-08-at-45s.png"
+      },
+      {
+        "time": 54.3,
+        "label": "wind",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-09-at-54.3s.png"
+      },
+      {
+        "time": 61,
+        "label": "wind mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-10-at-61s.png"
+      },
+      {
+        "time": 68.3,
+        "label": "future",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-11-at-68.3s.png"
+      },
+      {
+        "time": 74,
+        "label": "future mid",
+        "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\beat-12-at-74s.png"
+      }
+    ],
+    "seams": [
+      {
+        "time": 10,
+        "from": "world",
+        "to": "suspension",
+        "times": [
+          9.8,
+          9.9,
+          10,
+          10.1,
+          10.2
+        ],
+        "paths": [
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-1-at-9.8s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-2-at-9.9s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-3-at-10s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-4-at-10.1s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-01-5-at-10.2s.png"
+        ],
+        "sheet": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-01.jpg"
+      },
+      {
+        "time": 22,
+        "from": "suspension",
+        "to": "terrain",
+        "times": [
+          21.8,
+          21.9,
+          22,
+          22.1,
+          22.2
+        ],
+        "paths": [
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-1-at-21.8s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-2-at-21.9s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-3-at-22s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-4-at-22.1s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-02-5-at-22.2s.png"
+        ],
+        "sheet": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-02.jpg"
+      },
+      {
+        "time": 36,
+        "from": "terrain",
+        "to": "jumps",
+        "times": [
+          35.8,
+          35.9,
+          36,
+          36.1,
+          36.2
+        ],
+        "paths": [
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-1-at-35.8s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-2-at-35.9s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-3-at-36s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-4-at-36.1s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-03-5-at-36.2s.png"
+        ],
+        "sheet": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-03.jpg"
+      },
+      {
+        "time": 54,
+        "from": "jumps",
+        "to": "wind",
+        "times": [
+          53.8,
+          53.9,
+          54,
+          54.1,
+          54.2
+        ],
+        "paths": [
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-1-at-53.8s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-2-at-53.9s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-3-at-54s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-4-at-54.1s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-04-5-at-54.2s.png"
+        ],
+        "sheet": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-04.jpg"
+      },
+      {
+        "time": 68,
+        "from": "wind",
+        "to": "future",
+        "times": [
+          67.8,
+          67.9,
+          68,
+          68.1,
+          68.2
+        ],
+        "paths": [
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-1-at-67.8s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-2-at-67.9s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-3-at-68s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-4-at-68.1s.png",
+          "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\seam-05-5-at-68.2s.png"
+        ],
+        "sheet": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-05.jpg"
+      }
+    ],
+    "sheets": {
+      "beats": [
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-beats.jpg"
+      ],
+      "seams": [
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-01.jpg",
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-02.jpg",
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-03.jpg",
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-04.jpg",
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-seam-05.jpg"
+      ],
+      "phone": [
+        "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase\\.hyperframes\\artifacts\\snapshots\\6f05cd2f-fecd-478f-ab2a-8efd2972910b\\review-phone.jpg"
+      ]
+    },
+    "notes": [
+      "world holds several timed clips; run --review --composition world to review its cuts.",
+      "suspension holds several timed clips; run --review --composition suspension to review its cuts.",
+      "terrain holds several timed clips; run --review --composition terrain to review its cuts.",
+      "jumps holds several timed clips; run --review --composition jumps to review its cuts.",
+      "wind holds several timed clips; run --review --composition wind to review its cuts.",
+      "future holds several timed clips; run --review --composition future to review its cuts."
+    ]
+  },
+  "_meta": {
+    "version": "0.9.16",
+    "latestVersion": "0.9.16",
+    "updateAvailable": false,
+    "checkedAt": "2026-11-05T14:50:45.306Z",
+    "skillsOutdated": 0,
+    "skillsMissing": 0
+  }
+}

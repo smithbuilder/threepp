@@ -1,0 +1,15 @@
+
+  Lint: 0 error(s), 13 warning(s) — see the Lint badge in Studio, or run `hyperframes lint` for full output.
+
+T  hyperframes preview
+
+  Project   playground-showcase
+  Studio    http://localhost:3016/#project/playground-showcase
+  Server    http://localhost:3016
+  Desktop   Keep editing by chatting with Framey in the HyperFrames desktop app → https://hyperframes.studio/studio/download?os=windows&src=cli
+
+  Running in the background. Log: C:\Users\oliver\AppData\Local\hyperframes\previews\766f0e5d8e763d04.log
+  Changes reload automatically in the studio.
+
+  Stop with: hyperframes preview "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\playground-showcase" --stop
+

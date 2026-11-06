@@ -10,6 +10,8 @@
 #include "RallyClearance.hpp"
 #include "SafariSuspensionTest.hpp"
 #include "SafariMotionTest.hpp"
+#include "SafariGroundTest.hpp"
+#include "SafariForestTest.hpp"
 #include "SafariPowertrainTest.hpp"
 #include "SafariRideTest.hpp"
 #include "threepp/math/Triangle.hpp"
@@ -173,6 +175,8 @@ void rideContactRegressions(){
 }
 }
 int main(int argc,char** argv){try{
+    safari_ground_test::run();
+    safari_forest_test::run();
     safari_motion_test::run();
     safari_powertrain_test::run();
     rally::safariRideRegressions();

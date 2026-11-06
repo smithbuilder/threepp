@@ -1,0 +1,72 @@
+ M CMakePresets.json
+ M Launch-Playground.cmd
+ M Run-Evaluation.ps1
+ M SAFARI-QUALITY-REVIEW.md
+ M SAFETY.md
+ M THIRD_PARTY.md
+ M showcase/CMakeLists.txt
+ M showcase/RallyLighting.hpp
+ M showcase/RallySafariMotion.hpp
+ M showcase/RallySafariPowertrain.hpp
+ M showcase/SAFARI-RIDE.md
+ M showcase/SafariMotionTest.hpp
+ M showcase/assets/SAFARI-EXHAUST-SOURCE.json
+ M showcase/assets/safari_exhaust_high.wav
+ M showcase/assets/safari_exhaust_idle.wav
+ M showcase/assets/safari_exhaust_mid.wav
+ M showcase/rally.cpp
+ M showcase/rally_vehicle_test.cpp
+?? BAJA-427.md
+?? Launch-Baja-427.cmd
+?? Launch-Suspension-Playground.cmd
+?? SESSION-HANDOFF-HISTORY-2026-11-05.md
+?? SESSION-HANDOFF.md
+?? SUSPENSION-PLAYGROUND.md
+?? Test-Suspension-Playground.cmd
+?? Test-Suspension-Playground.ps1
+?? asset-library/
+?? docs/
+?? safari.jpg
+?? scripts/baja427_assembly_audit.py
+?? scripts/baja427_audit.py
+?? scripts/baja427_generate.py
+?? scripts/forest-assets/
+?? scripts/ground-v2-bake-boulder.mjs
+?? scripts/prepare-dakar-exhaust.py
+?? scripts/prepare-environment-library.py
+?? scripts/prepare-mature-conifers.py
+?? scripts/render-dakar-audition.py
+?? scripts/render-race-review.py
+?? scripts/render-truck-suspension-review.py
+?? scripts/validate-environment-library.py
+?? showcase/BajaGeometry.hpp
+?? showcase/BajaRide.hpp
+?? showcase/PlaygroundArcade.hpp
+?? showcase/PlaygroundAudit.hpp
+?? showcase/PlaygroundPhysics.hpp
+?? showcase/PlaygroundTerrain.hpp
+?? showcase/PlaygroundVehicles.hpp
+?? showcase/RallyBaja.hpp
+?? showcase/RallyDressing.hpp
+?? showcase/RallyForest.hpp
+?? showcase/RallyGround.hpp
+?? showcase/RallyRace.hpp
+?? showcase/SafariAudioAudit.hpp
+?? showcase/SafariForestTest.hpp
+?? showcase/SafariGroundTest.hpp
+?? showcase/assets/baja-427-livery.png
+?? showcase/assets/baja-427-panel-dust.png
+?? showcase/assets/baja-427-roundel.png
+?? showcase/assets/baja-427-surface_normal.png
+?? showcase/assets/baja-427-surface_roughness.png
+?? showcase/assets/baja-427.glb
+?? showcase/assets/baja-427.json
+?? showcase/assets/ground-v2-SOURCES.json
+?? showcase/assets/ground-v2-forest-rough-1k.jpg
+?? showcase/assets/ground-v2-gravel-rough-1k.jpg
+?? showcase/assets/sky-lighting-kloofendal-1k.hdr
+?? showcase/assets/sky-lighting-kloofendal-SOURCE.json
+?? showcase/baja427_preview.cpp
+?? showcase/playground-world.json
+?? showcase/suspension_playground.cpp
+?? videos/

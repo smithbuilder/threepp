@@ -1,17 +1,16 @@
 # Vehicle Tuning Playground
 
-Current verification (November 5, 2026): **79 physics checks, six existing CPU
+November5 close-up/boost update: **90 physics checks pass**, with all79 baseline values unchanged. New truck front/rear suspension and driver's-eye cameras, optional ground boost, and a [46-second native review film](build/truck-suspension-film/Baja427-Suspension-Cabin-Boost.mp4). Exact current build/verification: [truck close-up checkpoint](docs/baja-427/SUSPENSION-FILM.md) and `build/truck-suspension-film/delivery-receipt.json`. The previous playground/showcase delivery below is preserved history.
+
+Enable **Arcade boost (hold B)** in the controls and hold B with throttle. It uses a2.5second charge, recharges in6seconds and increases ground drive through the existing grip model. Boost defaults off; airborne motion and landings remain physics-driven. C/the camera picker now also offers suspension close-ups and driver's eye. The new camera placement is calibrated for Baja427.
+
+Previous baseline verification (November 5, 2026): **79 physics checks, six existing CPU
 regressions and six supervised native review sessions passed**. Exact executable,
 asset and source identities are in
-[the original capture receipt](docs/playground/capture-receipt.json).
+[`build/suspension-playground/delivery-receipt.json`](build/suspension-playground/delivery-receipt.json).
 Both jumps were captured for all three vehicles; the wind test, ridge and Baja
 articulation also have native captures. Direct picker clicks and subjective
 hands-on feel remain unverified after the app-control approval timed out.
-
-From a new Windows checkout, build with `Build-Playground.ps1`, then run
-**Test-Suspension-Playground.cmd** to verify that build and create its vehicle
-catalog. Windows hosts that enforce application signing require their approved
-signing workflow before the test. See [Windows setup](LOCAL-SETUP.md).
 
 Open **Launch-Playground.cmd** and choose **Vehicle Tuning Playground**, or open
 **Launch-Suspension-Playground.cmd** directly. Select Safari, Original buggy or
@@ -150,5 +149,3 @@ These limits do not require changing the renderer. They identify the next
 physics components to improve if a specific test or hands-on feedback exposes
 a remaining problem. Bullet 3.25 is pinned by source hash; only its CPU libraries
 are linked. See THIRD_PARTY.md and the copied Bullet license.
-
-Watch the [80-second showcase](videos/playground-showcase/outputs/Vehicle-Playground-Showcase.mp4). The longer Safari hill run stalled before the crest. The [film project](videos/playground-showcase/README.md) includes footage, editable scenes and audio.

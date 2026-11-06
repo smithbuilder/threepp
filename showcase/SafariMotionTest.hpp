@@ -40,6 +40,19 @@ inline void run(){
     const auto half=rally::safariTractionCommand(12,8,5000,10000);
     check(std::abs(half.longitudinal*2-loaded.longitudinal)<.00001f&&half.support==.5f,
           "Safari grip does not release with tyre load");
+    check(rally::safariPedalAcceleration(15,1,1)==-18,
+          "Safari simultaneous pedals must prioritize braking");
+    float reverseSpeed=0,reverseYaw=0,reverseHeading=0;threepp::Vector3 reverseMotion;
+    float maximumReverseAcceleration=0;
+    for(int i=0;i<2400;++i){const float previous=reverseSpeed;
+        rally::safariIntegrateMotion(reverseSpeed,reverseYaw,reverseHeading,reverseMotion,0,0,1,false,false,10000,10000,1.f/120);
+        maximumReverseAcceleration=std::max(maximumReverseAcceleration,std::abs(reverseSpeed-previous)*120);
+    }
+    check(reverseSpeed< -5.5f&&reverseSpeed> -6.f&&maximumReverseAcceleration<4.01f,
+          "Safari reverse must settle below6m/s without full-braking acceleration or cutoff chatter");
+    for(int i=0;i<240;++i)
+        rally::safariIntegrateMotion(reverseSpeed,reverseYaw,reverseHeading,reverseMotion,0,1,0,false,false,10000,10000,1.f/120);
+    check(reverseSpeed>2.f,"Safari cannot drive forward out of reverse");
     float airSpeed=13.5f,airYaw=0,airHeading=0;threepp::Vector3 airMotion(0,0,13.5f);
     for(int i=0;i<120;++i)rally::safariIntegrateMotion(airSpeed,airYaw,airHeading,airMotion,.4f,1,0,false,false,0,10000,1.f/120);
     check(airSpeed<13.5f&&airSpeed>13&&airMotion.x==0&&airYaw==0&&airHeading==0,

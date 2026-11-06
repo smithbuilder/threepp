@@ -11,14 +11,20 @@
 #include "RallyDynamics.hpp"
 #include "RallyTrails.hpp"
 #include "RallyLighting.hpp"
+#include "RallyForest.hpp"
+#include "RallyGround.hpp"
+#include "RallyDressing.hpp"
 #include "RallySafari.hpp"
 #include "RallySafariShadows.hpp"
 #include "RallySafariCameraClearance.hpp"
 #include "RallySafariMotion.hpp"
 #include "RallyRoadContact.hpp"
 #include "RallySafariStage.hpp"
+#include "RallyRace.hpp"
+#include "RallyBaja.hpp"
 #include "SafariRideAudit.hpp"
 #include "SafariRideComparison.hpp"
+#include "SafariAudioAudit.hpp"
 #include "threepp/threepp.hpp"
 #include "threepp/extras/imgui/ImguiContext.hpp"
 #include "threepp/extras/vegetation/TreeGenerator.hpp"
@@ -52,8 +58,8 @@ auto material(unsigned c, float rough = .8f, float metal = 0) {
 struct CoursePoint { Vector3 p; float a; };
 // Cut the coarse terrain out beneath the finer road ribbon. This avoids
 // intersecting surfaces without floating the driving road above tyre support.
-auto roadCutout(const std::vector<CoursePoint>& route){
-    constexpr int size=1024;constexpr float extent=520,radius=3.18f;
+auto roadCutout(const std::vector<CoursePoint>& route,float radius=3.18f){
+    constexpr int size=1024;constexpr float extent=520;
     std::vector<unsigned char> pixels(size*size*4,255);
     for(size_t i=0;i+1<route.size();++i){auto a=route[i].p,b=route[i+1].p;float dx=b.x-a.x,dz=b.z-a.z,length2=dx*dx+dz*dz;
         int x0=std::clamp(static_cast<int>((std::min(a.x,b.x)-radius+260)*size/extent),0,size-1),x1=std::clamp(static_cast<int>((std::max(a.x,b.x)+radius+260)*size/extent)+1,0,size-1);
@@ -85,13 +91,18 @@ int main(int argc, char** argv) {
             for(int i=3;i+1<argc;++i)if(std::string(argv[i])=="--ride-replay"){
                 rally::safariRideRegressions();rally::compareRideReplay(argv[i+1],argv[2]);return 0;
             }
-            return rally::runSafariRideAudit(argv[2]); // No Canvas/audio/renderer.
+            const int result=rally::runSafariRideAudit(argv[2]); // No Canvas/audio/renderer.
+            rally::writeSafariAudioAudit(argv[2]);
+            rally::writeBajaRaceAudit(std::filesystem::absolute(argv[0]).parent_path()/"rally-assets/baja-427.glb",argv[2]);
+            return result;
         }
-        bool scripted = false,wheelInspect=false,portrait=false,portraitOrbit=false,safari=false; int frames = 0, limit = 0, initialView=0, warmup=0,captureScale=1; std::string shot, telemetry, sequence,portraitAngle="front",portraitLight="rear",portraitEnvironment="forest",portraitShadows="default";
+        bool scripted = false,wheelInspect=false,portrait=false,portraitOrbit=false,safari=false,raceOriginal=false,raceTruck=false; int frames = 0, limit = 0, initialView=0, warmup=0,captureScale=1; std::string shot, telemetry, sequence,portraitAngle="front",portraitLight="rear",portraitEnvironment="forest",portraitShadows="default";
         std::string rideReplayPath,safariRideProfile="revised";int replayStart=0;
         for (int i = 1; i < argc; ++i) {
             std::string a = argv[i];
             if (a == "--autodrive") scripted = true;
+            else if(a=="--race-original-buggy")raceOriginal=true;
+            else if(a=="--race-truck"){raceTruck=true;raceOriginal=true;}
             else if(a=="--ride-replay"&&i+1<argc)rideReplayPath=argv[++i];
             else if(a=="--safari-ride-profile"&&i+1<argc)safariRideProfile=argv[++i];
             else if(a=="--replay-start"&&i+1<argc)replayStart=std::stoi(argv[++i]);
@@ -123,6 +134,7 @@ int main(int argc, char** argv) {
         rally::CameraModes cameras(initialView);int& view=cameras.view;
         rally::SafariCameraTracking safariCameraTracking;
         const bool captureMode=!shot.empty()||!sequence.empty();
+        if(raceOriginal&&(!captureMode||!scripted||!safari||comparison||portrait||wheelInspect||captureScale!=1||limit>900||!std::getenv("THREEPP_EVALUATION_MODE")))throw std::runtime_error("Two-car race is a bounded native capture profile only");
         if(captureScale==2&&(!captureMode||(sequence.empty()?(limit!=1||warmup!=0):(limit+warmup>180))))throw std::runtime_error("High-resolution profile allows one still or at most 180 total sequence frames");
         if(captureScale==2&&!std::getenv("THREEPP_EVALUATION_MODE"))throw std::runtime_error("High-resolution inspection requires the evaluation supervisor");
         std::ofstream rideInputs;
@@ -148,6 +160,7 @@ int main(int argc, char** argv) {
         std::ofstream frameData;
         if(!sequence.empty()){std::filesystem::create_directories(sequence);frameData.open(std::filesystem::path(sequence)/"frame-data.csv");
             if(!frameData)throw std::runtime_error("Cannot write sequence telemetry");frameData<<std::setprecision(std::numeric_limits<float>::max_digits10)<<"frame,simulation_time,speed,view,rpm,load,gear,shift,finished,wheelFL,wheelFR,wheelRL,wheelRR,dustEmitted,heave,pitch,roll,forceFL,forceFR,forceRL,forceRR,cameraBoomFraction,cameraBlocked,cameraForecastFraction,cameraHardClamped,exhaustPitch0,exhaustGain0,exhaustPitch1,exhaustGain1,exhaustPitch2,exhaustGain2,gapFL,gapFR,gapRL,gapRR,shockFL,shockFR,shockRL,shockRR\n";}
+        const float drivingRoadEdge=raceTruck?6.4f:4.2f;
         const bool bounded = limit > 0;
         auto assetDir=std::filesystem::absolute(argv[0]).parent_path()/"rally-assets";
         TextureLoader textureLoader;
@@ -156,7 +169,7 @@ int main(int argc, char** argv) {
             t->colorSpace=srgb?ColorSpace::sRGB:ColorSpace::NoColorSpace;t->wrapS=t->wrapT=TextureWrapping::Repeat;t->anisotropy=2;return t;};
         Canvas canvas(Canvas::Parameters().title("CINDER FOREST | rally candidate").size(960*captureScale,600*captureScale).vsync(true).headless(captureMode));
         GLRenderer renderer(canvas); renderer.checkShaderErrors = true;
-        auto scene=Scene::create();auto lighting=rally::makeRallyLighting(renderer,*scene,assetDir,!(portrait&&portraitEnvironment=="daylight"));
+        auto scene=Scene::create();auto lighting=rally::makeRallyLighting(renderer,*scene,assetDir,!(portrait&&portraitEnvironment=="daylight"),safari&&!portrait);
         if(portrait&&portraitShadows=="off")renderer.shadowMap().enabled=false;
         auto add = [&](std::shared_ptr<BufferGeometry> geo, std::shared_ptr<Material> mat, Vector3 p) {
             auto m = Mesh::create(geo, mat); m->position.copy(p); m->castShadow = m->receiveShadow = true; scene->add(m); return m;
@@ -178,8 +191,8 @@ int main(int argc, char** argv) {
         for(unsigned i=0;i<landIndex->count();++i)landContactIndices.push_back(landIndex->getX(i));
         landContact=std::make_shared<rally::RoadContactSurface>(landContactVertices,landContactIndices);
         auto grass = material(0xffffff); grass->vertexColors = true;
-        grass->map=assetTexture("forest_ground_04_diff_1k.jpg",true);grass->map->repeat.set(65,65);
-        grass->normalMap=assetTexture("forest_ground_04_nor_gl_1k.jpg",false);grass->normalMap->repeat.set(65,65);grass->normalScale.set(.55f,.55f);
+        grass->map=assetTexture(safari?"library/materials/forest-floor/basecolor_1k.jpg":"forest_ground_04_diff_1k.jpg",true);grass->map->repeat.set(65,65);
+        grass->normalMap=assetTexture(safari?"library/materials/forest-floor/normal_gl_1k.jpg":"forest_ground_04_nor_gl_1k.jpg",false);grass->normalMap->repeat.set(65,65);grass->normalScale.set(.55f,.55f);
         add(land, grass, {});
         std::vector<CoursePoint> route; std::vector<float> ribbon, roadUv, roadColors; std::vector<unsigned> indices;
         constexpr int across = 8;
@@ -190,7 +203,7 @@ int main(int argc, char** argv) {
             route.push_back({p, a});
             for (int j = 0; j <= across; ++j) {
                 float s = j * 2.f / across - 1;
-                float x = p.x + s * 3.7f * side.x, z = p.z + s * 3.7f * side.z;
+                float x = p.x + s * (raceTruck?6.5f:raceOriginal?4.3f:3.7f) * side.x, z = p.z + s * (raceTruck?6.5f:raceOriginal?4.3f:3.7f) * side.z;
                 const float roadY=safariStage?rally::safariStageRoadHeight(x,z,s,groundHeight(x,z)):groundHeight(x,z)+.02f;
                 ribbon.insert(ribbon.end(), {x,roadY,z});
                 roadUv.insert(roadUv.end(), {j * 1.f/across, i * .12f});
@@ -202,22 +215,25 @@ int main(int argc, char** argv) {
                 indices.insert(indices.end(), {b, b + across + 1, b + 1, b + 1, b + across + 1, b + across + 2});
             }
         }
-        grass->alphaMap=roadCutout(route);grass->alphaTest=.5f;
+        grass->alphaMap=roadCutout(route,raceTruck?6.0f:raceOriginal?3.8f:3.18f);grass->alphaTest=.5f;
         auto road = BufferGeometry::create(); road->setAttribute("position", FloatBufferAttribute::create(ribbon, 3)); road->setIndex(indices); road->computeVertexNormals();
         roadContact=std::make_shared<rally::RoadContactSurface>(ribbon,indices);
         road->setAttribute("uv", FloatBufferAttribute::create(roadUv, 2)); road->setAttribute("color", FloatBufferAttribute::create(roadColors, 3));
-        auto dirt = material(0xffffff); dirt->map = assetTexture("gravel_road_diff_1k.jpg",true); dirt->vertexColors = true; dirt->side = Side::Double;
-        dirt->map->repeat.set(2,2);dirt->normalMap=assetTexture("gravel_road_nor_gl_1k.jpg",false);dirt->normalMap->repeat.set(2,2);dirt->normalScale.set(.7f,.7f);
+        auto dirt = material(0xffffff); dirt->map = assetTexture(safari?"library/materials/gravel-road/basecolor_1k.jpg":"gravel_road_diff_1k.jpg",true); dirt->vertexColors = true; dirt->side = Side::Double;
+        dirt->map->repeat.set(2,2);dirt->normalMap=assetTexture(safari?"library/materials/gravel-road/normal_gl_1k.jpg":"gravel_road_nor_gl_1k.jpg",false);dirt->normalMap->repeat.set(2,2);dirt->normalScale.set(.7f,.7f);
         auto trail = add(road, dirt, {}); trail->castShadow = false;
         auto nearest = [&](Vector3 p) {
             CoursePoint answer = route.front(); float best = 1e20f;
             for (auto& r : route) { float d = (p.x-r.p.x)*(p.x-r.p.x)+(p.z-r.p.z)*(p.z-r.p.z); if (d < best) { best = d; answer = r; } }
             return answer;
         };
+        if(safari)rally::configureSafariGround(*land,*road,*grass,*dirt,assetTexture,nearest);
         // Reuse three generated tree species across 180 placements. Geometry and
         // textures are shared; trunks and foliage each draw in one instanced batch.
         std::mt19937 rng(29); std::uniform_real_distribution<float> random(0, 1);
         std::vector<Vector3> treePositions;
+        if(safari)treePositions=rally::addSafariForest(*scene,track,nearest,groundHeight,nullptr,assetDir);
+        else {
         for (int species = 0; species < 3; ++species) {
             vegetation::TreeParams p; vegetation::applyPreset(species == 0 ? 1 : species == 1 ? 2 : 0, p);
             p.seed = 123 + species; p.attractorCount = 300;
@@ -243,9 +259,44 @@ int main(int argc, char** argv) {
             }
             trunks->instanceMatrix()->needsUpdate(); leaves->instanceMatrix()->needsUpdate(); scene->add(trunks); scene->add(leaves);
         }
+        }
         rally::bakeOcclusion(*land,treePositions);rally::bakeOcclusion(*road,treePositions);
         std::vector<rally::Collider> obstacles;
+        const auto dressingStart=scene->children.size();
         auto roadsideGrass=rally::dress(*scene,track,nearest,treePositions,&obstacles);
+        if(safari)rally::refineSafariDistantForest(*scene,dressingStart,assetDir);
+        if(safari)rally::refineSafariDressing(*scene,dressingStart,track,nearest,vehicleHeight,
+            assetDir/"library/models/fieldstone/boulder.obj",*grass);
+        if(raceOriginal){
+            // Staged two-wide course: move existing stones and their matching
+            // colliders out of the tyre corridor, retaining the same pool.
+            for(size_t n=dressingStart;n<scene->children.size();++n)if(auto* rocks=dynamic_cast<InstancedMesh*>(scene->children[n]);rocks&&rocks->count()==150){
+                for(unsigned i=0;i<150;++i){Matrix4 matrix;rocks->getMatrixAt(i,matrix);Vector3 p,s;Quaternion q;matrix.decompose(p,q,s);
+                    auto near=nearest(p);auto delta=p.clone().sub(near.p);delta.y=0;const float len=delta.length();const float clearance=(raceTruck?6.8f:4.5f)+s.x*1.3f;
+                    if(len<clearance){const auto old=p;p.addScaledVector(delta.normalize(),clearance-len);p.y=vehicleHeight(p.x,p.z)-.3f;
+                        for(auto& c:obstacles)if(std::hypot(c.x-old.x,c.z-old.z)<.001f){c.x=p.x;c.z=p.z;}
+                        matrix.compose(p,q,s);rocks->setMatrixAt(i,matrix);}
+                }rocks->instanceMatrix()->needsUpdate();rocks->boundingSphere.reset();rocks->boundingBox.reset();
+            }
+            if(raceTruck)for(size_t n=dressingStart;n<scene->children.size();++n){
+                auto* object=scene->children[n];
+                if(object==roadsideGrass.get()){
+                    for(unsigned i=0;i<roadsideGrass->count();++i){Matrix4 m;roadsideGrass->getMatrixAt(i,m);Vector3 p,s;Quaternion q;m.decompose(p,q,s);
+                        auto near=nearest(p);auto d=p.clone().sub(near.p);d.y=0;const float length=d.length();
+                        if(length<6.8f){p.addScaledVector(d.normalize(),6.8f-length);p.y=vehicleHeight(p.x,p.z)+.012f;m.compose(p,q,s);roadsideGrass->setMatrixAt(i,m);}}
+                    roadsideGrass->instanceMatrix()->needsUpdate();roadsideGrass->boundingSphere.reset();
+                }else if(dynamic_cast<Mesh*>(object)&&!dynamic_cast<InstancedMesh*>(object)){
+                    auto near=nearest(object->position);auto d=object->position.clone().sub(near.p);d.y=0;const float length=d.length();
+                    if(length<7.5f){const float old=vehicleHeight(object->position.x,object->position.z);object->position.addScaledVector(d.normalize(),7.5f-length);object->position.y+=vehicleHeight(object->position.x,object->position.z)-old;}
+                }
+            }
+        }
+        if(lighting.photographicSky){
+            // Grass owns a small independent shader with linear distance fog.
+            // Match the scene's atmosphere over its visible distance range.
+            roadsideGrass->setFog(Vector3(.722f,.784f,.827f),60.f,410.f);
+            roadsideGrass->setSunAmbient(Vector3(.57f,.55f,.50f),Vector3(.28f,.32f,.29f));
+        }
         auto postMat = material(0xf2d6a2), bannerMat = material(0xdb642e), activeMat = material(0x70dfcc);
         activeMat->emissive = Color(0x148577); activeMat->emissiveIntensity = .7f;
         std::vector<std::shared_ptr<Mesh>> banners;
@@ -255,10 +306,10 @@ int main(int argc, char** argv) {
             if(safariStage)if(const auto y=roadContact->height(p.x,p.z))p.y=*y;
             float yaw = std::atan2(ahead.x, ahead.z); auto gate = Group::create(); gate->position.copy(p); gate->rotation.y = yaw;
             for (int side : {-1, 1}) {
-                auto post = Mesh::create(BoxGeometry::create(.16f, 3.7f, .16f), postMat); post->position.set(side * 4.3f, 1.85f, 0); post->castShadow = true; gate->add(post);
+                auto post = Mesh::create(BoxGeometry::create(.16f, 3.7f, .16f), postMat); post->position.set(side * (raceTruck?6.9f:4.3f), 1.85f, 0); post->castShadow = true; gate->add(post);
                 cameraBarriers.push_back(post);
             }
-            auto top = Mesh::create(BoxGeometry::create(9.f, .42f, .2f), bannerMat); top->position.y = 3.7f; gate->add(top); banners.push_back(top);
+            auto top = Mesh::create(BoxGeometry::create(raceTruck?14.2f:9.f, .42f, .2f), bannerMat); top->position.y = 3.7f; gate->add(top); banners.push_back(top);
             cameraBarriers.push_back(top);
             auto text=rally::label(i==0?"CINDER / FINISH":("SECTOR 0"+std::to_string(i)),.18f,Color(0x17201b));
             text->position.set(0,3.7f,-.12f);text->rotation.y=PI;gate->add(text);scene->add(gate);
@@ -302,6 +353,26 @@ int main(int argc, char** argv) {
         int cameraBlocks=0,cameraInvalid=0,cameraTargetInside=0,cameraHardClamps=0,cameraForecastRejected=0;
         float minCameraBoom=1,cameraBoomFraction=1,cameraForecastFraction=1;bool cameraWasBlocked=false,cameraHardClamped=false;
         Driver driver;
+        Driver truckDriver;std::unique_ptr<rally::BajaRace> truck;
+        Driver opponent;std::unique_ptr<rally::Buggy> rival;rally::Powertrain rivalPowertrain;
+        std::array<rally::WheelContact,4> rivalContacts;
+        std::ofstream raceData;
+        if(raceOriginal){
+            rival=std::make_unique<rally::Buggy>(rally::makeBuggy());scene->add(rival->car);
+            driver.position=rally::raceLane(track,0,raceTruck?4.3f:2.15f);opponent.position=rally::raceLane(track,0,raceTruck?-4.3f:-2.15f);
+            opponent.position.y=vehicleHeight(opponent.position.x,opponent.position.z);
+            opponent.ride.reset(opponent.position,opponent.heading,vehicleHeight,rally::buggyDimensions,rally::RideContactResponse::Legacy);
+            if(raceTruck){truck=std::make_unique<rally::BajaRace>(assetDir/"baja-427.glb");scene->add(truck->car);truckDriver.position=track(0);truckDriver.position.y=vehicleHeight(truckDriver.position.x,truckDriver.position.z);}
+            auto file=sequence.empty()?std::filesystem::path(shot).parent_path():std::filesystem::path(sequence);
+            raceData.open(file/"race-state.csv");if(!raceData)throw std::runtime_error("Cannot write race telemetry");
+            raceData<<std::setprecision(std::numeric_limits<float>::max_digits10)<<"frame,time,safariX,safariY,safariZ,safariHeading,safariSpeed,safariFinished,safariFinish,originalX,originalY,originalZ,originalHeading,originalSpeed,originalFinished,originalFinish,envelopeGap,cameraX,cameraY,cameraZ,safariScreenX,safariScreenY,originalScreenX,originalScreenY,safariRpm,originalRpm";
+            for(const auto* prefix:{"safari","original"})for(int i=0;i<3;++i)raceData<<','<<prefix<<"Pitch"<<i<<','<<prefix<<"Gain"<<i;
+            for(int i=0;i<4;++i)raceData<<",originalWheel"<<i;
+            if(raceTruck){raceData<<",truckX,truckY,truckZ,truckHeading,truckSpeed,truckFinished,truckFinish,safariTruckGap,originalTruckGap,truckScreenX,truckScreenY,truckRpm,truckAxleRoll";
+                for(int i=0;i<3;++i)raceData<<",truckPitch"<<i<<",truckGain"<<i;
+                for(int i=0;i<4;++i)raceData<<",truckWheel"<<i<<",truckGap"<<i;}
+            raceData<<'\n';
+        }
         if(safariRideProfile=="previous")driver.ride.compliant.tuning=rally::SafariRideTuning::previous();
         if(safari||safariStage)driver.position.y=vehicleHeight(driver.position.x,driver.position.z);
         // Diagnostic car orientation only: the same world sun, probe and
@@ -326,6 +397,7 @@ int main(int argc, char** argv) {
         };
         auto camera = PerspectiveCamera::create(59, canvas.aspect(), .1f, 750);
         bool paused = false, raceStarted=scripted, resetClockRequested=false; float countdown=0; int inputEvents = 0;
+        if(raceOriginal)countdown=3;
         auto snapCamera = [&] { cameras.cut=true; };
         snapCamera();
         auto resetRun=[&](bool start){
@@ -345,6 +417,7 @@ int main(int argc, char** argv) {
         composer.addPass(std::make_shared<FXAAPass>());
         ImFont* hudFont=nullptr;
         ImguiFunctionalContext ui(canvas, [&] {
+            if(raceOriginal){if(raceTruck)rally::drawThreeRaceHud(driver,opponent,truckDriver,(frames+1)/30.f,countdown,hudFont);else rally::drawRaceHud(driver,opponent,(frames+1)/30.f,countdown,hudFont);return;}
             auto& hudStyle=ImGui::GetStyle();hudStyle.WindowRounding=4;hudStyle.WindowPadding=ImVec2(16,16);hudStyle.ItemSpacing=ImVec2(8,10);
             hudStyle.Colors[ImGuiCol_WindowBg]=ImVec4(.05f,.085f,.075f,.96f);hudStyle.Colors[ImGuiCol_Text]=ImVec4(.96f,.94f,.87f,1);
             hudStyle.Colors[ImGuiCol_Button]=ImVec4(.35f,.31f,.16f,1);hudStyle.Colors[ImGuiCol_ButtonHovered]=ImVec4(.53f,.44f,.20f,1);hudStyle.Colors[ImGuiCol_ButtonActive]=ImVec4(.67f,.54f,.22f,1);
@@ -451,12 +524,12 @@ int main(int argc, char** argv) {
                 float turn = rally::steerInput(canvas.isKeyDown(Key::A)||canvas.isKeyDown(Key::LEFT),canvas.isKeyDown(Key::D)||canvas.isKeyDown(Key::RIGHT));
                 bool handbrake = canvas.isKeyDown(Key::SPACE);
                 if (scripted) {
-                    Vector3 aim = track(near.a + .11f).sub(driver.position);
+                    Vector3 aim = (raceOriginal?rally::raceLane(track,near.a+.11f,raceTruck?4.3f:2.15f):track(near.a + .11f)).sub(driver.position);
                     turn = std::clamp(wrap(std::atan2(aim.x, aim.z)-driver.heading) * 1.35f, -1.f, 1.f);
                     // The coupe uses a balanced governor at the same measured
                     // pace, rather than alternating full throttle and lift.
                     if(safari){
-                        const auto pedals=rally::safariCruiseCommand(driver.velocity,off>4.2f);
+                        const auto pedals=rally::safariCruiseCommand(driver.velocity,off>drivingRoadEdge);
                         throttle=pedals.throttle;brake=pedals.brake;
                     }else{
                         throttle=driver.velocity<18.f?1.f:0;brake=driver.velocity>20.f?.3f:0;
@@ -469,16 +542,17 @@ int main(int argc, char** argv) {
                     float normalLoad=0;for(float load:driver.ride.forces)normalLoad+=std::max(0.f,load);
                     const float weight=(rally::SafariRideState::sprungMass+4*rally::SafariRideState::unsprungMass)*rally::SafariRideState::gravity;
                     rally::safariIntegrateMotion(driver.velocity,driver.yawRate,driver.heading,driver.motion,driver.steer*.4f,
-                                                 throttle,brake,handbrake,off>4.2f,normalLoad,weight,step);
+                                                 throttle,brake,handbrake,off>drivingRoadEdge,normalLoad,weight,step);
                 }else{
-                    const float drag=off>4.2f?1.25f:.24f;
+                    const float drag=off>drivingRoadEdge?1.25f:.24f;
                     driver.velocity+=(throttle*12-brake*18-driver.velocity*drag-driver.velocity*std::abs(driver.velocity)*.014f-(handbrake?driver.velocity*1.5f:0))*step;
                     driver.velocity=std::clamp(driver.velocity,-6.f,30.f);
                     const float targetYaw=std::tan(driver.steer*.42f)*driver.velocity/2.45f;
                     driver.yawRate+=(targetYaw-driver.yawRate)*(1-std::exp(-7*step));driver.heading+=driver.yawRate*step;
                     const Vector3 desiredMotion(std::sin(driver.heading)*driver.velocity,0,std::cos(driver.heading)*driver.velocity);
-                    driver.motion.lerp(desiredMotion,1-std::exp(-(handbrake?1.5f:off>4.2f?3.f:7.f)*step));
+                    driver.motion.lerp(desiredMotion,1-std::exp(-(handbrake?1.5f:off>drivingRoadEdge?3.f:7.f)*step));
                 }
+                const float racePreviousX=driver.position.x;
                 driver.position.x += driver.motion.x * step;
                 driver.position.z += driver.motion.z * step;
                 driver.position.y = (safari||safariStage)?vehicleHeight(driver.position.x,driver.position.z):groundHeight(driver.position.x,driver.position.z);
@@ -498,18 +572,38 @@ int main(int argc, char** argv) {
                 if (std::abs(driver.velocity) > .5f) driver.running = true;
                 if (driver.running) driver.elapsed += step;
                 Vector3 gate = track(driver.next * 2 * PI / 8);
-                if (driver.running && Vector2(driver.position.x-gate.x, driver.position.z-gate.z).length() < 7) {
-                    if (driver.next == 0) { ++driver.laps; driver.lastLap=driver.elapsed; if (driver.best == 0 || driver.elapsed < driver.best) driver.best = driver.elapsed; driver.elapsed = 0; driver.message = 4;driver.finished=true;driver.velocity=0;driver.throttle=0; }
+                const bool raceFinish=driver.next==0&&driver.elapsed>20&&racePreviousX<0&&driver.position.x>=0&&std::abs(driver.position.z-90)<6;
+                if (driver.running && (raceOriginal?(driver.next==0?raceFinish:Vector2(driver.position.x-gate.x,driver.position.z-gate.z).length()<7):Vector2(driver.position.x-gate.x, driver.position.z-gate.z).length() < 7)) {
+                    if (driver.next == 0) { ++driver.laps; driver.lastLap=driver.elapsed; if (driver.best == 0 || driver.elapsed < driver.best) driver.best = driver.elapsed; driver.elapsed = 0; driver.message = 4;driver.finished=true;if(!raceTruck)driver.velocity=0;driver.throttle=0; }
                     driver.next = (driver.next + 1) % 8;
                 }
                 if(driver.finished){accumulator=0;break;}
                 driver.message = std::max(0.f, driver.message-step);
                 if (std::abs(driver.position.x) > 235 || std::abs(driver.position.z) > 235) { driver.reset();driver.ride.reset(driver.position,driver.heading,vehicleHeight,dimensions,buggy.contactResponse);snapCamera(); }
             }
-            if(!paused&&(!raceStarted||counting||driver.finished)){
+            if(!paused&&(!raceStarted||counting||(driver.finished&&!raceTruck))){
                 recordRideInput(false,dt,0,0);driver.ride.step(driver.position,driver.heading,driver.steer*.4f,0,0,dt,vehicleHeight);
             }
+            if(raceTruck&&driver.finished&&!paused){
+                for(int i=0;i<4;++i){const float old=driver.velocity;driver.velocity=std::max(0.f,old-8.f/120);if(old>.0001f)driver.motion.multiplyScalar(driver.velocity/old);else driver.motion.set(0,0,0);driver.position.addScaledVector(driver.motion,1.f/120);driver.position.y=vehicleHeight(driver.position.x,driver.position.z);driver.wheelAngle+=driver.velocity/(120*dimensions.tyreRadius);driver.throttle=0;driver.braking=driver.velocity>.01f?.45f:0;driver.ride.step(driver.position,driver.heading,driver.steer*.4f,(driver.velocity-old)*120,0,1.f/120,vehicleHeight);}
+            }
             driver.heave=driver.ride.chassis.y;driver.pitch=driver.ride.pitch;driver.roll=driver.ride.roll;
+            if(raceOriginal){
+                if(!counting)for(int i=0;i<4;++i)rally::stepOriginalRace(opponent,driver,1.f/120,(frames+1)/30.f,vehicleHeight,nearest,track,raceTruck?-4.3f:-2.15f,false,drivingRoadEdge,raceTruck);
+                else opponent.ride.step(opponent.position,opponent.heading,0,0,0,dt,vehicleHeight);
+                rally::poseOriginalRace(*rival,opponent,vehicleHeight,rivalContacts);
+                rivalPowertrain.update(opponent.velocity,opponent.throttle,dt,counting||(opponent.finished&&(!raceTruck||opponent.velocity<.1f)));
+                rally::updateCockpit(rival->cockpit,opponent.steer,opponent.velocity,rivalPowertrain.rpm);
+                if(raceTruck){
+                    for(int i=0;i<4;++i){
+                        if(!counting)rally::stepOriginalRace(truckDriver,driver,1.f/120,(frames+1)/30.f,vehicleHeight,nearest,track,0,true,drivingRoadEdge,true);
+                        const float acceleration=counting?0:(truckDriver.velocity-truckDriver.previousVelocity)*120;
+                        truck->step(truckDriver.position,truckDriver.heading,acceleration,truckDriver.velocity*truckDriver.yawRate,1.f/120,vehicleHeight,truckDriver.steer*.4f);
+                    }
+                    truck->pose(truckDriver.position,truckDriver.heading,truckDriver.steer*.4f,truckDriver.wheelAngle,vehicleHeight);
+                    truck->updatePowertrain(truckDriver.velocity,truckDriver.throttle,dt,counting||(truckDriver.finished&&truckDriver.velocity<.1f));
+                }
+            }
             const auto chassisQ=rally::chassisOrientation(driver.heading,driver.pitch,driver.roll);
             const Vector3 chassis=driver.ride.chassis;
             car->position.copy(chassis);car->rotation.y=driver.heading;
@@ -539,6 +633,15 @@ int main(int argc, char** argv) {
                             if(activity>.12f)gravelSpray.spawn(wheelContacts[i].ground,forward,right,driver.motion,activity);}}}
             }
             for(const auto& p:dustSimulation.particles)if(p.age<p.life)maxDustSpeed=std::max(maxDustSpeed,p.velocity.length());
+            if(raceOriginal&&!counting&&!opponent.finished&&opponent.velocity>4){
+                // Share the existing particle budget; two cars do not double it.
+                const Vector3 f(std::sin(opponent.heading),0,std::cos(opponent.heading)),r(std::cos(opponent.heading),0,-std::sin(opponent.heading));
+                if(frames%2==0)for(int i=2;i<4;++i)if(std::abs(rivalContacts[i].gap)<.04f)dustSimulation.spawn(rivalContacts[i].ground,f,r,opponent.motion,opponent.velocity,i%2?1.f:-1.f);
+            }
+            if(raceTruck&&!counting&&!truckDriver.finished&&truckDriver.velocity>4&&frames%2==1){
+                const Vector3 f(std::sin(truckDriver.heading),0,std::cos(truckDriver.heading)),r(std::cos(truckDriver.heading),0,-std::sin(truckDriver.heading));
+                for(int i=2;i<4;++i)dustSimulation.spawn(truck->contacts[i].ground,f,r,truckDriver.motion,truckDriver.velocity,i%2?1.f:-1.f);
+            }
             auto* shadowVertices=carShadowGeometry->getAttribute<float>("position");
             float wheelLift=0;for(const auto& contact:wheelContacts)wheelLift+=std::max(0.f,contact.gap)*.25f;
             if(safari)carShadow->material()->opacity=.20f*std::exp(-2*wheelLift);
@@ -559,13 +662,24 @@ int main(int argc, char** argv) {
 
             roadsideGrass->setTime(worldTime);
             if(safari){
-                safariPowertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+                const float enginePedal=driver.velocity<-.2f?driver.braking:driver.throttle;
+                safariPowertrain.update(driver.velocity,enginePedal,dt,paused||(driver.finished&&(!raceTruck||driver.velocity<.1f))||!raceStarted||counting);
                 powertrain.gear=safariPowertrain.gear;powertrain.rpm=safariPowertrain.rpm;powertrain.load=safariPowertrain.load;powertrain.shift=safariPowertrain.shift;
-            }else powertrain.update(driver.velocity,driver.throttle,dt,paused||driver.finished||!raceStarted||counting);
+            }else powertrain.update(driver.velocity,driver.throttle,dt,paused||(driver.finished&&(!raceTruck||driver.velocity<.1f))||!raceStarted||counting);
             rally::updateCockpit(buggy.cockpit,driver.steer,driver.velocity,powertrain.rpm);
             for(int i=0;i<3;++i)if(exhaust[i]){auto band=exhaustBand(i,muted||paused);exhaust[i]->setPlaybackRate(band.pitch);exhaust[i]->setVolume(band.gain);}
             cameraBoomFraction=1;cameraWasBlocked=false;cameraForecastFraction=1;cameraHardClamped=false;
-            if(portrait){
+            if(raceOriginal){
+                auto middle=chassis.clone().lerp(opponent.ride.chassis,.5f);
+                Vector3 f=forward.clone().add(Vector3(std::sin(opponent.heading),0,std::cos(opponent.heading))).normalize();
+                const Vector3 r(f.z,0,-f.x);
+                float gap=std::abs(chassis.clone().sub(opponent.ride.chassis).dot(f));
+                if(raceTruck){middle.multiplyScalar(2).add(truck->car->position).multiplyScalar(1.f/3);gap=std::max({gap,std::abs(chassis.clone().sub(truck->car->position).dot(f)),std::abs(opponent.ride.chassis.clone().sub(truck->car->position).dot(f))});}
+                auto desired=middle.clone().addScaledVector(f,-((raceTruck?14.0f:10.5f)+gap*.45f)).addScaledVector(r,4.f).add(Vector3(0,(raceTruck?5.3f:4.5f)+gap*.12f,0));
+                desired.y=std::max(desired.y,vehicleHeight(desired.x,desired.z)+2.5f);
+                if(frames==0)camera->position.copy(desired);else camera->position.lerp(desired,1-std::exp(-7*dt));
+                camera->up.set(0,1,0);camera->lookAt(middle.addScaledVector(f,1.2f).add(Vector3(0,.9f,0)));camera->fov=55;camera->nearPlane=.1f;
+            }else if(portrait){
                 const bool rearDetail=portraitAngle=="rear-detail",frontDetail=portraitAngle=="front-detail";
                 Vector3 offset=rearDetail?Vector3(1.4f,.42f,-4.55f):frontDetail?Vector3(1.4f,.90f,4.55f):portraitAngle=="tail"?Vector3(0,1.2f,-6.8f):portraitAngle=="side"?Vector3(-6.8f,1.6f,.6f):portraitAngle=="rear"?Vector3(4.2f,2.1f,-4.8f):portraitAngle=="top"?Vector3(0,8,.001f):Vector3(4.2f,2.1f,4.8f);
                 if(portraitOrbit){
@@ -623,8 +737,20 @@ int main(int argc, char** argv) {
             }
             cameras.cut=false;camera->updateProjectionMatrix();
             rally::drawDust(*dust,dustSimulation,camera->quaternion);
-            lighting.follow(driver.position);
+            lighting.follow(raceTruck?truck->car->position:driver.position);
             composer.render(dt); ui.render();
+            if(raceOriginal){
+                const auto ap=chassis.clone().add(Vector3(0,1,0)).project(*camera),bp=opponent.ride.chassis.clone().add(Vector3(0,1,0)).project(*camera);
+                raceData<<frames<<','<<(frames+1)/30.f<<','<<chassis.x<<','<<chassis.y<<','<<chassis.z<<','<<driver.heading<<','<<driver.velocity<<','<<driver.finished<<','<<driver.lastLap<<','<<opponent.ride.chassis.x<<','<<opponent.ride.chassis.y<<','<<opponent.ride.chassis.z<<','<<opponent.heading<<','<<opponent.velocity<<','<<opponent.finished<<','<<opponent.lastLap<<','<<rally::raceEnvelopeGap(chassis,driver.heading,opponent.ride.chassis,opponent.heading)<<','<<camera->position.x<<','<<camera->position.y<<','<<camera->position.z<<','<<ap.x<<','<<ap.y<<','<<bp.x<<','<<bp.y<<','<<powertrain.rpm<<','<<rivalPowertrain.rpm;
+                for(int i=0;i<3;++i){const auto band=exhaustBand(i,false);raceData<<','<<band.pitch<<','<<band.gain;}
+                for(int i=0;i<3;++i){const auto band=rivalPowertrain.band(i,false);raceData<<','<<band.pitch<<','<<band.gain;}
+                for(const auto& c:rivalContacts)raceData<<','<<c.local.y;
+                if(raceTruck){const auto& p=truck->car->position;const auto screen=p.clone().add(Vector3(0,1,0)).project(*camera);
+                    raceData<<','<<p.x<<','<<p.y<<','<<p.z<<','<<truckDriver.heading<<','<<truckDriver.velocity<<','<<truckDriver.finished<<','<<truckDriver.lastLap<<','<<rally::raceEnvelopeGap(chassis,driver.heading,p,truckDriver.heading,1.4f,2.55f,1.45f,2.8f)<<','<<rally::raceEnvelopeGap(opponent.ride.chassis,opponent.heading,p,truckDriver.heading,1.8f,2.1f,1.45f,2.8f)<<','<<screen.x<<','<<screen.y<<','<<truck->powertrain.rpm<<','<<truck->axleRoll;
+                    for(int i=0;i<3;++i){const auto band=truck->powertrain.band(i,false);raceData<<','<<band.pitch<<','<<band.gain;}
+                    for(const auto& c:truck->contacts)raceData<<','<<c.local.y<<','<<c.gap;
+                }raceData<<'\n';
+            }
             if(!sequence.empty()&&frames>=warmup){char name[40];std::snprintf(name,sizeof(name),"frame_%05d.png",frames-warmup);
                 renderer.writeFramebuffer(std::filesystem::path(sequence)/name);
                 frameData<<frames-warmup<<','<<worldTime<<','<<driver.velocity<<','<<view<<','<<powertrain.rpm<<','<<powertrain.load<<','<<powertrain.gear<<','<<powertrain.shift<<','<<driver.finished<<','<<wheelContacts[0].local.y<<','<<wheelContacts[1].local.y<<','<<wheelContacts[2].local.y<<','<<wheelContacts[3].local.y<<','<<dustSimulation.serial<<','<<driver.heave<<','<<driver.pitch<<','<<driver.roll;for(float force:driver.ride.forces)frameData<<','<<force;frameData<<','<<cameraBoomFraction<<','<<cameraWasBlocked<<','<<cameraForecastFraction<<','<<cameraHardClamped;
@@ -641,7 +767,7 @@ int main(int argc, char** argv) {
             <<",\"rearClearanceSamples\":"<<rearClearanceSamples<<",\"minRearGroundClearance\":"<<(rearClearanceSamples?minRearGroundClearance:0)<<",\"minRearClearanceFrame\":"<<minRearClearanceFrame<<",\"inputEvents\":" << inputEvents
             <<",\"cameraBlocks\":"<<cameraBlocks<<",\"cameraInvalid\":"<<cameraInvalid<<",\"cameraTargetInside\":"<<cameraTargetInside<<",\"minCameraBoom\":"<<minCameraBoom
             <<",\"cameraHardClamps\":"<<cameraHardClamps<<",\"cameraForecastRejected\":"<<cameraForecastRejected
-            <<",\"stageProfile\":\""<<(safariStage?"graded-safari-45mm":"original-rough-170mm")<<"\",\"suspensionComparison\":"<<comparison<<",\"suspensionCutaway\":"<<(safari&&wheelInspect)<<",\"safariRideProfile\":\""<<safariRideProfile<<"\",\"audioProfile\":\""<<(safari?"safari-deep-v1":"cinder-recorded")<<"\"}"; }
+            <<",\"stageProfile\":\""<<(safariStage?"graded-safari-45mm":"original-rough-170mm")<<"\",\"suspensionComparison\":"<<comparison<<",\"suspensionCutaway\":"<<(safari&&wheelInspect)<<",\"safariRideProfile\":\""<<safariRideProfile<<"\",\"audioProfile\":\""<<(safari?"dakar-recorded-prototype-v2":"cinder-recorded")<<"\"}"; }
         return 0;
     } catch (std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
 }

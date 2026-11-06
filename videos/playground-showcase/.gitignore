@@ -1,0 +1,4 @@
+node_modules/
+.hyperframes/
+# Native clips and final renders stay local.
+*.mp4

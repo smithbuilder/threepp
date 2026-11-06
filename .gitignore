@@ -42,6 +42,10 @@ aaa_caps
 # Local planning / strategy scratch docs — kept on disk, not tracked
 plans/
 
+# Project handoff receipts are shared evidence, even with a global handoffs ignore.
+!docs/handoffs/
+!docs/handoffs/**
+
 # Local scratch capture/repro/profiling harnesses: auto-built (examples/vulkan/CMakeLists.txt
 # globs scratch/*.cpp) but never tracked. Only the README is committed, to document the convention.
 examples/vulkan/scratch/*

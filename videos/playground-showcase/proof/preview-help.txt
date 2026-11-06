@@ -1,0 +1,35 @@
+Start the studio for previewing compositions (hyperframes preview v0.9.16)
+
+USAGE hyperframes preview [OPTIONS] [DIR]
+
+ARGUMENTS
+
+  DIR    Project directory
+
+OPTIONS
+
+                                    --port=<port>    Port to run the preview server on (Default: 3002)                                                                                                                                                                                          
+                                      --force-new    Start a new server even if one is already running for this project (Default: false)                                                                                                                                                        
+                                     --background    Start a preview that remains running after the command exits (Default: false)                                                                                                                                                              
+                                     --foreground    Keep preview attached even when the shell is non-interactive (Default: false)                                                                                                                                                              
+                                         --status    Show the background preview for this project and exit (Default: false)                                                                                                                                                                     
+                                           --stop    Stop the background preview for this project and exit (Default: false)                                                                                                                                                                     
+                                           --list    List all active preview servers and exit (Default: false)                                                                                                                                                                                  
+                                       --kill-all    Kill all active preview servers and exit (Default: false)                                                                                                                                                                                  
+                                   --lint-verbose    Show full lint findings on startup (default: a one-line summary) (Default: false)                                                                                                                                                          
+                                           --open    Open browser automatically (Default: true)                                                                                                                                                                                                 
+                                        --no-open                                                                                                                                                                                                                                               
+                                      --selection    Print the current element selected in a running Studio preview and exit (Default: false)                                                                                                                                                   
+                                           --json    Output selection, context, or managed lifecycle state as JSON (Default: false)                                                                                                                                                             
+                                        --context    Print the current agent-readable context from a running Studio preview and exit (Default: false)                                                                                                                                           
+                --context-fields=<context_fields>    Comma-separated context fields to include: server,selection,lint,capabilities (only with --context)                                                                                                                                        
+                --context-detail=<context_detail>    Context payload detail: compact or full (only with --context) (Default: compact)                                                                                                                                                           
+                    --browser-path=<browser_path>    Path to the browser executable to open                                                                                                                                                                                                     
+                  --user-data-dir=<user_data_dir>    Chromium-compatible user data directory (requires --browser-path)                                                                                                                                                                          
+  --remote-debugging-port=<remote_debugging_port>    Chromium remote debugging port (requires --browser-path and --user-data-dir)                                                                                                                                                               
+                                 --browser-no-gpu    Launch the opened browser with --disable-gpu (requires --browser-path). For hosts where hardware acceleration crashes the graphics driver (e.g. NVIDIA Xid resets); with the system default browser use --no-open instead. (Default: false)
+                                    --browser-gpu    Use hardware GPU for Studio thumbnails and frame capture; pass --no-browser-gpu for deterministic SwiftShader (default: auto-detect)                                                                                                       
+                                          --proxy    Auto-transcode browser-hostile video codecs (HEVC, ProRes, AV1) to a cached authoring proxy for preview (default: on; overrides hyperframes.json's media.autoProxy)                                                                        
+                                       --no-proxy    Disable auto-proxying of browser-hostile video codecs                                                                                                                                                                                      
+
+

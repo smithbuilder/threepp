@@ -1,0 +1,73 @@
+{
+  "status": "pass",
+  "scope": "serialized GLB geometry, finite attributes, hierarchy, pivots, mesh budget, images and stationary tyre ground alignment",
+  "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+  "bytes": 11295608,
+  "meshes": 150,
+  "nodes": 218,
+  "vertices": 221120,
+  "triangles": 246048,
+  "minimumTriangleArea": 5.727213761019811e-07,
+  "worldBounds": {
+    "min": [
+      -1.409999966621399,
+      -0.07150000929832456,
+      -2.619499921798706
+    ],
+    "max": [
+      1.409999966621399,
+      1.8849999904632568,
+      2.6768970489501953
+    ]
+  },
+  "wheelMinimumY": {
+    "wheel.FL.steer": -0.07150000929832456,
+    "wheel.FR.steer": -0.07150000929832456,
+    "wheel.RL.steer": -0.07150000929832456,
+    "wheel.RR.steer": -0.07150000929832456
+  },
+  "worldGroundOffset": 0.07,
+  "images": [
+    {
+      "name": "ivory_stripes_dust",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "name": "427_roundel",
+      "size": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "surface_roughness",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "name": "surface_normal",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "name": "ivory_panel_dust",
+      "size": [
+        1024,
+        512
+      ]
+    }
+  ],
+  "windingWarnings": [],
+  "limits": [
+    "No renderer or audio device opened.",
+    "Does not validate dynamic suspension closure or steering/travel envelope.",
+    "No claim of user handling or visual acceptance."
+  ]
+}
