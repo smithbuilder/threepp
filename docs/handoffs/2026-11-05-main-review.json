@@ -57,7 +57,10 @@
     "excludedFiles": 14,
     "localBackupBranch": "codex/local-video-checkpoint-836ddcfb",
     "newHistoryBase": "cca75b589fbd776ae5004263976a174ece49f558",
-    "previousUpload": "Cancelled; remote main was absent afterward.",
-    "existingPublishedPlaygroundHistory": "Preserved on its existing branch; not rewritten."
+    "previousUpload": "Initial approved upload reached GitHub during cancellation at 836ddcfb917d890f34a6be8ec78f683d1bdb37a4; replacing only main with video-free history.",
+    "existingPublishedPlaygroundHistory": "Preserved on its existing branch; not rewritten.",
+    "verifiedVideoObjectsInReplacementMainHistory": 0,
+    "verifiedLocalVideoFilesPreserved": 14,
+    "sourceAndPhysicsUnchanged": true
   }
 }
