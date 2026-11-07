@@ -1,0 +1,708 @@
+{
+  "asset": "La Catrina",
+  "version": 3,
+  "units": "metres",
+  "up": "+Y",
+  "forward": "+Z",
+  "groundOffset": 0,
+  "bounds": {
+    "min": [
+      -1.0870000123977661,
+      8.678436302922421e-09,
+      -2.8545000553131104
+    ],
+    "max": [
+      1.0870000123977661,
+      1.328992247581482,
+      2.4835705757141113
+    ],
+    "size": [
+      2.1740000247955322,
+      1.3289922389030457,
+      5.338070631027222
+    ]
+  },
+  "bodyWidth": 2.02,
+  "wheelbase": 3.0226,
+  "frontTrack": 1.53,
+  "rearTrack": 1.51,
+  "tyreDiameter": 0.5782,
+  "tyreWidth": 0.155,
+  "wheelCenters": {
+    "0": [
+      -0.765,
+      0.2891,
+      1.5113
+    ],
+    "1": [
+      0.765,
+      0.2891,
+      1.5113
+    ],
+    "2": [
+      -0.755,
+      0.2891,
+      -1.5113
+    ],
+    "3": [
+      0.755,
+      0.2891,
+      -1.5113
+    ]
+  },
+  "joints": {
+    "front_0_lower": {
+      "a": [
+        -0.18,
+        0.25,
+        1.5113
+      ],
+      "b": [
+        -0.715,
+        0.25,
+        1.5113
+      ]
+    },
+    "front_0_upper": {
+      "a": [
+        -0.18,
+        0.43,
+        1.5113
+      ],
+      "b": [
+        -0.715,
+        0.43,
+        1.5113
+      ]
+    },
+    "hydraulic_0": {
+      "a": [
+        -0.55,
+        0.86,
+        1.5113
+      ],
+      "b": [
+        -0.55,
+        0.27,
+        1.5113
+      ],
+      "barrelLength": 0.245,
+      "rodCupY": 0.55,
+      "coilLength": 0.28,
+      "rodLength": 0.245,
+      "cupRestDistance": 0.31,
+      "cupTravelMinimum": 0.28,
+      "cupTravelMaximum": 0.43,
+      "minimumSpringLength": 0.114,
+      "coilSolidHeight": 0.102,
+      "casingStartDistance": 0.03,
+      "casingShellLength": 0.215,
+      "fixedPinAxis": [
+        1,
+        0,
+        0
+      ],
+      "frameTowerPosts": [
+        [
+          -0.49,
+          1.2313
+        ],
+        [
+          -0.49,
+          1.7913000000000001
+        ]
+      ]
+    },
+    "front_1_lower": {
+      "a": [
+        0.18,
+        0.25,
+        1.5113
+      ],
+      "b": [
+        0.715,
+        0.25,
+        1.5113
+      ]
+    },
+    "front_1_upper": {
+      "a": [
+        0.18,
+        0.43,
+        1.5113
+      ],
+      "b": [
+        0.715,
+        0.43,
+        1.5113
+      ]
+    },
+    "hydraulic_1": {
+      "a": [
+        0.55,
+        0.86,
+        1.5113
+      ],
+      "b": [
+        0.55,
+        0.27,
+        1.5113
+      ],
+      "barrelLength": 0.245,
+      "rodCupY": 0.55,
+      "coilLength": 0.28,
+      "rodLength": 0.245,
+      "cupRestDistance": 0.31,
+      "cupTravelMinimum": 0.28,
+      "cupTravelMaximum": 0.43,
+      "minimumSpringLength": 0.114,
+      "coilSolidHeight": 0.102,
+      "casingStartDistance": 0.03,
+      "casingShellLength": 0.215,
+      "fixedPinAxis": [
+        1,
+        0,
+        0
+      ],
+      "frameTowerPosts": [
+        [
+          0.49,
+          1.2313
+        ],
+        [
+          0.49,
+          1.7913000000000001
+        ]
+      ]
+    },
+    "rear_2_lower": {
+      "a": [
+        -0.56,
+        0.33,
+        -0.45
+      ],
+      "b": [
+        -0.56,
+        0.33,
+        -1.5113
+      ]
+    },
+    "hydraulic_2": {
+      "a": [
+        -0.56,
+        0.86,
+        -1.5113
+      ],
+      "b": [
+        -0.56,
+        0.33,
+        -1.5113
+      ],
+      "barrelLength": 0.245,
+      "rodCupY": 0.55,
+      "coilLength": 0.22,
+      "rodLength": 0.245,
+      "cupRestDistance": 0.31,
+      "cupTravelMinimum": 0.28,
+      "cupTravelMaximum": 0.43,
+      "minimumSpringLength": 0.114,
+      "coilSolidHeight": 0.102,
+      "casingStartDistance": 0.03,
+      "casingShellLength": 0.215,
+      "fixedPinAxis": [
+        1,
+        0,
+        0
+      ],
+      "frameTowerPosts": [
+        [
+          -0.49,
+          -1.7913000000000001
+        ],
+        [
+          -0.49,
+          -1.8863
+        ]
+      ]
+    },
+    "rear_3_lower": {
+      "a": [
+        0.56,
+        0.33,
+        -0.45
+      ],
+      "b": [
+        0.56,
+        0.33,
+        -1.5113
+      ]
+    },
+    "hydraulic_3": {
+      "a": [
+        0.56,
+        0.86,
+        -1.5113
+      ],
+      "b": [
+        0.56,
+        0.33,
+        -1.5113
+      ],
+      "barrelLength": 0.245,
+      "rodCupY": 0.55,
+      "coilLength": 0.22,
+      "rodLength": 0.245,
+      "cupRestDistance": 0.31,
+      "cupTravelMinimum": 0.28,
+      "cupTravelMaximum": 0.43,
+      "minimumSpringLength": 0.114,
+      "coilSolidHeight": 0.102,
+      "casingStartDistance": 0.03,
+      "casingShellLength": 0.215,
+      "fixedPinAxis": [
+        1,
+        0,
+        0
+      ],
+      "frameTowerPosts": [
+        [
+          0.49,
+          -1.7913000000000001
+        ],
+        [
+          0.49,
+          -1.8863
+        ]
+      ]
+    },
+    "rear_panhard": {
+      "a": [
+        -0.6,
+        0.62,
+        -1.3
+      ],
+      "b": [
+        0.56,
+        0.35,
+        -1.3
+      ]
+    },
+    "rear_upper": {
+      "a": [
+        0.0,
+        0.46,
+        -0.45
+      ],
+      "b": [
+        0.0,
+        0.42,
+        -1.5113
+      ]
+    },
+    "driveshaft": {
+      "a": [
+        0.0,
+        0.3,
+        0.59
+      ],
+      "b": [
+        0.0,
+        0.2891,
+        -1.2913000000000001
+      ],
+      "outerTubeEnd": 1.6,
+      "slipMemberLength": 0.55,
+      "fixedMetalScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "damper_0": {
+      "a": [
+        -0.48,
+        0.78,
+        1.6313
+      ],
+      "b": [
+        -0.3833,
+        0.28,
+        1.6313
+      ],
+      "mountNode": "front_0_lower",
+      "barrelEnd": 0.39,
+      "rodLength": 0.36,
+      "restEyeDistance": 0.5092650488694468,
+      "fixedMetalScale": [
+        1,
+        1,
+        1
+      ],
+      "mountMotionRatio": 0.38,
+      "movingEyeInboardOffset": 0,
+      "fixedPinAxis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "bearingMisalignmentLimitDegrees": 30
+    },
+    "damper_1": {
+      "a": [
+        0.48,
+        0.78,
+        1.6313
+      ],
+      "b": [
+        0.3833,
+        0.28,
+        1.6313
+      ],
+      "mountNode": "front_1_lower",
+      "barrelEnd": 0.39,
+      "rodLength": 0.36,
+      "restEyeDistance": 0.5092650488694468,
+      "fixedMetalScale": [
+        1,
+        1,
+        1
+      ],
+      "mountMotionRatio": 0.38,
+      "movingEyeInboardOffset": 0,
+      "fixedPinAxis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "bearingMisalignmentLimitDegrees": 30
+    },
+    "damper_2": {
+      "a": [
+        -0.2,
+        0.5,
+        -2.0
+      ],
+      "b": [
+        -0.4600000000000001,
+        0.35000000000000003,
+        -1.3414920000000001
+      ],
+      "mountNode": "rear_2_lower",
+      "barrelEnd": 0.665,
+      "rodLength": 0.66,
+      "restEyeDistance": 0.7236938482977452,
+      "fixedMetalScale": [
+        1,
+        1,
+        1
+      ],
+      "mountMotionRatio": 0.84,
+      "movingEyeInboardOffset": 0.1,
+      "fixedPinAxis": [
+        0.902258472810754,
+        -0.25062735355854276,
+        0.3508782949819598
+      ],
+      "bearingMisalignmentLimitDegrees": 30
+    },
+    "damper_3": {
+      "a": [
+        0.2,
+        0.5,
+        -2.0
+      ],
+      "b": [
+        0.4600000000000001,
+        0.35000000000000003,
+        -1.3414920000000001
+      ],
+      "mountNode": "rear_3_lower",
+      "barrelEnd": 0.665,
+      "rodLength": 0.66,
+      "restEyeDistance": 0.7236938482977452,
+      "fixedMetalScale": [
+        1,
+        1,
+        1
+      ],
+      "mountMotionRatio": 0.84,
+      "movingEyeInboardOffset": 0.1,
+      "fixedPinAxis": [
+        0.902258472810754,
+        -0.25062735355854276,
+        -0.3508782949819598
+      ],
+      "bearingMisalignmentLimitDegrees": 30
+    }
+  },
+  "meshDraws": 242,
+  "nodes": 330,
+  "triangles": 746922,
+  "vertices": 492167,
+  "sourceParts": 3828,
+  "animations": [
+    "hood_open",
+    "trunk_open"
+  ],
+  "embeddedImages": 8,
+  "bytes": 35648880,
+  "sha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "sourceSha256": "ea4d28489f2593ea7b2c480ca6625af7c73190c6579f325388073c785357f675",
+  "sourceFiles": {
+    "catrina_generate.py": "ea4d28489f2593ea7b2c480ca6625af7c73190c6579f325388073c785357f675",
+    "catrina_art.py": "e56d7204a21c93ce2989e19bae0668aeb69db332dcc2fc2419d71f5fdf15be2f",
+    "catrina_hardware.py": "1e199514bf3678746439f168e87d4975abb511889560973df541a2d6d8802c18",
+    "catrina_reference_paint.py": "b8265fc433b66139ddf4d3882b3700a2647b8462caaef982c05c22415cf57b1c",
+    "baja427_generate.py": "bde8456127da209318026ef8429563caee69ca27a9a8fcd354c1ba877afff70f",
+    "catrina_ao.py": "1285bd3d9fb2e0c61e3218d68298737b59623fac20ef7e24434648713798a6cb",
+    "catrina_frame_pockets.py": "58fc2e937c539f043d15fd4e54aafbdc41fc903f1a6b24ac9e473344ac4dee42"
+  },
+  "provenance": "Original authored geometry and small vector cameos. Roof, hood and deck paint use rectified source ornament masks plus bounded source grain, remapped to the supplied Candy and Champagne palette pigments; the side-spear scroll uses a paint-only source mask in a separate narrow UV field. All derive from the user-supplied La-Catrina-Master.jpg. Source hash, sampled regions and transforms are recorded in referencePaint. No external meshes copied.",
+  "limitations": [
+    "Fictional game model inspired by a 1964 hardtop; not licensed vehicle CAD or manufacturing geometry.",
+    "Hydraulics and suspension are a reduced game approximation, not multibody linkage or certified mesh clearance.",
+    "Hydraulic hopping is implemented by the shared physical playground; portable service clips open the hood and trunk only."
+  ],
+  "geometrySha256": "3a34f488900e3ef36348753b32e570ef52c9c2b3ef0deaf89f79ab1eb25d1d3f",
+  "bakedCavityShading": true,
+  "cavityReceiverMeshes": 98,
+  "bakeCacheSha256": "e9aefdb0a5e217713fcd4540c9ed0acf13fb9ba4abeed667a7e26dab7abe2156",
+  "bodyOffsetZ": -0.19,
+  "cabinOffsetZ": -0.23,
+  "interiorOffsetZ": -0.15,
+  "referencePaint": {
+    "source": "docs/la-catrina/references/La-Catrina-Master.jpg",
+    "sourceSha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+    "sourceSize": [
+      4560,
+      9413
+    ],
+    "regions": {
+      "roof": {
+        "quad": [
+          [
+            1054,
+            2917
+          ],
+          [
+            1047,
+            3257
+          ],
+          [
+            1462,
+            3260
+          ],
+          [
+            1450,
+            2914
+          ]
+        ],
+        "size": [
+          406,
+          344
+        ]
+      },
+      "hood_right": {
+        "quad": [
+          [
+            503,
+            2908
+          ],
+          [
+            499,
+            3072
+          ],
+          [
+            821,
+            3074
+          ],
+          [
+            851,
+            2899
+          ]
+        ],
+        "size": [
+          333,
+          166
+        ]
+      },
+      "hood_left": {
+        "quad": [
+          [
+            500,
+            3097
+          ],
+          [
+            508,
+            3266
+          ],
+          [
+            850,
+            3269
+          ],
+          [
+            820,
+            3097
+          ]
+        ],
+        "size": [
+          331,
+          170
+        ]
+      },
+      "deck": {
+        "quad": [
+          [
+            1600,
+            2900
+          ],
+          [
+            1600,
+            3270
+          ],
+          [
+            1863,
+            3270
+          ],
+          [
+            1863,
+            2900
+          ]
+        ],
+        "size": [
+          263,
+          370
+        ]
+      }
+    },
+    "sideScroll": {
+      "quad": [
+        [
+          1520,
+          1330
+        ],
+        [
+          1520,
+          1356
+        ],
+        [
+          1970,
+          1324
+        ],
+        [
+          1970,
+          1297
+        ]
+      ],
+      "sourceSize": [
+        450,
+        27
+      ],
+      "processing": "Hero paint-only strip, excluding chrome borders and cameos. Mask=max(clamp((G/R-.28)/.34),.65*clamp((G-Gaussian1.6(G)-1)/22)); remap between cherry RGB132,28,58 and labeled Champagne RGB203,162,108. Approximately0.96m repeat."
+    },
+    "processing": [
+      "Bicubic QUAD rectification of paint-only quadrilaterals",
+      "Gaussian35px illumination estimate; luminance correction limited .84..1.18",
+      "Top ornament mask=max(clamp((G/R-.32)/.30),.9*clamp((G-Gaussian2.5(G)-1.5)/25)); remap to labeled Candy and Champagne pigments",
+      "Preserve source red-channel high-frequency grain, limited to +/-3 RGB values outside gold strokes",
+      "Rotate90CCW and mirror horizontally for model UV axes",
+      "Lanczos resample1024x1024"
+    ],
+    "provenance": "Top paint and side-spear scroll ornament are masks derived from the user-supplied reference atlas. Geometry and small vector cameos remain original. No independent rights or public redistribution license is asserted for the supplied artwork.",
+    "finishPalette": {
+      "candy": {
+        "sourceBox": [
+          3000,
+          1675,
+          3230,
+          1700
+        ],
+        "medianRGB": [
+          183,
+          37,
+          99
+        ]
+      },
+      "shellPink": {
+        "sourceBox": [
+          3290,
+          1675,
+          3520,
+          1700
+        ],
+        "medianRGB": [
+          247,
+          143,
+          180
+        ]
+      },
+      "application": "Authored upper/lower pigments follow the explicitly labeled Candy and Shell pink swatches; their side transition is hidden beneath the gold spear. Plain upper painted parts and protected top-map pigment alignment use the same Candy value. These are illustrative reference pigments, not measured physical reflectance.",
+      "champagne": {
+        "sourceBox": [
+          3870,
+          1675,
+          4090,
+          1700
+        ],
+        "medianRGB": [
+          203,
+          162,
+          108
+        ]
+      }
+    },
+    "authoredCameos": {
+      "door": {
+        "width": 0.15,
+        "height": 0.12,
+        "type": "Original vector La Catrina profile with feathered hat"
+      },
+      "rear": {
+        "width": 0.075,
+        "height": 0.075,
+        "type": "Original vector frontal calavera"
+      },
+      "basis": "Side elevation outer cameo approximately30x24 pixels and rear15x15 pixels;578px wheelbase=3.0226m. Conservative150x120mm and75mm authored sizes.",
+      "texture": "Separate1024x128 masked narrow field, physicalY.54.. .72m; source scroll and original vector cameos."
+    }
+  },
+  "framePocket": {
+    "construction": "Connected fabricated boxed steel kick-ups and spring pockets; retained ram-foot stations and engine-mount cradle",
+    "frontCenter": [
+      0.37,
+      0.66,
+      1.5113
+    ],
+    "frontSection": [
+      0.065,
+      0.1
+    ],
+    "rearCenter": [
+      0.27,
+      0.77,
+      -1.5113
+    ],
+    "rearSection": [
+      0.095,
+      0.11
+    ],
+    "unchanged": [
+      "wheel centers",
+      "suspension pivots",
+      "hydraulic pivots",
+      "ram-tower feet",
+      "outer coachwork"
+    ],
+    "limitation": "Original game-model fabrication interpretation; no structural strength or roadworthiness certification"
+  },
+  "candyFinish": {
+    "type": "Undercoat facet normal and packed linear roughness maps beneath smooth clear lacquer",
+    "size": [
+      1024,
+      512
+    ],
+    "seed": 196411,
+    "normalScale": 0.32,
+    "limits": "Representative groups of flakes at game resolution; not measured particle size, pigment reflectance or lacquer thickness. Original reference-derived color artwork is unchanged."
+  }
+}

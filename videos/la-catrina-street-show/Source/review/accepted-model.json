@@ -1,0 +1,26 @@
+{
+  "threshold": 8,
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "reviews": [
+    {
+      "path": "build/la-catrina/independent/round-11-a.json",
+      "sha256": "dc0724735ba1a1a9393d3a8204fb4eab25266588615a5d8ed3bf2d33fdd2a9be",
+      "score": 8.02
+    },
+    {
+      "path": "build/la-catrina/independent/round-11-b.json",
+      "sha256": "2ad1a170211afac0143b3dca154e54ff5294bb3ecf98395153f58083669d77b5",
+      "score": 8.115
+    }
+  ],
+  "captureReceipt": {
+    "path": "build/la-catrina/round-11/studio/receipt.json",
+    "sha256": "b5853e1bb17cd9a2279024fc1c3aea1f420df0edc7f34e040ee2c514969a0df7"
+  },
+  "mechanicalReview": {
+    "path": "build/la-catrina/independent/round-11-mechanical.json",
+    "sha256": "fedfd8a5215ec6c6e44b371a7ab5df06665d6336def03bd416de3208809de1c7",
+    "geometrySha256": "3a34f488900e3ef36348753b32e570ef52c9c2b3ef0deaf89f79ab1eb25d1d3f",
+    "binding": "Unchanged reviewed author sources exported to this geometry; baked shading does not move vertices. Review scope and limitations remain those in the report."
+  }
+}

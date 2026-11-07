@@ -1,0 +1,18 @@
+{
+    "markerCheckedAfterLock":  true,
+    "stage":  "Preview",
+    "fps":  30,
+    "nativeResolution":  "960x600",
+    "elapsedSeconds":  53.5542746,
+    "authoringSha256":  "10c7f22ac95fd63bd165ffbfef08af4622f08c23bc333e2d8107bc3e9c63c3e0",
+    "workers":  1,
+    "stdout":  "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\proof\\preview.log",
+    "memoryLimitBytesPerProcess":  2147483648,
+    "status":  "PASS",
+    "deadlineSeconds":  300,
+    "modelSha256":  "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+    "mutex":  "Local\\ThreeppEvaluation-Supervisor",
+    "maximumLockWaitSeconds":  60,
+    "browserGpu":  "software",
+    "stderr":  "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\proof\\preview.stderr.log"
+}

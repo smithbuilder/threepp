@@ -1,0 +1,1066 @@
+{
+  "status": "PASS",
+  "scope": "Accepted static appearance, loaded CPU rig/physics, scoped sampled mechanical geometry, verified native street sources, sampled native PNG review, encoded-film technical verification and independent sampled editorial review. Human playback, listening and handling acceptance are not claimed.",
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "geometrySha256": "3a34f488900e3ef36348753b32e570ef52c9c2b3ef0deaf89f79ab1eb25d1d3f",
+  "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+  "reference": {
+    "path": "docs/la-catrina/references/La-Catrina-Master.jpg",
+    "sha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750"
+  },
+  "acceptance": {
+    "path": "build/la-catrina/independent/accepted-model.json",
+    "sha256": "276cf9257ff338a558de87f20178ca7e8963bd3fc66c07202a271acb753b43bf",
+    "threshold": 8,
+    "reviews": [
+      {
+        "path": "build/la-catrina/independent/round-11-a.json",
+        "sha256": "dc0724735ba1a1a9393d3a8204fb4eab25266588615a5d8ed3bf2d33fdd2a9be",
+        "score": 8.02
+      },
+      {
+        "path": "build/la-catrina/independent/round-11-b.json",
+        "sha256": "2ad1a170211afac0143b3dca154e54ff5294bb3ecf98395153f58083669d77b5",
+        "score": 8.115
+      }
+    ]
+  },
+  "asset": {
+    "triangles": 746922,
+    "meshDraws": 242,
+    "embeddedImages": 8,
+    "serializedChecks": 83,
+    "audit": {
+      "path": "build/la-catrina/asset-audit.json",
+      "sha256": "de7437b7fc345aba57e0837d3799bbbd267e54dcb9512843f6d95595f5146ac2"
+    }
+  },
+  "studio": {
+    "path": "build/la-catrina/round-11/studio/receipt.json",
+    "sha256": "b5853e1bb17cd9a2279024fc1c3aea1f420df0edc7f34e040ee2c514969a0df7",
+    "views": 16,
+    "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+  },
+  "physics": {
+    "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122115-849",
+    "result": {
+      "path": "build/sessions/20261106-122115-849/physics-audit/result.json",
+      "sha256": "af97eaaee981a7b3cf5b29bccb829461234a33c99f3057ef8beb88a5e19f570d"
+    },
+    "checks": 183,
+    "vehicles": 5,
+    "areas": 8,
+    "rigPoses": 243,
+    "rigAudit": {
+      "path": "build/sessions/20261106-122115-849/physics-audit/catrina-rig-audit.json",
+      "sha256": "fc7de0ff3a9892765c7ad63344a0d031c56fe7ceb319c2dff45c2280da1e963d"
+    },
+    "rigPoseCsv": {
+      "path": "build/sessions/20261106-122115-849/physics-audit/catrina-rig-poses.csv",
+      "sha256": "6a385c98cca03763e041ac5c5842b62f5d16b0c80ba93c02935d6df6036f3604"
+    },
+    "unchangedPriorChecks": 137,
+    "priorComparison": {
+      "path": "build/la-catrina/physics-comparison.json",
+      "sha256": "3687d5ade9e8ba345d7725822639f5ff12fbf0e3799ac6b5433e6dc953a5a61d"
+    }
+  },
+  "mechanical": {
+    "path": "build/la-catrina/independent/round-11-mechanical.json",
+    "sha256": "fedfd8a5215ec6c6e44b371a7ab5df06665d6336def03bd416de3208809de1c7",
+    "status": "PASS — scoped sampled source-geometry review",
+    "connectedLoadPathParts": 198,
+    "totalLoadPathParts": 198,
+    "scope": "Previous scoped mechanical checks independently rerun, plus exact coplanar-aware checks of revised ram-cover/wheelhouse blisters, arch/inner-apron skins, front end curtains, rail notches and tapered tower posts against actual fixed steel, ram/spring/seat motion, tyres, front wishbones/dampers and lid sweeps. Fixed tower-to-frame joints remain intentional load-path connections.",
+    "limitations": [
+      "Finite sampled source-geometry check, not a proof for every continuously varying or independent four-wheel state.",
+      "General crossing checks detect non-coplanar surface intersections. Dedicated bracket SAT also handles coplanar triangle contact; the report does not claim a general solid-containment or watertightness proof.",
+      "Ram-to-rail graph proves geometric connection to the modeled rails, not strength, fatigue life, manufacturability or roadworthiness.",
+      "Previously reviewed unchanged driveline slip and damper articulation mechanics are not re-certified here. The new casing checks include actual rear dampers and link motion.",
+      "No visual quality score or manufacturing certification is provided.",
+      "Actual-tyre triangle tests in this report cover the listed changed surfaces. Broader serialized-model enclosure sampling and exported/baked asset/native-executable identity remain separate root-agent gates.",
+      "Exact triangle SAT includes coplanar surface contact; it does not establish a general watertight solid-containment proof or a positive minimum separation for every pair.",
+      "Nine lid angles and finite suspension/steering samples are diagnostic samples, not continuously swept collision detection."
+    ]
+  },
+  "enclosure": {
+    "path": "build/la-catrina/enclosure-audit.json",
+    "sha256": "8d22ef7ebd12a3197df917af18720f144fd5ef905c30a92424ae48c0880ef195",
+    "status": "PASS",
+    "wheelPoses": 972,
+    "uniqueWheelTransforms": 216,
+    "sampleSpacingMetres": 0.025,
+    "tyreAllowanceMetres": 0.006,
+    "scope": "Fixed body skins, arches, enclosures and rack surfaces versus243native articulation/steering poses; sampled triangles,6mm tyre allowance. Not exhaustive moving mechanism collision or continuous clearance."
+  },
+  "streetShow": {
+    "nativeCaptureManifest": {
+      "path": "videos/la-catrina-street-show/native-captures.json",
+      "sha256": "567fadde1a5b474668b4fcc5ef301914f739919c9b24d7dcab98cbca23505c4a"
+    },
+    "verifiedSourceManifest": {
+      "path": "videos/la-catrina-street-show/source-manifest.json",
+      "sha256": "67e0cbc2c3c7bbdbe41eb1a86bf371d5eb43cc40e24ebfd3be9fae6097c9ee7d"
+    },
+    "durationSeconds": 48,
+    "frames": 1440,
+    "width": 960,
+    "height": 600,
+    "fps": 30,
+    "captures": [
+      {
+        "name": "reveal",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529",
+        "receipt": {
+          "path": "build/sessions/20261106-123108-529/result.json",
+          "sha256": "9c265a36662eec2a5c323080ccf0d0c831ce590a89871baf2b18fad866da95fd"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 180,
+        "durationSeconds": 6.0,
+        "warmupFramesExcluded": 60,
+        "exitCode": 0,
+        "elapsedSeconds": 18.7106243,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/reveal.mp4",
+          "sha256": "d417531f76e6154993262a52d02bb5ace1454fb5fcf87b55c9a1112923395bec"
+        },
+        "sourceFramesSha256": "dc47d30027dde8cec60f79fcde0aa142b2450f7cdcb046e1a0fcedde640e7d22",
+        "motionTelemetry": {
+          "summarySha256": "7d5b44cc5337b5f966c045d017ff68ab4510d6b5017ef7597f36d83bec624b81",
+          "csvSha256": "ed948b07007795de08a292d8b439b4bd769d8fb8978327a891d40f38bd36daa2",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 7.99992,
+          "expectedSimulatedSeconds": 8.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 240,
+          "warmupFramesExcluded": 60,
+          "displayedFrames": 180,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 180
+            },
+            "hydraulicModeFrameCounts": {
+              "0": 180
+            },
+            "pathLengthMeters": 11.656171254768642,
+            "speedMetersPerSecond": {
+              "minimum": 1.85714626,
+              "maximum": 1.95431018
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": 0.00299841166,
+              "maximum": 0.00414186716
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 3860.4104,
+                "maximum": 4380.05811
+              },
+              "FR": {
+                "minimum": 3716.6897,
+                "maximum": 4053.54175
+              },
+              "RL": {
+                "minimum": 5035.75635,
+                "maximum": 5313.41992
+              },
+              "RR": {
+                "minimum": 4746.88965,
+                "maximum": 5212.60596
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [],
+              "leftFrontNoContactWithThreeLoadedTires": [],
+              "rightFrontNoContactWithThreeLoadedTires": [],
+              "fourContacts": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 179,
+                  "firstNativeFrame": 60,
+                  "lastNativeFrame": 239,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 6.0
+                }
+              ]
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0
+            },
+            "observed": {
+              "pathLengthMeters": 11.656171254768642
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 607330304
+      },
+      {
+        "name": "hop",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325",
+        "receipt": {
+          "path": "build/sessions/20261106-123132-325/result.json",
+          "sha256": "979a3792aa4e1021251631d31399809b4d360c39c1ea1b9f64de9ee7ec19830a"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 300,
+        "durationSeconds": 10.0,
+        "warmupFramesExcluded": 60,
+        "exitCode": 0,
+        "elapsedSeconds": 26.3417177,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/hop.mp4",
+          "sha256": "49eea798ba19f80e37fef9ff17fe4c3cee078838ee66bc664c589f8c8dd2d0fc"
+        },
+        "sourceFramesSha256": "46ef2b8c7c19254e83ca1314a7fdfb387f954f790a1a15bfe96511d0798246f8",
+        "motionTelemetry": {
+          "summarySha256": "981ea92d8adfd8e562506c91ebca941a299a1eeac7705cc3c239e5b478585d88",
+          "csvSha256": "4e1cf992ee2ab2c299b77720b2ccec8ed1ec11d74775a979452415c978c85d37",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 11.9999,
+          "expectedSimulatedSeconds": 12.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 360,
+          "warmupFramesExcluded": 60,
+          "displayedFrames": 300,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 104,
+              "3": 0,
+              "4": 196
+            },
+            "hydraulicModeFrameCounts": {
+              "1": 300
+            },
+            "pathLengthMeters": 11.677029659614043,
+            "speedMetersPerSecond": {
+              "minimum": 0.809623957,
+              "maximum": 1.03949165
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": -0.0642735362,
+              "maximum": 0.36004436
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 0.0,
+                "maximum": 14539.5674
+              },
+              "FR": {
+                "minimum": 0.0,
+                "maximum": 14546.9658
+              },
+              "RL": {
+                "minimum": 4815.2876,
+                "maximum": 5591.854
+              },
+              "RR": {
+                "minimum": 4822.51318,
+                "maximum": 5554.29883
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [
+                {
+                  "firstClipFrame": 11,
+                  "lastClipFrame": 29,
+                  "firstNativeFrame": 71,
+                  "lastNativeFrame": 89,
+                  "startSeconds": 0.36666666666666664,
+                  "durationSeconds": 0.6333333333333333
+                },
+                {
+                  "firstClipFrame": 67,
+                  "lastClipFrame": 84,
+                  "firstNativeFrame": 127,
+                  "lastNativeFrame": 144,
+                  "startSeconds": 2.2333333333333334,
+                  "durationSeconds": 0.6
+                },
+                {
+                  "firstClipFrame": 122,
+                  "lastClipFrame": 140,
+                  "firstNativeFrame": 182,
+                  "lastNativeFrame": 200,
+                  "startSeconds": 4.066666666666666,
+                  "durationSeconds": 0.6333333333333333
+                },
+                {
+                  "firstClipFrame": 178,
+                  "lastClipFrame": 195,
+                  "firstNativeFrame": 238,
+                  "lastNativeFrame": 255,
+                  "startSeconds": 5.933333333333334,
+                  "durationSeconds": 0.6
+                },
+                {
+                  "firstClipFrame": 233,
+                  "lastClipFrame": 251,
+                  "firstNativeFrame": 293,
+                  "lastNativeFrame": 311,
+                  "startSeconds": 7.766666666666667,
+                  "durationSeconds": 0.6333333333333333
+                },
+                {
+                  "firstClipFrame": 289,
+                  "lastClipFrame": 299,
+                  "firstNativeFrame": 349,
+                  "lastNativeFrame": 359,
+                  "startSeconds": 9.633333333333333,
+                  "durationSeconds": 0.36666666666666664
+                }
+              ],
+              "leftFrontNoContactWithThreeLoadedTires": [],
+              "rightFrontNoContactWithThreeLoadedTires": [],
+              "fourContacts": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 10,
+                  "firstNativeFrame": 60,
+                  "lastNativeFrame": 70,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 0.36666666666666664
+                },
+                {
+                  "firstClipFrame": 30,
+                  "lastClipFrame": 66,
+                  "firstNativeFrame": 90,
+                  "lastNativeFrame": 126,
+                  "startSeconds": 1.0,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 85,
+                  "lastClipFrame": 121,
+                  "firstNativeFrame": 145,
+                  "lastNativeFrame": 181,
+                  "startSeconds": 2.8333333333333335,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 141,
+                  "lastClipFrame": 177,
+                  "firstNativeFrame": 201,
+                  "lastNativeFrame": 237,
+                  "startSeconds": 4.7,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 196,
+                  "lastClipFrame": 232,
+                  "firstNativeFrame": 256,
+                  "lastNativeFrame": 292,
+                  "startSeconds": 6.533333333333333,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 252,
+                  "lastClipFrame": 288,
+                  "firstNativeFrame": 312,
+                  "lastNativeFrame": 348,
+                  "startSeconds": 8.4,
+                  "durationSeconds": 1.2333333333333334
+                }
+              ]
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0,
+              "contactCondition": "frontPairNoContactWithRearSupport",
+              "minimumQualifyingFrames": 9,
+              "minimumQualifyingSeconds": 0.3,
+              "minimumFourContactRecoveryFramesAfterLift": 1
+            },
+            "observed": {
+              "pathLengthMeters": 11.677029659614043,
+              "contactCondition": "frontPairNoContactWithRearSupport",
+              "qualifyingFrames": 104,
+              "qualifyingSeconds": 3.466666666666667,
+              "longestQualifyingIntervalSeconds": 0.6333333333333333,
+              "fourContactRecoveryFramesAfterLift": 185
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 555151360
+      },
+      {
+        "name": "wheel",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120",
+        "receipt": {
+          "path": "build/sessions/20261106-123204-120/result.json",
+          "sha256": "6ca9d994b5e160fbfbf2b8b3c36c5cd9be433fbca2a4d5e608a0d294d7813477"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 150,
+        "durationSeconds": 5.0,
+        "warmupFramesExcluded": 60,
+        "exitCode": 0,
+        "elapsedSeconds": 15.924275199999999,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/wheel.mp4",
+          "sha256": "640fdd39a4483388034d1de263aef5413862ae8bf22a7bb13e4f1446662cdfec"
+        },
+        "sourceFramesSha256": "3b1035ad6d767f7affac4576af44667bfb758cd68bcee6a6424139c9ee785b97",
+        "motionTelemetry": {
+          "summarySha256": "65d73b5c06b38541f82f7eccfb4399153d46a491f46ea5863197c08e450e4fad",
+          "csvSha256": "f28b98a28ae06221fa20072bbd28763ca1a4029d68b237a151fe1a1b12732d4f",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 6.99994,
+          "expectedSimulatedSeconds": 7.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 210,
+          "warmupFramesExcluded": 60,
+          "displayedFrames": 150,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 56,
+              "3": 0,
+              "4": 94
+            },
+            "hydraulicModeFrameCounts": {
+              "1": 150
+            },
+            "pathLengthMeters": 5.896039924739132,
+            "speedMetersPerSecond": {
+              "minimum": 0.809623957,
+              "maximum": 1.03948987
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": -0.0642622113,
+              "maximum": 0.36004436
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 0.0,
+                "maximum": 14539.5674
+              },
+              "FR": {
+                "minimum": 0.0,
+                "maximum": 14532.4941
+              },
+              "RL": {
+                "minimum": 4815.2876,
+                "maximum": 5591.854
+              },
+              "RR": {
+                "minimum": 4822.51318,
+                "maximum": 5554.29883
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [
+                {
+                  "firstClipFrame": 11,
+                  "lastClipFrame": 29,
+                  "firstNativeFrame": 71,
+                  "lastNativeFrame": 89,
+                  "startSeconds": 0.36666666666666664,
+                  "durationSeconds": 0.6333333333333333
+                },
+                {
+                  "firstClipFrame": 67,
+                  "lastClipFrame": 84,
+                  "firstNativeFrame": 127,
+                  "lastNativeFrame": 144,
+                  "startSeconds": 2.2333333333333334,
+                  "durationSeconds": 0.6
+                },
+                {
+                  "firstClipFrame": 122,
+                  "lastClipFrame": 140,
+                  "firstNativeFrame": 182,
+                  "lastNativeFrame": 200,
+                  "startSeconds": 4.066666666666666,
+                  "durationSeconds": 0.6333333333333333
+                }
+              ],
+              "leftFrontNoContactWithThreeLoadedTires": [],
+              "rightFrontNoContactWithThreeLoadedTires": [],
+              "fourContacts": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 10,
+                  "firstNativeFrame": 60,
+                  "lastNativeFrame": 70,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 0.36666666666666664
+                },
+                {
+                  "firstClipFrame": 30,
+                  "lastClipFrame": 66,
+                  "firstNativeFrame": 90,
+                  "lastNativeFrame": 126,
+                  "startSeconds": 1.0,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 85,
+                  "lastClipFrame": 121,
+                  "firstNativeFrame": 145,
+                  "lastNativeFrame": 181,
+                  "startSeconds": 2.8333333333333335,
+                  "durationSeconds": 1.2333333333333334
+                },
+                {
+                  "firstClipFrame": 141,
+                  "lastClipFrame": 149,
+                  "firstNativeFrame": 201,
+                  "lastNativeFrame": 209,
+                  "startSeconds": 4.7,
+                  "durationSeconds": 0.3
+                }
+              ]
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0,
+              "contactCondition": "frontPairNoContactWithRearSupport",
+              "minimumQualifyingFrames": 9,
+              "minimumQualifyingSeconds": 0.3,
+              "minimumFourContactRecoveryFramesAfterLift": 1
+            },
+            "observed": {
+              "pathLengthMeters": 5.896039924739132,
+              "contactCondition": "frontPairNoContactWithRearSupport",
+              "qualifyingFrames": 56,
+              "qualifyingSeconds": 1.8666666666666667,
+              "longestQualifyingIntervalSeconds": 0.6333333333333333,
+              "fourContactRecoveryFramesAfterLift": 83
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 549437440
+      },
+      {
+        "name": "left",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823",
+        "receipt": {
+          "path": "build/sessions/20261106-123222-823/result.json",
+          "sha256": "814ae971a487d2f60570d6d0d802688c1e993fd11e2e2e41005fbff931ea8f58"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 240,
+        "durationSeconds": 8.0,
+        "warmupFramesExcluded": 90,
+        "exitCode": 0,
+        "elapsedSeconds": 22.2897799,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/left.mp4",
+          "sha256": "b6cdab948d338e71be0bc13ce6fd5ef4d7af43d8dc9bfb00f785db86544a0e69"
+        },
+        "sourceFramesSha256": "a543a93aa39f25607b4c2df1009f12a0da2aa6db257d09e70f13a4eaf22b1e4f",
+        "motionTelemetry": {
+          "summarySha256": "a63f52f56f6fc108638b958b4adea0dd03f5fff0fba2e6b712cff8a8e12f2b42",
+          "csvSha256": "2d73bca6af851df11525f59168099c3e1a76b32e8fd10da16de9d71d934d3330",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 10.9999,
+          "expectedSimulatedSeconds": 11.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 330,
+          "warmupFramesExcluded": 90,
+          "displayedFrames": 240,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 240,
+              "4": 0
+            },
+            "hydraulicModeFrameCounts": {
+              "2": 240
+            },
+            "pathLengthMeters": 7.600629240404461,
+            "speedMetersPerSecond": {
+              "minimum": 0.950250804,
+              "maximum": 0.954103649
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": 0.217867136,
+              "maximum": 0.248215258
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 0.0,
+                "maximum": 0.0
+              },
+              "FR": {
+                "minimum": 7977.96875,
+                "maximum": 8562.13281
+              },
+              "RL": {
+                "minimum": 6042.19287,
+                "maximum": 7808.73486
+              },
+              "RR": {
+                "minimum": 2077.54932,
+                "maximum": 3994.37036
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [],
+              "leftFrontNoContactWithThreeLoadedTires": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 239,
+                  "firstNativeFrame": 90,
+                  "lastNativeFrame": 329,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 8.0
+                }
+              ],
+              "rightFrontNoContactWithThreeLoadedTires": [],
+              "fourContacts": []
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0,
+              "contactCondition": "leftFrontNoContactWithThreeLoadedTires",
+              "minimumQualifyingFrames": 30,
+              "minimumQualifyingSeconds": 1.0
+            },
+            "observed": {
+              "pathLengthMeters": 7.600629240404461,
+              "contactCondition": "leftFrontNoContactWithThreeLoadedTires",
+              "qualifyingFrames": 240,
+              "qualifyingSeconds": 8.0,
+              "longestQualifyingIntervalSeconds": 8.0
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 551243776
+      },
+      {
+        "name": "right",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768",
+        "receipt": {
+          "path": "build/sessions/20261106-123248-768/result.json",
+          "sha256": "df3b0cc8c9a6e716827926579938ace03871e3a0a59b422d9676bd9ba4987cb9"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 240,
+        "durationSeconds": 8.0,
+        "warmupFramesExcluded": 90,
+        "exitCode": 0,
+        "elapsedSeconds": 23.1933072,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/right.mp4",
+          "sha256": "9d5d55fda8e8c0156266338e337a9d927f074f8680a9bdeba29f1020dab9f94d"
+        },
+        "sourceFramesSha256": "ea3e0658a615c239744f804e580f4784d379ad3266397266d08fe55558a4cc95",
+        "motionTelemetry": {
+          "summarySha256": "d62b0800f2fb84e0153fd73933a429e73cc182b47b12034f7c1a9ef3620ab8eb",
+          "csvSha256": "49772c8d409b059264d67f83a259e538143f4b1399f2c128dcbbd966ec268cc5",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 10.9999,
+          "expectedSimulatedSeconds": 11.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 330,
+          "warmupFramesExcluded": 90,
+          "displayedFrames": 240,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 240,
+              "4": 0
+            },
+            "hydraulicModeFrameCounts": {
+              "3": 240
+            },
+            "pathLengthMeters": 7.609296860329585,
+            "speedMetersPerSecond": {
+              "minimum": 0.949335515,
+              "maximum": 0.955809891
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": 0.217329323,
+              "maximum": 0.248063743
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 7980.7793,
+                "maximum": 8564.12012
+              },
+              "FR": {
+                "minimum": 0.0,
+                "maximum": 0.0
+              },
+              "RL": {
+                "minimum": 2061.55444,
+                "maximum": 3983.88428
+              },
+              "RR": {
+                "minimum": 6047.73828,
+                "maximum": 7842.72998
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [],
+              "leftFrontNoContactWithThreeLoadedTires": [],
+              "rightFrontNoContactWithThreeLoadedTires": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 239,
+                  "firstNativeFrame": 90,
+                  "lastNativeFrame": 329,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 8.0
+                }
+              ],
+              "fourContacts": []
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0,
+              "contactCondition": "rightFrontNoContactWithThreeLoadedTires",
+              "minimumQualifyingFrames": 30,
+              "minimumQualifyingSeconds": 1.0
+            },
+            "observed": {
+              "pathLengthMeters": 7.609296860329585,
+              "contactCondition": "rightFrontNoContactWithThreeLoadedTires",
+              "qualifyingFrames": 240,
+              "qualifyingSeconds": 8.0,
+              "longestQualifyingIntervalSeconds": 8.0
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 549732352
+      },
+      {
+        "name": "exit",
+        "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736",
+        "receipt": {
+          "path": "build/sessions/20261106-123315-736/result.json",
+          "sha256": "c391c43a507dfcce13b076fd0f28f8d435d876d06d0ac3478375b408e33a4949"
+        },
+        "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+        "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+        "frames": 330,
+        "durationSeconds": 11.0,
+        "warmupFramesExcluded": 60,
+        "exitCode": 0,
+        "elapsedSeconds": 29.3735063,
+        "encodedSource": {
+          "path": "videos/la-catrina-street-show/assets/video/exit.mp4",
+          "sha256": "0dc0806b958c5d9392a7f23dfd43afdf887cb83d4d9b27ac02152e79153a025e"
+        },
+        "sourceFramesSha256": "d3ae1bcf79c56961efce89b46bf499be2fcfa3b553e2a6785e30abaadb542348",
+        "motionTelemetry": {
+          "summarySha256": "bae644b7b6c08c401c93d26133c5c357415b8ac0f93cb06dead8adaaaa05cdc9",
+          "csvSha256": "4e89d7999cad89b30b11aecd678dbea091bd81872cfd8b2787419d2e7318e74c",
+          "physicsHz": 240,
+          "discardedBacklogs": 0,
+          "simulatedSeconds": 12.9998,
+          "expectedSimulatedSeconds": 13.0,
+          "timeToleranceSeconds": 0.005,
+          "totalTelemetryRows": 390,
+          "warmupFramesExcluded": 60,
+          "displayedFrames": 330,
+          "postWarmup": {
+            "contactFrameCounts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 330
+            },
+            "hydraulicModeFrameCounts": {
+              "0": 330
+            },
+            "pathLengthMeters": 21.203420904155703,
+            "speedMetersPerSecond": {
+              "minimum": 1.91562557,
+              "maximum": 1.93401361
+            },
+            "chassisOriginHeightMeters": {
+              "minimum": 0.00305759907,
+              "maximum": 0.00357055664
+            },
+            "wheelLoadRangesNewtons": {
+              "FL": {
+                "minimum": 3968.87891,
+                "maximum": 4011.98071
+              },
+              "FR": {
+                "minimum": 3970.06323,
+                "maximum": 4013.3894
+              },
+              "RL": {
+                "minimum": 5065.58301,
+                "maximum": 5108.01807
+              },
+              "RR": {
+                "minimum": 5066.82617,
+                "maximum": 5118.73682
+              }
+            },
+            "contactIntervals": {
+              "zeroContacts": [],
+              "frontPairNoContactWithRearSupport": [],
+              "leftFrontNoContactWithThreeLoadedTires": [],
+              "rightFrontNoContactWithThreeLoadedTires": [],
+              "fourContacts": [
+                {
+                  "firstClipFrame": 0,
+                  "lastClipFrame": 329,
+                  "firstNativeFrame": 60,
+                  "lastNativeFrame": 389,
+                  "startSeconds": 0.0,
+                  "durationSeconds": 11.0
+                }
+              ]
+            }
+          },
+          "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+          "taskGate": {
+            "status": "PASS",
+            "requirements": {
+              "pathLengthMetersGreaterThan": 1.0
+            },
+            "observed": {
+              "pathLengthMeters": 21.203420904155703
+            },
+            "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+          }
+        },
+        "peakObservedWorkingSetBytes": 547876864
+      }
+    ],
+    "visualSamples": [
+      {
+        "clip": "hop",
+        "clipFrame": 8,
+        "image": {
+          "path": "build/sessions/20261106-123132-325/frames/frame_00008.png",
+          "sha256": "026f50037ec7837c157a6435f60620ab86941ca99dbe4d95e804b3747e9fd413"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      },
+      {
+        "clip": "hop",
+        "clipFrame": 18,
+        "image": {
+          "path": "build/sessions/20261106-123132-325/frames/frame_00018.png",
+          "sha256": "80205fffb63237563d83af8892832f79fde2a4a6f5e6c813d621877177b03079"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      },
+      {
+        "clip": "hop",
+        "clipFrame": 40,
+        "image": {
+          "path": "build/sessions/20261106-123132-325/frames/frame_00040.png",
+          "sha256": "f8d004cc333430353a9528d4dfeecdb8ff3fecd606fb264e1e98ff74ed8f40aa"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      },
+      {
+        "clip": "wheel",
+        "clipFrame": 18,
+        "image": {
+          "path": "build/sessions/20261106-123204-120/frames/frame_00018.png",
+          "sha256": "d32f2727d641c6cdb307ef568740302bbee329ad31af1541de935857ebc4bcf6"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      },
+      {
+        "clip": "left",
+        "clipFrame": 120,
+        "image": {
+          "path": "build/sessions/20261106-123222-823/frames/frame_00120.png",
+          "sha256": "eabc2fb6ed9c23edd301824c864431e0ee1b8c185324a1ea4d48aaafe2dd7237"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      },
+      {
+        "clip": "right",
+        "clipFrame": 120,
+        "image": {
+          "path": "build/sessions/20261106-123248-768/frames/frame_00120.png",
+          "sha256": "166ab3b524a907f3d8bf9b50cdd14d0f921c7ddcd53c8c4c12fe62359562d9a9"
+        },
+        "inspection": "Opened original native PNG during final documentation review."
+      }
+    ],
+    "mediaTreatment": "Full native frames at1x, no crop/upscale/interpolation/grade. Engine and pump sound are editorial reconstruction from credited recordings."
+  },
+  "sourceHashes": {
+    "showcase/CatrinaDimensions.hpp": "5d3ec2f6bd7ccf1e433815ac648afb1f6889a55d327976222d56eeaab47186eb",
+    "showcase/CatrinaHydraulics.hpp": "dca6162af51acbcf3dc8ff32c0be11de5a859c967858293488d3f5ee88596ad7",
+    "showcase/CatrinaRig.hpp": "fb4332956f75abccc533cf148215c72ba0b066493e3e7c6e13e10ac25d3b0efd",
+    "showcase/PlaygroundVehicles.hpp": "3987320b6644d329e9874b4ee483afc342d95b52705c29de1dbb0bb520c346ac",
+    "showcase/PlaygroundPhysics.hpp": "dc2028f8c1f8281816506ba019f8bbd5d6f09538211d499daa318402547cb7e8",
+    "showcase/PlaygroundAudit.hpp": "b9190488fbeab51f34b812903d6798bef783adc3dad517d1b3283b952849d385",
+    "showcase/suspension_playground.cpp": "ddeee7bfeab5dd92c973e00c127ff873224e14b9c3c63707845f23bd47e096b1",
+    "scripts/catrina_generate.py": "ea4d28489f2593ea7b2c480ca6625af7c73190c6579f325388073c785357f675",
+    "scripts/catrina_art.py": "e56d7204a21c93ce2989e19bae0668aeb69db332dcc2fc2419d71f5fdf15be2f",
+    "scripts/catrina_hardware.py": "1e199514bf3678746439f168e87d4975abb511889560973df541a2d6d8802c18",
+    "scripts/catrina_frame_pockets.py": "58fc2e937c539f043d15fd4e54aafbdc41fc903f1a6b24ac9e473344ac4dee42",
+    "scripts/catrina_reference_paint.py": "b8265fc433b66139ddf4d3882b3700a2647b8462caaef982c05c22415cf57b1c",
+    "scripts/catrina_ao.py": "1285bd3d9fb2e0c61e3218d68298737b59623fac20ef7e24434648713798a6cb",
+    "scripts/catrina_audit.py": "0f2d66fb953eb70f8cee75c16387f77872c3bb34aaae42d198f6b12036cbf93d",
+    "scripts/catrina_enclosure_audit.py": "dc39fe8035da5ccfb298e8a725ddaf1f5f745483fcc4bd662bc432a8fdd938dc",
+    "Run-Evaluation.ps1": "81e7cdd4aa29cf45f934ee32757bfeb32f4f51c46a1173ea8311b1513062d472",
+    "Build-La-Catrina.ps1": "a3a3ff04bcd5ec69e11c72657aea7109d3ed64f478ec36eb98f3e52f40870f65",
+    "Launch-La-Catrina.cmd": "1953cfe01a5bb32559cc019e6d9f5c256e64c567223be76ddf3f132ad665fee9"
+  },
+  "historicalRecords": "build/la-catrina/initial-delivery-records",
+  "limitations": [
+    "Static visual scores do not certify continuous motion, human handling or real-world installation.",
+    "Native PNG review is sampled; no uninterrupted human playback review is claimed here.",
+    "Human keyboard/controller feel and sustained performance remain unverified.",
+    "Raycast tyre contact, visual linkage arcs and bounded spring-preload hydraulics are reduced game approximations.",
+    "Finite geometric samples do not certify continuous collision clearance, structural strength or manufacturability.",
+    "Original native captures are silent; edited engine and hydraulic sounds are editorial reconstruction from credited real recordings, not native vehicle audio.",
+    "The reference artwork is embedded in transformed paint maps; no independent public redistribution license is asserted.",
+    "This receipt makes no archive rebuild or editable-package verification claim."
+  ],
+  "filmDelivery": {
+    "receipt": {
+      "path": "videos/la-catrina-street-show/proof/delivery-receipt.json",
+      "sha256": "ae69a4fd5d52fc9c228b90fca7122aa34aa3cef73cdd0132a37e2a058a5f54c8"
+    },
+    "output": {
+      "path": "videos/la-catrina-street-show/outputs/La-Catrina-Street-Show.mp4",
+      "sha256": "4fa5666edd5ba07006919a328570d16da8246b558aeeec14880ff44a2990b72c"
+    },
+    "bytes": 32505707,
+    "durationSeconds": 48.0,
+    "video": {
+      "codec": "h264",
+      "width": 960,
+      "height": 600,
+      "fps": 30,
+      "frames": 1440
+    },
+    "audio": {
+      "codec": "aac",
+      "sampleRate": 48000,
+      "channels": 2,
+      "integratedLufs": -20.1,
+      "truePeakDbfs": -5.2,
+      "review": "Measured, not human listened. Credited real recordings reconstruct engine/pump sound."
+    },
+    "fullDecode": "PASS; no decoder errors",
+    "blackFrameScan": "PASS; no98%-black interval at least0.05s",
+    "fastStart": true,
+    "sourceCorrespondenceSamples": 28,
+    "maximumNativeRegionMeanAbsoluteError": 2.0765,
+    "poster": {
+      "path": "videos/la-catrina-street-show/outputs/La-Catrina-Street-Show.png",
+      "sha256": "db0749f72c335d7fcfce742cb17ca7507dcb27b3e33acc251473138a935ece25",
+      "frame": 310,
+      "timeSeconds": 10.333333333333334,
+      "selection": "Visually inspected front-pair airborne hero frame; unchanged decoded video pixels."
+    },
+    "independentEditorialReview": {
+      "json": {
+        "path": "videos/la-catrina-street-show/proof/independent-film-review.json",
+        "sha256": "9561bda77ff044283282894178d1d413a5eb12594ad4d3ec2b19bd776cbd7297"
+      },
+      "markdown": {
+        "path": "videos/la-catrina-street-show/proof/independent-film-review.md",
+        "sha256": "3c2352819ae46d032ad859cc6cd6d3c8750e578d607237bd1ac8f18dcc77f859"
+      },
+      "status": "PASS_WITH_LIMITATIONS",
+      "scope": "Final film visual/editorial QA and source correspondence; no model rescore",
+      "p0Blockers": 0,
+      "p1Blockers": 0,
+      "decodedSampleCount": 28,
+      "nativePngCount": 16,
+      "contactSheetCount": 3,
+      "cutBoundaryPairs": [
+        [
+          179,
+          180
+        ],
+        [
+          479,
+          480
+        ],
+        [
+          629,
+          630
+        ],
+        [
+          869,
+          870
+        ],
+        [
+          1109,
+          1110
+        ]
+      ],
+      "hopCycleFrames": [
+        300,
+        310,
+        320,
+        330,
+        340,
+        350,
+        360
+      ],
+      "advisories": [
+        {
+          "severity": "non-blocking",
+          "finding": "Three-wheel sequences are darker than the reveal and hop. Raised wheels and car silhouette remain readable, but fine undercarriage detail is less clear."
+        }
+      ],
+      "limitations": [
+        "This is independent sampled-frame film QA, with a complete sampled hop cycle and all five cut boundaries; it is not continuous human playback or a visual inspection of every encoded frame.",
+        "Sound was not listened to. Loudness, peak and decode measurements do not establish listening quality, timing feel or subjective audio acceptance.",
+        "Contact/load data are 30 fps samples from the native 240 Hz raycast solver. Visual wheel clearance is additionally evidenced by inspected images; the telemetry is not a real-world mechanical validation.",
+        "The film contains six separately captured shots with deliberate camera/location resets at cuts. It does not claim an uninterrupted single drive.",
+        "The model and research are not rescored by this review. This pass does not independently validate reference fidelity, real component specifications, attribution or media licensing.",
+        "Native delivery is 960 x 600 at 30 fps; fine chrome and undercarriage detail remain limited by that resolution and the scene lighting."
+      ]
+    }
+  }
+}

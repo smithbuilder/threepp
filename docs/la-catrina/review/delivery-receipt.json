@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+  "archive": "build\\la-catrina\\La-Catrina-Modular.zip",
+  "archiveSha256": "559159b5d402117d0ad8fac3ee62307af66acc26d89861ff27002e6bbd41ad2e",
+  "archiveBytes": 32272080,
+  "archiveFiles": 118,
+  "physicsChecks": 183,
+  "physicsSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122115-849",
+  "sourceRebuild": "PASS",
+  "limitations": [
+    "Human handling and long-session acceptance remain unverified; independent visual scores are recorded separately.",
+    "Raycast tyre forces and visual linkage solve are not a full multibody vehicle.",
+    "Native captures retain the existing 960x600 graphics budget."
+  ]
+}

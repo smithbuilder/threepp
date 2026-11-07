@@ -1,0 +1,28 @@
+{
+  "state": "PREPARED_WAITING_FOR_ACCEPTED_NATIVE_FOOTAGE",
+  "timelineSeconds": 48,
+  "timelineFrames": 1440,
+  "sceneDurations": {
+    "reveal": 6,
+    "hop": 10,
+    "wheel": 5,
+    "left": 8,
+    "right": 8,
+    "exit": 11
+  },
+  "staticLint": "Only six missing native video files; zero other findings at preparation time",
+  "pythonSourcesCompile": "PASS",
+  "powershellWrappersParse": "PASS",
+  "musicDurationSeconds": 48.0,
+  "musicSha256": "e240ceef9090589162d2dfb73f3f8d1bd3b6a4ce250d559af6692c912cc4b0ec",
+  "browserStarted": false,
+  "nativeStarted": false,
+  "renderStarted": false,
+  "awaiting": [
+    "Independent model8/10 gate",
+    "Accepted native sources and manifest",
+    "Telemetry-driven action sound assembly",
+    "Full composition check/snapshots/render",
+    "Delivery and independent film review"
+  ]
+}

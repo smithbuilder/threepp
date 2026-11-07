@@ -1,0 +1,13 @@
+{
+  "title": "Hydraulics",
+  "author": "nick121087",
+  "page": "https://freesound.org/people/nick121087/sounds/342463/",
+  "download": "https://cdn.freesound.org/previews/342/342463_3840537-hq.mp3",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceDescription": "A lowrider pulling up and using its hydraulics, recorded with NTG3 and Sound Devices702",
+  "licenseVerified": "2026-11-06, source page labels Creative Commons0",
+  "sha256": "9207c43eb13f97d5356dee3aa52391f68bec40bc66819691c24bfad24cab3dcc",
+  "path": "assets/audio/lowrider-hydraulics-source.mp3",
+  "usage": "Edited short pump pulses aligned to the actual model telemetry; reconstruction, not native simulator sound."
+}

@@ -1,0 +1,5 @@
+# These historical files are checked by SHA-256. Preserve their original bytes.
+*.csv -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+round-11-a.md -whitespace
+mechanical-inputs/round-09-mechanical.json -whitespace

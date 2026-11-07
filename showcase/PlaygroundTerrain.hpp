@@ -4,6 +4,7 @@
 #include <array>
 #include <cmath>
 #include <vector>
+#include "CityLayout.hpp"
 
 namespace playground {
 using threepp::Vector3;
@@ -32,6 +33,7 @@ inline constexpr std::array<std::array<float,6>,8> windFrame{{
 // One sampled surface feeds BOTH the render mesh and Bullet triangle mesh.
 // Physics never drives on an invisible smooth substitute for these trails.
 struct Terrain {
+    bool cityBlock=false;
     static constexpr int nx=264,nz=440;
     static constexpr float step=.5f,minX=-66,minZ=-24;
     std::vector<float> vertices;
@@ -60,9 +62,9 @@ struct Terrain {
                     +kicker(z,150,156,2.5f)+.75f*smooth(163,167,z)*(1-smooth(167,181,z)));
         return y;
     }
-    Terrain(){
+    explicit Terrain(bool city=false):cityBlock(city){
         vertices.reserve((nx+1)*(nz+1)*3);
-        for(int iz=0;iz<=nz;++iz)for(int ix=0;ix<=nx;++ix){float x=minX+ix*step,z=minZ+iz*step;vertices.insert(vertices.end(),{x,design(x,z),z});}
+        for(int iz=0;iz<=nz;++iz)for(int ix=0;ix<=nx;++ix){float x=minX+ix*step,z=minZ+iz*step;vertices.insert(vertices.end(),{x,city?city::surface(x,z):design(x,z),z});}
         indices.reserve(nx*nz*6);
         for(int iz=0;iz<nz;++iz)for(int ix=0;ix<nx;++ix){unsigned a=iz*(nx+1)+ix,b=a+1,c=a+nx+1,d=c+1;indices.insert(indices.end(),{a,c,b,b,c,d});}
     }

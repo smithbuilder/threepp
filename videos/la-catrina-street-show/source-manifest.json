@@ -1,0 +1,777 @@
+{
+  "status": "PASS",
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "approvalSha256": "276cf9257ff338a558de87f20178ca7e8963bd3fc66c07202a271acb753b43bf",
+  "independentReviews": [
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-a.json",
+      "sha256": "dc0724735ba1a1a9393d3a8204fb4eab25266588615a5d8ed3bf2d33fdd2a9be",
+      "score": 8.02
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-b.json",
+      "sha256": "2ad1a170211afac0143b3dca154e54ff5294bb3ecf98395153f58083669d77b5",
+      "score": 8.115
+    }
+  ],
+  "durationSeconds": 48,
+  "width": 960,
+  "height": 600,
+  "fps": 30,
+  "nativeFramesVerified": 1440,
+  "clips": [
+    {
+      "name": "reveal",
+      "video": "assets/video/reveal.mp4",
+      "sha256": "d417531f76e6154993262a52d02bb5ace1454fb5fcf87b55c9a1112923395bec",
+      "frames": 180,
+      "distinctNativeFrames": 180,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "9c265a36662eec2a5c323080ccf0d0c831ce590a89871baf2b18fad866da95fd",
+      "captureProfile": {
+        "hydraulics": "cruise",
+        "rightCamera": false,
+        "warmupFrames": 60,
+        "view": 2,
+        "scene": 3
+      },
+      "motionTelemetry": {
+        "summarySha256": "7d5b44cc5337b5f966c045d017ff68ab4510d6b5017ef7597f36d83bec624b81",
+        "csvSha256": "ed948b07007795de08a292d8b439b4bd769d8fb8978327a891d40f38bd36daa2",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 7.99992,
+        "expectedSimulatedSeconds": 8.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 240,
+        "warmupFramesExcluded": 60,
+        "displayedFrames": 180,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 180
+          },
+          "hydraulicModeFrameCounts": {
+            "0": 180
+          },
+          "pathLengthMeters": 11.656171254768642,
+          "speedMetersPerSecond": {
+            "minimum": 1.85714626,
+            "maximum": 1.95431018
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": 0.00299841166,
+            "maximum": 0.00414186716
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 3860.4104,
+              "maximum": 4380.05811
+            },
+            "FR": {
+              "minimum": 3716.6897,
+              "maximum": 4053.54175
+            },
+            "RL": {
+              "minimum": 5035.75635,
+              "maximum": 5313.41992
+            },
+            "RR": {
+              "minimum": 4746.88965,
+              "maximum": 5212.60596
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [],
+            "leftFrontNoContactWithThreeLoadedTires": [],
+            "rightFrontNoContactWithThreeLoadedTires": [],
+            "fourContacts": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 179,
+                "firstNativeFrame": 60,
+                "lastNativeFrame": 239,
+                "startSeconds": 0.0,
+                "durationSeconds": 6.0
+              }
+            ]
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0
+          },
+          "observed": {
+            "pathLengthMeters": 11.656171254768642
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    },
+    {
+      "name": "hop",
+      "video": "assets/video/hop.mp4",
+      "sha256": "49eea798ba19f80e37fef9ff17fe4c3cee078838ee66bc664c589f8c8dd2d0fc",
+      "frames": 300,
+      "distinctNativeFrames": 300,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "979a3792aa4e1021251631d31399809b4d360c39c1ea1b9f64de9ee7ec19830a",
+      "captureProfile": {
+        "hydraulics": "hop",
+        "rightCamera": false,
+        "warmupFrames": 60,
+        "view": 1,
+        "scene": 1
+      },
+      "motionTelemetry": {
+        "summarySha256": "981ea92d8adfd8e562506c91ebca941a299a1eeac7705cc3c239e5b478585d88",
+        "csvSha256": "4e1cf992ee2ab2c299b77720b2ccec8ed1ec11d74775a979452415c978c85d37",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 11.9999,
+        "expectedSimulatedSeconds": 12.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 360,
+        "warmupFramesExcluded": 60,
+        "displayedFrames": 300,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 104,
+            "3": 0,
+            "4": 196
+          },
+          "hydraulicModeFrameCounts": {
+            "1": 300
+          },
+          "pathLengthMeters": 11.677029659614043,
+          "speedMetersPerSecond": {
+            "minimum": 0.809623957,
+            "maximum": 1.03949165
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": -0.0642735362,
+            "maximum": 0.36004436
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 0.0,
+              "maximum": 14539.5674
+            },
+            "FR": {
+              "minimum": 0.0,
+              "maximum": 14546.9658
+            },
+            "RL": {
+              "minimum": 4815.2876,
+              "maximum": 5591.854
+            },
+            "RR": {
+              "minimum": 4822.51318,
+              "maximum": 5554.29883
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [
+              {
+                "firstClipFrame": 11,
+                "lastClipFrame": 29,
+                "firstNativeFrame": 71,
+                "lastNativeFrame": 89,
+                "startSeconds": 0.36666666666666664,
+                "durationSeconds": 0.6333333333333333
+              },
+              {
+                "firstClipFrame": 67,
+                "lastClipFrame": 84,
+                "firstNativeFrame": 127,
+                "lastNativeFrame": 144,
+                "startSeconds": 2.2333333333333334,
+                "durationSeconds": 0.6
+              },
+              {
+                "firstClipFrame": 122,
+                "lastClipFrame": 140,
+                "firstNativeFrame": 182,
+                "lastNativeFrame": 200,
+                "startSeconds": 4.066666666666666,
+                "durationSeconds": 0.6333333333333333
+              },
+              {
+                "firstClipFrame": 178,
+                "lastClipFrame": 195,
+                "firstNativeFrame": 238,
+                "lastNativeFrame": 255,
+                "startSeconds": 5.933333333333334,
+                "durationSeconds": 0.6
+              },
+              {
+                "firstClipFrame": 233,
+                "lastClipFrame": 251,
+                "firstNativeFrame": 293,
+                "lastNativeFrame": 311,
+                "startSeconds": 7.766666666666667,
+                "durationSeconds": 0.6333333333333333
+              },
+              {
+                "firstClipFrame": 289,
+                "lastClipFrame": 299,
+                "firstNativeFrame": 349,
+                "lastNativeFrame": 359,
+                "startSeconds": 9.633333333333333,
+                "durationSeconds": 0.36666666666666664
+              }
+            ],
+            "leftFrontNoContactWithThreeLoadedTires": [],
+            "rightFrontNoContactWithThreeLoadedTires": [],
+            "fourContacts": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 10,
+                "firstNativeFrame": 60,
+                "lastNativeFrame": 70,
+                "startSeconds": 0.0,
+                "durationSeconds": 0.36666666666666664
+              },
+              {
+                "firstClipFrame": 30,
+                "lastClipFrame": 66,
+                "firstNativeFrame": 90,
+                "lastNativeFrame": 126,
+                "startSeconds": 1.0,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 85,
+                "lastClipFrame": 121,
+                "firstNativeFrame": 145,
+                "lastNativeFrame": 181,
+                "startSeconds": 2.8333333333333335,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 141,
+                "lastClipFrame": 177,
+                "firstNativeFrame": 201,
+                "lastNativeFrame": 237,
+                "startSeconds": 4.7,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 196,
+                "lastClipFrame": 232,
+                "firstNativeFrame": 256,
+                "lastNativeFrame": 292,
+                "startSeconds": 6.533333333333333,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 252,
+                "lastClipFrame": 288,
+                "firstNativeFrame": 312,
+                "lastNativeFrame": 348,
+                "startSeconds": 8.4,
+                "durationSeconds": 1.2333333333333334
+              }
+            ]
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0,
+            "contactCondition": "frontPairNoContactWithRearSupport",
+            "minimumQualifyingFrames": 9,
+            "minimumQualifyingSeconds": 0.3,
+            "minimumFourContactRecoveryFramesAfterLift": 1
+          },
+          "observed": {
+            "pathLengthMeters": 11.677029659614043,
+            "contactCondition": "frontPairNoContactWithRearSupport",
+            "qualifyingFrames": 104,
+            "qualifyingSeconds": 3.466666666666667,
+            "longestQualifyingIntervalSeconds": 0.6333333333333333,
+            "fourContactRecoveryFramesAfterLift": 185
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    },
+    {
+      "name": "wheel",
+      "video": "assets/video/wheel.mp4",
+      "sha256": "640fdd39a4483388034d1de263aef5413862ae8bf22a7bb13e4f1446662cdfec",
+      "frames": 150,
+      "distinctNativeFrames": 150,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "6ca9d994b5e160fbfbf2b8b3c36c5cd9be433fbca2a4d5e608a0d294d7813477",
+      "captureProfile": {
+        "hydraulics": "hop",
+        "rightCamera": false,
+        "warmupFrames": 60,
+        "view": 4,
+        "scene": 1
+      },
+      "motionTelemetry": {
+        "summarySha256": "65d73b5c06b38541f82f7eccfb4399153d46a491f46ea5863197c08e450e4fad",
+        "csvSha256": "f28b98a28ae06221fa20072bbd28763ca1a4029d68b237a151fe1a1b12732d4f",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 6.99994,
+        "expectedSimulatedSeconds": 7.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 210,
+        "warmupFramesExcluded": 60,
+        "displayedFrames": 150,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 56,
+            "3": 0,
+            "4": 94
+          },
+          "hydraulicModeFrameCounts": {
+            "1": 150
+          },
+          "pathLengthMeters": 5.896039924739132,
+          "speedMetersPerSecond": {
+            "minimum": 0.809623957,
+            "maximum": 1.03948987
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": -0.0642622113,
+            "maximum": 0.36004436
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 0.0,
+              "maximum": 14539.5674
+            },
+            "FR": {
+              "minimum": 0.0,
+              "maximum": 14532.4941
+            },
+            "RL": {
+              "minimum": 4815.2876,
+              "maximum": 5591.854
+            },
+            "RR": {
+              "minimum": 4822.51318,
+              "maximum": 5554.29883
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [
+              {
+                "firstClipFrame": 11,
+                "lastClipFrame": 29,
+                "firstNativeFrame": 71,
+                "lastNativeFrame": 89,
+                "startSeconds": 0.36666666666666664,
+                "durationSeconds": 0.6333333333333333
+              },
+              {
+                "firstClipFrame": 67,
+                "lastClipFrame": 84,
+                "firstNativeFrame": 127,
+                "lastNativeFrame": 144,
+                "startSeconds": 2.2333333333333334,
+                "durationSeconds": 0.6
+              },
+              {
+                "firstClipFrame": 122,
+                "lastClipFrame": 140,
+                "firstNativeFrame": 182,
+                "lastNativeFrame": 200,
+                "startSeconds": 4.066666666666666,
+                "durationSeconds": 0.6333333333333333
+              }
+            ],
+            "leftFrontNoContactWithThreeLoadedTires": [],
+            "rightFrontNoContactWithThreeLoadedTires": [],
+            "fourContacts": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 10,
+                "firstNativeFrame": 60,
+                "lastNativeFrame": 70,
+                "startSeconds": 0.0,
+                "durationSeconds": 0.36666666666666664
+              },
+              {
+                "firstClipFrame": 30,
+                "lastClipFrame": 66,
+                "firstNativeFrame": 90,
+                "lastNativeFrame": 126,
+                "startSeconds": 1.0,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 85,
+                "lastClipFrame": 121,
+                "firstNativeFrame": 145,
+                "lastNativeFrame": 181,
+                "startSeconds": 2.8333333333333335,
+                "durationSeconds": 1.2333333333333334
+              },
+              {
+                "firstClipFrame": 141,
+                "lastClipFrame": 149,
+                "firstNativeFrame": 201,
+                "lastNativeFrame": 209,
+                "startSeconds": 4.7,
+                "durationSeconds": 0.3
+              }
+            ]
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0,
+            "contactCondition": "frontPairNoContactWithRearSupport",
+            "minimumQualifyingFrames": 9,
+            "minimumQualifyingSeconds": 0.3,
+            "minimumFourContactRecoveryFramesAfterLift": 1
+          },
+          "observed": {
+            "pathLengthMeters": 5.896039924739132,
+            "contactCondition": "frontPairNoContactWithRearSupport",
+            "qualifyingFrames": 56,
+            "qualifyingSeconds": 1.8666666666666667,
+            "longestQualifyingIntervalSeconds": 0.6333333333333333,
+            "fourContactRecoveryFramesAfterLift": 83
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    },
+    {
+      "name": "left",
+      "video": "assets/video/left.mp4",
+      "sha256": "b6cdab948d338e71be0bc13ce6fd5ef4d7af43d8dc9bfb00f785db86544a0e69",
+      "frames": 240,
+      "distinctNativeFrames": 240,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "814ae971a487d2f60570d6d0d802688c1e993fd11e2e2e41005fbff931ea8f58",
+      "captureProfile": {
+        "hydraulics": "three-left",
+        "rightCamera": false,
+        "warmupFrames": 90,
+        "view": 1,
+        "scene": 2
+      },
+      "motionTelemetry": {
+        "summarySha256": "a63f52f56f6fc108638b958b4adea0dd03f5fff0fba2e6b712cff8a8e12f2b42",
+        "csvSha256": "2d73bca6af851df11525f59168099c3e1a76b32e8fd10da16de9d71d934d3330",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 10.9999,
+        "expectedSimulatedSeconds": 11.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 330,
+        "warmupFramesExcluded": 90,
+        "displayedFrames": 240,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 240,
+            "4": 0
+          },
+          "hydraulicModeFrameCounts": {
+            "2": 240
+          },
+          "pathLengthMeters": 7.600629240404461,
+          "speedMetersPerSecond": {
+            "minimum": 0.950250804,
+            "maximum": 0.954103649
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": 0.217867136,
+            "maximum": 0.248215258
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 0.0,
+              "maximum": 0.0
+            },
+            "FR": {
+              "minimum": 7977.96875,
+              "maximum": 8562.13281
+            },
+            "RL": {
+              "minimum": 6042.19287,
+              "maximum": 7808.73486
+            },
+            "RR": {
+              "minimum": 2077.54932,
+              "maximum": 3994.37036
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [],
+            "leftFrontNoContactWithThreeLoadedTires": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 239,
+                "firstNativeFrame": 90,
+                "lastNativeFrame": 329,
+                "startSeconds": 0.0,
+                "durationSeconds": 8.0
+              }
+            ],
+            "rightFrontNoContactWithThreeLoadedTires": [],
+            "fourContacts": []
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0,
+            "contactCondition": "leftFrontNoContactWithThreeLoadedTires",
+            "minimumQualifyingFrames": 30,
+            "minimumQualifyingSeconds": 1.0
+          },
+          "observed": {
+            "pathLengthMeters": 7.600629240404461,
+            "contactCondition": "leftFrontNoContactWithThreeLoadedTires",
+            "qualifyingFrames": 240,
+            "qualifyingSeconds": 8.0,
+            "longestQualifyingIntervalSeconds": 8.0
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    },
+    {
+      "name": "right",
+      "video": "assets/video/right.mp4",
+      "sha256": "9d5d55fda8e8c0156266338e337a9d927f074f8680a9bdeba29f1020dab9f94d",
+      "frames": 240,
+      "distinctNativeFrames": 240,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "df3b0cc8c9a6e716827926579938ace03871e3a0a59b422d9676bd9ba4987cb9",
+      "captureProfile": {
+        "hydraulics": "three-right",
+        "rightCamera": true,
+        "warmupFrames": 90,
+        "view": 1,
+        "scene": 1
+      },
+      "motionTelemetry": {
+        "summarySha256": "d62b0800f2fb84e0153fd73933a429e73cc182b47b12034f7c1a9ef3620ab8eb",
+        "csvSha256": "49772c8d409b059264d67f83a259e538143f4b1399f2c128dcbbd966ec268cc5",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 10.9999,
+        "expectedSimulatedSeconds": 11.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 330,
+        "warmupFramesExcluded": 90,
+        "displayedFrames": 240,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 240,
+            "4": 0
+          },
+          "hydraulicModeFrameCounts": {
+            "3": 240
+          },
+          "pathLengthMeters": 7.609296860329585,
+          "speedMetersPerSecond": {
+            "minimum": 0.949335515,
+            "maximum": 0.955809891
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": 0.217329323,
+            "maximum": 0.248063743
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 7980.7793,
+              "maximum": 8564.12012
+            },
+            "FR": {
+              "minimum": 0.0,
+              "maximum": 0.0
+            },
+            "RL": {
+              "minimum": 2061.55444,
+              "maximum": 3983.88428
+            },
+            "RR": {
+              "minimum": 6047.73828,
+              "maximum": 7842.72998
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [],
+            "leftFrontNoContactWithThreeLoadedTires": [],
+            "rightFrontNoContactWithThreeLoadedTires": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 239,
+                "firstNativeFrame": 90,
+                "lastNativeFrame": 329,
+                "startSeconds": 0.0,
+                "durationSeconds": 8.0
+              }
+            ],
+            "fourContacts": []
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0,
+            "contactCondition": "rightFrontNoContactWithThreeLoadedTires",
+            "minimumQualifyingFrames": 30,
+            "minimumQualifyingSeconds": 1.0
+          },
+          "observed": {
+            "pathLengthMeters": 7.609296860329585,
+            "contactCondition": "rightFrontNoContactWithThreeLoadedTires",
+            "qualifyingFrames": 240,
+            "qualifyingSeconds": 8.0,
+            "longestQualifyingIntervalSeconds": 8.0
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    },
+    {
+      "name": "exit",
+      "video": "assets/video/exit.mp4",
+      "sha256": "0dc0806b958c5d9392a7f23dfd43afdf887cb83d4d9b27ac02152e79153a025e",
+      "frames": 330,
+      "distinctNativeFrames": 330,
+      "sourceSession": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736",
+      "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "binarySha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203",
+      "everyNativePngHashVerified": true,
+      "sourceReceiptSha256": "c391c43a507dfcce13b076fd0f28f8d435d876d06d0ac3478375b408e33a4949",
+      "captureProfile": {
+        "hydraulics": "cruise",
+        "rightCamera": false,
+        "warmupFrames": 60,
+        "view": 0,
+        "scene": 2
+      },
+      "motionTelemetry": {
+        "summarySha256": "bae644b7b6c08c401c93d26133c5c357415b8ac0f93cb06dead8adaaaa05cdc9",
+        "csvSha256": "4e89d7999cad89b30b11aecd678dbea091bd81872cfd8b2787419d2e7318e74c",
+        "physicsHz": 240,
+        "discardedBacklogs": 0,
+        "simulatedSeconds": 12.9998,
+        "expectedSimulatedSeconds": 13.0,
+        "timeToleranceSeconds": 0.005,
+        "totalTelemetryRows": 390,
+        "warmupFramesExcluded": 60,
+        "displayedFrames": 330,
+        "postWarmup": {
+          "contactFrameCounts": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 330
+          },
+          "hydraulicModeFrameCounts": {
+            "0": 330
+          },
+          "pathLengthMeters": 21.203420904155703,
+          "speedMetersPerSecond": {
+            "minimum": 1.91562557,
+            "maximum": 1.93401361
+          },
+          "chassisOriginHeightMeters": {
+            "minimum": 0.00305759907,
+            "maximum": 0.00357055664
+          },
+          "wheelLoadRangesNewtons": {
+            "FL": {
+              "minimum": 3968.87891,
+              "maximum": 4011.98071
+            },
+            "FR": {
+              "minimum": 3970.06323,
+              "maximum": 4013.3894
+            },
+            "RL": {
+              "minimum": 5065.58301,
+              "maximum": 5108.01807
+            },
+            "RR": {
+              "minimum": 5066.82617,
+              "maximum": 5118.73682
+            }
+          },
+          "contactIntervals": {
+            "zeroContacts": [],
+            "frontPairNoContactWithRearSupport": [],
+            "leftFrontNoContactWithThreeLoadedTires": [],
+            "rightFrontNoContactWithThreeLoadedTires": [],
+            "fourContacts": [
+              {
+                "firstClipFrame": 0,
+                "lastClipFrame": 329,
+                "firstNativeFrame": 60,
+                "lastNativeFrame": 389,
+                "startSeconds": 0.0,
+                "durationSeconds": 11.0
+              }
+            ]
+          }
+        },
+        "interpretation": "30fps samples of the240Hz solver. Per-tire noncontact is inferred only from the total contact count plus positive support loads on every other tire. Visual tire clearance, linkage articulation and continuous motion still require frame review.",
+        "taskGate": {
+          "status": "PASS",
+          "requirements": {
+            "pathLengthMetersGreaterThan": 1.0
+          },
+          "observed": {
+            "pathLengthMeters": 21.203420904155703
+          },
+          "interpretation": "Cumulative post-warmup contact-state samples, with positively loaded support tires for each inferred missing tire. Visual tire clearance and continuous action still require review; zero wheel load alone is not flight evidence."
+        }
+      }
+    }
+  ],
+  "mediaTreatment": "Full native frames at1x, no crop/upscale/interpolation/grade. Engine and pump sound are editorial reconstruction from credited recordings."
+}

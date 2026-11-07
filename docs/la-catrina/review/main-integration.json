@@ -1,0 +1,51 @@
+{
+  "baseCommit": "b52ba0e6f6a2be86755056d57ca1f41864d03d96",
+  "vehicleIds": [
+    "safari",
+    "buggy",
+    "baja",
+    "catrina"
+  ],
+  "acceptedModelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "sourceRebuild": "Byte-identical GLB regenerated from the staged Git checkout.",
+  "assetChecksPassed": 83,
+  "tireClearance": {
+    "result": "PASS",
+    "recordedPoses": 243,
+    "wheelRows": 972,
+    "uniqueWheelTransforms": 216,
+    "minimumSignedCylinderMetric": 0.0005252239706654005
+  },
+  "nativeBuild": {
+    "status": "COMPILE_AND_LINK_PASS",
+    "compiler": "MSVC x64 v143, C++20 Release /O2 /Ob2 /fp:precise /MD",
+    "targets": [
+      {
+        "name": "suspension_playground",
+        "bytes": 4664320,
+        "unsignedExecutableSha256": "d684badf4b883f659a3667d773b0072f699b5eb9d9e044ef39d519d14680e0bc"
+      },
+      {
+        "name": "catrina_preview",
+        "bytes": 2496512,
+        "unsignedExecutableSha256": "585d299a25995f510fc732d118b845cc88d466f86c6d80c620f500424183e855"
+      }
+    ],
+    "freshExecution": "The new executables have been compiled and linked. A signed native run is pending."
+  },
+  "historicalSignedEvaluation": {
+    "checksPassed": 183,
+    "vehicles": 5,
+    "loadedRigPosesPassed": 243,
+    "signedPlayerSha256": "dee326b1ba9736e3686660bce1a78b2d6b7e136fe6c78b9cff954f4a592c2203"
+  },
+  "filmPreflight": {
+    "result": "PASS from staged checkout after restoring six local MP4s.",
+    "authoringSha256": "10c7f22ac95fd63bd165ffbfef08af4622f08c23bc333e2d8107bc3e9c63c3e0",
+    "nativeFrames": 1440,
+    "independentVisualScores": [
+      8.02,
+      8.115
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "duration": 48,
+  "frames": 1440,
+  "width": 960,
+  "height": 600,
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "reveal",
+      "start": 0,
+      "duration": 6,
+      "frames": 180,
+      "description": "Rolling reveal",
+      "source": "assets/video/reveal.mp4",
+      "sourceStart": 0,
+      "labelStart": 0.4,
+      "labelDuration": 3.6
+    },
+    {
+      "id": "hop",
+      "start": 6,
+      "duration": 10,
+      "frames": 300,
+      "description": "Front hopping",
+      "source": "assets/video/hop.mp4",
+      "sourceStart": 0,
+      "labelStart": null,
+      "labelDuration": 0
+    },
+    {
+      "id": "wheel",
+      "start": 16,
+      "duration": 5,
+      "frames": 150,
+      "description": "Wheel and suspension detail",
+      "source": "assets/video/wheel.mp4",
+      "sourceStart": 0,
+      "labelStart": null,
+      "labelDuration": 0
+    },
+    {
+      "id": "left",
+      "start": 21,
+      "duration": 8,
+      "frames": 240,
+      "description": "Left three-wheel glide",
+      "source": "assets/video/left.mp4",
+      "sourceStart": 0,
+      "labelStart": null,
+      "labelDuration": 0
+    },
+    {
+      "id": "right",
+      "start": 29,
+      "duration": 8,
+      "frames": 240,
+      "description": "Right three-wheel glide",
+      "source": "assets/video/right.mp4",
+      "sourceStart": 0,
+      "labelStart": null,
+      "labelDuration": 0
+    },
+    {
+      "id": "exit",
+      "start": 37,
+      "duration": 11,
+      "frames": 330,
+      "description": "Cruising exit",
+      "source": "assets/video/exit.mp4",
+      "sourceStart": 0,
+      "labelStart": 7.0,
+      "labelDuration": 3.7
+    }
+  ],
+  "footageTreatment": "full frame,1x; no crop,upscale,interpolation,grade or fabricated animation",
+  "music": "assets/audio/catrina-sunset-pulse.wav",
+  "action": "assets/audio/catrina-action.wav"
+}

@@ -1,0 +1,398 @@
+{
+  "date": "2026-11-06",
+  "reference": "docs/la-catrina/references/La-Catrina-Master.jpg",
+  "report": "docs/la-catrina/REAL-WORLD-BASIS.md",
+  "scope": "Original game-model construction informed by primary component catalogs and manufacturer technical sheets; not exact CAD or certified fitment.",
+  "search_route": "fleet SearXNG first; direct reading of known primary pages and manufacturer PDFs",
+  "sources": [
+    {
+      "id": "front_arms",
+      "url": "https://wolfdesigncompany.com/1959-1964-lower-control-arms/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "Stamped steel arms",
+        "Rubber-encased bushes, cross shafts and ball joints"
+      ]
+    },
+    {
+      "id": "rear_links",
+      "url": "https://static.speedwaymotors.com/pdf/76811066699.pdf",
+      "type": "manufacturer_instructions_vendor_mirror",
+      "facts": [
+        "1959-64 upper arm and Panhard kit",
+        "Frame and axle joints and bushings",
+        "Some vehicles have two factory upper arms"
+      ]
+    },
+    {
+      "id": "xframe",
+      "url": "https://www.globalwest.net/product/1505/",
+      "type": "manufacturer_search_result_only",
+      "facts": [
+        "1958-64 GM X-frame application naming"
+      ],
+      "limitations": [
+        "Direct page not retrieved; no dimensions derived"
+      ]
+    },
+    {
+      "id": "gm_archive",
+      "url": "https://www.gm.com/content/dam/company/no_search/heritage-archive-docs/vehicle-information-kits/chevrolet/1964-Chevrolet.pdf",
+      "type": "factory_archive_discovery_only",
+      "facts": [],
+      "limitations": [
+        "161-page scanned PDF found; relevant engineering pages not read, not used to validate measurements"
+      ]
+    },
+    {
+      "id": "hydraulic_kit",
+      "url": "https://www.hopposonline.com/2-pump-front-back-corner-corner-kit/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "Two pumps and motors; four cylinders",
+        "Cups, donuts, dump valves, solenoids, JIC hose and fittings",
+        "Catalog kit has three dumps; custom model is not identical"
+      ]
+    },
+    {
+      "id": "hydraulic_diagrams",
+      "url": "https://hopposonline.com/hydraulic-tech-support/",
+      "type": "manufacturer_support",
+      "facts": [
+        "Two-pump and basic hydraulic diagram links exist"
+      ],
+      "limitations": [
+        "Diagram labels not independently image-read; no wiring prescription derived"
+      ]
+    },
+    {
+      "id": "chrome_ram",
+      "url": "https://www.hopposonline.com/10-chrome-cylinders-pair/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "10-inch cylinder product",
+        "13.75-inch end-to-end dimension",
+        "1.625-inch diameter",
+        "3/8-inch NPT port"
+      ]
+    },
+    {
+      "id": "skinny_ram",
+      "url": "https://www.hopposonline.com/10-d-h-skinny-cylinders-pair/",
+      "type": "vendor_catalog",
+      "facts": [
+        "1.25-inch casing",
+        "0.75-inch shaft",
+        "1/4-inch NPT port"
+      ],
+      "limitations": [
+        "Separate product from chrome ram; modeled geometry is explicitly a custom hybrid"
+      ]
+    },
+    {
+      "id": "coil",
+      "url": "https://www.hopposonline.com/coils/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "Separate lowrider coil products"
+      ],
+      "limitations": [
+        "No spring rate inferred from ton naming"
+      ]
+    },
+    {
+      "id": "cups",
+      "url": "https://www.hopposonline.com/cups/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "Separate cups, donuts and weld-in saddles"
+      ]
+    },
+    {
+      "id": "shock_mount",
+      "url": "https://wolfdesigncompany.com/1959-1964-impala-rear-trailing-arm-shock-mounts/",
+      "type": "manufacturer_catalog",
+      "facts": [
+        "Separate rear trailing-arm shock mounting hardware for 1959-64 Impala family"
+      ]
+    },
+    {
+      "id": "shock_construction",
+      "url": "https://accutuneoffroad.com/product/fox-2-0-smoothie-shock-58-shaft-remote-reservoir-12-travel/",
+      "type": "vendor_product_specifications",
+      "facts": [
+        "2-inch damper body",
+        "5/8-inch steel piston rod",
+        "Separate seals and reservoir",
+        "12-inch catalog travel"
+      ],
+      "limitations": [
+        "Model uses custom body lengths and mounts; not a FOX copy or exact fit"
+      ]
+    },
+    {
+      "id": "wire_wheel",
+      "url": "https://www.truespoke.com/dayton-wire-wheels",
+      "type": "authorized_dealer_catalog",
+      "facts": [
+        "13-inch wire wheels",
+        "Stainless spokes",
+        "Chrome plating",
+        "Separate knockoff hardware"
+      ]
+    },
+    {
+      "id": "tire",
+      "url": "https://cokertire.com/tires/travelstar-radial-14mm-whitewall-155-80r13.html",
+      "type": "vendor_catalog",
+      "facts": [
+        "155/80R13 radial",
+        "14mm narrow whitewall",
+        "White rubber integrated into sidewall"
+      ],
+      "limitations": [
+        "Appearance reference only; no lowrider hopping load certification"
+      ]
+    },
+    {
+      "id": "candy",
+      "url": "https://images.tcpglobal.com/sds-sheets/UKK01_TDS.pdf",
+      "type": "manufacturer_TDS_vendor_mirror",
+      "facts": [
+        "Urethane Kandy layer over base finishes",
+        "Clear coat required"
+      ]
+    },
+    {
+      "id": "flake",
+      "url": "https://cdn.shopify.com/s/files/1/2202/6807/files/F_MF_UMF_tds.pdf?15373939630690849163=",
+      "type": "manufacturer_TDS_vendor_mirror",
+      "facts": [
+        "Flake, mini and ultra-mini products",
+        "Flakes can be added to intercoat or basecoat"
+      ]
+    },
+    {
+      "id": "upholstery",
+      "url": "https://www.classicindustries.com/shop/1964/chevrolet/impala/parts/interior-soft-goods/seat-upholstery/",
+      "type": "vendor_catalog",
+      "facts": [
+        "PUI1964 bench upholstery uses Seville grain vinyl",
+        "Sewn seams and pleated inserts"
+      ]
+    },
+    {
+      "id": "pbr",
+      "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#materials",
+      "type": "official_format_specification",
+      "facts": [
+        "Metallic and dielectric material semantics"
+      ]
+    },
+    {
+      "id": "six_inch_ram_family",
+      "url": "https://www.hopposonline.com/6-cylinders-pair-color-may-vary-depending-on-stock/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "Six-inch lowrider cylinder product family"
+      ],
+      "limitations": [
+        "No casing length or diameter inferred from this listing; model 150 mm travel and 245 mm casing/rod lengths are authored."
+      ]
+    },
+    {
+      "id": "six_inch_skinny_ram",
+      "url": "https://www.hopposonline.com/6-d-h-skinny-cylinders-pair/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "1.25-inch casing OD",
+        "0.75-inch shaft",
+        "1/4-inch NPT port"
+      ],
+      "limitations": [
+        "Actual model uses 41.275 mm casing OD and 19.05 mm shaft, a custom combination, not this exact SKU."
+      ]
+    },
+    {
+      "id": "six_inch_medium_ram",
+      "url": "https://www.hopposonline.com/d-h-6-medium-cylinders-pair/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "1.50-inch casing OD",
+        "1-inch shaft"
+      ],
+      "limitations": [
+        "These product dimensions are not the model dimensions."
+      ]
+    },
+    {
+      "id": "rear_driveshaft_slip",
+      "url": "https://www.hopposonline.com/58-64-impala-back-half-drive-shaft-w-slip/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "1958-64 Impala rear driveshaft half with slip product family"
+      ],
+      "limitations": [
+        "Model member lengths and yokes are original geometry; no exact commercial fit or rating asserted."
+      ]
+    },
+    {
+      "id": "slip_yoke_families",
+      "url": "https://www.hopposonline.com/slip-yokes-drivelines/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "Slip yoke, driveline and carrier component families"
+      ],
+      "limitations": [
+        "Family construction only."
+      ]
+    },
+    {
+      "id": "spherical_bearing_construction",
+      "url": "https://www.fkrodends.com/products/spherical-bearings/high-misalignment-series/hin-t/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "Heat-treated 52100 steel ball, hard chrome plated",
+        "Heat-treated alloy steel race",
+        "PTFE fabric liner"
+      ],
+      "limitations": [
+        "Model is not an HIN-T reproduction; listed dimensions, articulation limits and load ratings are not applied to it."
+      ]
+    },
+    {
+      "id": "spherical_bearing_spacers",
+      "url": "https://www.fkrodends.com/products/special-products/commercial-series-3/",
+      "type": "manufacturer_or_specialist_catalog",
+      "facts": [
+        "17-4PH stainless steel high-misalignment bushings",
+        "Increase articulation and reduce bore size",
+        "Selected catalog pairs specify 60-degree cone articulation"
+      ],
+      "limitations": [
+        "Model uses custom geometry and an authored 30-degree per-side limit, not an exact bearing/spacer SKU."
+      ]
+    }
+  ],
+  "implementation": {
+    "helper": "scripts/catrina_hardware.py",
+    "rig": "showcase/CatrinaRig.hpp",
+    "additions": [
+      "channel-section wishbones",
+      "bushes, sleeves, boots and fasteners",
+      "four independent telescoping dampers",
+      "frame and arm damper clevises",
+      "catalog-proportioned ram casings and shafts",
+      "pump check and dump bodies",
+      "contactors, fill caps, hose crimps and motor bolts",
+      "fixed-axis spherical damper pins with articulating outer races",
+      "signed spring compression limit and shorter rigid hydraulic casing/rod",
+      "rigid propshaft tube and translating slip member",
+      "separate rigid lower spring seats",
+      "rotating brake drum/hub groups retained in wheel-off views"
+    ],
+    "damper_outer_diameter_m": 0.0508,
+    "damper_shaft_diameter_m": 0.015875,
+    "hydraulic_casing_diameter_m": 0.041275,
+    "hydraulic_shaft_diameter_m": 0.01905,
+    "damper_mount_arm_fraction": {
+      "front": 0.38,
+      "rear": 0.84
+    },
+    "round_03_packaging": {
+      "fixed_ram_top_m": 0.86,
+      "rest_cup_m": 0.55,
+      "rest_cup_distance_m": 0.31,
+      "hydraulic_rod_length_m": 0.3,
+      "maximum_cup_stroke_m": 0.2436,
+      "nominal_minimum_hydraulic_overlap_m": 0.1064,
+      "nominal_minimum_head_clearance_m": 0.01,
+      "trunk_center_floor_y_bounds_m": [
+        0.594,
+        0.626
+      ],
+      "trunk_aft_floor_y_bounds_m": [
+        0.563,
+        0.595
+      ],
+      "ram_cover_top_m": 0.89,
+      "added": [
+        "closed trunk basin",
+        "closed rear wheel housings",
+        "ram tower pockets",
+        "forward retained batteries",
+        "separate raised aft twin pump rack",
+        "engine inner fenders and wheel housings",
+        "radiator support"
+      ],
+      "validation": "Historical repair record only; use currentAuthoredHydraulicDimensions and the matching current asset/native receipts.",
+      "targeted_clearance_repair": {
+        "pose_source": "build/sessions/20261106-071914-626/physics-audit/catrina-rig-poses.csv",
+        "wheel_transforms": 972,
+        "tire_allowance_m": 0.006,
+        "surface_sample_spacing_m": 0.025,
+        "status": "PASS_IN_MEMORY",
+        "parts": {
+          "body.rear_cabin_tunnel": {
+            "width_m": 0.84,
+            "surface_samples": 7952,
+            "minimum_signed_cylinder_metric_m": 0.03617187875661987
+          },
+          "body.engine_inner_fender": {
+            "construction": "lower edge follows existing wheelhouse crown",
+            "surface_samples": 39664,
+            "minimum_signed_cylinder_metric_m": 0.09797298058759447
+          }
+        },
+        "remaining": "Final serialized asset audit and fresh native render"
+      },
+      "status": "HISTORICAL_PACKAGING_DIMENSIONS_SUPERSEDED"
+    },
+    "boxed_frame_refinement": {
+      "rail_segments": 10,
+      "outriggers": 8,
+      "chassis_triangles": 5980,
+      "construction": "beveled rectangular sections with planar webs, crossmembers, junction plates and body bushes",
+      "moving_pivots_changed": false
+    },
+    "historical_initial_numeric_sweep": {
+      "status": "SUPERSEDED_HISTORICAL_PASS",
+      "front_samples": 18,
+      "rear_pose_combinations": 81,
+      "minimum_rod_overlap_m": 0.031899074342914724,
+      "minimum_head_clearance_m": 0.007872509054613924,
+      "maximum_front_eye_distance_m": 0.6899075568113016,
+      "maximum_rear_eye_distance_m": 0.6781009256570852,
+      "scope": "Initial mounts only, superseded by relocated rear dampers; not evidence for current geometry."
+    },
+    "currentMechanicalSourceEvidence": "build/la-catrina/round-08-mechanics-source-audit.json",
+    "front_damper_eye_local_vertical_offset_m": 0.03,
+    "currentMechanicalValidationStatus": "Source-level numeric and independent scoped geometry checks passed; matching native and serialized checks are owned by integration.",
+    "ram_frame_load_path": "Inboard rail-web shoes, paired fixed posts, open header rings, fixed transverse pins and spherical bearings at the unchanged upper pivots."
+  },
+  "remaining_limits": [
+    "Equal-length parallel front-arm visual solver",
+    "Straight physics rays differ from visible linkage arcs",
+    "No full hydraulic-fluid or multibody simulation",
+    "No exhaustive mesh collision sweep",
+    "No manufacturing, tire-load or real-world installation certification",
+    "PBR numeric values are authoring estimates"
+  ],
+  "currentAuthoredHydraulicDimensions": {
+    "casingOuterDiameterM": 0.041275,
+    "shaftDiameterM": 0.01905,
+    "rodLengthM": 0.245,
+    "cupDistanceRangeM": [
+      0.28,
+      0.43
+    ],
+    "totalCupTravelM": 0.15,
+    "minimumSignedSpringLengthM": 0.114,
+    "coilSolidHeightEstimateM": 0.102,
+    "note": "Custom geometry combines catalog construction examples; neither six-inch product SKU is reproduced.",
+    "pivotToGlandDistanceM": 0.245,
+    "casingSkinStartBelowPivotM": 0.03,
+    "casingSkinEndBelowPivotM": 0.245,
+    "casingShellLengthM": 0.215
+  }
+}

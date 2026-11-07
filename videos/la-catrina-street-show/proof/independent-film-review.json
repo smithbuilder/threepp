@@ -1,0 +1,821 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent final film reviewer",
+  "reviewedAtUtc": "2026-11-06T20:45:17.973726+00:00",
+  "status": "PASS_WITH_LIMITATIONS",
+  "scope": "Final film visual/editorial QA and source correspondence; no model rescore",
+  "p0Blockers": [],
+  "p1Blockers": [],
+  "finalMp4": {
+    "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\outputs\\La-Catrina-Street-Show.mp4",
+    "sha256": "4fa5666edd5ba07006919a328570d16da8246b558aeeec14880ff44a2990b72c",
+    "bytes": 32505707,
+    "durationSeconds": 48,
+    "width": 960,
+    "height": 600,
+    "fps": 30,
+    "frames": 1440
+  },
+  "bindings": {
+    "nativeCaptureManifestSha256": "567fadde1a5b474668b4fcc5ef301914f739919c9b24d7dcab98cbca23505c4a",
+    "sourceManifestSha256": "67e0cbc2c3c7bbdbe41eb1a86bf371d5eb43cc40e24ebfd3be9fae6097c9ee7d",
+    "editManifestSha256": "ef9a7cda0b64b6faaf1b41ec3906ea90458ac7319e10b45461471e04234032a6",
+    "deliveryReceiptSha256": "ae69a4fd5d52fc9c228b90fca7122aa34aa3cef73cdd0132a37e2a058a5f54c8",
+    "modelSha256IdentityOnly": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e"
+  },
+  "inspection": {
+    "decodedSampleCount": 28,
+    "nativePngCount": 16,
+    "contactSheetCount": 3,
+    "cutBoundaryPairs": [
+      [
+        179,
+        180
+      ],
+      [
+        479,
+        480
+      ],
+      [
+        629,
+        630
+      ],
+      [
+        869,
+        870
+      ],
+      [
+        1109,
+        1110
+      ]
+    ],
+    "hopCycleFrames": [
+      300,
+      310,
+      320,
+      330,
+      340,
+      350,
+      360
+    ],
+    "titleFrames": [
+      24,
+      90,
+      1350,
+      1425
+    ],
+    "decodedSamples": [
+      {
+        "path": "proof\\delivery-frames\\sample-001.png",
+        "sha256": "96eef2efb09f4bf3b5d8c631999d5d1021d441859bdbdbfe0c2cafa829a73d7f",
+        "frame": 0,
+        "timeSeconds": 0.0,
+        "scene": "reveal",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.08745987654321,
+        "nativePngMeanAbsoluteError": 2.7090586419753087,
+        "nativePng": "build\\sessions\\20261106-123108-529\\frames\\frame_00000.png",
+        "nativePngSha256": "9cff8666a6bd0d42954e120ef13603ba3278195e4addbbe725de11b1e685c734",
+        "encodedReferencePngSha256": "e656895367edbf0990b42c3f087eda55e2234cf1f8e8fafc980828113748ac5a"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-002.png",
+        "sha256": "a9f931a5ca91044ec64e373ea64d3d2b61aee310caec31cd5ae0f49d6ebf065e",
+        "frame": 24,
+        "timeSeconds": 0.8,
+        "scene": "reveal",
+        "sourceFrame": 24,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.4789166666666667,
+        "nativePngMeanAbsoluteError": 2.826054012345679,
+        "nativePng": "build\\sessions\\20261106-123108-529\\frames\\frame_00024.png",
+        "nativePngSha256": "c5ce19e168fdce4e76912abecd120214645ad6f806b76041838070f681117124",
+        "encodedReferencePngSha256": "e675c66e28cc30bcc7fe6c224c7a10807fba11bd03d9fc29133a821779a6b352"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-003.png",
+        "sha256": "ff7b8c693d70ddd6af4a89e01b782067bf56f26183680b6e0ff2e285fc9b65ea",
+        "frame": 90,
+        "timeSeconds": 3.0,
+        "scene": "reveal",
+        "sourceFrame": 90,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.593082561728395,
+        "nativePngMeanAbsoluteError": 3.0446466049382717,
+        "nativePng": "build\\sessions\\20261106-123108-529\\frames\\frame_00090.png",
+        "nativePngSha256": "ef18d9b5a820ea0f181cdb85ff43839a2f02764e72e7d7612d5adf7541eb725f",
+        "encodedReferencePngSha256": "5e39e0b3296300e3c939a639171897c97f2403da2ba57248581d2a013f0ee724"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-004.png",
+        "sha256": "e35ea72ba4265e5a3d1741d879d2beac3c8bf113fa8f66261cfcf1a2cb04fb52",
+        "frame": 179,
+        "timeSeconds": 5.966666666666667,
+        "scene": "reveal",
+        "sourceFrame": 179,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.6470015432098766,
+        "nativePngMeanAbsoluteError": 3.1970092592592594,
+        "nativePng": "build\\sessions\\20261106-123108-529\\frames\\frame_00179.png",
+        "nativePngSha256": "9773d666038d56df7321189816913bcd38bb99d84f8977dda40f127d1d4b9de3",
+        "encodedReferencePngSha256": "d650b5671f9a26aa35fcfa9ca9d69bd5785fa95f02f239e366de71282c0f944f"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-005.png",
+        "sha256": "8dfff5ace82301d354f46fd56280e7f0cd7c5556180261c818baa7bc9c48d8b1",
+        "frame": 180,
+        "timeSeconds": 6.0,
+        "scene": "hop",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.5102760416666667,
+        "nativePngMeanAbsoluteError": 3.3710104166666666,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00000.png",
+        "nativePngSha256": "c74bbe0db83ea6a48565236b1cf6f364726af9d5c5e820514242acd266403cdc",
+        "encodedReferencePngSha256": "573dea52b9842b195f571f489e2f7ba63fb045e28382c6c42a54ccb9d7ea4149"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-006.png",
+        "sha256": "3f6458005c437fc71f68d962da49220b4dfb87b3852f7729f2d0da2d3ae6e06c",
+        "frame": 294,
+        "timeSeconds": 9.8,
+        "scene": "hop",
+        "sourceFrame": 114,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.9369114583333333,
+        "nativePngMeanAbsoluteError": 3.543476273148148,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00114.png",
+        "nativePngSha256": "db9dbbf51d67dd475ae011ddd9b4b9846cd9cda0d7e44e0d769556fed00476a4",
+        "encodedReferencePngSha256": "af7ae5f303927fe5a77b1420adf78a0f6175fde60a14d76252f0d846c1fb3ea0"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-007.png",
+        "sha256": "45ee736dd81fe069088e323676ced5c25bbe7d1dde2de7aa2ac3231ad88bb2d3",
+        "frame": 300,
+        "timeSeconds": 10.0,
+        "scene": "hop",
+        "sourceFrame": 120,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.964796875,
+        "nativePngMeanAbsoluteError": 3.4771689814814817,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00120.png",
+        "nativePngSha256": "2a240277b635b314dce8984783686b425bdf83cdcfad99b678440128ab327671",
+        "encodedReferencePngSha256": "3f8e2d784d65907d09f77f9ba020ad07f7405c10dadc8fcf6ff0c6e6c94bfa5d"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-008.png",
+        "sha256": "db0749f72c335d7fcfce742cb17ca7507dcb27b3e33acc251473138a935ece25",
+        "frame": 310,
+        "timeSeconds": 10.333333333333334,
+        "scene": "hop",
+        "sourceFrame": 130,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.9797864583333333,
+        "nativePngMeanAbsoluteError": 3.5811585648148148,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00130.png",
+        "nativePngSha256": "e1d28b9b8b34063323f53d778f5f9344e25407ace07b0bab4bb99cc292991e07",
+        "encodedReferencePngSha256": "b25e6c18b67928b990c005adebf783ff74f6d33e2e35148bdba2e79f8d700f69"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-009.png",
+        "sha256": "3ba484868e67bb95c605f7f11f6dfa9879356ef1977c9f1daf84e12a677817d6",
+        "frame": 320,
+        "timeSeconds": 10.666666666666666,
+        "scene": "hop",
+        "sourceFrame": 140,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.9444091435185185,
+        "nativePngMeanAbsoluteError": 3.4530706018518518,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00140.png",
+        "nativePngSha256": "8944aeacb1ea2aee3dd0b8131837f6d991acc491f763606f0b4b68759bc99e12",
+        "encodedReferencePngSha256": "6c240580758a6beb4efe30e852e24863b5e00ed144a75b4a0af0679666847f72"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-010.png",
+        "sha256": "f35186baffd71e6e4024e5b01580ec7fdf56969818e5804b87ef3f17fadd57dd",
+        "frame": 330,
+        "timeSeconds": 11.0,
+        "scene": "hop",
+        "sourceFrame": 150,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.9765734953703704,
+        "nativePngMeanAbsoluteError": 3.5833483796296295,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00150.png",
+        "nativePngSha256": "b7a9cd8e50c2cd13862e91dc2e74902b06edfab00181318ab58ca66b96152a61",
+        "encodedReferencePngSha256": "3025fe752c66169da265c7afe3ee6ab88e0611c07af84082682a8dc658867dc6"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-011.png",
+        "sha256": "4071d73995c3ce9f7651c2bc779db09f30793da78a0ad7cfd44a48631e957175",
+        "frame": 340,
+        "timeSeconds": 11.333333333333334,
+        "scene": "hop",
+        "sourceFrame": 160,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.9638385416666666,
+        "nativePngMeanAbsoluteError": 3.4712997685185187,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00160.png",
+        "nativePngSha256": "560f73d3144da969b125e22cc253a7eda77f224a0bbd2e428472cdc82bc82418",
+        "encodedReferencePngSha256": "793a0db0b1295e0ac590a36e61d0d4dd3d282603caf4c5ba534322eaa701ceae"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-012.png",
+        "sha256": "217ff8fb3f227ef203d41a4b80108555d4dd7616aec7517e11fb12d3a1c0b39b",
+        "frame": 350,
+        "timeSeconds": 11.666666666666666,
+        "scene": "hop",
+        "sourceFrame": 170,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.972761574074074,
+        "nativePngMeanAbsoluteError": 3.601278935185185,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00170.png",
+        "nativePngSha256": "964c93b8273a4308952a4dd65b86fe6c1427c03d1ce5d9d334c4413e64cfd3fc",
+        "encodedReferencePngSha256": "7d324b7f4be98c870c892a91d17f0b5cf7c51cde8b544151691551dcdb6c15f6"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-013.png",
+        "sha256": "8d7ab0e19e3a4eecc15e3241aeada9341e2f703bc1ef84fb085ee055b0808a94",
+        "frame": 360,
+        "timeSeconds": 12.0,
+        "scene": "hop",
+        "sourceFrame": 180,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 2.0150457175925927,
+        "nativePngMeanAbsoluteError": 3.5050914351851854,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00180.png",
+        "nativePngSha256": "d5f1e8ae53c8933add392978e3e3f9f262f31120caef00322087f04b2222942c",
+        "encodedReferencePngSha256": "ed05ad45d23180af96dc0385d096b7c78ed39d2d7c275e9811ad9478dc73db83"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-014.png",
+        "sha256": "1f1824fae9c015e9eed4959102d2b3ca7e9110c39f3077ee4a24a4404dc9e00b",
+        "frame": 479,
+        "timeSeconds": 15.966666666666667,
+        "scene": "hop",
+        "sourceFrame": 299,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 2.0765069444444446,
+        "nativePngMeanAbsoluteError": 3.9079502314814816,
+        "nativePng": "build\\sessions\\20261106-123132-325\\frames\\frame_00299.png",
+        "nativePngSha256": "60329e8c42bea84263ecef79979749caaf1e54c755980f18f1ae1cd7996d2721",
+        "encodedReferencePngSha256": "24bafba8d1dd336568bf28d6761323f9e59e8332e5a704eaa3e2abc8ae566120"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-015.png",
+        "sha256": "d13a38b22caaa04b2b4640d14a2b3d0e7fbef247a5e155a92817cbb1c2fd1406",
+        "frame": 480,
+        "timeSeconds": 16.0,
+        "scene": "wheel",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.4484797453703704,
+        "nativePngMeanAbsoluteError": 3.1017355324074076,
+        "nativePng": "build\\sessions\\20261106-123204-120\\frames\\frame_00000.png",
+        "nativePngSha256": "24f7ffe36b77a8feffccfb30af9c34e72d97eae64fd045a3701aac01ef380652",
+        "encodedReferencePngSha256": "9ab5159a5a0d7ecf645ed3703b578e47aa8da0075280c9748a602338322bce0f"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-016.png",
+        "sha256": "e359c162f21b63917b5b59a3908bd157fc942b63ef2515414d8e028f0cf1adef",
+        "frame": 555,
+        "timeSeconds": 18.5,
+        "scene": "wheel",
+        "sourceFrame": 75,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.7537818287037037,
+        "nativePngMeanAbsoluteError": 3.1654195601851853,
+        "nativePng": "build\\sessions\\20261106-123204-120\\frames\\frame_00075.png",
+        "nativePngSha256": "8ea37d02213cac1e3749e67a4b4de0a85550969cf49a27382ac52833a7baa5ba",
+        "encodedReferencePngSha256": "db4e07e34eec71cbaa76404e3048dce7ad83fb000ac23654296551cb14c9b36d"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-017.png",
+        "sha256": "901a93a9fb31db0f56062763d8db6de5ddd0a8dda2e975b2074ff02cd7234cf9",
+        "frame": 629,
+        "timeSeconds": 20.966666666666665,
+        "scene": "wheel",
+        "sourceFrame": 149,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.8777962962962962,
+        "nativePngMeanAbsoluteError": 3.3851741898148147,
+        "nativePng": "build\\sessions\\20261106-123204-120\\frames\\frame_00149.png",
+        "nativePngSha256": "77d0753b763621972c60b55bcba255264638c074ec9221389274125d2ef7a227",
+        "encodedReferencePngSha256": "518208a07fbc52690b724341d9c620421a2f68f003b799eefb1a4a91e26e9b6d"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-018.png",
+        "sha256": "bec7d8208b8e5f729787da2e850f51c9f8684291f124382be1f73be8467dd4fe",
+        "frame": 630,
+        "timeSeconds": 21.0,
+        "scene": "left",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.322162037037037,
+        "nativePngMeanAbsoluteError": 2.7376238425925927,
+        "nativePng": "build\\sessions\\20261106-123222-823\\frames\\frame_00000.png",
+        "nativePngSha256": "edfb4e786382dd149b31a66db343e6ddfec3860eb27fa25a31fc1e2e85711922",
+        "encodedReferencePngSha256": "945da97abdc010cac54d73311906f1c6cc5aca76b724f63dd95160bab9067718"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-019.png",
+        "sha256": "f5d6d33cb53fd786697137c6eec461292056c8c9f20c3f1875dad1e3c36df12e",
+        "frame": 750,
+        "timeSeconds": 25.0,
+        "scene": "left",
+        "sourceFrame": 120,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.5928246527777778,
+        "nativePngMeanAbsoluteError": 2.7090185185185187,
+        "nativePng": "build\\sessions\\20261106-123222-823\\frames\\frame_00120.png",
+        "nativePngSha256": "eabc2fb6ed9c23edd301824c864431e0ee1b8c185324a1ea4d48aaafe2dd7237",
+        "encodedReferencePngSha256": "976c74205660ff18ba557e24b32000a09e7642ffcba9deb20984e846edfebea0"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-020.png",
+        "sha256": "aea26016296d802a7ab5a41cfcb327afea4a43e5389c35152a32061976212492",
+        "frame": 869,
+        "timeSeconds": 28.966666666666665,
+        "scene": "left",
+        "sourceFrame": 239,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.6378315972222222,
+        "nativePngMeanAbsoluteError": 2.8853368055555557,
+        "nativePng": "build\\sessions\\20261106-123222-823\\frames\\frame_00239.png",
+        "nativePngSha256": "657799f85e826d1b7edd64e34178b49827f15bf5913817f783e120951e95241a",
+        "encodedReferencePngSha256": "da1f42a4a87bef42742cec9be0f8948c1a9572bd4db615612c19296baf6dd050"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-021.png",
+        "sha256": "4d625a58c3dbc2926fd76dfe5487e95f48b4a1373b34bc5ec3dce828362c1f30",
+        "frame": 870,
+        "timeSeconds": 29.0,
+        "scene": "right",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.193907986111111,
+        "nativePngMeanAbsoluteError": 2.563474537037037,
+        "nativePng": "build\\sessions\\20261106-123248-768\\frames\\frame_00000.png",
+        "nativePngSha256": "d26a24de01d639ac095b2022620b2c230d7d24d42ef4feda240f857038c98547",
+        "encodedReferencePngSha256": "a2bd5891de8a2154a1374b5555a2f9589a7a6ec9e53ba3f5799df250588790e2"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-022.png",
+        "sha256": "81f355a7b7941bb74e0a607d650048ca84196cc92cebc1cc9e4820660f37ca61",
+        "frame": 990,
+        "timeSeconds": 33.0,
+        "scene": "right",
+        "sourceFrame": 120,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.5342725694444443,
+        "nativePngMeanAbsoluteError": 2.6424502314814813,
+        "nativePng": "build\\sessions\\20261106-123248-768\\frames\\frame_00120.png",
+        "nativePngSha256": "166ab3b524a907f3d8bf9b50cdd14d0f921c7ddcd53c8c4c12fe62359562d9a9",
+        "encodedReferencePngSha256": "e8ffcb1f881fd62e90e7dcbfcc8a0e5b1b112d6c391fea7011782015b8b9482c"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-023.png",
+        "sha256": "b5b768a1f55302f1b73acc245f2b0ee61faa9a7e224d70e441478eb59342c1cc",
+        "frame": 1109,
+        "timeSeconds": 36.96666666666667,
+        "scene": "right",
+        "sourceFrame": 239,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.5579542824074073,
+        "nativePngMeanAbsoluteError": 2.7178761574074075,
+        "nativePng": "build\\sessions\\20261106-123248-768\\frames\\frame_00239.png",
+        "nativePngSha256": "d454b56aea53dd7566f408c62ae8883bcb98c6f112f4d8fdf451a7265b813cde",
+        "encodedReferencePngSha256": "c8080d202a492e461cce0f8b3f379c5e32c01668cc91cce61fb68f501ceb5f45"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-024.png",
+        "sha256": "2ee8e1a91b3e0cfe9049be54841ca9ec269a977d792ca1e67bd67f91f055facc",
+        "frame": 1110,
+        "timeSeconds": 37.0,
+        "scene": "exit",
+        "sourceFrame": 0,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.3687716049382717,
+        "nativePngMeanAbsoluteError": 2.933168209876543,
+        "nativePng": "build\\sessions\\20261106-123315-736\\frames\\frame_00000.png",
+        "nativePngSha256": "b4938a3d15d0c93ce9caf76ecb642dc5b45dda167f32744502ff25413badc9d3",
+        "encodedReferencePngSha256": "48678fada3c4ee6ec06421f660efbcf6fe259ba1176c8d9aa111776963e1f6dc"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-025.png",
+        "sha256": "22b5a8efaf70b7294cf84ef5d2082c5bac7591fc0606eddd514ba71a7e211833",
+        "frame": 1275,
+        "timeSeconds": 42.5,
+        "scene": "exit",
+        "sourceFrame": 165,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.5613279320987654,
+        "nativePngMeanAbsoluteError": 2.8910725308641974,
+        "nativePng": "build\\sessions\\20261106-123315-736\\frames\\frame_00165.png",
+        "nativePngSha256": "037c56041d0056b8c2ed0de5f75ca80684e1384a191857ff7c1ebba65b367969",
+        "encodedReferencePngSha256": "b70fc8b4b901d13eb655b6b8b10e78ac1842beee3a2ed39a49578516834b902b"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-026.png",
+        "sha256": "6acd0d1b1fe545567698e5fb00439dfc20e28286d962708d3171befbf1aa088f",
+        "frame": 1350,
+        "timeSeconds": 45.0,
+        "scene": "exit",
+        "sourceFrame": 240,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.533212962962963,
+        "nativePngMeanAbsoluteError": 2.791341049382716,
+        "nativePng": "build\\sessions\\20261106-123315-736\\frames\\frame_00240.png",
+        "nativePngSha256": "3e3d2b2ed0942da960b4eac148dd2d95eb633b73c4687aad2ab2f91d1f1f98ce",
+        "encodedReferencePngSha256": "20cded5caf44cabd63314a6ae90e84061a7b9d58e12ddc3c6040598ab3a0047f"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-027.png",
+        "sha256": "2c68465b511b706e5d0456c0d1b4ebb955050a9196f912be4801cc0c58064d9e",
+        "frame": 1425,
+        "timeSeconds": 47.5,
+        "scene": "exit",
+        "sourceFrame": 315,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.4853966049382716,
+        "nativePngMeanAbsoluteError": 2.8120524691358026,
+        "nativePng": "build\\sessions\\20261106-123315-736\\frames\\frame_00315.png",
+        "nativePngSha256": "3dd2f2c977bcc3f3fac6b6b0c9c458c297b79b4744e3799a08f6cb21c6d228a2",
+        "encodedReferencePngSha256": "ad5bd1cfd7361e686bc221596b68c98c69bfe63634b81f77668b02a9a10dc94b"
+      },
+      {
+        "path": "proof\\delivery-frames\\sample-028.png",
+        "sha256": "9f849ee50c4708f4089c1f2879fe7bd5ddba4ae2b41c8ddb58a0807d842ba753",
+        "frame": 1439,
+        "timeSeconds": 47.96666666666667,
+        "scene": "exit",
+        "sourceFrame": 329,
+        "visuallyInspectedAtNativeResolution": true,
+        "freshFinalDecodePixelMatch": true,
+        "sourceClipMeanAbsoluteError": 1.524406635802469,
+        "nativePngMeanAbsoluteError": 2.8785385802469134,
+        "nativePng": "build\\sessions\\20261106-123315-736\\frames\\frame_00329.png",
+        "nativePngSha256": "8c5fb68fc2b7f489fa89a0cfe6c39159f7f46b047a1e5455d742117029543c3b",
+        "encodedReferencePngSha256": "32819c22bb681da3091e3e54918d7bde1675b02b021b25665ed3ae75b4f5579b"
+      }
+    ],
+    "nativePngs": [
+      {
+        "path": "build\\sessions\\20261106-123108-529\\frames\\frame_00090.png",
+        "sha256": "ef18d9b5a820ea0f181cdb85ff43839a2f02764e72e7d7612d5adf7541eb725f",
+        "clip": "reveal",
+        "frame": 90,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00120.png",
+        "sha256": "2a240277b635b314dce8984783686b425bdf83cdcfad99b678440128ab327671",
+        "clip": "hop",
+        "frame": 120,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00130.png",
+        "sha256": "e1d28b9b8b34063323f53d778f5f9344e25407ace07b0bab4bb99cc292991e07",
+        "clip": "hop",
+        "frame": 130,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00140.png",
+        "sha256": "8944aeacb1ea2aee3dd0b8131837f6d991acc491f763606f0b4b68759bc99e12",
+        "clip": "hop",
+        "frame": 140,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00150.png",
+        "sha256": "b7a9cd8e50c2cd13862e91dc2e74902b06edfab00181318ab58ca66b96152a61",
+        "clip": "hop",
+        "frame": 150,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00160.png",
+        "sha256": "560f73d3144da969b125e22cc253a7eda77f224a0bbd2e428472cdc82bc82418",
+        "clip": "hop",
+        "frame": 160,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00170.png",
+        "sha256": "964c93b8273a4308952a4dd65b86fe6c1427c03d1ce5d9d334c4413e64cfd3fc",
+        "clip": "hop",
+        "frame": 170,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123132-325\\frames\\frame_00180.png",
+        "sha256": "d5f1e8ae53c8933add392978e3e3f9f262f31120caef00322087f04b2222942c",
+        "clip": "hop",
+        "frame": 180,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123204-120\\frames\\frame_00000.png",
+        "sha256": "24f7ffe36b77a8feffccfb30af9c34e72d97eae64fd045a3701aac01ef380652",
+        "clip": "wheel",
+        "frame": 0,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123204-120\\frames\\frame_00075.png",
+        "sha256": "8ea37d02213cac1e3749e67a4b4de0a85550969cf49a27382ac52833a7baa5ba",
+        "clip": "wheel",
+        "frame": 75,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123204-120\\frames\\frame_00149.png",
+        "sha256": "77d0753b763621972c60b55bcba255264638c074ec9221389274125d2ef7a227",
+        "clip": "wheel",
+        "frame": 149,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123222-823\\frames\\frame_00000.png",
+        "sha256": "edfb4e786382dd149b31a66db343e6ddfec3860eb27fa25a31fc1e2e85711922",
+        "clip": "left",
+        "frame": 0,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123222-823\\frames\\frame_00120.png",
+        "sha256": "eabc2fb6ed9c23edd301824c864431e0ee1b8c185324a1ea4d48aaafe2dd7237",
+        "clip": "left",
+        "frame": 120,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123248-768\\frames\\frame_00120.png",
+        "sha256": "166ab3b524a907f3d8bf9b50cdd14d0f921c7ddcd53c8c4c12fe62359562d9a9",
+        "clip": "right",
+        "frame": 120,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123248-768\\frames\\frame_00239.png",
+        "sha256": "d454b56aea53dd7566f408c62ae8883bcb98c6f112f4d8fdf451a7265b813cde",
+        "clip": "right",
+        "frame": 239,
+        "visuallyInspectedAtNativeResolution": true
+      },
+      {
+        "path": "build\\sessions\\20261106-123315-736\\frames\\frame_00165.png",
+        "sha256": "037c56041d0056b8c2ed0de5f75ca80684e1384a191857ff7c1ebba65b367969",
+        "clip": "exit",
+        "frame": 165,
+        "visuallyInspectedAtNativeResolution": true
+      }
+    ],
+    "contactSheets": [
+      {
+        "path": "proof/La-Catrina-Review.jpg",
+        "sha256": "e93d912538846fd3d52704796304c387165bb8f2d8f494487d9f192db9be5e7a",
+        "visuallyInspected": true
+      },
+      {
+        "path": "proof/La-Catrina-Seams.jpg",
+        "sha256": "02c19616e4b563e6e863e92f472cb6fca243358edfd7ce6c2486594df4f7d810",
+        "visuallyInspected": true
+      },
+      {
+        "path": "proof/La-Catrina-Hop-Motion.jpg",
+        "sha256": "64442c80aec4b8d4e4266247dc51cc3c3f8382e7c67f5c8bdaf7e6e1e93c3f15",
+        "visuallyInspected": true
+      }
+    ],
+    "poster": {
+      "path": "outputs/La-Catrina-Street-Show.png",
+      "sha256": "db0749f72c335d7fcfce742cb17ca7507dcb27b3e33acc251473138a935ece25",
+      "identicalToVisuallyInspectedSample": "proof/delivery-frames/sample-008.png"
+    }
+  },
+  "independentSourceValidation": {
+    "finalMp4HashRecomputed": true,
+    "sourceManifestHashRecomputed": true,
+    "nativeManifestHashRecomputed": true,
+    "all28SamplesFreshlyDecodedFromFinalToMemory": true,
+    "all28FreshDecodePixelMatchesExact": true,
+    "all28SavedSampleHashesMatched": true,
+    "all28NativePngHashesMatchedCaptureManifest": true,
+    "all28TimelineSourceFrameMappingsMatched": true,
+    "sourceClipMeanAbsoluteErrorRange": [
+      1.08745987654321,
+      2.0765069444444446
+    ],
+    "nativePngMeanAbsoluteErrorRange": [
+      2.563474537037037,
+      3.9079502314814816
+    ],
+    "comparisonRegion": "Full frame for action scenes. Top 150 pixels excluded for the two title scenes only; titles inspected visually."
+  },
+  "motionIndependentlyRecomputedFromCsv": [
+    {
+      "clip": "reveal",
+      "csvPath": "build\\sessions\\20261106-123108-529\\drive.json.csv",
+      "csvSha256": "ed948b07007795de08a292d8b439b4bd769d8fb8978327a891d40f38bd36daa2",
+      "warmupFramesExcluded": 60,
+      "displayedFrames": 180,
+      "pathLengthMeters": 11.656171254768642,
+      "maxChassisStepMeters": 0.06634830541158364,
+      "maxOrientationStepDegrees": 0.6003360408005046,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 180
+      },
+      "supportedLiftFrames": {
+        "frontPair": 0,
+        "leftFront": 0,
+        "rightFront": 0
+      }
+    },
+    {
+      "clip": "hop",
+      "csvPath": "build\\sessions\\20261106-123132-325\\drive.json.csv",
+      "csvSha256": "4e1cf992ee2ab2c299b77720b2ccec8ed1ec11d74775a979452415c978c85d37",
+      "warmupFramesExcluded": 60,
+      "displayedFrames": 300,
+      "pathLengthMeters": 11.677029659614043,
+      "maxChassisStepMeters": 0.06809855334593695,
+      "maxOrientationStepDegrees": 2.126505626812513,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 104,
+        "3": 0,
+        "4": 196
+      },
+      "supportedLiftFrames": {
+        "frontPair": 104,
+        "leftFront": 0,
+        "rightFront": 0
+      }
+    },
+    {
+      "clip": "wheel",
+      "csvPath": "build\\sessions\\20261106-123204-120\\drive.json.csv",
+      "csvSha256": "f28b98a28ae06221fa20072bbd28763ca1a4029d68b237a151fe1a1b12732d4f",
+      "warmupFramesExcluded": 60,
+      "displayedFrames": 150,
+      "pathLengthMeters": 5.896039924739132,
+      "maxChassisStepMeters": 0.06809691495718687,
+      "maxOrientationStepDegrees": 2.1264697120731393,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 56,
+        "3": 0,
+        "4": 94
+      },
+      "supportedLiftFrames": {
+        "frontPair": 56,
+        "leftFront": 0,
+        "rightFront": 0
+      }
+    },
+    {
+      "clip": "left",
+      "csvPath": "build\\sessions\\20261106-123222-823\\drive.json.csv",
+      "csvSha256": "2d73bca6af851df11525f59168099c3e1a76b32e8fd10da16de9d71d934d3330",
+      "warmupFramesExcluded": 90,
+      "displayedFrames": 240,
+      "pathLengthMeters": 7.600629240404461,
+      "maxChassisStepMeters": 0.0325633358335961,
+      "maxOrientationStepDegrees": 0.2961249418187029,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 240,
+        "4": 0
+      },
+      "supportedLiftFrames": {
+        "frontPair": 0,
+        "leftFront": 240,
+        "rightFront": 0
+      }
+    },
+    {
+      "clip": "right",
+      "csvPath": "build\\sessions\\20261106-123248-768\\drive.json.csv",
+      "csvSha256": "49772c8d409b059264d67f83a259e538143f4b1399f2c128dcbbd966ec268cc5",
+      "warmupFramesExcluded": 90,
+      "displayedFrames": 240,
+      "pathLengthMeters": 7.609296860329585,
+      "maxChassisStepMeters": 0.03266904472530463,
+      "maxOrientationStepDegrees": 0.3009740321135917,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 240,
+        "4": 0
+      },
+      "supportedLiftFrames": {
+        "frontPair": 0,
+        "leftFront": 0,
+        "rightFront": 240
+      }
+    },
+    {
+      "clip": "exit",
+      "csvPath": "build\\sessions\\20261106-123315-736\\drive.json.csv",
+      "csvSha256": "4e89d7999cad89b30b11aecd678dbea091bd81872cfd8b2787419d2e7318e74c",
+      "warmupFramesExcluded": 60,
+      "displayedFrames": 330,
+      "pathLengthMeters": 21.203420904155703,
+      "maxChassisStepMeters": 0.06449003387291274,
+      "maxOrientationStepDegrees": 0.022815297834418026,
+      "contactFrameCounts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 330
+      },
+      "supportedLiftFrames": {
+        "frontPair": 0,
+        "leftFront": 0,
+        "rightFront": 0
+      }
+    }
+  ],
+  "sceneFindings": {
+    "reveal": "The whole car stays framed while the street moves behind it. Both sampled title states are readable and clear of the car.",
+    "hop": "The sampled cycle shows front suspension extension, both front tires visibly clear of the road, landing and recovery, followed by the next rise. Body, hubs and visible linkages stay connected.",
+    "wheel": "The front wheel remains completely inside the frame at rest and in the airborne detail. The rear body extends outside the close-up camera by design; the visible rear tire is not clipped.",
+    "left": "A sustained tilted glide exposes the undercarriage and raised front wheel. The wheel remains present and within frame at the start, middle and end.",
+    "right": "The opposite-side glide shows the corresponding front wheel raised with the chassis and support structure intact at start, middle and end.",
+    "exit": "Rear three-quarter tracking maintains the car in frame. The closing title is readable and clear of the car; the last frame contains the moving car rather than a blank card."
+  },
+  "editorialFindings": [
+    "No black/blank/missing-video sample, clipped trick wheel, detached or teleporting wheel, gross mesh discontinuity, unreadable title, or accidental seam error observed.",
+    "Both sides of every planned cut contain the correct footage. The hard cuts change camera/location as intended.",
+    "The hop strip visibly covers extension, front-pair flight, return and recovery; the next lift confirms repetition.",
+    "All six shots show changing street position, consistent with positive native path distance."
+  ],
+  "advisories": [
+    {
+      "severity": "non-blocking",
+      "finding": "Three-wheel sequences are darker than the reveal and hop. Raised wheels and car silhouette remain readable, but fine undercarriage detail is less clear."
+    }
+  ],
+  "machineEvidenceReviewed": {
+    "fullDecode": "PASS; no decoder errors",
+    "blackFrameScan": "PASS; no98%-black interval at least0.05s",
+    "audioMeasuredOnly": {
+      "codec": "aac",
+      "sampleRate": 48000,
+      "channels": 2,
+      "integratedLufs": -20.1,
+      "truePeakDbfs": -5.2,
+      "review": "Measured, not human listened. Credited real recordings reconstruct engine/pump sound."
+    },
+    "decodeLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "blackScanLogSha256": "14df045ce12facd554c66566bfcb4297d69b97e8d2598d3c3f9ea7634e8d3336"
+  },
+  "limits": [
+    "This is independent sampled-frame film QA, with a complete sampled hop cycle and all five cut boundaries; it is not continuous human playback or a visual inspection of every encoded frame.",
+    "Sound was not listened to. Loudness, peak and decode measurements do not establish listening quality, timing feel or subjective audio acceptance.",
+    "Contact/load data are 30 fps samples from the native 240 Hz raycast solver. Visual wheel clearance is additionally evidenced by inspected images; the telemetry is not a real-world mechanical validation.",
+    "The film contains six separately captured shots with deliberate camera/location resets at cuts. It does not claim an uninterrupted single drive.",
+    "The model and research are not rescored by this review. This pass does not independently validate reference fidelity, real component specifications, attribution or media licensing.",
+    "Native delivery is 960 x 600 at 30 fps; fine chrome and undercarriage detail remain limited by that resolution and the scene lighting."
+  ]
+}

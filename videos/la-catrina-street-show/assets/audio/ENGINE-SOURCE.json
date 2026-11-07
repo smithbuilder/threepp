@@ -1,0 +1,36 @@
+{
+  "author": "kyles",
+  "title": "dune buggy muscle car pass slow loud nearby full engine rev and trail off to right.wav",
+  "page": "https://freesound.org/people/kyles/sounds/413905/",
+  "download": "https://cdn.freesound.org/previews/413/413905_612689-hq.mp3",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceSha256": "d94cf3da98ceb2c2890cb44a9a81fac23cfba2e6840cba282065b10e378479fb",
+  "note": "Derived from the public HQ MP3 preview. RPM bands are playback tuning, not measured RPM of the original vehicle.",
+  "derived": [
+    {
+      "file": "cinder_exhaust_idle.wav",
+      "sha256": "3f45e1feb7b9e4fe88400ed06b46bb557fc95edb3296633e4f3c4595e9938fa2",
+      "sourceStartSeconds": 8.0,
+      "sourceDurationSeconds": 2.4,
+      "playbackBandRpm": 2600,
+      "processing": "mono 48k PCM16; 58Hz highpass; 4.8kHz lowpass; 160ms circular equal-power seam; DC removal; peak -2.7dBFS"
+    },
+    {
+      "file": "cinder_exhaust_mid.wav",
+      "sha256": "b0268a5545bdf08376e310a7545fbe36a139401435a295b15d014a3b4984b1e9",
+      "sourceStartSeconds": 17.0,
+      "sourceDurationSeconds": 2.5,
+      "playbackBandRpm": 3900,
+      "processing": "mono 48k PCM16; 58Hz highpass; 4.8kHz lowpass; 160ms circular equal-power seam; DC removal; peak -2.7dBFS"
+    },
+    {
+      "file": "cinder_exhaust_high.wav",
+      "sha256": "7f8a92833da55a558e92fc1a7c16b674ac3e950382ebfa2946aff2db1aac8391",
+      "sourceStartSeconds": 21.0,
+      "sourceDurationSeconds": 2.6,
+      "playbackBandRpm": 5600,
+      "processing": "mono 48k PCM16; 58Hz highpass; 4.8kHz lowpass; 160ms circular equal-power seam; DC removal; peak -2.7dBFS"
+    }
+  ]
+}

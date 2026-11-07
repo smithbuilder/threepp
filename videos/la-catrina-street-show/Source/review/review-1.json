@@ -1,0 +1,316 @@
+{
+  "evaluator_identity": "Independent evaluator A — /root/round08_reviewer_a",
+  "reviewer": "Independent evaluator A",
+  "round": "11",
+  "date": "2026-11-06",
+  "independence": "Original atlas and current frozen round-11 captures only for scoring. No other evaluator, root judgments or technical PASS results consulted. No model/source edits or native/browser launch. Revision count, effort, tests and budget provide no credit.",
+  "standard": "Faithful finished playable game-model interpretation of the original atlas; no manufacturing certification.",
+  "model_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\la-catrina.glb",
+  "model_sha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "model_hash_verified": true,
+  "reference_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\references\\La-Catrina-Master.jpg",
+  "reference_sha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+  "reference_hash_verified": true,
+  "reference_visually_inspected": true,
+  "original_reference_crops_inspected": [
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\reference-analysis\\hero-original-detail.png",
+    "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\reference-analysis\\side-original-detail.png"
+  ],
+  "capture_receipt_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\receipt.json",
+  "capture_count": 16,
+  "all_capture_hashes_verified": true,
+  "weighted_score_unrounded": 8.02,
+  "threshold": 8,
+  "threshold_met": true,
+  "arithmetic": "8.3*0.25 + 7.9*0.20 + 7.8*0.20 + 8.1*0.20 + 7.9*0.15 = 8.020",
+  "decision": "Narrow pass of the requested visual gate for this exact frozen artifact and capture set.",
+  "categories": [
+    {
+      "id": "silhouette_proportions",
+      "label": "Silhouette / proportions",
+      "score": 8.3,
+      "weight": 0.25,
+      "weight_percent": 25,
+      "reason": "The long low coupe stance, wheelbase/overhang balance, wheel size, gently crowned hardtop and rear-deck relationship convincingly translate the atlas. Pillar/window corners and some bumper contours remain more angular, but the overall silhouette is strong.",
+      "weighted_contribution": 2.075
+    },
+    {
+      "id": "body_surfacing_panel_fit",
+      "label": "Body surfacing / panel fit",
+      "score": 7.9,
+      "weight": 0.2,
+      "weight_percent": 20,
+      "reason": "Broad shoulders, panel boundaries, roof crown and predominantly closed wheel wells form a coherent finished game body. Residual flaws are soft lower swage channels, thin/abrupt trim connections and a small pink/bright upper opening in the front well. Close-up finish remains short of the atlas's polished surfacing.",
+      "weighted_contribution": 1.58
+    },
+    {
+      "id": "paint_material_fidelity",
+      "label": "Paint / material fidelity",
+      "score": 7.8,
+      "weight": 0.2,
+      "weight_percent": 20,
+      "reason": "Candy, shell pink, plum, champagne ornament and cameos clearly carry the original identity, with visible fine-scale finish variation. The close-up grain can read as orange peel rather than delicate metalflake, and the gold scallops are more repetitive/bold than the original filigree. Shell-pink depth and candy reflections are also limited by presentation lighting.",
+      "weighted_contribution": 1.56
+    },
+    {
+      "id": "wheels_chrome_cabin_detail",
+      "label": "Wheels / chrome / cabin / detail",
+      "score": 8.1,
+      "weight": 0.2,
+      "weight_percent": 20,
+      "reason": "Wire-wheel weave, narrow whitewalls, tire relief, ribbed silver rear fascia, lamp detail, cameos and plum pleating make a convincing game-scale detail set. Dashboard, seat/trim edges, bumper corners and some small fittings remain noticeably simplified.",
+      "weighted_contribution": 1.62
+    },
+    {
+      "id": "visible_mechanism_component_plausibility",
+      "label": "Visible mechanism / component plausibility",
+      "score": 7.9,
+      "weight": 0.15,
+      "weight_percent": 15,
+      "reason": "Front arms, separate dampers, supported rams, rigid rear axle/links, pump rack, straps, cables and curved bay enclosures read as a coherent installed mechanism. Tall rectangular support towers and simplified cup/link interfaces remain less integrated and less compact than the atlas. This is visible game-model plausibility, not manufacturing certification; service removal is not penalized.",
+      "weighted_contribution": 1.185
+    }
+  ],
+  "inspected_images": [
+    {
+      "name": "front",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front.png",
+      "sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "receipt_sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Long low body, gentle roof crown, wire-wheel stance and grille composition form a convincing game interpretation. Bumper/body transitions and window corners remain simplified."
+    },
+    {
+      "name": "side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\side.png",
+      "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "receipt_sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Wheelbase/overhang balance and the mildly arched hardtop roof read well. Lower swage channels and pillar transitions are less sharply controlled than the original."
+    },
+    {
+      "name": "rear",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear.png",
+      "sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "receipt_sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Deck-to-hardtop relationship and bright tail-lamp fascia carry the original identity. The C-pillar/window perimeter and bumper corners remain somewhat angular."
+    },
+    {
+      "name": "top",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\top.png",
+      "sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "receipt_sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Split hood panels and continuous roof/deck ornament are clearly legible. Gold pattern remains more repetitive and less delicately layered than the atlas; glare is a presentation limit."
+    },
+    {
+      "name": "front-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-detail.png",
+      "sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "receipt_sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Headlamp lenses and grille have convincing game-scale detail. The arch has a dark inner closure, but a small pink upper inner strip remains exposed; bumper/hood joins are simplified."
+    },
+    {
+      "name": "rear-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-detail.png",
+      "sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "receipt_sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Ribbed silver fascia, lens faces and rounded body shoulder read coherently. Bumper corner and deck-opening edge shapes are still more basic than the atlas."
+    },
+    {
+      "name": "cabin",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\cabin.png",
+      "sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "receipt_sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Plum pleated benches, wheel ring, side cameo and roof crown read clearly. Dashboard and small trim surfaces remain coarse; candy grain can read as orange peel in close view."
+    },
+    {
+      "name": "trunk",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\trunk.png",
+      "sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "receipt_sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Paired pump units, strapped batteries and reinforced lid create a coherent loaded trunk. Curved side enclosures fit the space, though the enclosure transitions and lid structure remain simplified."
+    },
+    {
+      "name": "bay-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\bay-detail.png",
+      "sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "receipt_sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Pump bodies, wiring and curved inner enclosures read as an integrated installation at game scale. Fitting/hinge detail and transitions between enclosure pieces remain sparse."
+    },
+    {
+      "name": "hood-open",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\hood-open.png",
+      "sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "receipt_sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Engine, radiator and curved dark inner-fender shapes form a plausible bay. Broad surfaces and shallow hood-inner reinforcement remain simpler than the reference finish."
+    },
+    {
+      "name": "front-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-suspension-service.png",
+      "sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "receipt_sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Intentional body-off inspection on stands. Arms, spring, separate damper and supported ram relationships are readable. Tall rectangular tower shapes remain schematic compared with the atlas."
+    },
+    {
+      "name": "rear-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-suspension-service.png",
+      "sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "receipt_sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Intentional body-off inspection. Rigid axle/link layout, spring supports and hydraulic rack form a coherent assembly. Tower silhouettes and component interfaces remain coarse."
+    },
+    {
+      "name": "right-side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\right-side.png",
+      "sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "receipt_sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Confirms the balanced long low silhouette and gently curved roof on the opposite side. Lower panel channels and pillar corners still lack the atlas's crisp finish."
+    },
+    {
+      "name": "wheel-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\wheel-detail.png",
+      "sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "receipt_sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Dense wire spokes, narrow whitewall and tire relief read convincingly. The well is predominantly closed and dark, but a small pink/bright upper opening and angular inner surfaces remain; paint grain is coarse at this distance."
+    },
+    {
+      "name": "front-corner-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-corner-wheel-off.png",
+      "sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "receipt_sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Intentional wheel-off inspection. Hub, arms, spring and separate damper remain legible and supported. Tall support cage and simple bracket forms are visually schematic."
+    },
+    {
+      "name": "rear-links-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-links-wheel-off.png",
+      "sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "receipt_sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "hash_verified": true,
+      "visually_inspected": true,
+      "observation": "Intentional wheel-off inspection. Rigid axle, links and spring seats have plausible visible relationships. Cup/link-end and upper-support detail remain simplified."
+    }
+  ],
+  "remaining_visible_flaws": [
+    {
+      "priority": 1,
+      "views": [
+        "wheel-detail",
+        "front-detail",
+        "side",
+        "cabin"
+      ],
+      "defect": "Small pink/bright upper well opening, angular inner-well surfaces, soft lower swages and abrupt trim/window connections remain.",
+      "fix": "Close the remaining upper inner-well sightline with a body-following return and refine lower swage and trim transitions. Preserve the current overall silhouette."
+    },
+    {
+      "priority": 2,
+      "views": [
+        "wheel-detail",
+        "cabin",
+        "top",
+        "front-detail"
+      ],
+      "defect": "Paint grain can look like orange peel, while ornament is bold/repetitive relative to the atlas.",
+      "fix": "Make the fine finish read as restrained metallic sparkle under clear gloss, retain smoother broad reflections, and preserve more delicate layered champagne linework at game-view scale."
+    },
+    {
+      "priority": 3,
+      "views": [
+        "cabin",
+        "rear-detail",
+        "front-detail"
+      ],
+      "defect": "Dashboard, seat/trim edges, small fittings and bumper corners are still basic.",
+      "fix": "Refine the dashboard/instrument surround, upholstery edge finish and chrome corner curvature toward the atlas's slender rounded forms."
+    },
+    {
+      "priority": 4,
+      "views": [
+        "front-corner-wheel-off",
+        "rear-links-wheel-off",
+        "bay-detail"
+      ],
+      "defect": "Tall rectangular support towers and simple cup/link-end interfaces remain schematic.",
+      "fix": "Bring tower/bracket silhouettes closer to the atlas's compact integrated mounting forms and add visibly seated cup/link details while preserving readable supported connections."
+    }
+  ],
+  "prioritized_corrections": [
+    {
+      "priority": 1,
+      "views": [
+        "wheel-detail",
+        "front-detail",
+        "side",
+        "cabin"
+      ],
+      "defect": "Small pink/bright upper well opening, angular inner-well surfaces, soft lower swages and abrupt trim/window connections remain.",
+      "fix": "Close the remaining upper inner-well sightline with a body-following return and refine lower swage and trim transitions. Preserve the current overall silhouette."
+    },
+    {
+      "priority": 2,
+      "views": [
+        "wheel-detail",
+        "cabin",
+        "top",
+        "front-detail"
+      ],
+      "defect": "Paint grain can look like orange peel, while ornament is bold/repetitive relative to the atlas.",
+      "fix": "Make the fine finish read as restrained metallic sparkle under clear gloss, retain smoother broad reflections, and preserve more delicate layered champagne linework at game-view scale."
+    },
+    {
+      "priority": 3,
+      "views": [
+        "cabin",
+        "rear-detail",
+        "front-detail"
+      ],
+      "defect": "Dashboard, seat/trim edges, small fittings and bumper corners are still basic.",
+      "fix": "Refine the dashboard/instrument surround, upholstery edge finish and chrome corner curvature toward the atlas's slender rounded forms."
+    },
+    {
+      "priority": 4,
+      "views": [
+        "front-corner-wheel-off",
+        "rear-links-wheel-off",
+        "bay-detail"
+      ],
+      "defect": "Tall rectangular support towers and simple cup/link-end interfaces remain schematic.",
+      "fix": "Bring tower/bracket silhouettes closer to the atlas's compact integrated mounting forms and add visibly seated cup/link details while preserving readable supported connections."
+    }
+  ],
+  "presentation_limits": [
+    "All 16 actual native 960x600 images were opened. Aliasing and subpixel edges limit judgments about very fine seams/spokes.",
+    "Broad highlight glare and subdued chrome/environment reflection detail are partly the unchanged studio lighting, not geometry failures.",
+    "Grain character, simplified dashboard/tower shapes, remaining well opening and soft swage contours are visible asset-level limitations.",
+    "Intentional body-off and wheel-off service views on stands are not incomplete-vehicle defects.",
+    "This is a static visual gate. It does not certify handling, motion quality, audio or complete mechanical behavior.",
+    "The pass is narrow and does not mean the artifact is visually identical to the atlas; remaining visible flaws are recorded."
+  ]
+}

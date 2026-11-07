@@ -1,0 +1,15 @@
+{
+  "title": "Sunset Pulse / La Catrina edit",
+  "origin": "Project-owned original instrumental reused from Switchback showcase, authorized by root",
+  "source": "videos\\switchback-showcase\\assets\\audio\\switchback-original.wav",
+  "sourceSha256": "2f5ef696cf47c2c49c54b243258b641c0c003d0ed4eaef6ae7c657769755a5d0",
+  "sourceLicense": "Original project composition, no external samples",
+  "sourceDurationSeconds": 45,
+  "sourceTempoBpm": 120,
+  "processing": "Pitch-preserved atempo 0.9375 to 48 seconds (112.5 BPM), tail fade46-48s, loudnorm target -20 LUFS/-3dBTP",
+  "durationSeconds": 48,
+  "output": "assets/audio/catrina-sunset-pulse.wav",
+  "sha256": "e240ceef9090589162d2dfb73f3f8d1bd3b6a4ce250d559af6692c912cc4b0ec",
+  "freshGeneration": "Fal request refused before submission: account balance exhausted; no generated result",
+  "listeningReview": false
+}

@@ -1,5 +1,12 @@
 # Vehicle Tuning Playground
 
+November 6 La Catrina: the new hydraulic coupe is available in both the city
+and playground. Open `Launch-La-Catrina.cmd` for manual driving or its repeating
+street show. J hops, K/L select either three-wheel stance, U raises and N lowers.
+The committed vehicle picker offers Safari, Original buggy, Baja 427 and La Catrina.
+The [La Catrina handoff](docs/la-catrina/HANDOFF.md) records the original local
+five-vehicle film build and its independent model reviews.
+
 November5 close-up/boost update: **90 physics checks pass**, with all79 baseline values unchanged. New truck front/rear suspension and driver's-eye cameras, optional ground boost, and a [46-second native review film](build/truck-suspension-film/Baja427-Suspension-Cabin-Boost.mp4). Exact current build/verification: [truck close-up checkpoint](docs/baja-427/SUSPENSION-FILM.md) and `build/truck-suspension-film/delivery-receipt.json`. The previous playground/showcase delivery below is preserved history.
 
 Enable **Arcade boost (hold B)** in the controls and hold B with throttle. It uses a2.5second charge, recharges in6seconds and increases ground drive through the existing grip model. Boost defaults off; airborne motion and landings remain physics-driven. C/the camera picker now also offers suspension close-ups and driver's eye. The new camera placement is calibrated for Baja427.

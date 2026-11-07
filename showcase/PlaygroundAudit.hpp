@@ -15,8 +15,13 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
     for(size_t n=0;n<tunes.size();++n){const auto& t=tunes[n];if(n)manifest<<',';manifest<<"{\"id\":"<<std::quoted(t.id)<<",\"name\":"<<std::quoted(t.name)<<",\"mass\":"<<t.mass
         <<",\"cg\":[0,"<<t.cgY<<','<<t.cgZ<<"],\"inertia\":["<<t.pitchInertia<<','<<t.yawInertia<<','<<t.rollInertia<<"],\"tyreRadius\":"<<t.dims.tyreRadius
         <<",\"wheelbase\":"<<t.dims.halfWheelbase*2<<",\"track\":"<<t.dims.halfTrack*2<<",\"hubTravel\":["<<t.dims.droop<<','<<t.dims.bump<<"],\"springs\":["<<t.frontRate<<','<<t.rearRate
-        <<"],\"dampers\":["<<t.compression<<','<<t.rebound<<"],\"grip\":"<<t.grip<<",\"driveForce\":"<<t.driveForce<<",\"CdA\":["<<t.lateralCdA<<','<<t.verticalCdA<<','<<t.frontalCdA
-        <<"],\"pressureOffset\":[0,"<<t.pressureY<<','<<t.pressureZ<<"]}";}manifest<<"]}\n";
+        <<"],\"dampers\":["<<t.compression<<','<<t.rebound
+        <<"],\"rearDampers\":["<<(t.rearCompression>0?t.rearCompression:t.compression)<<','<<(t.rearRebound>0?t.rearRebound:t.rebound)
+        <<"],\"rearHubTravel\":["<<(t.rearDroop>0?t.rearDroop:t.dims.droop)<<','<<(t.rearBump>0?t.rearBump:t.dims.bump)
+        <<"],\"grip\":"<<t.grip<<",\"driveForce\":"<<t.driveForce<<",\"CdA\":["<<t.lateralCdA<<','<<t.verticalCdA<<','<<t.frontalCdA
+        <<"],\"pressureOffset\":[0,"<<t.pressureY<<','<<t.pressureZ<<"],\"hullOffsetZ\":"<<t.hullOffsetZ<<",\"hullFriction\":"<<t.hullFriction<<",\"driveLayout\":\""<<(t.rearWheelDrive?"rear-wheel drive":"all-wheel drive")<<"\",\"rearTrack\":"<<(t.rearHalfTrack>0?t.rearHalfTrack:t.dims.halfTrack)*2;
+        if(t.visualRig==VisualRig::Catrina)manifest<<",\"hydraulics\":{\"maximumEquivalentPreload\":0.58,\"maximumCylinderStroke\":0.2436,\"cylinderMotionRatio\":0.42,\"frontDroopStop\":-0.12,\"rearDroopStop\":-0.28,\"speedInterlockMetresPerSecond\":6}";
+        manifest<<'}';}manifest<<"]}\n";
     report<<"vehicle,check,passed,value,limit\n";
     trace<<"vehicle,station,t,x,y,z,speed,contacts,flTravel,frTravel,rlTravel,rrTravel,flLoad,frLoad,rlLoad,rrLoad\n";
     auto pulse=[](){if(const char* p=std::getenv("THREEPP_EVALUATION_HEARTBEAT")){std::ofstream beat(p);beat<<"CPU physics audit active\n";}};
@@ -72,7 +77,10 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
         check(s.tune.name,"aerodynamic force scales with airspeed squared",std::abs(force30/force15-4)<.03f,force30/force15,4);
         for(int k=0;k<240*3;++k)s.tick(0,1,0);
         float transfer=std::abs((s.load[0]+s.load[2]-s.load[1]-s.load[3])-priorTransfer);
-        check(s.tune.name,"crosswind changes physical wheel loads",transfer>100,transfer,100);
+        // Express a measurable response relative to vehicle weight. An absolute
+        // 100 N floor excluded a low coupe even when its loads did respond.
+        const float minimumTransfer=s.tune.mass*9.81f*.002f;
+        check(s.tune.name,"crosswind changes physical wheel loads",transfer>minimumTransfer,transfer,minimumTransfer);
         check(s.tune.name,"braked wind test remains on the pad",s.origin().distanceTo(parked)<.1f,s.origin().distanceTo(parked),.1f);
         s.windGusts=true;float least=1e9f,most=0;
         for(int k=0;k<240*4;++k){s.tick(0,1,0);least=std::min(least,s.aerodynamicForce.length());most=std::max(most,s.aerodynamicForce.length());}
@@ -109,7 +117,9 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
                 s.tick(end?0:std::clamp(demand,0.f,1.f),end?1:std::clamp(-demand*s.tune.driveForce/(s.tune.mass*9.81f*1.8f),0.f,1.f),turn);
                 auto v=s.velocity();finite&=std::isfinite(p.x)&&std::isfinite(p.y)&&std::isfinite(p.z)&&std::isfinite(v.length());
                 maxOmega=std::max(maxOmega,s.angularVelocity().length());
-                for(float t:s.travel)worstTravel=std::max(worstTravel,std::max(s.tune.dims.droop-t,t-s.tune.dims.bump));
+                for(int i=0;i<4;++i){const float lo=i>=2&&s.tune.rearDroop>0?s.tune.rearDroop:s.tune.dims.droop;
+                    const float hi=i>=2&&s.tune.rearBump>0?s.tune.rearBump:s.tune.dims.bump;
+                    worstTravel=std::max(worstTravel,std::max(lo-s.travel[i],s.travel[i]-hi));}
                 for(int i=0;i<4;++i)penetration=std::max(penetration,s.tyrePenetration(i));
                 if(station==1)articulation=std::max(articulation,std::abs(s.travel[0]-s.travel[1]));
                 if(jumps){jumpProgress=p.z;jumpUp=Vector3(0,1,0).applyQuaternion(s.rotation()).y;
@@ -127,6 +137,55 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
         check(s.tune.name,"vehicle lands after ballistic flight",landed,landed,1);
         check(s.tune.name,"both jumps leave the ground",jumpTimes[0]>.10f&&jumpTimes[1]>.10f,std::min(jumpTimes[0],jumpTimes[1]),.10f);
         check(s.tune.name,"both jumps land and continue upright",jumpLanded[0]&&jumpLanded[1]&&jumpProgress>181&&jumpUp>.65f,jumpProgress,181);
+        if(tunes[n].visualRig==VisualRig::Catrina){
+            std::ofstream hydraulicTrace(output/"catrina-hydraulics.csv");
+            hydraulicTrace<<"scenario,t,x,y,z,speed,contacts,frontGap,up,fl,fr,rl,rr,flLoad,frLoad,rlLoad,rrLoad,flPreload,frPreload,rlPreload,rrPreload\n";
+            auto writeHydraulics=[&](const char* scenario){auto p=s.origin();
+                hydraulicTrace<<scenario<<','<<s.time<<','<<p.x<<','<<p.y<<','<<p.z<<','<<s.speed()<<','<<s.contactCount()<<','<<(s.contacts[0].gap+s.contacts[1].gap)*.5f<<','<<Vector3(0,1,0).applyQuaternion(s.rotation()).y;
+                for(float value:s.travel)hydraulicTrace<<','<<value;for(float value:s.load)hydraulicTrace<<','<<value;for(float value:s.hydraulics.extension)hydraulicTrace<<','<<value;hydraulicTrace<<'\n';};
+            s.select(n,stations[0]);for(int k=0;k<240*5;++k)s.tick(0,1,0);
+            const float frontWeight=s.load[0]+s.load[1];float peakFrontLoad=0,frontFlight=0,maxFrontGap=0,hydraulicPenetration=0,minimumUp=1;
+            s.hydraulics.mode=HydraulicMode::FrontHop;
+            for(int k=0;k<240*10;++k){s.tick(0,1,0);peakFrontLoad=std::max(peakFrontLoad,s.load[0]+s.load[1]);
+                const float gap=std::min(s.contacts[0].gap,s.contacts[1].gap);maxFrontGap=std::max(maxFrontGap,gap);
+                if(!s.grounded[0]&&!s.grounded[1]&&gap>.025f)frontFlight+=Simulation::fixedStep;
+                minimumUp=std::min(minimumUp,Vector3(0,1,0).applyQuaternion(s.rotation()).y);
+                for(int i=0;i<4;++i)hydraulicPenetration=std::max(hydraulicPenetration,s.tyrePenetration(i));
+                if(k%24==0)writeHydraulics("front-hop");if(k%240==0)pulse();}
+            check(s.tune.name,"hydraulic charge increases front ground load",peakFrontLoad>frontWeight*1.4f,peakFrontLoad/frontWeight,1.4f);
+            check(s.tune.name,"hydraulic front hop has actual tyre flight",frontFlight>.15f&&maxFrontGap>.06f,frontFlight,.15f);
+            check(s.tune.name,"hydraulic hop remains upright",minimumUp>.65f,minimumUp,.65f);
+            check(s.tune.name,"hydraulic landings respect tyre contacts",hydraulicPenetration<.035f,hydraulicPenetration,.035f);
+            s.hydraulics.mode=HydraulicMode::Cruise;for(int k=0;k<240*8;++k)s.tick(0,1,0);
+            check(s.tune.name,"hydraulic hop returns to four wheel rest",s.contactCount()==4&&s.velocity().length()<.035f,s.velocity().length(),.035f);
+            for(int raisedSide=0;raisedSide<2;++raisedSide){
+                s.select(n,stations[0]);for(int k=0;k<240*4;++k)s.tick(0,1,0);
+                s.hydraulics.mode=raisedSide?HydraulicMode::ThreeWheelRight:HydraulicMode::ThreeWheelLeft;
+                float supportedTime=0,largestGap=0;bool stable=true;
+                for(int k=0;k<240*8;++k){s.tick(0,1,0);if(k>240*4){
+                    if(!s.grounded[raisedSide]&&s.contactCount()==3&&s.contacts[raisedSide].gap>.025f)supportedTime+=Simulation::fixedStep;
+                    largestGap=std::max(largestGap,s.contacts[raisedSide].gap);stable=stable&&Vector3(0,1,0).applyQuaternion(s.rotation()).y>.75f;}
+                    if(k%24==0)writeHydraulics(raisedSide?"right-three-wheel":"left-three-wheel");if(k%240==0)pulse();}
+                check(s.tune.name,raisedSide?"right three wheel holds three physical contacts":"left three wheel holds three physical contacts",supportedTime>2&&stable,supportedTime,2);
+                auto beforeDrive=s.origin();float movingThree=0;
+                for(int k=0;k<240*4;++k){const float demand=std::clamp((1.7f-s.speed())*.4f,0.f,.3f);s.tick(demand,0,0);
+                    if(!s.grounded[raisedSide]&&s.contactCount()==3)movingThree+=Simulation::fixedStep;
+                    if(k%24==0)writeHydraulics(raisedSide?"right-three-wheel-drive":"left-three-wheel-drive");}
+                check(s.tune.name,raisedSide?"right three wheel drives through rear tyres":"left three wheel drives through rear tyres",s.origin().distanceTo(beforeDrive)>2&&movingThree>1,s.origin().distanceTo(beforeDrive),2);
+            }
+            s.select(n,stations[0]);s.hydraulics.mode=HydraulicMode::Raised;for(int k=0;k<240*3;++k)s.tick(0,1,0);
+            s.kick(Vector3(0,0,8));s.tick(0,0,0);check(s.tune.name,"hydraulics speed interlock engages",s.hydraulics.speedInterlock,s.hydraulics.speedInterlock,1);
+            for(int k=0;k<240;++k)s.tick(.8f,0,0);
+            const float remaining=*std::max_element(s.hydraulics.extension.begin(),s.hydraulics.extension.end());
+            check(s.tune.name,"hydraulics retract above six metres per second",remaining<.001f,remaining,.001f);
+            s.select(n,stations[0]);s.lift(8);auto airStart=s.origin();auto airRotation=s.rotation();s.hydraulics.mode=HydraulicMode::FrontHop;
+            for(int k=0;k<120;++k)s.tick(0,0,0);auto hydraulicFall=s.origin().sub(airStart);
+            check(s.tune.name,"airborne hydraulics cannot thrust or rotate chassis",std::abs(hydraulicFall.y+1.22625f)<.04f&&std::hypot(hydraulicFall.x,hydraulicFall.z)<.002f&&airRotation.angleTo(s.rotation())<.001f,hydraulicFall.y,-1.22625f);
+            s.select(n,stations[0]);s.hydraulics.mode=HydraulicMode::FrontHop;for(int k=0;k<240*5;++k)s.tick(.08f,0,0);auto repeatHydraulic=s.origin();auto repeatHydraulicQ=s.rotation();
+            s.select(n,stations[0]);s.hydraulics.mode=HydraulicMode::FrontHop;for(int k=0;k<240*5;++k)s.tick(.08f,0,0);
+            const float repeatError=s.origin().distanceTo(repeatHydraulic);
+            check(s.tune.name,"hydraulic replay is deterministic",repeatError<.0001f&&repeatHydraulicQ.angleTo(s.rotation())<.001f,repeatError,.0001f);
+        }
         if(tunes[n].visualRig==VisualRig::Baja){
             s.select(n,stations[6]);float airTime=0,peak=0;bool touchedDown=false;float boostSeconds=0;
             for(int k=0;k<240*12;++k){
@@ -142,6 +201,31 @@ inline void audit(const Terrain& terrain,const std::filesystem::path& output){
             float up=Vector3(0,1,0).applyQuaternion(s.rotation()).y;
             check(s.tune.name,"boosted ramp has airborne arc and landing",airTime>.1f&&touchedDown&&boostSeconds>.1f&&peak>.5f,airTime,.1f);
             check(s.tune.name,"boosted jump continues upright",s.origin().z>140&&up>.65f,s.origin().z,140);
+        }
+    }
+    // The city uses the same sampled contact surface and exact static building
+    // recipe as the rendered world. Keep these checks before Canvas creation.
+    {
+        Terrain cityTerrain(true);Simulation urban(cityTerrain);float error=0;
+        for(float x:{-31.f,-24.f,0.f,24.f,31.f})for(float z:{26.f,36.f,70.f,104.f,114.f}){
+            if(x==0&&z==70)continue; // courtyard planter is visual dressing
+            error=std::max(error,std::abs(urban.rayHeight(x,z)-cityTerrain.height(x,z)));}
+        check("city","visible street and curb match collision",error<.001f,error,.001f);
+        float roofError=0;for(const auto& b:city::buildings)roofError=std::max(roofError,std::abs(urban.rayHeight(b.x,b.z)-(.16f+b.h)));
+        check("city","all building solids match visible envelopes",roofError<.001f,roofError,.001f);
+        for(int n=0;n<static_cast<int>(tunes.size());++n){
+            Station start{"city","",-31,46,0};urban.select(n,start);
+            for(int k=0;k<480;++k)urban.tick(0,1,0);
+            check(urban.tune.name,"city spawn has four supported tyres",urban.contactCount()==4,urban.contactCount(),4);
+            int waypoint=1,transitions=0;float path=0;auto last=urban.origin();bool finite=true;
+            for(int k=0;k<240*115;++k){auto p=urban.origin(),f=Vector3(0,0,1).applyQuaternion(urban.rotation());int prior=waypoint;
+                auto input=city::tour(p.x,p.z,std::atan2(f.x,f.z),urban.speed(),4,waypoint);if(prior!=waypoint)++transitions;
+                urban.tick(input.gas,input.brake,input.turn);auto now=urban.origin();path+=now.distanceTo(last);last=now;
+                finite=finite&&std::isfinite(now.x)&&std::isfinite(now.y)&&std::abs(now.x)<64&&now.z>-22&&now.z<194;if(k%240==0)pulse();}
+            check(urban.tune.name,"city tour completes all eight corners",transitions>=8,transitions,8);
+            check(urban.tune.name,"city tour remains finite inside the world",finite&&path>200,path,200);
+            start.yaw=1.5707963f;start.z=49;urban.select(n,start);for(int k=0;k<240*6;++k)urban.tick(.5f,0,0);
+            check(urban.tune.name,"building wall stops driven chassis",urban.origin().x<-23,urban.origin().x,-23);
         }
     }
     std::ofstream out(output/"result.json");out<<"{\"status\":\""<<(failed?"FAIL":"PASS")<<"\",\"passed\":"<<passed<<",\"failed\":"<<failed

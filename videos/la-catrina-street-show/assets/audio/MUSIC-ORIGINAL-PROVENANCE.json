@@ -1,0 +1,15 @@
+{
+  "title": "Switchback / Sunset Pulse",
+  "type": "original locally authored instrumental",
+  "durationSeconds": 45,
+  "sampleRate": 48000,
+  "channels": 2,
+  "tempoBpm": 120,
+  "seed": 27041984,
+  "source": "make_music.py",
+  "externalSamples": false,
+  "engineAudio": false,
+  "license": "Original generated composition and synthesis code for this project; no external samples or third-party music.",
+  "sha256": "2f5ef696cf47c2c49c54b243258b641c0c003d0ed4eaef6ae7c657769755a5d0",
+  "normalization": "EBU R128 loudnorm target -18 LUFS, true peak -2.5 dBTP, LRA8"
+}

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "cliVersion": "0.9.19",
+  "studioUrl": "http://127.0.0.1:3002/#project/la-catrina-street-show",
+  "httpStatus": 200,
+  "openedHeadless": true,
+  "browserGpu": "software",
+  "viewport": {
+    "width": 960,
+    "height": 600
+  },
+  "title": "HyperFrames Studio",
+  "composition": {
+    "duration": 48,
+    "width": 960,
+    "height": 600,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:3002/api/projects/la-catrina-street-show/preview/assets/video/reveal.mp4",
+        "readyState": 4,
+        "width": 960,
+        "height": 600,
+        "error": null
+      },
+      {
+        "src": "http://127.0.0.1:3002/api/projects/la-catrina-street-show/preview/assets/video/hop.mp4",
+        "readyState": 0,
+        "width": 0,
+        "height": 0,
+        "error": null
+      }
+    ]
+  },
+  "pageErrors": [],
+  "screenshot": "proof/preview-editor.png",
+  "screenshotSha256": "bae2e0bc2ed5319b4d2903a6662252061d7d47dbd4b88e8008fcc84b9037a2b5",
+  "frameyMentioned": false,
+  "listeningReviewed": false,
+  "reviewWindowSeconds": 30,
+  "stopped": true
+}

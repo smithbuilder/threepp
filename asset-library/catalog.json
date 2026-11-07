@@ -34,6 +34,11 @@
       "id": "model.mature-conifers",
       "type": "gltf-model",
       "manifest": "models/trees/asset.json"
+    },
+    {
+      "id": "vehicle.la-catrina",
+      "type": "gltf-model",
+      "manifest": "models/la-catrina/asset.json"
     }
   ],
   "exclusions": [

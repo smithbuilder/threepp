@@ -1,0 +1,22 @@
+{
+  "state": "PREPRODUCTION",
+  "scope": "Static preview and final-command preparation only; no accepted footage or live preview is claimed.",
+  "pinnedLocalCli": "0.9.19",
+  "localNode": "v24.16.0",
+  "localChromeAvailable": true,
+  "pinnedPuppeteerDependencyResolved": true,
+  "previewLifecycleFlagsVerifiedAgainstLocalCliSource": true,
+  "javascriptSyntax": "PASS",
+  "pythonSyntax": "PASS",
+  "powershellSyntax": "PASS",
+  "packageJsonSyntax": "PASS",
+  "missingAcceptanceAndSourceGate": "PASS: refused with exit1 before browser work",
+  "directUnsupervisedPreviewGuard": "PASS: refused with exit1 before resolving or launching the preview",
+  "renderRequiresCurrentCheckSnapshotAndPreviewReceipts": true,
+  "framePocketsSourcePackageEntryPreserved": true,
+  "livePreviewRuntimeValidation": "PENDING after exact-model acceptance and six verified native clips",
+  "browserStarted": false,
+  "nativeStarted": false,
+  "renderStarted": false,
+  "deliveryClaim": false
+}

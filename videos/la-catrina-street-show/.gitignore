@@ -1,0 +1,18 @@
+# Native footage, rendered film and delivery archives stay on the workstation.
+*.mp4
+*.zip
+node_modules/
+.hyperframes/
+.media/
+.thumbnails/
+.waveform-cache/
+__pycache__/
+/debug.log
+
+# Frozen full-engine source snapshots are retained in the editable archive.
+/Source/project/
+
+# Intermediate comparison frames, preview frames and local execution logs.
+/proof/delivery-frames/ref-*.png
+/proof/snapshots/frame-*.png
+/proof/*.log

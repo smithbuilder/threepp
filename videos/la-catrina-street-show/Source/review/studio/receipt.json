@@ -1,0 +1,150 @@
+{
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "referenceSha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+  "captures": [
+    {
+      "name": "front",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front.png",
+      "sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "view": 0,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122200-974",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\side.png",
+      "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "view": 1,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122202-841",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "rear",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear.png",
+      "sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "view": 2,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122203-930",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "top",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\top.png",
+      "sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "view": 3,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122205-010",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "front-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-detail.png",
+      "sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "view": 4,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122206-101",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "rear-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-detail.png",
+      "sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "view": 5,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122207-198",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "cabin",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\cabin.png",
+      "sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "view": 6,
+      "pose": 1,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122208-278",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "trunk",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\trunk.png",
+      "sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "view": 2,
+      "pose": 2,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122209-364",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "bay-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\bay-detail.png",
+      "sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "view": 5,
+      "pose": 2,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122210-456",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "hood-open",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\hood-open.png",
+      "sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "view": 0,
+      "pose": 3,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122211-551",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "front-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-suspension-service.png",
+      "sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "view": 4,
+      "pose": 3,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122212-638",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "rear-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-suspension-service.png",
+      "sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "view": 5,
+      "pose": 3,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122213-720",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "right-side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\right-side.png",
+      "sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "view": 1,
+      "pose": 3,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122214-785",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "wheel-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\wheel-detail.png",
+      "sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "view": 4,
+      "pose": 2,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122215-894",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "front-corner-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-corner-wheel-off.png",
+      "sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "view": 6,
+      "pose": 3,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122217-003",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    },
+    {
+      "name": "rear-links-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-links-wheel-off.png",
+      "sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "view": 6,
+      "pose": 2,
+      "session": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-122218-087",
+      "binarySha256": "3123b9cf2570657b8c1e9a54c3f31160f2b2f81845e1b167e31432baa318f73a"
+    }
+  ]
+}

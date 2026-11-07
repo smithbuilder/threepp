@@ -1,0 +1,10 @@
+<template><style>
+@font-face{font-family:Barlow;src:url("assets/fonts/Barlow-Regular.ttf");font-weight:400}
+@font-face{font-family:BarlowCondensed;src:url("assets/fonts/BarlowCondensed-Bold.ttf");font-weight:700}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Barlow,sans-serif}
+#root .footage{position:absolute;inset:0;width:960px;height:600px;object-fit:contain;z-index:0}
+#root .caption{position:absolute;inset:0;z-index:2;pointer-events:none}
+#root .label{position:absolute;left:96px;top:60px;color:#fff7ed;text-shadow:0 2px 4px #151014,0 0 2px #151014;display:flex;flex-direction:column;gap:4px}
+#root .headline{font-family:BarlowCondensed,sans-serif;font-size:46px;font-weight:700;line-height:1;letter-spacing:1px;white-space:nowrap}
+#root .subline{font-family:Barlow,sans-serif;font-size:19px;line-height:1.2;letter-spacing:2px;white-space:nowrap}
+</style><div id="root" data-composition-id="left" data-width="960" data-height="600"><video id="left-video" class="clip footage" data-start="0" data-duration="8" data-media-start="0" data-track-index="0" src="assets/video/left.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video></div><script>const tl=gsap.timeline({paused:true});window.__timelines["left"]=tl;</script></template>

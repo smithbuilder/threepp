@@ -1,0 +1,275 @@
+{
+  "status": "PASS",
+  "output": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\outputs\\La-Catrina-Street-Show.mp4",
+  "sha256": "4fa5666edd5ba07006919a328570d16da8246b558aeeec14880ff44a2990b72c",
+  "bytes": 32505707,
+  "durationSeconds": 48.0,
+  "video": {
+    "codec": "h264",
+    "width": 960,
+    "height": 600,
+    "fps": 30,
+    "frames": 1440
+  },
+  "poster": {
+    "file": "outputs/La-Catrina-Street-Show.png",
+    "sha256": "db0749f72c335d7fcfce742cb17ca7507dcb27b3e33acc251473138a935ece25",
+    "bytes": 585565,
+    "width": 960,
+    "height": 600,
+    "frame": 310,
+    "timeSeconds": 10.333333333333334,
+    "scene": "hop",
+    "nativeClipFrame": 130,
+    "decodedSample": "proof/delivery-frames/sample-008.png",
+    "selection": "Visually inspected front-pair airborne hero frame; unchanged decoded video pixels."
+  },
+  "audio": {
+    "codec": "aac",
+    "sampleRate": 48000,
+    "channels": 2,
+    "integratedLufs": -20.1,
+    "truePeakDbfs": -5.2,
+    "review": "Measured, not human listened. Credited real recordings reconstruct engine/pump sound."
+  },
+  "fullDecode": "PASS; no decoder errors",
+  "blackFrameScan": "PASS; no98%-black interval at least0.05s",
+  "fastStart": true,
+  "nativeFramesVerified": 1440,
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "nativeCaptureManifestSha256": "567fadde1a5b474668b4fcc5ef301914f739919c9b24d7dcab98cbca23505c4a",
+  "verifiedSourceManifestSha256": "67e0cbc2c3c7bbdbe41eb1a86bf371d5eb43cc40e24ebfd3be9fae6097c9ee7d",
+  "projectHtmlSha256": "bd43add69d6ace3fdb5047aa1e5b3db0d5b62965ca13c07a2f63d53a0b8f7484",
+  "sourceCorrespondence": [
+    {
+      "frame": 0,
+      "time": 0.0,
+      "scene": "reveal",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.0875,
+      "decodedPngSha256": "96eef2efb09f4bf3b5d8c631999d5d1021d441859bdbdbfe0c2cafa829a73d7f"
+    },
+    {
+      "frame": 24,
+      "time": 0.8,
+      "scene": "reveal",
+      "sourceFrame": 24,
+      "nativeRegionMeanAbsoluteError": 1.4789,
+      "decodedPngSha256": "a9f931a5ca91044ec64e373ea64d3d2b61aee310caec31cd5ae0f49d6ebf065e"
+    },
+    {
+      "frame": 90,
+      "time": 3.0,
+      "scene": "reveal",
+      "sourceFrame": 90,
+      "nativeRegionMeanAbsoluteError": 1.5931,
+      "decodedPngSha256": "ff7b8c693d70ddd6af4a89e01b782067bf56f26183680b6e0ff2e285fc9b65ea"
+    },
+    {
+      "frame": 179,
+      "time": 5.966666666666667,
+      "scene": "reveal",
+      "sourceFrame": 179,
+      "nativeRegionMeanAbsoluteError": 1.647,
+      "decodedPngSha256": "e35ea72ba4265e5a3d1741d879d2beac3c8bf113fa8f66261cfcf1a2cb04fb52"
+    },
+    {
+      "frame": 180,
+      "time": 6.0,
+      "scene": "hop",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.5103,
+      "decodedPngSha256": "8dfff5ace82301d354f46fd56280e7f0cd7c5556180261c818baa7bc9c48d8b1"
+    },
+    {
+      "frame": 294,
+      "time": 9.8,
+      "scene": "hop",
+      "sourceFrame": 114,
+      "nativeRegionMeanAbsoluteError": 1.9369,
+      "decodedPngSha256": "3f6458005c437fc71f68d962da49220b4dfb87b3852f7729f2d0da2d3ae6e06c"
+    },
+    {
+      "frame": 300,
+      "time": 10.0,
+      "scene": "hop",
+      "sourceFrame": 120,
+      "nativeRegionMeanAbsoluteError": 1.9648,
+      "decodedPngSha256": "45ee736dd81fe069088e323676ced5c25bbe7d1dde2de7aa2ac3231ad88bb2d3"
+    },
+    {
+      "frame": 310,
+      "time": 10.333333333333334,
+      "scene": "hop",
+      "sourceFrame": 130,
+      "nativeRegionMeanAbsoluteError": 1.9798,
+      "decodedPngSha256": "db0749f72c335d7fcfce742cb17ca7507dcb27b3e33acc251473138a935ece25"
+    },
+    {
+      "frame": 320,
+      "time": 10.666666666666666,
+      "scene": "hop",
+      "sourceFrame": 140,
+      "nativeRegionMeanAbsoluteError": 1.9444,
+      "decodedPngSha256": "3ba484868e67bb95c605f7f11f6dfa9879356ef1977c9f1daf84e12a677817d6"
+    },
+    {
+      "frame": 330,
+      "time": 11.0,
+      "scene": "hop",
+      "sourceFrame": 150,
+      "nativeRegionMeanAbsoluteError": 1.9766,
+      "decodedPngSha256": "f35186baffd71e6e4024e5b01580ec7fdf56969818e5804b87ef3f17fadd57dd"
+    },
+    {
+      "frame": 340,
+      "time": 11.333333333333334,
+      "scene": "hop",
+      "sourceFrame": 160,
+      "nativeRegionMeanAbsoluteError": 1.9638,
+      "decodedPngSha256": "4071d73995c3ce9f7651c2bc779db09f30793da78a0ad7cfd44a48631e957175"
+    },
+    {
+      "frame": 350,
+      "time": 11.666666666666666,
+      "scene": "hop",
+      "sourceFrame": 170,
+      "nativeRegionMeanAbsoluteError": 1.9728,
+      "decodedPngSha256": "217ff8fb3f227ef203d41a4b80108555d4dd7616aec7517e11fb12d3a1c0b39b"
+    },
+    {
+      "frame": 360,
+      "time": 12.0,
+      "scene": "hop",
+      "sourceFrame": 180,
+      "nativeRegionMeanAbsoluteError": 2.015,
+      "decodedPngSha256": "8d7ab0e19e3a4eecc15e3241aeada9341e2f703bc1ef84fb085ee055b0808a94"
+    },
+    {
+      "frame": 479,
+      "time": 15.966666666666667,
+      "scene": "hop",
+      "sourceFrame": 299,
+      "nativeRegionMeanAbsoluteError": 2.0765,
+      "decodedPngSha256": "1f1824fae9c015e9eed4959102d2b3ca7e9110c39f3077ee4a24a4404dc9e00b"
+    },
+    {
+      "frame": 480,
+      "time": 16.0,
+      "scene": "wheel",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.4485,
+      "decodedPngSha256": "d13a38b22caaa04b2b4640d14a2b3d0e7fbef247a5e155a92817cbb1c2fd1406"
+    },
+    {
+      "frame": 555,
+      "time": 18.5,
+      "scene": "wheel",
+      "sourceFrame": 75,
+      "nativeRegionMeanAbsoluteError": 1.7538,
+      "decodedPngSha256": "e359c162f21b63917b5b59a3908bd157fc942b63ef2515414d8e028f0cf1adef"
+    },
+    {
+      "frame": 629,
+      "time": 20.966666666666665,
+      "scene": "wheel",
+      "sourceFrame": 149,
+      "nativeRegionMeanAbsoluteError": 1.8778,
+      "decodedPngSha256": "901a93a9fb31db0f56062763d8db6de5ddd0a8dda2e975b2074ff02cd7234cf9"
+    },
+    {
+      "frame": 630,
+      "time": 21.0,
+      "scene": "left",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.3222,
+      "decodedPngSha256": "bec7d8208b8e5f729787da2e850f51c9f8684291f124382be1f73be8467dd4fe"
+    },
+    {
+      "frame": 750,
+      "time": 25.0,
+      "scene": "left",
+      "sourceFrame": 120,
+      "nativeRegionMeanAbsoluteError": 1.5928,
+      "decodedPngSha256": "f5d6d33cb53fd786697137c6eec461292056c8c9f20c3f1875dad1e3c36df12e"
+    },
+    {
+      "frame": 869,
+      "time": 28.966666666666665,
+      "scene": "left",
+      "sourceFrame": 239,
+      "nativeRegionMeanAbsoluteError": 1.6378,
+      "decodedPngSha256": "aea26016296d802a7ab5a41cfcb327afea4a43e5389c35152a32061976212492"
+    },
+    {
+      "frame": 870,
+      "time": 29.0,
+      "scene": "right",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.1939,
+      "decodedPngSha256": "4d625a58c3dbc2926fd76dfe5487e95f48b4a1373b34bc5ec3dce828362c1f30"
+    },
+    {
+      "frame": 990,
+      "time": 33.0,
+      "scene": "right",
+      "sourceFrame": 120,
+      "nativeRegionMeanAbsoluteError": 1.5343,
+      "decodedPngSha256": "81f355a7b7941bb74e0a607d650048ca84196cc92cebc1cc9e4820660f37ca61"
+    },
+    {
+      "frame": 1109,
+      "time": 36.96666666666667,
+      "scene": "right",
+      "sourceFrame": 239,
+      "nativeRegionMeanAbsoluteError": 1.558,
+      "decodedPngSha256": "b5b768a1f55302f1b73acc245f2b0ee61faa9a7e224d70e441478eb59342c1cc"
+    },
+    {
+      "frame": 1110,
+      "time": 37.0,
+      "scene": "exit",
+      "sourceFrame": 0,
+      "nativeRegionMeanAbsoluteError": 1.3688,
+      "decodedPngSha256": "2ee8e1a91b3e0cfe9049be54841ca9ec269a977d792ca1e67bd67f91f055facc"
+    },
+    {
+      "frame": 1275,
+      "time": 42.5,
+      "scene": "exit",
+      "sourceFrame": 165,
+      "nativeRegionMeanAbsoluteError": 1.5613,
+      "decodedPngSha256": "22b5a8efaf70b7294cf84ef5d2082c5bac7591fc0606eddd514ba71a7e211833"
+    },
+    {
+      "frame": 1350,
+      "time": 45.0,
+      "scene": "exit",
+      "sourceFrame": 240,
+      "nativeRegionMeanAbsoluteError": 1.5332,
+      "decodedPngSha256": "6acd0d1b1fe545567698e5fb00439dfc20e28286d962708d3171befbf1aa088f"
+    },
+    {
+      "frame": 1425,
+      "time": 47.5,
+      "scene": "exit",
+      "sourceFrame": 315,
+      "nativeRegionMeanAbsoluteError": 1.4854,
+      "decodedPngSha256": "2c68465b511b706e5d0456c0d1b4ebb955050a9196f912be4801cc0c58064d9e"
+    },
+    {
+      "frame": 1439,
+      "time": 47.96666666666667,
+      "scene": "exit",
+      "sourceFrame": 329,
+      "nativeRegionMeanAbsoluteError": 1.5244,
+      "decodedPngSha256": "9f849ee50c4708f4089c1f2879fe7bd5ddba4ae2b41c8ddb58a0807d842ba753"
+    }
+  ],
+  "correspondenceLimit": "H.264 re-encoding causes small pixel differences. Title regions are excluded only in the two title scenes.",
+  "notes": [
+    "Actual native city driving and hydraulic controller; normal-speed clips.",
+    "No upscale, crop, interpolation, generated replacement footage or color grade.",
+    "Independent model and final editorial reviews are recorded separately."
+  ]
+}

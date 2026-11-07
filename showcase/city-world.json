@@ -1,0 +1,18 @@
+{
+  "id": "mercer-city-block",
+  "title": "Mercer City Block",
+  "mode": "free_drive_and_environment_review",
+  "entrypoint": "Launch-City-Block.cmd",
+  "worldPicker": "Launch-Playground.cmd",
+  "supervisor": "Run-Evaluation.ps1",
+  "arguments": { "Example": "suspension_playground", "World": "city", "Vehicle": "safari", "View": 1, "Seconds": 300 },
+  "layout": "showcase/CityLayout.hpp",
+  "visuals": "showcase/CityBlock.hpp",
+  "materials": "showcase/assets/city",
+  "rebuildMaterials": "scripts/generate-city-materials.py",
+  "sharedPhysics": "showcase/PlaygroundPhysics.hpp",
+  "vehicleCatalog": "showcase/PlaygroundVehicles.hpp",
+  "units": "metres, +Y up, +Z forward",
+  "graphics": { "width": 960, "height": 600, "maxFps": 30, "shadowSize": 512 },
+  "scope": "One dressed warehouse block with surrounding streets and context buildings. Opaque glazing, closed buildings, static props, no traffic or pedestrians."
+}

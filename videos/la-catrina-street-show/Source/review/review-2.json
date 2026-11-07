@@ -1,0 +1,312 @@
+{
+  "evaluator": "independent reviewer B",
+  "evaluator_identity": "/root/round08_reviewer_b",
+  "round": 11,
+  "assessment_date": "2026-11-06",
+  "model_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\la-catrina.glb",
+  "model_sha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "reference_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\references\\La-Catrina-Master.jpg",
+  "reference_sha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+  "receipt_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\receipt.json",
+  "receipt_sha256": "b5853e1bb17cd9a2279024fc1c3aea1f420df0edc7f34e040ee2c514969a0df7",
+  "weighted_score_unrounded": 8.115,
+  "threshold": 8.0,
+  "threshold_met": true,
+  "decision": "Threshold met without rounding up",
+  "category_scores": [
+    {
+      "id": "silhouette_proportions",
+      "name": "Silhouette and proportions",
+      "weight": 0.25,
+      "score": 8.4,
+      "weighted_contribution": 2.1,
+      "evidence": [
+        "side",
+        "right-side",
+        "top",
+        "front",
+        "rear"
+      ],
+      "finding": "Coherent long hardtop coupe, low body and tucked rear wheel. Thin roof-end cap and angular pillar transitions remain."
+    },
+    {
+      "id": "body_surfacing_panel_fit",
+      "name": "Body surfacing and panel fit",
+      "weight": 0.2,
+      "score": 7.9,
+      "weighted_contribution": 1.58,
+      "evidence": [
+        "front-detail",
+        "rear-detail",
+        "wheel-detail",
+        "side",
+        "right-side"
+      ],
+      "finding": "Fitted panels, rounded arch returns and lined arch. Broad lower stampings, abrupt recess ends and sharply segmented outer corners/junctions remain."
+    },
+    {
+      "id": "paint_material_fidelity",
+      "name": "Paint and material fidelity",
+      "weight": 0.2,
+      "score": 7.8,
+      "weighted_contribution": 1.56,
+      "evidence": [
+        "top",
+        "wheel-detail",
+        "cabin",
+        "side",
+        "right-side"
+      ],
+      "finding": "Readable palette, scroll band, cameo and scallop layout. Ornament is coarser than the atlas; close-view grain reads as broad pebbled roughness rather than fine flakes beneath a smooth highlight. Lighting limits gloss/color comparison."
+    },
+    {
+      "id": "wheels_chrome_cabin_detail",
+      "name": "Wheels, chrome, cabin, and detail",
+      "weight": 0.2,
+      "score": 8.3,
+      "weighted_contribution": 1.66,
+      "evidence": [
+        "wheel-detail",
+        "front-suspension-service",
+        "rear-suspension-service",
+        "rear-detail",
+        "front-detail",
+        "cabin"
+      ],
+      "finding": "Coherent wire wheels, whitewalls, tread, lamp construction, round mirrors, rear brightwork, plum benches and wired cabin control. Upholstery-channel ends, coarse tread and bumper corners remain simplified."
+    },
+    {
+      "id": "visible_mechanism_component_plausibility",
+      "name": "Visible mechanism and component plausibility",
+      "weight": 0.15,
+      "score": 8.1,
+      "weighted_contribution": 1.215,
+      "evidence": [
+        "front-suspension-service",
+        "rear-suspension-service",
+        "front-corner-wheel-off",
+        "rear-links-wheel-off",
+        "bay-detail",
+        "hood-open"
+      ],
+      "finding": "Frame-connected rams and spring/damper/axle/link/driveline/equipment relationships read as an assembled custom mechanism. Curved bay/trunk cover bases and broad plain surfaces remain less integrated than the atlas."
+    }
+  ],
+  "inspected_image_count": 16,
+  "all_capture_hashes_verified": true,
+  "inspected_images": [
+    {
+      "name": "front",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front.png",
+      "sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "receipt_sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\side.png",
+      "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "receipt_sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "rear",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear.png",
+      "sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "receipt_sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "top",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\top.png",
+      "sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "receipt_sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "front-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-detail.png",
+      "sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "receipt_sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "rear-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-detail.png",
+      "sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "receipt_sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "cabin",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\cabin.png",
+      "sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "receipt_sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "trunk",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\trunk.png",
+      "sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "receipt_sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "bay-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\bay-detail.png",
+      "sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "receipt_sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "hood-open",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\hood-open.png",
+      "sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "receipt_sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "front-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-suspension-service.png",
+      "sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "receipt_sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "rear-suspension-service",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-suspension-service.png",
+      "sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "receipt_sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "right-side",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\right-side.png",
+      "sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "receipt_sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "wheel-detail",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\wheel-detail.png",
+      "sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "receipt_sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "front-corner-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-corner-wheel-off.png",
+      "sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "receipt_sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "hash_verified": true,
+      "visually_inspected": true
+    },
+    {
+      "name": "rear-links-wheel-off",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-links-wheel-off.png",
+      "sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "receipt_sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "hash_verified": true,
+      "visually_inspected": true
+    }
+  ],
+  "inspected_reference_images": [
+    {
+      "name": "La-Catrina-Master.jpg",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\references\\La-Catrina-Master.jpg",
+      "sha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+      "visually_inspected": true
+    },
+    {
+      "name": "hero-original-detail.png",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\reference-analysis\\hero-original-detail.png",
+      "sha256": "177f5fbff763ce14e718d5a0814b0b9313329b7eef9bd620c2769881f4a02625",
+      "visually_inspected": true
+    },
+    {
+      "name": "top-view-original-detail.png",
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\reference-analysis\\top-view-original-detail.png",
+      "sha256": "bfd1a5188edb8ff6508990c69b8c34085d00facd42166f5825a8dae8a3f117ed",
+      "visually_inspected": true
+    }
+  ],
+  "independence": {
+    "other_evaluator_consulted": false,
+    "other_evaluator_reports_read": false,
+    "root_judgments_consulted": false,
+    "technical_pass_results_consulted": false,
+    "prior_reports_reopened": false,
+    "model_or_source_modified": false,
+    "native_or_browser_apps_launched": false,
+    "basis": "Original atlas versus current round-11 frozen captures. No effort, test, feature, budget or revision-count credit."
+  },
+  "remaining_visible_flaws": [
+    {
+      "priority": 1,
+      "images": [
+        "wheel-detail",
+        "cabin",
+        "top"
+      ],
+      "flaw": "Broad pebbled paint-grain appearance and coarse ornament/cameo line hierarchy.",
+      "action": "Reduce broad roughness, retain fine flakes under smooth clear-coat highlights, and refine internal fan/flower and cameo detail."
+    },
+    {
+      "priority": 2,
+      "images": [
+        "wheel-detail",
+        "front-detail",
+        "rear-detail",
+        "side",
+        "right-side"
+      ],
+      "flaw": "Abrupt stamping ends/corner junctions and thin roof-end cap.",
+      "action": "Blend recess ends and corner surfaces; integrate roof perimeter with pillars."
+    },
+    {
+      "priority": 3,
+      "images": [
+        "cabin",
+        "front-suspension-service",
+        "rear-suspension-service",
+        "front-detail",
+        "rear-detail"
+      ],
+      "flaw": "Rigid upholstery-channel ends, coarse road-tire groove character and simplified bumper corners.",
+      "action": "Join and round upholstery terminations, refine tread groove scale, and shape bumper corners against the atlas."
+    },
+    {
+      "priority": 4,
+      "images": [
+        "hood-open",
+        "bay-detail"
+      ],
+      "flaw": "Large plain cover surfaces and abrupt cover bases.",
+      "action": "Blend bases into surrounding lining and refine the formed installation treatment."
+    }
+  ],
+  "presentation_exclusions": [
+    "Intentional body/wheel removal, stands and extended service suspension positions",
+    "Beige studio lighting and broad chrome reflections",
+    "960x600 capture sampling and image-edge aliasing"
+  ],
+  "limits": [
+    "Static appearance only; driving feel, moving clearances, hydraulic function and manufacturing suitability are not established.",
+    "Obscured instruments and hidden routes were not inferred absent."
+  ],
+  "report_path": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-b.md"
+}

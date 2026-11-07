@@ -1,0 +1,11 @@
+# Recorded review and render receipts bind the original bytes, including the
+# mixture of LF and CRLF produced by the different authoring tools.
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.png binary
+*.jpg binary
+*.wav binary
+*.mp3 binary
+*.ttf binary
+assets/fonts/OFL.txt -whitespace
+assets/vendor/*.min.js -whitespace
+Source/review/review-1.md -whitespace

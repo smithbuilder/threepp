@@ -1,0 +1,541 @@
+{
+  "status": "PASS",
+  "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "sourceManifestSha256": "67e0cbc2c3c7bbdbe41eb1a86bf371d5eb43cc40e24ebfd3be9fae6097c9ee7d",
+  "nativeManifestSha256": "567fadde1a5b474668b4fcc5ef301914f739919c9b24d7dcab98cbca23505c4a",
+  "reviews": [
+    {
+      "file": "Source/review/review-1.json",
+      "sha256": "dc0724735ba1a1a9393d3a8204fb4eab25266588615a5d8ed3bf2d33fdd2a9be",
+      "score": 8.02,
+      "markdownFile": "Source/review/review-1.md",
+      "markdownSha256": "437499dfc16faae429ce06758ebef68571f708a9464dd9c918149333d79b8a29"
+    },
+    {
+      "file": "Source/review/review-2.json",
+      "sha256": "2ad1a170211afac0143b3dca154e54ff5294bb3ecf98395153f58083669d77b5",
+      "score": 8.115,
+      "markdownFile": "Source/review/review-2.md",
+      "markdownSha256": "718be7af3a03c32a279cfcc4f1e9d1ab7d3ebbcc8e00553e51cabba00599e0c6"
+    }
+  ],
+  "studioReview": {
+    "receiptFile": "Source/review/studio/receipt.json",
+    "receiptSha256": "b5853e1bb17cd9a2279024fc1c3aea1f420df0edc7f34e040ee2c514969a0df7",
+    "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+    "referenceSha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+    "imageCount": 16,
+    "images": [
+      {
+        "name": "front",
+        "file": "Source/review/studio/front.png",
+        "sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c"
+      },
+      {
+        "name": "side",
+        "file": "Source/review/studio/side.png",
+        "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63"
+      },
+      {
+        "name": "rear",
+        "file": "Source/review/studio/rear.png",
+        "sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668"
+      },
+      {
+        "name": "top",
+        "file": "Source/review/studio/top.png",
+        "sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363"
+      },
+      {
+        "name": "front-detail",
+        "file": "Source/review/studio/front-detail.png",
+        "sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7"
+      },
+      {
+        "name": "rear-detail",
+        "file": "Source/review/studio/rear-detail.png",
+        "sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b"
+      },
+      {
+        "name": "cabin",
+        "file": "Source/review/studio/cabin.png",
+        "sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423"
+      },
+      {
+        "name": "trunk",
+        "file": "Source/review/studio/trunk.png",
+        "sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07"
+      },
+      {
+        "name": "bay-detail",
+        "file": "Source/review/studio/bay-detail.png",
+        "sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0"
+      },
+      {
+        "name": "hood-open",
+        "file": "Source/review/studio/hood-open.png",
+        "sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb"
+      },
+      {
+        "name": "front-suspension-service",
+        "file": "Source/review/studio/front-suspension-service.png",
+        "sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c"
+      },
+      {
+        "name": "rear-suspension-service",
+        "file": "Source/review/studio/rear-suspension-service.png",
+        "sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2"
+      },
+      {
+        "name": "right-side",
+        "file": "Source/review/studio/right-side.png",
+        "sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc"
+      },
+      {
+        "name": "wheel-detail",
+        "file": "Source/review/studio/wheel-detail.png",
+        "sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85"
+      },
+      {
+        "name": "front-corner-wheel-off",
+        "file": "Source/review/studio/front-corner-wheel-off.png",
+        "sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c"
+      },
+      {
+        "name": "rear-links-wheel-off",
+        "file": "Source/review/studio/rear-links-wheel-off.png",
+        "sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8"
+      }
+    ],
+    "everyImageHashVerifiedBeforeAndAfterCopy": true
+  },
+  "mechanicalReview": {
+    "file": "Source/review/round-11-mechanical.json",
+    "sha256": "fedfd8a5215ec6c6e44b371a7ab5df06665d6336def03bd416de3208809de1c7",
+    "markdownFile": "Source/review/round-11-mechanical.md",
+    "markdownSha256": "8cbe1e6eeb62f4c4e1ad7e2a5df579c0754c3e6378321bd7371a5d101b49176a",
+    "reproducerFile": "Source/review/round-11-mechanical-check.py",
+    "reproducerSha256": "8e07402ad7311676e4b7b8c433ff7390905ea80e839a90075c01d4770f0db722",
+    "modelManifestFile": "Source/review/accepted-model-manifest.json",
+    "modelManifestSha256": "9db1d88a963fc28606dbd7a885492013353fed6edeeddb4106a5811f691c1c89",
+    "modelSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+    "geometrySha256": "3a34f488900e3ef36348753b32e570ef52c9c2b3ef0deaf89f79ab1eb25d1d3f",
+    "binding": "Unchanged reviewed author sources exported to this geometry; baked shading does not move vertices. Review scope and limitations remain those in the report.",
+    "sourceHashes": {
+      "scripts/catrina_art.py": "e56d7204a21c93ce2989e19bae0668aeb69db332dcc2fc2419d71f5fdf15be2f",
+      "scripts/catrina_hardware.py": "1e199514bf3678746439f168e87d4975abb511889560973df541a2d6d8802c18",
+      "scripts/catrina_frame_pockets.py": "58fc2e937c539f043d15fd4e54aafbdc41fc903f1a6b24ac9e473344ac4dee42",
+      "showcase/CatrinaRig.hpp": "fb4332956f75abccc533cf148215c72ba0b066493e3e7c6e13e10ac25d3b0efd",
+      "scripts/catrina_generate.py": "ea4d28489f2593ea7b2c480ca6625af7c73190c6579f325388073c785357f675",
+      "scripts/baja427_generate.py": "bde8456127da209318026ef8429563caee69ca27a9a8fcd354c1ba877afff70f",
+      "scripts/catrina_reference_paint.py": "b8265fc433b66139ddf4d3882b3700a2647b8462caaef982c05c22415cf57b1c"
+    },
+    "sourceHashesVerifiedAgainstCurrentFilesAndModelManifest": true,
+    "reproducerContext": "Unmodified CPU reproducer. Run from the full engine checkout with the author sources, native pose CSV and prior review dependencies identified in the script/report; the editable film archive is not a standalone engine build."
+  },
+  "entries": [
+    {
+      "file": "Source/review/accepted-model.json",
+      "sha256": "276cf9257ff338a558de87f20178ca7e8963bd3fc66c07202a271acb753b43bf",
+      "bytes": 1122,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\accepted-model.json"
+    },
+    {
+      "file": "Source/review/studio/receipt.json",
+      "sha256": "b5853e1bb17cd9a2279024fc1c3aea1f420df0edc7f34e040ee2c514969a0df7",
+      "bytes": 7809,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\receipt.json"
+    },
+    {
+      "file": "Source/review/studio/front.png",
+      "sha256": "aa1c3d00b3675025a6bb87a097a7cfad0ae3dbfcf00a0963b700ef6d9c95b57c",
+      "bytes": 305137,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front.png"
+    },
+    {
+      "file": "Source/review/studio/side.png",
+      "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63",
+      "bytes": 205472,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\side.png"
+    },
+    {
+      "file": "Source/review/studio/rear.png",
+      "sha256": "8008a1fe2816e9774099981d37d26b9b7ec3cc27f6947cfb449a5819dc0f8668",
+      "bytes": 315418,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear.png"
+    },
+    {
+      "file": "Source/review/studio/top.png",
+      "sha256": "e65b0c7405292119906b20741af69a0f3017c4591f8e8fa93af9446bd3752363",
+      "bytes": 241412,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\top.png"
+    },
+    {
+      "file": "Source/review/studio/front-detail.png",
+      "sha256": "8ab51332b6891e362611a95f138e577a6bb34a66d700ac9412b9f4c3e7a274d7",
+      "bytes": 366403,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-detail.png"
+    },
+    {
+      "file": "Source/review/studio/rear-detail.png",
+      "sha256": "2b597fb7ed5c271cda0aebebb0a543b7576bad6dd1ae8c363d9e777765846d7b",
+      "bytes": 498545,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-detail.png"
+    },
+    {
+      "file": "Source/review/studio/cabin.png",
+      "sha256": "3ce8367b17d7adcc005f4f57ee806d21593a7c7b519b350a4c5c233bf57b8423",
+      "bytes": 667033,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\cabin.png"
+    },
+    {
+      "file": "Source/review/studio/trunk.png",
+      "sha256": "c1899349a104c220b81c01fa142469b8e33b7487df6edcccdcb255aa9e94ed07",
+      "bytes": 347167,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\trunk.png"
+    },
+    {
+      "file": "Source/review/studio/bay-detail.png",
+      "sha256": "86bf4d2673f51086ae336de73fc734b867f9c86f14e58d488f26f5eec50cbfe0",
+      "bytes": 508296,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\bay-detail.png"
+    },
+    {
+      "file": "Source/review/studio/hood-open.png",
+      "sha256": "904d115cd2ba648a2a9c045d84b700a13253240cdb6c1fc7bfcaf28e5a299cbb",
+      "bytes": 345269,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\hood-open.png"
+    },
+    {
+      "file": "Source/review/studio/front-suspension-service.png",
+      "sha256": "df38d989523c97d27a218263ddefac8f39fee6a977549d353257060449b1e36c",
+      "bytes": 339151,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-suspension-service.png"
+    },
+    {
+      "file": "Source/review/studio/rear-suspension-service.png",
+      "sha256": "72d4bdcb4a1c67b3dd29894710cfcf8dcfc49351ad9f5ee6e599c65d2b2fd1d2",
+      "bytes": 443329,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-suspension-service.png"
+    },
+    {
+      "file": "Source/review/studio/right-side.png",
+      "sha256": "e7eb6eebbf1f2d7c761ddc00160f29760dd71204d415fa94f28bc34605df0ecc",
+      "bytes": 182343,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\right-side.png"
+    },
+    {
+      "file": "Source/review/studio/wheel-detail.png",
+      "sha256": "8dcce4e2ec523d267ab41a2440058a00ade5a9bb078b94fb71a90d661eb8ad85",
+      "bytes": 721598,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\wheel-detail.png"
+    },
+    {
+      "file": "Source/review/studio/front-corner-wheel-off.png",
+      "sha256": "875349812c973a727d3c4a658455f26bc74902ca21ccbc452af79c7866e1c04c",
+      "bytes": 384251,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\front-corner-wheel-off.png"
+    },
+    {
+      "file": "Source/review/studio/rear-links-wheel-off.png",
+      "sha256": "da59e225c62efa1e6c5bbd9250abbea843e795a0d24818c45f9978aff948ece8",
+      "bytes": 464113,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\round-11\\studio\\rear-links-wheel-off.png"
+    },
+    {
+      "file": "Source/review/round-11-mechanical.json",
+      "sha256": "fedfd8a5215ec6c6e44b371a7ab5df06665d6336def03bd416de3208809de1c7",
+      "bytes": 12685,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-mechanical.json"
+    },
+    {
+      "file": "Source/review/round-11-mechanical.md",
+      "sha256": "8cbe1e6eeb62f4c4e1ad7e2a5df579c0754c3e6378321bd7371a5d101b49176a",
+      "bytes": 7864,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-mechanical.md"
+    },
+    {
+      "file": "Source/review/round-11-mechanical-check.py",
+      "sha256": "8e07402ad7311676e4b7b8c433ff7390905ea80e839a90075c01d4770f0db722",
+      "bytes": 32182,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-mechanical-check.py"
+    },
+    {
+      "file": "Source/review/accepted-model-manifest.json",
+      "sha256": "9db1d88a963fc28606dbd7a885492013353fed6edeeddb4106a5811f691c1c89",
+      "bytes": 16154,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\showcase\\assets\\la-catrina.json"
+    },
+    {
+      "file": "Source/review/review-1.json",
+      "sha256": "dc0724735ba1a1a9393d3a8204fb4eab25266588615a5d8ed3bf2d33fdd2a9be",
+      "bytes": 18459,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-a.json"
+    },
+    {
+      "file": "Source/review/review-1.md",
+      "sha256": "437499dfc16faae429ce06758ebef68571f708a9464dd9c918149333d79b8a29",
+      "bytes": 9016,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-a.md"
+    },
+    {
+      "file": "Source/review/review-2.json",
+      "sha256": "2ad1a170211afac0143b3dca154e54ff5294bb3ecf98395153f58083669d77b5",
+      "bytes": 13742,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-b.json"
+    },
+    {
+      "file": "Source/review/review-2.md",
+      "sha256": "718be7af3a03c32a279cfcc4f1e9d1ab7d3ebbcc8e00553e51cabba00599e0c6",
+      "bytes": 5444,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\la-catrina\\independent\\round-11-b.md"
+    },
+    {
+      "file": "Source/native/reveal/result.json",
+      "sha256": "9c265a36662eec2a5c323080ccf0d0c831ce590a89871baf2b18fad866da95fd",
+      "bytes": 6265,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529\\result.json"
+    },
+    {
+      "file": "Source/native/reveal/drive.json",
+      "sha256": "7d5b44cc5337b5f966c045d017ff68ab4510d6b5017ef7597f36d83bec624b81",
+      "bytes": 164,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529\\drive.json"
+    },
+    {
+      "file": "Source/native/reveal/drive.json.csv",
+      "sha256": "ed948b07007795de08a292d8b439b4bd769d8fb8978327a891d40f38bd36daa2",
+      "bytes": 77209,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/reveal/stdout.log",
+      "sha256": "4ca95d66c14ffbd41c56e6ab0acc6dfaa3cf4a019664980fa56fdb53a5f2b4ef",
+      "bytes": 80,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529\\stdout.log"
+    },
+    {
+      "file": "Source/native/reveal/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123108-529\\stderr.log"
+    },
+    {
+      "file": "Source/native/hop/result.json",
+      "sha256": "979a3792aa4e1021251631d31399809b4d360c39c1ea1b9f64de9ee7ec19830a",
+      "bytes": 6262,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325\\result.json"
+    },
+    {
+      "file": "Source/native/hop/drive.json",
+      "sha256": "981ea92d8adfd8e562506c91ebca941a299a1eeac7705cc3c239e5b478585d88",
+      "bytes": 163,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325\\drive.json"
+    },
+    {
+      "file": "Source/native/hop/drive.json.csv",
+      "sha256": "4e1cf992ee2ab2c299b77720b2ccec8ed1ec11d74775a979452415c978c85d37",
+      "bytes": 115439,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/hop/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325\\stdout.log"
+    },
+    {
+      "file": "Source/native/hop/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123132-325\\stderr.log"
+    },
+    {
+      "file": "Source/native/wheel/result.json",
+      "sha256": "6ca9d994b5e160fbfbf2b8b3c36c5cd9be433fbca2a4d5e608a0d294d7813477",
+      "bytes": 6270,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120\\result.json"
+    },
+    {
+      "file": "Source/native/wheel/drive.json",
+      "sha256": "65d73b5c06b38541f82f7eccfb4399153d46a491f46ea5863197c08e450e4fad",
+      "bytes": 163,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120\\drive.json"
+    },
+    {
+      "file": "Source/native/wheel/drive.json.csv",
+      "sha256": "f28b98a28ae06221fa20072bbd28763ca1a4029d68b237a151fe1a1b12732d4f",
+      "bytes": 67472,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/wheel/stdout.log",
+      "sha256": "4ca95d66c14ffbd41c56e6ab0acc6dfaa3cf4a019664980fa56fdb53a5f2b4ef",
+      "bytes": 80,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120\\stdout.log"
+    },
+    {
+      "file": "Source/native/wheel/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123204-120\\stderr.log"
+    },
+    {
+      "file": "Source/native/left/result.json",
+      "sha256": "814ae971a487d2f60570d6d0d802688c1e993fd11e2e2e41005fbff931ea8f58",
+      "bytes": 6269,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823\\result.json"
+    },
+    {
+      "file": "Source/native/left/drive.json",
+      "sha256": "a63f52f56f6fc108638b958b4adea0dd03f5fff0fba2e6b712cff8a8e12f2b42",
+      "bytes": 161,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823\\drive.json"
+    },
+    {
+      "file": "Source/native/left/drive.json.csv",
+      "sha256": "2d73bca6af851df11525f59168099c3e1a76b32e8fd10da16de9d71d934d3330",
+      "bytes": 104921,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/left/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823\\stdout.log"
+    },
+    {
+      "file": "Source/native/left/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123222-823\\stderr.log"
+    },
+    {
+      "file": "Source/native/right/result.json",
+      "sha256": "df3b0cc8c9a6e716827926579938ace03871e3a0a59b422d9676bd9ba4987cb9",
+      "bytes": 6269,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768\\result.json"
+    },
+    {
+      "file": "Source/native/right/drive.json",
+      "sha256": "d62b0800f2fb84e0153fd73933a429e73cc182b47b12034f7c1a9ef3620ab8eb",
+      "bytes": 163,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768\\drive.json"
+    },
+    {
+      "file": "Source/native/right/drive.json.csv",
+      "sha256": "49772c8d409b059264d67f83a259e538143f4b1399f2c128dcbbd966ec268cc5",
+      "bytes": 105418,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/right/stdout.log",
+      "sha256": "4ca95d66c14ffbd41c56e6ab0acc6dfaa3cf4a019664980fa56fdb53a5f2b4ef",
+      "bytes": 80,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768\\stdout.log"
+    },
+    {
+      "file": "Source/native/right/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123248-768\\stderr.log"
+    },
+    {
+      "file": "Source/native/exit/result.json",
+      "sha256": "c391c43a507dfcce13b076fd0f28f8d435d876d06d0ac3478375b408e33a4949",
+      "bytes": 6265,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736\\result.json"
+    },
+    {
+      "file": "Source/native/exit/drive.json",
+      "sha256": "bae644b7b6c08c401c93d26133c5c357415b8ac0f93cb06dead8adaaaa05cdc9",
+      "bytes": 161,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736\\drive.json"
+    },
+    {
+      "file": "Source/native/exit/drive.json.csv",
+      "sha256": "4e89d7999cad89b30b11aecd678dbea091bd81872cfd8b2787419d2e7318e74c",
+      "bytes": 124534,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736\\drive.json.csv"
+    },
+    {
+      "file": "Source/native/exit/stdout.log",
+      "sha256": "4ca95d66c14ffbd41c56e6ab0acc6dfaa3cf4a019664980fa56fdb53a5f2b4ef",
+      "bytes": 80,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736\\stdout.log"
+    },
+    {
+      "file": "Source/native/exit/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\build\\sessions\\20261106-123315-736\\stderr.log"
+    },
+    {
+      "file": "Source/project/scripts/capture-catrina-film.py",
+      "sha256": "3d4d24e925dead4f26451b9aa1322b89266e5e89fbb782b731af93bd3f5c8df4",
+      "bytes": 5180,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\scripts\\capture-catrina-film.py"
+    },
+    {
+      "file": "Source/project/showcase/suspension_playground.cpp",
+      "sha256": "ddeee7bfeab5dd92c973e00c127ff873224e14b9c3c63707845f23bd47e096b1",
+      "bytes": 30061,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\showcase\\suspension_playground.cpp"
+    },
+    {
+      "file": "Source/project/showcase/CatrinaRig.hpp",
+      "sha256": "fb4332956f75abccc533cf148215c72ba0b066493e3e7c6e13e10ac25d3b0efd",
+      "bytes": 27488,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\showcase\\CatrinaRig.hpp"
+    },
+    {
+      "file": "Source/project/showcase/CatrinaHydraulics.hpp",
+      "sha256": "dca6162af51acbcf3dc8ff32c0be11de5a859c967858293488d3f5ee88596ad7",
+      "bytes": 2430,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\showcase\\CatrinaHydraulics.hpp"
+    },
+    {
+      "file": "Source/project/showcase/CatrinaDimensions.hpp",
+      "sha256": "5d3ec2f6bd7ccf1e433815ac648afb1f6889a55d327976222d56eeaab47186eb",
+      "bytes": 433,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\showcase\\CatrinaDimensions.hpp"
+    },
+    {
+      "file": "Source/project/Run-Evaluation.ps1",
+      "sha256": "81e7cdd4aa29cf45f934ee32757bfeb32f4f51c46a1173ea8311b1513062d472",
+      "bytes": 24547,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\Run-Evaluation.ps1"
+    },
+    {
+      "file": "Source/project/docs/la-catrina/REAL-WORLD-BASIS.md",
+      "sha256": "9077113aad5c3a58a73fd5e70d2427c6ba55c77d6e77bd31a86950f3158e6704",
+      "bytes": 18636,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\REAL-WORLD-BASIS.md"
+    },
+    {
+      "file": "Source/project/docs/la-catrina/PHYSICS.md",
+      "sha256": "49b2812deb5195b4bbf75b586d035fd28501746ffd58d1eb2ea6d1e982f86f86",
+      "bytes": 6831,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\PHYSICS.md"
+    },
+    {
+      "file": "Source/project/docs/la-catrina/RIG.md",
+      "sha256": "96975f1bdf72d8d49c1c2db2ad504373e4cd0b967f30b434d7e6e3bcb937aa49",
+      "bytes": 12330,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\RIG.md"
+    },
+    {
+      "file": "Source/project/docs/la-catrina/FRAME-POCKETS.md",
+      "sha256": "01f5f27a2abdab5fb87c7415a22f7ea84cac2e5c4f71c20a4ee05508d3e73db6",
+      "bytes": 2754,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\FRAME-POCKETS.md"
+    },
+    {
+      "file": "Source/reference/La-Catrina-Master.jpg",
+      "sha256": "62c46159d87f29348a35ecb07584d752cf3a15161b19c655968d0da96a42d750",
+      "bytes": 7124760,
+      "originalPath": "C:\\Users\\oliver\\Projects\\engine-threepp\\docs\\la-catrina\\references\\La-Catrina-Master.jpg"
+    }
+  ],
+  "scope": "Editable native clips, music/action tracks and frozen provenance are self-contained. Full engine checkout and raw native PNG sequences are separately retained in the project, not duplicated here."
+}

@@ -27,9 +27,10 @@ endforeach()
 add_executable(suspension_playground suspension_playground.cpp)
 target_link_libraries(suspension_playground PRIVATE threepp imgui::imgui BulletDynamics BulletCollision LinearMath)
 add_custom_command(TARGET suspension_playground POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/assets/city" "$<TARGET_FILE_DIR:suspension_playground>/playground-assets/city"
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:suspension_playground>/playground-assets"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_CURRENT_SOURCE_DIR}/assets/safari-body.glb" "${CMAKE_CURRENT_SOURCE_DIR}/assets/baja-427.glb"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/safari-body.glb" "${CMAKE_CURRENT_SOURCE_DIR}/assets/baja-427.glb" "${CMAKE_CURRENT_SOURCE_DIR}/assets/la-catrina.glb"
         "$<TARGET_FILE_DIR:suspension_playground>/playground-assets"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/asset-library/materials/gravel-road/basecolor_1k.jpg" "$<TARGET_FILE_DIR:suspension_playground>/playground-assets/gravel-basecolor.jpg"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/asset-library/materials/gravel-road/normal_gl_1k.jpg" "$<TARGET_FILE_DIR:suspension_playground>/playground-assets/gravel-normal.jpg"
@@ -41,6 +42,11 @@ add_custom_command(TARGET baja427_preview POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:baja427_preview>/baja427-assets"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/assets/baja-427.glb" "$<TARGET_FILE_DIR:baja427_preview>/baja427-assets/baja-427.glb")
 add_executable(safari_ao_bake safari_ao_bake.cpp)
+add_executable(catrina_preview catrina_preview.cpp)
+target_link_libraries(catrina_preview PRIVATE threepp)
+add_custom_command(TARGET catrina_preview POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:catrina_preview>/catrina-assets"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/assets/la-catrina.glb" "$<TARGET_FILE_DIR:catrina_preview>/catrina-assets/la-catrina.glb")
 target_link_libraries(safari_ao_bake PRIVATE threepp)
 target_include_directories(safari_ao_bake PRIVATE "${PROJECT_SOURCE_DIR}/src/external/nlohmann")
 if (WIN32)

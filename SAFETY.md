@@ -177,3 +177,20 @@ warmup. The2GiB/30FPS/watchdog/mutex limits remain. A rear-only visual pass
 cannot satisfy that whole-vehicle gate. `-PortraitOrbit` is a capture-only
 front/side/rear sequence with a bounded20degree camera move; it does not
 change the playable cameras or raise the frame/resolution limits.
+
+November 6 La Catrina: frozen model
+`8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e`
+passed two independent reference-sheet reviews at 8.020/10 and 8.115/10,
+83 serialized checks, 243 loaded rig poses and 183 shared CPU physics checks;
+all 137 prior shared check rows remain identical. The independent mechanical
+review is a scoped finite-sample pass, including 198 connected modeled ram
+load-path parts, not structural or continuous-clearance certification. Six
+sequential city capture sessions exited 0 and supply 1,440 verified native
+frames / 48 seconds, with zero discarded physics backlogs. They retain
+960×600, 30 FPS, one 512-pixel shadow, the 2 GiB job, deadline, heartbeat
+and mutex. A missing PowerShell disk-space property stopped the first attempt
+before graphics started; the direct volume-query fallback retains unknown-space
+refusal and the 1 GiB minimum. This was not a native crash. Capture/model/source
+bindings are in `build/la-catrina/native-review.json`; edited-film verification
+is separate. Human handling, listening and long-session acceptance remain
+unverified. No higher-resolution or unrestricted graphics permission is implied.

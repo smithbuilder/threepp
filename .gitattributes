@@ -30,3 +30,22 @@ showcase/suspension_playground.cpp text eol=lf
 scripts/render-truck-suspension-review.py text eol=lf
 Run-Evaluation.ps1 text eol=crlf
 docs/baja-427/DRIVER-AND-SUSPENSION-CAMERAS.json text eol=crlf
+
+# Reproduce the source and material manifests bound to La Catrina's accepted GLB.
+scripts/catrina_generate.py text eol=crlf
+scripts/catrina_art.py text eol=crlf
+scripts/catrina_hardware.py text eol=crlf
+scripts/catrina_frame_pockets.py text eol=crlf
+scripts/baja427_generate.py text eol=crlf
+scripts/catrina_reference_paint.py text eol=lf
+scripts/catrina_ao.py text eol=lf
+showcase/CatrinaRig.hpp text eol=crlf
+showcase/CatrinaDimensions.hpp text eol=lf
+showcase/CatrinaHydraulics.hpp text eol=lf
+showcase/catrina_preview.cpp text eol=lf
+showcase/assets/la-catrina.json text eol=crlf
+LA-CATRINA.md text eol=lf
+asset-library/models/la-catrina/asset.json text eol=crlf
+asset-library/models/la-catrina/README.md text eol=crlf
+asset-library/models/la-catrina/la-catrina.json text eol=crlf
+docs/la-catrina/bakes/*.npz binary

@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "durationSeconds": 48,
+  "sampleRate": 48000,
+  "channels": 2,
+  "sha256": "4b07a5225a211b4ea18d39758b8fecd9a4797f8701906c914a81c8af3d134589",
+  "peakLinear": 0.16371944494319077,
+  "recordings": [
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\assets\\audio\\muscle-engine-idle.wav",
+      "sha256": "3f45e1feb7b9e4fe88400ed06b46bb557fc95edb3296633e4f3c4595e9938fa2",
+      "credit": "kyles / Freesound413905 / CC0"
+    },
+    {
+      "path": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\assets\\audio\\lowrider-hydraulics-source.mp3",
+      "sha256": "9207c43eb13f97d5356dee3aa52391f68bec40bc66819691c24bfad24cab3dcc",
+      "credit": "nick121087 / Freesound342463 / CC0"
+    }
+  ],
+  "events": [
+    {
+      "scene": "hop",
+      "nativeFrame": 65,
+      "filmTime": 6.2,
+      "duration": 0.20333333333333334,
+      "sourceStart": 39.04,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "hop",
+      "nativeFrame": 120,
+      "filmTime": 8.033333333333333,
+      "duration": 0.20333333333333334,
+      "sourceStart": 41.08,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "hop",
+      "nativeFrame": 176,
+      "filmTime": 9.9,
+      "duration": 0.20333333333333334,
+      "sourceStart": 50.53,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "hop",
+      "nativeFrame": 231,
+      "filmTime": 11.733333333333334,
+      "duration": 0.20333333333333334,
+      "sourceStart": 39.04,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "hop",
+      "nativeFrame": 287,
+      "filmTime": 13.6,
+      "duration": 0.20333333333333334,
+      "sourceStart": 41.08,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "hop",
+      "nativeFrame": 342,
+      "filmTime": 15.433333333333334,
+      "duration": 0.20333333333333334,
+      "sourceStart": 50.53,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "wheel",
+      "nativeFrame": 65,
+      "filmTime": 16.2,
+      "duration": 0.20333333333333334,
+      "sourceStart": 39.04,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "wheel",
+      "nativeFrame": 120,
+      "filmTime": 18.03333333333333,
+      "duration": 0.20333333333333334,
+      "sourceStart": 41.08,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    },
+    {
+      "scene": "wheel",
+      "nativeFrame": 176,
+      "filmTime": 19.9,
+      "duration": 0.20333333333333334,
+      "sourceStart": 50.53,
+      "cause": "Positive change in actual hydraulic extension; one-frame audio offset"
+    }
+  ],
+  "telemetryBinding": "native-captures.json and each drive.json.csv, dropping the declared warmup frames",
+  "truth": "Editorial reconstruction from actual recordings, not simulator-captured sound or measured vehicle RPM. No new synthesized machinery.",
+  "listeningReview": false
+}

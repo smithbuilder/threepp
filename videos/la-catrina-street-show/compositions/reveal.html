@@ -1,0 +1,10 @@
+<template><style>
+@font-face{font-family:Barlow;src:url("assets/fonts/Barlow-Regular.ttf");font-weight:400}
+@font-face{font-family:BarlowCondensed;src:url("assets/fonts/BarlowCondensed-Bold.ttf");font-weight:700}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Barlow,sans-serif}
+#root .footage{position:absolute;inset:0;width:960px;height:600px;object-fit:contain;z-index:0}
+#root .caption{position:absolute;inset:0;z-index:2;pointer-events:none}
+#root .label{position:absolute;left:96px;top:60px;color:#fff7ed;text-shadow:0 2px 4px #151014,0 0 2px #151014;display:flex;flex-direction:column;gap:4px}
+#root .headline{font-family:BarlowCondensed,sans-serif;font-size:46px;font-weight:700;line-height:1;letter-spacing:1px;white-space:nowrap}
+#root .subline{font-family:Barlow,sans-serif;font-size:19px;line-height:1.2;letter-spacing:2px;white-space:nowrap}
+</style><div id="root" data-composition-id="reveal" data-width="960" data-height="600"><video id="reveal-video" class="clip footage" data-start="0" data-duration="6" data-media-start="0" data-track-index="0" src="assets/video/reveal.mp4" muted playsinline preload="metadata" data-layout-allow-overlap="true"></video><div id="reveal-caption" class="clip caption" data-start="0.4" data-duration="3.6" data-track-index="1" data-layout-allow-overlap="true"><div id="reveal-label" class="label"><div id="reveal-headline" class="headline" data-var-text="vehicle">LA CATRINA</div><div id="reveal-subline" class="subline" data-var-text="subtitle">STREET SHOW</div></div></div></div><script>const tl=gsap.timeline({paused:true});tl.fromTo("#reveal-label",{opacity:0},{opacity:1,duration:.30,ease:"power2.out"},0.4);tl.to("#reveal-label",{opacity:0,duration:.30,ease:"power2.in"},3.7);window.__timelines["reveal"]=tl;</script></template>

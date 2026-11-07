@@ -1,0 +1,13 @@
+{
+  "state": "PREPRODUCTION",
+  "staticPlan": "PASS: six-shot48-second manifest and storyboard agree",
+  "missingAcceptanceGate": "PASS: preflight refused before any browser or job was started",
+  "preflightReturnCode": 1,
+  "preflightMessage": "Film preflight is pending: two exact-model8/10 reviews, verified native sources and current checks are required. [Errno 2] No such file or directory: 'C:\\\\Users\\\\oliver\\\\Projects\\\\engine-threepp\\\\videos\\\\la-catrina-street-show\\\\source-manifest.json'",
+  "newGuardBehavior": "Each browser stage validates frozen exact-model reviews and encoded source hashes. Render also requires current check/snapshot receipts bound to authoring digest.",
+  "browserStarted": false,
+  "nativeStarted": false,
+  "renderStarted": false,
+  "sourceEvidenceStaged": false,
+  "deliveryClaim": false
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "archive": "C:\\Users\\oliver\\Projects\\engine-threepp\\videos\\la-catrina-street-show\\outputs\\La-Catrina-Street-Show-Editable.zip",
+  "bytes": 85835387,
+  "sha256": "abf4cd76e26cfb3d719b9c6a2ca199cfb2a01edcfed05e5a7359a88b01b565d3",
+  "verifiedFileEntries": 218,
+  "everyEntryHashVerified": true,
+  "excludedFinalVideo": true,
+  "excludedDependenciesAndCaches": true
+}

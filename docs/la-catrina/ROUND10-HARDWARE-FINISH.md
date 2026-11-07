@@ -1,0 +1,7 @@
+# Round 10 formed hardware finish
+
+The engine-bay and trunk ram pockets formerly ended in square, open-bottom caps. Their replacements retain the exact lower rectangular seam at Y 0.796 m, the former outer footprint, and the existing central crown-height function. Rounded plan corners blend above the lower seam into quarter-round shoulders: 24 mm at the front, 26 mm at the rear. The rear crown still follows the original parcel-shelf clearance function. The top and sides are actual replacement skins, not overlays or solid blocks; the underside remains the real ram entry opening. A 1.5 mm folded-seam bead stays inside the former 2 mm edge-bead envelope.
+
+The fixed ram towers retain every section size, endpoint, rail foot, header route, pin, and attachment center. Their square-section member edge radius changes from 4 mm to at most 10 mm, removing material inside the prior member envelope. The tightly fitted rear frame casings, frame rails, exhaust, hydraulic dimensions, and all moving parts remain unchanged.
+
+Validation before export: Python compilation and in-memory geometry generation succeeded. The eight resulting cover meshes have unit normals and no reversed face/vertex-normal combinations. A static exact-triangle separating-axis check against 96 fixed ram-tower/pin/spacer/inner-ball parts returned zero contacts across 68 broad-phase part pairs. Receipt: `build/la-catrina/round-10-hardware-static.json`. That scoped static check does not replace the full loaded-pose mechanical review, serialized tire audit, or native visual assessment.

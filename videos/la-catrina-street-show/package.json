@@ -1,0 +1,13 @@
+{
+  "name": "la-catrina-street-show",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage Preview",
+    "preview": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage Preview",
+    "check": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage Check",
+    "snapshot": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage Snapshot",
+    "motion": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage AnimationMap",
+    "render": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Run-VideoTool.ps1 -Stage Render"
+  }
+}

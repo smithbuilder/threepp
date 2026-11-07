@@ -1,0 +1,10 @@
+{
+  "name": "Mercer city block",
+  "units": "metres",
+  "authoring": "Original geometry, sign atlas and fallback procedural maps. Photographic PBR surfaces and sky are separately credited in photo-surfaces.json.",
+  "seed": 427,
+  "textureColorSpace": "sRGB",
+  "license": "Project-authored geometry and fallback maps use repository terms; photographic assets are CC0-1.0.",
+  "rebuild": "scripts/generate-city-materials.py, scripts/generate-city-details.py, scripts/fetch-city-surfaces.py",
+  "signFont": "Arial from local Windows; rasterized labels only, font not redistributed"
+}

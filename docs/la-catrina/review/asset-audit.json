@@ -1,0 +1,529 @@
+{
+  "status": "PASS",
+  "passed": 83,
+  "checks": [
+    {
+      "check": "rig names unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "hierarchy connected exactly once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all attributes finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "indices in range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "unit vertex normals",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "winding follows normals",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "cab.C_pillar actual exterior faces outward",
+      "passed": true,
+      "detail": 0.4409157931804657
+    },
+    {
+      "check": "front.fender_roll actual exterior faces outward",
+      "passed": true,
+      "detail": 0.8382700085639954
+    },
+    {
+      "check": "rear.fender_roll actual exterior faces outward",
+      "passed": true,
+      "detail": 0.8354286402463913
+    },
+    {
+      "check": "headlamp reflectors not occluded by opaque backing caps",
+      "passed": true,
+      "detail": {
+        "reflectorMinimumZ": 2.395097494125366,
+        "backingMaximumZ": 2.3899998664855957
+      }
+    },
+    {
+      "check": "body.hood curved skin faces sky with outward normals",
+      "passed": true,
+      "detail": {
+        "minimumY": 0.7775076031684875,
+        "fieldMinimumY": 0.9844740033149719,
+        "fieldMeanY": 0.998771071434021,
+        "steepEndBandMetres": 0.21
+      }
+    },
+    {
+      "check": "body.trunk curved skin faces sky with outward normals",
+      "passed": true,
+      "detail": {
+        "minimumY": 0.7981419563293457,
+        "fieldMinimumY": 0.9990938901901245,
+        "fieldMeanY": 0.9996699690818787,
+        "steepEndBandMetres": 0.21
+      }
+    },
+    {
+      "check": "cab.lace_roof curved skin faces sky with outward normals",
+      "passed": true,
+      "detail": {
+        "minimumY": 0.9898704290390015,
+        "fieldMinimumY": 0.9898704290390015,
+        "fieldMeanY": 0.9960523247718811,
+        "steepEndBandMetres": 0
+      }
+    },
+    {
+      "check": "body.hood spans complete lace texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "body.trunk spans complete lace texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cab.lace_roof spans complete lace texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "trunk rear liner remains inside painted rear header",
+      "passed": true,
+      "detail": {
+        "inboardMarginMetres": 0.015880584716796875
+      }
+    },
+    {
+      "check": "front.painted_header closes curved deck edge facing outward",
+      "passed": true,
+      "detail": 0.9610585570335388
+    },
+    {
+      "check": "rear.painted_header closes curved deck edge facing outward",
+      "passed": true,
+      "detail": 0.9555127024650574
+    },
+    {
+      "check": "bounded native mesh budget",
+      "passed": true,
+      "detail": {
+        "triangles": 746922,
+        "draws": 242
+      }
+    },
+    {
+      "check": "rubber has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "ivory_whitewall has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "plum_vinyl has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "clear_tinted_glass has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "coil_candy_red has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "chassis_graphite has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "hardware_black_powdercoat has dielectric coating/material response",
+      "passed": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "check": "polished chrome remains metallic",
+      "passed": true,
+      "detail": [
+        0.97
+      ]
+    },
+    {
+      "check": "wheel_0 metric hub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_0 steering and spin independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_0 exact narrow tyre",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_0 grounded tread",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_0 separate piston with engaged rest rod",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_0 separate spring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 metric hub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 steering and spin independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 exact narrow tyre",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 grounded tread",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 separate piston with engaged rest rod",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_1 separate spring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 metric hub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 steering and spin independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 exact narrow tyre",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 grounded tread",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 separate piston with engaged rest rod",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_2 separate spring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 metric hub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 steering and spin independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 exact narrow tyre",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 grounded tread",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 separate piston with engaged rest rod",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wheel_3 separate spring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "front_0_lower fixed .535m span",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "front_0_upper fixed .535m span",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "front_1_lower fixed .535m span",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "front_1_upper fixed .535m span",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "rear axle rigid independent group",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reference length within 10mm",
+      "passed": true,
+      "detail": 5.338070631027222
+    },
+    {
+      "check": "asymmetric overhangs align with 190mm rearward hull offset",
+      "passed": true,
+      "detail": {
+        "envelopeCenterZ": -0.1854647397994995,
+        "physicsHullOffsetZ": -0.19
+      }
+    },
+    {
+      "check": "hardtop height in reference proportion",
+      "passed": true,
+      "detail": 1.328992247581482
+    },
+    {
+      "check": "no parts below contact plane",
+      "passed": true,
+      "detail": 8.678436302922421e-09
+    },
+    {
+      "check": "two metre side body",
+      "passed": true,
+      "detail": 2.022258758544922
+    },
+    {
+      "check": "side mouldings stop outside wheel apertures",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "check": "floor and rear bulkhead clears rest tyre cylinders with 12mm allowance",
+      "passed": true,
+      "detail": {
+        "surfaceSamples": 723289,
+        "maximumTriangleSampleSpacing": 0.02,
+        "insideSamples": 0
+      }
+    },
+    {
+      "check": "floor and rear bulkhead clears observed rear-motion floor footprint",
+      "passed": true,
+      "detail": {
+        "insideSamples": 0,
+        "scope": "720 recorded native poses; y .25..33m with 30mm expansion, not exhaustive suspension sweep"
+      }
+    },
+    {
+      "check": "trunk rack and battery cases clears rest tyre cylinders with 12mm allowance",
+      "passed": true,
+      "detail": {
+        "surfaceSamples": 54624,
+        "maximumTriangleSampleSpacing": 0.02,
+        "insideSamples": 0
+      }
+    },
+    {
+      "check": "trunk rack and battery cases clears observed rear-motion floor footprint",
+      "passed": true,
+      "detail": {
+        "insideSamples": 0,
+        "scope": "720 recorded native poses; y .25..33m with 30mm expansion, not exhaustive suspension sweep"
+      }
+    },
+    {
+      "check": "four headlight reflector surfaces",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "six tail lens surfaces",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "two opening service clips",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candy_scroll_side obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        256
+      ]
+    },
+    {
+      "check": "champagne_side_ornament obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        128
+      ]
+    },
+    {
+      "check": "reference_roof_lace obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "check": "reference_hood_lace obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "check": "reference_deck_lace obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "check": "tire_sidewall_type obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        64
+      ]
+    },
+    {
+      "check": "undercoat_flake_normal obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        512
+      ]
+    },
+    {
+      "check": "undercoat_flake_roughness obeys 1K texture budget",
+      "passed": true,
+      "detail": [
+        1024,
+        512
+      ]
+    },
+    {
+      "check": "manifest exact content hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manifest bounds include complete parent transforms",
+      "passed": true,
+      "detail": {
+        "actualMinimum": [
+          -1.0870000123977661,
+          8.678436302922421e-09,
+          -2.8545000553131104
+        ],
+        "actualMaximum": [
+          1.0870000123977661,
+          1.328992247581482,
+          2.4835705757141113
+        ]
+      }
+    },
+    {
+      "check": "cavity cache matches exact geometry and retained source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cavity shading stays finite and bounded",
+      "passed": true,
+      "detail": {
+        "receiverMeshes": 98,
+        "minimum": 0.44999998807907104,
+        "maximum": 1.0
+      }
+    },
+    {
+      "check": "portable library exact mirror",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "assetSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "bounds": {
+    "min": [
+      -1.0870000123977661,
+      8.678436302922421e-09,
+      -2.8545000553131104
+    ],
+    "max": [
+      1.0870000123977661,
+      1.328992247581482,
+      2.4835705757141113
+    ]
+  }
+}

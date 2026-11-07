@@ -2,6 +2,7 @@
 #include "PlaygroundTerrain.hpp"
 #include "PlaygroundVehicles.hpp"
 #include "PlaygroundArcade.hpp"
+#include "CatrinaHydraulics.hpp"
 #include <btBulletDynamicsCommon.h>
 #include <BulletDynamics/Vehicle/btRaycastVehicle.h>
 #include <memory>
@@ -18,6 +19,9 @@ class FootprintRaycaster:public btVehicleRaycaster {
 public:
     float steering=0;int corner=0;
     std::array<float,4> requestedLength{};
+    // Mechanical droop stays finite even when a powered seat preloads the
+    // spring beyond the free-wheel length. Other vehicles leave this disabled.
+    std::array<float,4> maximumLength{{1000,1000,1000,1000}};
     FootprintRaycaster(btDynamicsWorld& w,btRigidBody& b,const Tune& t):world(w),body(b),tune(t){}
     void* castRay(const btVector3& from,const btVector3& to,btVehicleRaycasterResult& result)override{
         const int i=corner++%4;const auto& d=tune.dims;auto dir=(to-from).normalized();
@@ -25,10 +29,14 @@ public:
         bool found=false;btScalar closest=1;const btCollisionObject* object=nullptr;
         for(int row=-1;row<=1;++row)for(int arc=-3;arc<=3;++arc){float a=arc*.24f;
             auto offset=basis*btVector3(row*d.tyreHalfWidth*.70f,-d.tyreRadius*std::cos(a),d.tyreRadius*std::sin(a));
-            auto start=from+offset-dir*d.tyreRadius,end=to+offset-dir*d.tyreRadius;
+            const float fullLength=(to-from).length();
+            const float allowed=std::min(fullLength,maximumLength[i]+d.tyreRadius);
+            auto start=from+offset-dir*d.tyreRadius;
+            auto end=allowed<fullLength?from+dir*allowed+offset-dir*d.tyreRadius:to+offset-dir*d.tyreRadius;
             btCollisionWorld::ClosestRayResultCallback ray(start,end);ray.m_collisionFilterGroup=2;ray.m_collisionFilterMask=1;
             world.rayTest(start,end,ray);
-            if(ray.hasHit()&&ray.m_closestHitFraction<closest){closest=ray.m_closestHitFraction;result.m_hitPointInWorld=ray.m_hitPointWorld;
+            const float fraction=allowed<fullLength?ray.m_closestHitFraction*allowed/fullLength:float(ray.m_closestHitFraction);
+            if(ray.hasHit()&&fraction<closest){closest=fraction;result.m_hitPointInWorld=ray.m_hitPointWorld;
                 result.m_hitNormalInWorld=ray.m_hitNormalWorld.normalized();object=ray.m_collisionObject;found=true;}
         }
         requestedLength[i]=found?float(closest*(to-from).length()-d.tyreRadius):1000.f;
@@ -45,6 +53,14 @@ public:
     using btRaycastVehicle::btRaycastVehicle;
     FootprintRaycaster* footprint=nullptr;
     std::array<float,4> stopLoad{};
+    void updateVehicle(btScalar dt)override{
+        btRaycastVehicle::updateVehicle(dt);
+        // Airborne wheels hang from their mechanical stops. This changes only
+        // unsprung presentation; no body force is possible without a patch.
+        if(footprint)for(int i=0;i<4;++i){auto& w=getWheelInfo(i);
+            if(!w.m_raycastInfo.m_isInContact)
+                w.m_raycastInfo.m_suspensionLength=std::min(float(w.m_raycastInfo.m_suspensionLength),footprint->maximumLength[i]);}
+    }
     void updateFriction(btScalar dt)override{
         std::array<btVector3,4> forward,side,relative;
         std::array<btScalar,4> longitudinal{},lateral{},limit{},drive{},brake{};
@@ -116,6 +132,7 @@ public:
     float throttle=0,brake=0;
     bool reverse=false;
     ArcadeBoost boost;
+    CatrinaHydraulics hydraulics;
     Vector3 windVelocity,aerodynamicForce;
     bool windGusts=false;
     std::array<float,4> travel{},load{},spin{};
@@ -127,7 +144,8 @@ public:
         groundShape=std::make_unique<btBvhTriangleMeshShape>(&triangles,true);
         btRigidBody::btRigidBodyConstructionInfo ci(0,nullptr,groundShape.get());ground=std::make_unique<btRigidBody>(ci);ground->setFriction(1);
         world.addRigidBody(ground.get(),1,2);
-        for(const auto& b:windFrame){auto shape=std::make_unique<btBoxShape>(btVector3(b[3],b[4],b[5]));btRigidBody::btRigidBodyConstructionInfo info(0,nullptr,shape.get());
+        const auto solidScenery=t.cityBlock?city::solids():std::vector<city::Solid>(windFrame.begin(),windFrame.end());
+        for(const auto& b:solidScenery){auto shape=std::make_unique<btBoxShape>(btVector3(b[3],b[4],b[5]));btRigidBody::btRigidBodyConstructionInfo info(0,nullptr,shape.get());
             auto body=std::make_unique<btRigidBody>(info);btTransform tr;tr.setIdentity();tr.setOrigin({b[0],b[1],b[2]});body->setWorldTransform(tr);world.addRigidBody(body.get(),1,2);
             sceneryShapes.push_back(std::move(shape));sceneryBodies.push_back(std::move(body));}
         select(0,stations[0]);
@@ -152,7 +170,9 @@ public:
         // Raised nose/tail represent bumper approach and departure angles. A
         // flat box extended under the nose acted as an invisible plough before
         // the front tyres could climb the ramp, especially on the Baja truck.
-        const std::array<std::pair<float,float>,6> outline{{{-end,bottom+tune.tailRise},{-flat,bottom},{flat,bottom},{end,bottom+tune.noseRise},{end,bottom+tune.height},{-end,bottom+tune.height}}};
+        // Overhang corrections move the body ends; the central keel remains
+        // between the unchanged axles and suspension mounts.
+        const std::array<std::pair<float,float>,6> outline{{{-end+tune.hullOffsetZ,bottom+tune.tailRise},{-flat,bottom},{flat,bottom},{end+tune.hullOffsetZ,bottom+tune.noseRise},{end+tune.hullOffsetZ,bottom+tune.height},{-end+tune.hullOffsetZ,bottom+tune.height}}};
         hull=std::make_unique<btConvexHullShape>();for(float side:{-1.f,1.f})for(auto [z,y]:outline)hull->addPoint({side*tune.width*.5f,y-centerY,z},false);
         hull->recalcLocalAabb();hull->setMargin(.025f);
         chassisShape=std::make_unique<btCompoundShape>();btTransform local;local.setIdentity();
@@ -163,18 +183,22 @@ public:
         // simplified collision envelope (X pitch / Y yaw / Z roll).
         btVector3 inertia(tune.pitchInertia,tune.yawInertia,tune.rollInertia);
         btRigidBody::btRigidBodyConstructionInfo ci(tune.mass,nullptr,chassisShape.get(),inertia);chassis=std::make_unique<btRigidBody>(ci);
-        chassis->setDamping(.008f,.015f);chassis->setFriction(.65f);chassis->setRestitution(.02f);chassis->setActivationState(DISABLE_DEACTIVATION);
+        chassis->setDamping(.008f,.015f);chassis->setFriction(tune.hullFriction);chassis->setRestitution(.02f);chassis->setActivationState(DISABLE_DEACTIVATION);
         chassis->setCcdMotionThreshold(.4f);chassis->setCcdSweptSphereRadius(.15f);world.addRigidBody(chassis.get(),2,1);
         btRaycastVehicle::btVehicleTuning settings;
         raycaster=std::make_unique<FootprintRaycaster>(world,*chassis,tune);vehicle=std::make_unique<CrawlVehicle>(settings,chassis.get(),raycaster.get());
         vehicle->footprint=raycaster.get();
         vehicle->setCoordinateSystem(0,1,2);world.activeVehicle=vehicle.get();
-        const auto& d=tune.dims;float mount=d.bump+.1f,rest=mount-d.droop;
+        const auto& d=tune.dims;float mount=d.bump+.1f;
         for(int i=0;i<4;++i){auto hub=tune.straightWheelPath?rally::wheelAnchor(i,d):rally::hubAtTravel(i,d.staticTravel,d);
-            auto& w=vehicle->addWheel({hub.x,mount-tune.cgY,hub.z-tune.cgZ},{0,-1,0},{-1,0,0},rest,d.tyreRadius,settings,i<2);
+            if(i>=2&&tune.rearHalfTrack>0)hub.x=(i%2?1.f:-1.f)*tune.rearHalfTrack;
+            const float wheelDroop=i>=2&&tune.rearDroop>0?tune.rearDroop:d.droop;
+            const float wheelBump=i>=2&&tune.rearBump>0?tune.rearBump:d.bump;
+            auto& w=vehicle->addWheel({hub.x,mount-tune.cgY,hub.z-tune.cgZ},{0,-1,0},{-1,0,0},mount-wheelDroop,d.tyreRadius,settings,i<2);
             w.m_suspensionStiffness=(i<2?tune.frontRate:tune.rearRate)/tune.mass;
-            w.m_wheelsDampingCompression=tune.compression/tune.mass;w.m_wheelsDampingRelaxation=tune.rebound/tune.mass;
-            w.m_maxSuspensionTravelCm=(d.bump-d.droop)*100;w.m_maxSuspensionForce=tune.mass*9.81f*2;
+            w.m_wheelsDampingCompression=(i>=2&&tune.rearCompression>0?tune.rearCompression:tune.compression)/tune.mass;
+            w.m_wheelsDampingRelaxation=(i>=2&&tune.rearRebound>0?tune.rearRebound:tune.rebound)/tune.mass;
+            w.m_maxSuspensionTravelCm=(wheelBump-wheelDroop)*100;w.m_maxSuspensionForce=tune.mass*9.81f*2;
             w.m_frictionSlip=tune.grip;w.m_rollInfluence=1; // Preserve physical contact-height roll torque.
         }
         reset(station);
@@ -187,7 +211,7 @@ public:
         p.y=road.ride+.07f;tr.setOrigin(bt(p)+tr.getBasis()*bt(cg()));
         chassis->setWorldTransform(tr);chassis->setInterpolationWorldTransform(tr);chassis->setLinearVelocity({0,0,0});chassis->setAngularVelocity({0,0,0});chassis->clearForces();
         vehicle->resetSuspension();world.getBroadphase()->getOverlappingPairCache()->cleanProxyFromPairs(chassis->getBroadphaseHandle(),&dispatcher);
-        steer=0;throttle=brake=0;boost={};spin.fill(0);time=0;sync();
+        steer=0;throttle=brake=0;boost={};hydraulics={};spin.fill(0);time=0;sync();
     }
     void lift(float y){auto t=chassis->getWorldTransform();t.getOrigin().setY(t.getOrigin().y()+y);chassis->setWorldTransform(t);}
     void kick(const Vector3& v){chassis->setLinearVelocity(bt(v));}
@@ -200,13 +224,24 @@ public:
     }
     void tick(float gas,float stop,float turn,bool handbrake=false,bool requestBoost=false){
         throttle=std::clamp(gas,0.f,1.f);brake=std::clamp(stop,0.f,1.f);
+        const bool hydraulicVehicle=tune.visualRig==VisualRig::Catrina;
+        hydraulics.step(hydraulicVehicle,speed(),fixedStep);
+        if(hydraulicVehicle){const auto& d=tune.dims;const float mount=d.bump+.1f;
+            for(int i=0;i<4;++i){auto& wheel=vehicle->getWheelInfo(i);
+                const float droop=i>=2?tune.rearDroop:d.droop;
+                const float bump=i>=2?tune.rearBump:d.bump;
+                wheel.m_suspensionRestLength1=mount-droop+hydraulics.extension[i];
+                wheel.m_maxSuspensionTravelCm=(bump-droop+hydraulics.extension[i])*100;
+                raycaster->maximumLength[i]=std::min(float(wheel.m_suspensionRestLength1),mount-(i<2?rally::catrinaFrontDroopStop:rally::catrinaRearDroopStop));
+            }
+        }
         const float target=std::clamp(turn,-1.f,1.f)*.48f/(1+std::abs(speed())*.025f);
         steer+=std::clamp(target-steer,-1.1f*fixedStep,1.1f*fixedStep);
         const float boostFactor=boost.step(requestBoost,handbrake?0:contactCount(),throttle,brake,reverse,fixedStep);
         const float force=tune.driveForce*throttle*boostFactor*(reverse?-1.f:1.f)/(1+std::pow(std::abs(speed())/14.f,2));
         for(int i=0;i<4;++i){
             vehicle->setSteeringValue(i<2?rally::steeringAngle(i,steer,tune.dims):0,i);
-            vehicle->applyEngineForce(force*.25f,i); // AWD and a bounded low-range drive force.
+            vehicle->applyEngineForce(force*(tune.rearWheelDrive?(i<2?0.f:.5f):.25f),i);
             // Bullet brake input is impulse (N*s), not force or torque.
             float drag=std::abs(speed())>.08f?tune.mass*9.81f*.014f*.25f:0;
             float braking=brake*tune.mass*9.81f*.45f+(handbrake&&i>1?tune.mass*9.81f*.5f:0)+drag;

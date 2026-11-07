@@ -1,0 +1,5 @@
+# Keep the same bytes as the packaged vehicle documentation and bake receipts.
+*.md -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+ART-REVISION.md -whitespace
+*.npz binary

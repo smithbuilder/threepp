@@ -1,0 +1,127 @@
+{
+  "review": "Round 09 independent mechanical source geometry review",
+  "scope": "Final surviving hydraulic ram, spring, rigid spring cup/seat, frame support, fixed enclosure, lid, new rear frame casings and revised front exhaust geometry.",
+  "method": [
+    "Construct final M.parts in memory using catrina_art.install, shell, roof_and_glass, front_rear, interior, gear, trunk and catrina_hardware.add_hardware. No exported GLB, temporary audit marker, or author-reported PASS is used as collision geometry.",
+    "Transform actual indexed mesh vertices with the complete authoring node hierarchy. Reconstruct moving assemblies from CatrinaRig.hpp conventions and native hub CSV; remove the known 0.6-radian rear wheel spin before deriving rear axle orientation.",
+    "Use all 81 distinct left/right suspension pairs from 243 native steering poses. Front hub heights span -0.120 to 0.420 m; rear hub heights span -0.280 to 0.420 m. Steering-only duplicates do not alter the tested spring, ram, link or damper poses.",
+    "Evaluate hydraulic commands 0, 0.29 and 0.58 with the actual signed cup stop, rigid barrel/rod/cup and rigid lower-seat transform. Spring mesh local Y alone follows spring length. Barrel and rigid lower seat need one test per suspension pose because their pose is independent of hydraulic command.",
+    "Prune mesh pairs and edge/triangle pairs by AABB, then test non-coplanar segment/triangle intersections in both directions. Determinant tolerance is 1e-11; barycentric and segment parameter tolerance is 1e-6. Checks report actual surface crossings, not an arbitrary inflated marker envelope.",
+    "Test all actual rear axle, rear lower/upper/Panhard links and both rear damper barrel/rod assemblies against all new rear frame casing parts across the same 81 suspension pairs.",
+    "Build an adjacency graph from actual intersecting fixed ram structural and pin meshes, seed the actual boxed rails, then require every tested ram load-path part to reach a rail.",
+    "Test fixed ram/frame steel against enclosure skins, closed lid vertical gaps within each lid domain, actual parcel shelf intersections, and actual hinge-owned lid parts at nine opening angles per lid.",
+    "Independently test exact bracket triangles against front bush sleeves and formed arms with a coplanar-aware triangle separating-axis test. Axes include both face normals, all nine edge cross products, and each face's in-plane edge normals, with 1e-8 m projection tolerance.",
+    "Test front-arm-owned actual meshes against both driveline.exhaust and engine.exhaust_collector at 65 evenly spaced front hub heights from -0.120 to 0.420 m. Test the exhaust against actual new frame casings, boxed rails and spring-pocket support geometry.",
+    "Capture hashes before authoring and after all tests; require unchanged source files."
+  ],
+  "intentionalContactExclusions": [
+    "Hydraulic spherical inner-ball/outer-race fit is intentional. The inner ball is omitted from the moving/fixed rejection set; actual fixed transverse pins and spacers remain included.",
+    "Cross-shaft and fastener seating on frame support tabs is intentional. Their bracket contacts are excluded; actual bush sleeves and formed-channel arm surfaces are tested without the frame owner's attachment-region mask.",
+    "Coils attach to their own moving cup/seat and the tested arms attach to their own joints; intended assembly interfaces and cosmetic fastener contacts outside the stated scope are not treated as collisions."
+  ],
+  "limitations": [
+    "Finite sampled source-geometry check, not a proof for every continuously varying or independent four-wheel state.",
+    "General crossing checks detect non-coplanar surface intersections. Dedicated bracket SAT also handles coplanar triangle contact; the report does not claim a general solid-containment or watertightness proof.",
+    "Ram-to-rail graph proves geometric connection to the modeled rails, not strength, fatigue life, manufacturability or roadworthiness.",
+    "Tire sweep and serialized/baked model/native binary checks are separate root-agent gates. This report binds authoring sources and its native pose input, not a particular later exported model.",
+    "Previously reviewed unchanged driveline slip and damper articulation mechanics are not re-certified here. The new casing checks include actual rear dampers and link motion.",
+    "No visual quality score or manufacturing certification is provided."
+  ],
+  "status": "PASS — scoped sampled source-geometry review",
+  "createdUtc": "2026-11-06T19:47:42.021Z",
+  "reviewer": "/root/rig_independent_check",
+  "units": {
+    "length": "metres",
+    "angle": "degrees"
+  },
+  "sampling": {
+    "nativePoseRows": 972,
+    "nativeSteeringPoses": 243,
+    "distinctSuspensionPairs": 81,
+    "hydraulicCommandLevels": [
+      0,
+      0.29,
+      0.58
+    ],
+    "springRamSeatTransformedGroups": 2592,
+    "rearDynamicCasingTransformedGroups": 729,
+    "frontHeights": 65,
+    "frontHeightRange": [
+      -0.12,
+      0.42
+    ],
+    "hoodOpeningAnglesRadians": [
+      0,
+      -0.1375,
+      -0.275,
+      -0.41250000000000003,
+      -0.55,
+      -0.6875,
+      -0.8250000000000001,
+      -0.9625000000000001,
+      -1.1
+    ],
+    "trunkOpeningAnglesRadians": [
+      0,
+      0.135,
+      0.27,
+      0.405,
+      0.54,
+      0.675,
+      0.81,
+      0.9450000000000001,
+      1.08
+    ]
+  },
+  "results": {
+    "sourceHashes": {
+      "scripts/catrina_art.py": "64e9654b6eb6c5de030accb7e44f93429003ed1806a86dbc783658e2e46785ba",
+      "scripts/catrina_hardware.py": "79c9cf763bd1c0e666a42623b1c752b9b71c887c68c3176f13e3757aeba4f7ab",
+      "scripts/catrina_frame_pockets.py": "58fc2e937c539f043d15fd4e54aafbdc41fc903f1a6b24ac9e473344ac4dee42",
+      "showcase/CatrinaRig.hpp": "fb4332956f75abccc533cf148215c72ba0b066493e3e7c6e13e10ac25d3b0efd",
+      "scripts/catrina_generate.py": "b8aa69ec629d46916b3e3d73c52ed1f61b31a0efa01fc6e1d4b96f86ea783173"
+    },
+    "hashesUnchanged": true,
+    "poseSource": "build/sessions/20261106-101153-431/physics-audit/catrina-rig-poses.csv",
+    "poseSha256": "6a385c98cca03763e041ac5c5842b62f5d16b0c80ba93c02935d6df6036f3604",
+    "poseRows": 972,
+    "parts": 3665,
+    "triangles": 737462,
+    "fixedBodyPartsTested": 1290,
+    "newFrameCasingParts": 28,
+    "frontHeightSamples": 65,
+    "movingFixedHitCategories": [],
+    "casingMotionHitCategories": [],
+    "maxRamPinMisalignmentDegrees": 23.32965347512823,
+    "loadPathConnectedParts": 118,
+    "loadPathTotalParts": 118,
+    "loadPathUnconnectedParts": [],
+    "steelEnclosureHits": [],
+    "lidHits": [],
+    "parcelShelfHits": [],
+    "lidGaps": {
+      "hood": {
+        "minimumClosedInnerVerticalGapMetres": 0.008060107564921037,
+        "gapScope": "Only cover points inside the inner-lid X/Z domain; forward rear-pocket overlap is separately checked against parcel shelf."
+      },
+      "trunk": {
+        "minimumClosedInnerVerticalGapMetres": 0.005439192987377717,
+        "gapScope": "Only cover points inside the inner-lid X/Z domain; forward rear-pocket overlap is separately checked against parcel shelf."
+      }
+    },
+    "bracketSleeveArmHits": [],
+    "exhaustArmHits": [],
+    "exhaustFixedHits": []
+  },
+  "reproducer": {
+    "workingDirectory": "C:/Users/oliver/Projects/engine-threepp",
+    "requirements": [
+      "Python",
+      "numpy",
+      "scipy"
+    ],
+    "execution": "Run the following Python with -B from the working directory. It constructs only in-memory authoring geometry and prints results; it does not export, bake, launch the native viewer, or edit source.",
+    "python": "import sys,hashlib,json,pathlib\nsys.dont_write_bytecode=True\nsource_paths=[\"scripts/catrina_art.py\",\"scripts/catrina_hardware.py\",\"scripts/catrina_frame_pockets.py\",\"showcase/CatrinaRig.hpp\",\"scripts/catrina_generate.py\"]\nsource_hashes={p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in source_paths}\nprint('SOURCE_HASHES',json.dumps(source_hashes),flush=True)\nimport sys,math,csv,hashlib,numpy as np\nsys.stdout.reconfigure(encoding='utf-8')\nfrom scipy.spatial.transform import Rotation\nsys.dont_write_bytecode=True;sys.path.insert(0,'scripts')\nimport catrina_generate as c,catrina_art,catrina_hardware\ncatrina_art.install(vars(c))\nfor f in[c.shell,c.roof_and_glass,c.front_rear,c.interior,c.gear,c.trunk]:f()\ncatrina_hardware.add_hardware(vars(c));M=c.M\nparents={ch:i for i,n in enumerate(M.nodes)for ch in n.get('children',[])}\nworld={}\ndef wm(i):\n if i not in world:\n  n=M.nodes[i];a=np.eye(4);a[:3,:3]=Rotation.from_quat(n.get('rotation',[0,0,0,1])).as_matrix()@np.diag(n.get('scale',[1,1,1]));a[:3,3]=n.get('translation',[0,0,0]);world[i]=wm(parents[i])@a if i in parents else a\n return world[i]\ndef vertices(p):\n a=wm(p['parent']);return p['p']@a[:3,:3].T+a[:3,3]\ndef triangles(p):return vertices(p)[p['f']]\ndef crossings(va,fa,vb,fb,stop=False):\n if np.any(va.max(0)<vb.min(0)-1e-7)or np.any(vb.max(0)<va.min(0)-1e-7):return 0\n edges=np.unique(np.sort(np.concatenate([fa[:,[0,1]],fa[:,[1,2]],fa[:,[2,0]]]),axis=1),axis=0);tri=vb[fb];aa=tri[:,0];e1=tri[:,1]-aa;e2=tri[:,2]-aa;count=0\n for edge in edges:\n  o=va[edge[0]];d=va[edge[1]]-o;p=np.cross(d,e2);det=(e1*p).sum(1);ok=abs(det)>1e-11;inv=np.where(ok,1/np.where(ok,det,1),0);tv=o-aa;u=(tv*p).sum(1)*inv;q=np.cross(tv,e1);v=(d*q).sum(1)*inv;t=(e2*q).sum(1)*inv;count+=np.count_nonzero(ok&(u>=-1e-6)&(v>=-1e-6)&(u+v<=1.000001)&(t>=-1e-6)&(t<=1.000001))\n  if stop and count:return count\n return count\ndef intersect(a,b):return crossings(vertices(a),a['f'],vertices(b),b['f'],True)or crossings(vertices(b),b['f'],vertices(a),a['f'],True)\ndef dists(points,tri):\n p=points[:,None,:];a,b,cc=[tri[None,:,i,:]for i in range(3)];u=b-a;v=cc-a;w=p-a;uu=(u*u).sum(2);uv=(u*v).sum(2);vv=(v*v).sum(2);wu=(w*u).sum(2);wv=(w*v).sum(2);den=uu*vv-uv*uv;alpha=(wu*vv-wv*uv)/den;beta=(wv*uu-wu*uv)/den;n=np.cross(u,v);plane=np.abs((w*n).sum(2))/np.sqrt((n*n).sum(2));best=np.where((alpha>=0)&(beta>=0)&(alpha+beta<=1),plane,np.inf)\n for x,y in[(a,b),(b,cc),(cc,a)]:\n  edge=y-x;t=np.clip(((p-x)*edge).sum(2)/(edge*edge).sum(2),0,1);best=np.minimum(best,np.linalg.norm(p-x-t[:,:,None]*edge,axis=2))\n return best.min(1)\ndef rot_between(a,b):\n a=np.array(a,float);a/=np.linalg.norm(a);b=np.array(b,float);b/=np.linalg.norm(b);q=np.r_[np.cross(a,b),1+a.dot(b)];q/=np.linalg.norm(q);return Rotation.from_quat(q).as_matrix()\nprint('finalParts',len(M.parts),'helperHash',hashlib.sha256(open('scripts/catrina_hardware.py','rb').read()).hexdigest(),flush=True)\n\n\ndef crossings(va,fa,vb,fb,stop=False):\n lo=vb.min(0);hi=vb.max(0)\n if np.any(va.max(0)<lo-1e-7)or np.any(hi<va.min(0)-1e-7):return 0\n edges=np.unique(np.sort(np.concatenate([fa[:,[0,1]],fa[:,[1,2]],fa[:,[2,0]]]),axis=1),axis=0)\n ea=va[edges[:,0]];eb=va[edges[:,1]];elo=np.minimum(ea,eb);ehi=np.maximum(ea,eb);keep=np.all(ehi>=lo-1e-7,1)&np.all(elo<=hi+1e-7,1);ea=ea[keep];eb=eb[keep];elo=elo[keep];ehi=ehi[keep]\n tri=vb[fb];tlo=tri.min(1);thi=tri.max(1);count=0\n for start in range(0,len(ea),32):\n  sl=slice(start,start+32);cand=np.any(np.all(thi[None]>=elo[sl,None]-1e-7,2)&np.all(tlo[None]<=ehi[sl,None]+1e-7,2),0)\n  if not cand.any():continue\n  ts=tri[cand];aa=ts[None,:,0];e1=ts[None,:,1]-aa;e2=ts[None,:,2]-aa;o=ea[sl,None,:];d=eb[sl,None,:]-o;p=np.cross(d,e2);det=(e1*p).sum(2);ok=abs(det)>1e-11;inv=np.where(ok,1/np.where(ok,det,1),0);tv=o-aa;u=(tv*p).sum(2)*inv;q=np.cross(tv,e1);v=(d*q).sum(2)*inv;t=(e2*q).sum(2)*inv;count+=np.count_nonzero(ok&(u>=-1e-6)&(v>=-1e-6)&(u+v<=1.000001)&(t>=-1e-6)&(t<=1.000001))\n  if stop and count:return count\n return count\n\n\nfixed=[p for p in M.parts if M.nodes[p['parent']]['name']=='body' and (p['name'].startswith(('chassis.','body.','interior.'))or p['name']in['hydraulic.ram_fixed_pin','hydraulic.ram_pin_spacer'])]\nfv=[vertices(p)for p in fixed];flo=np.array([v.min(0)for v in fv]);fhi=np.array([v.max(0)for v in fv])\nrows=list(csv.DictReader(open('build/sessions/20261106-101153-431/physics-audit/catrina-rig-poses.csv')));groups={};hits={};maxangle=0\nfor i in range(4):\n for nm in['barrel','rod','coil','seat']:\n  name=f'hydraulic_{i}_{nm}'if nm in['barrel','rod']else f'coil_{i}'+('_seat'if nm=='seat'else'');node=next(j for j,n in enumerate(M.nodes)if n['name']==name);v=[];f=[];count=0\n  for p in M.parts:\n   if p['parent']==node:v.append(p['p']);f.append(p['f']+count);count+=len(p['p'])\n  groups[i,nm]=np.concatenate(v),np.concatenate(f)\nprint('movingSweepFixedParts',len(fixed),flush=True)\nfor off in range(0,len(rows),12):\n pose=rows[off:off+4];pts=[np.array([float(row[k])for k in['x','y','z']])for row in pose];RR=Rotation.from_quat([float(pose[2][k])for k in['qx','qy','qz','qw']]).as_matrix()@Rotation.from_rotvec([-.6,0,0]).as_matrix();center=(pts[2]+pts[3])*.5\n for i in range(4):\n  s=-1 if i%2==0 else 1\n  if i<2:\n   dy=pts[i][1]-.2891;span=math.sqrt(.535**2-dy*dy);seat=np.array([s*(.18+span*.37/.535),.27+dy*.37/.535,1.5113])\n  else:seat=center+RR@np.array([s*.56,.0409,0])\n  top=np.array(M.joints[f'hydraulic_{i}']['a']);dist=np.linalg.norm(seat-top);axis=(seat-top)/dist;rot=rot_between([0,-1,0],axis);maxangle=max(maxangle,math.degrees(math.acos(np.clip(rot[0,0],-1,1))))\n  for ext in[0,.29,.58]:\n   cup=np.clip(.310+ext*.42,.280,max(.280,min(.430,dist-.114)))\n   for nm in['barrel','rod','coil','seat']:\n    if nm in['barrel','seat']and ext!=0:continue\n    vv,pf=groups[i,nm]\n    if nm=='barrel':pv=vv@rot.T+top\n    elif nm=='rod':pv=vv@rot.T+top+axis*cup\n    else:pv=(vv*np.array([1,(dist-cup)/(.28 if i<2 else .22)if nm=='coil'else 1,1]))@rot.T+seat\n    candidates=np.where(np.all(fhi>=pv.min(0)-1e-7,1)&np.all(flo<=pv.max(0)+1e-7,1))[0]\n    for k in candidates:\n     key=(i,nm,fixed[k]['name'])\n     if key in hits:continue\n     if crossings(pv,pf,fv[k],fixed[k]['f'],True)or crossings(fv[k],fixed[k]['f'],pv,pf,True):hits[key]=(off//4+1,ext);print('MOVING_INTERSECTION',key,hits[key],flush=True)\nprint('movingSweepComplete','uniquePosePairs',81,'commandLevels',[0,.29,.58],'collisionCategories',len(hits),'maxPinMisalignmentDegrees',maxangle,flush=True)\n\n\n_casingParts=[p for p in M.parts if p['name'].startswith('body.trunk_frame_channel_')]\n_casingVerts=[vertices(p)for p in _casingParts];_casingLo=np.array([v.min(0)for v in _casingVerts]);_casingHi=np.array([v.max(0)for v in _casingVerts]);_casingHits={}\n_ids={n['name']:i for i,n in enumerate(M.nodes)}\n_names=['rear_axle','rear_2_lower','rear_3_lower','rear_upper','rear_panhard']+[f'damper_{i}{tail}'for i in[2,3]for tail in['','_rod']]\n_locals={}\nfor nm in _names:\n vv=[];ff=[];nn=0\n for pp in M.parts:\n  if pp['parent']==_ids[nm]:vv.append(pp['p']);ff.append(pp['f']+nn);nn+=len(pp['p'])\n _locals[nm]=np.concatenate(vv),np.concatenate(ff)\ndef _shockAim(axis,pin):\n yy=-axis;zz=pin-np.dot(pin,yy)*yy;zz/=np.linalg.norm(zz);return np.c_[np.cross(yy,zz),yy,zz]\ndef _casingTest(name,pv,pf,pose):\n if not _casingParts:return\n ks=np.where(np.all(_casingHi>=pv.min(0)-1e-7,1)&np.all(_casingLo<=pv.max(0)+1e-7,1))[0]\n for kk in ks:\n  key=(name,_casingParts[kk]['name'])\n  if key in _casingHits:continue\n  if crossings(pv,pf,_casingVerts[kk],_casingParts[kk]['f'],True)or crossings(_casingVerts[kk],_casingParts[kk]['f'],pv,pf,True):\n   _casingHits[key]=pose;print('CASING_MOTION_INTERSECTION',key,pose,flush=True)\nfor offset in range(0,len(rows),12):\n rr=rows[offset:offset+4];center=np.mean([[float(rr[k][a])for a in['x','y','z']]for k in[2,3]],0);RR=Rotation.from_quat([float(rr[2][k])for k in['qx','qy','qz','qw']]).as_matrix()@Rotation.from_rotvec([-.6,0,0]).as_matrix();pose=int(rr[0]['pose']);vv,ff=_locals['rear_axle'];_casingTest('rear_axle',vv@RR.T+center,ff,pose);mounts={}\n for nm in _names[1:5]:\n  aa,bb=[np.array(M.joints[nm][k])for k in['a','b']];end=center+RR@(bb-[0,.2891,-1.5113]);QQ=rot_between(bb-aa,end-aa);mounts[nm]=(aa,QQ);vv,ff=_locals[nm];_casingTest(nm,vv@QQ.T+aa,ff,pose)\n for corner in[2,3]:\n  jj=M.joints[f'damper_{corner}'];aa,QQ=mounts[jj['mountNode']];end=aa+QQ@(np.array(jj['b'])-aa);top=np.array(jj['a']);axis=(end-top)/np.linalg.norm(end-top);pin=np.array(jj['fixedPinAxis'])\n  for tail,origin,rotation in[('',top,_shockAim(axis,pin)),('_rod',end,_shockAim(axis,QQ@pin))]:\n   nm=f'damper_{corner}{tail}';vv,ff=_locals[nm];_casingTest(nm,vv@rotation.T+origin,ff,pose)\nprint('casingMotionComplete','parts',len(_casingParts),'intersectionCategories',len(_casingHits),flush=True)\n\n\n_moving_hits=dict(hits);_max_pin_angle=maxangle\nloadparts=[p for p in M.parts if p['name'].startswith('chassis.ram_')or p['name']in['chassis.boxed_X_rail','hydraulic.ram_fixed_pin']]\ngraph=[set()for p in loadparts]\nfor i in range(len(loadparts)):\n for j in range(i):\n  if intersect(loadparts[i],loadparts[j]):graph[i].add(j);graph[j].add(i)\nseen={i for i,p in enumerate(loadparts)if p['name']=='chassis.boxed_X_rail'};queue=list(seen)\nwhile queue:\n i=queue.pop()\n for j in graph[i]:\n  if j not in seen:seen.add(j);queue.append(j)\nunconnected=[{'part':p['name'],'center':vertices(p).mean(0).tolist()}for i,p in enumerate(loadparts)if i not in seen]\nsteel=[p for p in M.parts if p['name'].startswith(('chassis.ram_','chassis.spring_pocket_'))or p['name']=='chassis.boxed_X_rail']\nenclosures=[p for p in M.parts if p['name'].startswith(('body.engine_ram_','body.trunk_ram_','body.trunk_frame_channel_'))]\nstatic_hits=[]\nfor p in steel:\n for q in enclosures:\n  if intersect(p,q):static_hits.append({'moving':p['name'],'fixed':q['name']})\nlids={};lid_hits=[];shelf_hits=[]\nfrom scipy.interpolate import LinearNDInterpolator\nfor front in[True,False]:\n nm='hood'if front else'trunk';inner=next(p for p in M.parts if p['name']=='body.'+nm+'_inner');v=vertices(inner);height=LinearNDInterpolator(v[:,[0,2]],v[:,1]);covers=[p for p in M.parts if p['name'].startswith('body.'+('engine'if front else'trunk')+'_ram_cover')or(not front and p['name'].startswith('body.trunk_frame_channel_'))];cv=[vertices(p)for p in covers];vv=np.concatenate(cv);gap=height(vv[:,[0,2]])-vv[:,1];lids[nm]={'minimumClosedInnerVerticalGapMetres':float(np.nanmin(gap)),'gapScope':'Only cover points inside the inner-lid X/Z domain; forward rear-pocket overlap is separately checked against parcel shelf.'}\n hinge=next(j for j,n in enumerate(M.nodes)if n['name']==nm+'_hinge');pivot=wm(hinge)[:3,3];lp=[p for p in M.parts if p['parent']==hinge]\n for step in range(9):\n  angle=(-1.10 if front else 1.08)*step/8;rot=Rotation.from_rotvec([angle,0,0]).as_matrix()\n  for p in lp:\n   pv=(vertices(p)-pivot)@rot.T+pivot\n   for k,q in enumerate(covers):\n    if crossings(pv,p['f'],cv[k],q['f'],True)or crossings(cv[k],q['f'],pv,p['f'],True):lid_hits.append({'lid':nm,'part':p['name'],'cover':q['name'],'angle':angle})\n for p in covers:\n  for q in[p for p in M.parts if p['name']=='interior.parcel_shelf']:\n   if intersect(p,q):shelf_hits.append({'cover':p['name'],'shelf':q['name']})\nprint('staticResults','connected',len(seen),'of',len(loadparts),'unconnected',unconnected,'steelEnclosureHits',static_hits,'lidHits',lid_hits,'shelfHits',shelf_hits,'lidGaps',lids,flush=True)\n\n\n\ndef bracket_sat_intersect(va,fa,vb,fb):\n if np.any(va.max(0)<vb.min(0)-1e-8)or np.any(vb.max(0)<va.min(0)-1e-8):return False\n ta=va[fa];tb=vb[fb];alo=ta.min(1);ahi=ta.max(1);blo=tb.min(1);bhi=tb.max(1)\n for start in range(0,len(ta),128):\n  ai,bi=np.where(np.all(ahi[start:start+128,None]>=blo[None]-1e-8,2)&np.all(alo[start:start+128,None]<=bhi[None]+1e-8,2))\n  if not len(ai):continue\n  for off in range(0,len(ai),1024):\n   aa=ta[ai[off:off+1024]+start];bb=tb[bi[off:off+1024]]\n   ea=np.roll(aa,-1,axis=1)-aa;eb=np.roll(bb,-1,axis=1)-bb\n   na=np.cross(ea[:,0],ea[:,1]);nb=np.cross(eb[:,0],eb[:,1])\n   axes=np.concatenate([na[:,None],nb[:,None],np.cross(ea[:,:,None],eb[:,None]).reshape(-1,9,3),np.cross(na[:,None],ea),np.cross(nb[:,None],eb)],1)\n   lengths=np.linalg.norm(axes,axis=2);valid=lengths>1e-12;axes=axes/np.where(valid,lengths,1)[:,:,None]\n   pa=np.einsum('nvc,nac->nav',aa,axes);pb=np.einsum('nvc,nac->nav',bb,axes)\n   separated=((pa.max(2)<pb.min(2)-1e-8)|(pb.max(2)<pa.min(2)-1e-8))&valid\n   if np.any(~separated.any(1)):return True\n return False\n\n_bracketHits={};_exhaustArmHits={};_exhaustFixedHits=[]\n_brackets=[p for p in M.parts if p['name']=='chassis.spring_pocket_arm_bracket']\n_pipes=[p for p in M.parts if p['name'].startswith(('driveline.exhaust','engine.exhaust_collector'))]\n_pipeV=[vertices(p)for p in _pipes];_pipeLo=np.array([v.min(0)for v in _pipeV]);_pipeHi=np.array([v.max(0)for v in _pipeV])\nfor side in[0,1]:\n sign=-1 if side==0 else 1\n heights=np.linspace(-.12,.42,65)\n for upper in[False,True]:\n  nm=f'front_{side}_'+('upper'if upper else'lower');node=next(j for j,n in enumerate(M.nodes)if n['name']==nm);origin=np.array([sign*.18,.43 if upper else .25,1.5113]);parts=[p for p in M.parts if p['parent']==node]\n  for height in heights:\n   dy=height-.2891;span=math.sqrt(.535**2-dy*dy);rot=Rotation.from_rotvec([0,0,sign*math.atan2(dy,span)]).as_matrix()\n   for p in parts:\n    pv=p['p']@rot.T+origin\n    if p['name']in['front.bush_sleeve','front.formed_channel_arm']:\n     for q in _brackets:\n      key=(nm,p['name'],tuple(np.round(vertices(q).mean(0),5)))\n      if key not in _bracketHits and bracket_sat_intersect(pv,p['f'],vertices(q),q['f']):_bracketHits[key]=height\n    ks=np.where(np.all(_pipeHi>=pv.min(0)-1e-7,1)&np.all(_pipeLo<=pv.max(0)+1e-7,1))[0]\n    for kk in ks:\n     key=(nm,p['name'],_pipes[kk]['name'])\n     if key not in _exhaustArmHits and(crossings(pv,p['f'],_pipeV[kk],_pipes[kk]['f'],True)or crossings(_pipeV[kk],_pipes[kk]['f'],pv,p['f'],True)):_exhaustArmHits[key]=height\nfor p in _pipes:\n for q in M.parts:\n  if not(q['name'].startswith(('body.trunk_frame_channel_','chassis.spring_pocket_'))or q['name']=='chassis.boxed_X_rail'):continue\n  if intersect(p,q):_exhaustFixedHits.append({'pipe':p['name'],'fixed':q['name'],'pipeCenter':vertices(p).mean(0).tolist()})\nprint('attachmentExhaustResults','bracketSleeveArmHits',list(_bracketHits.items()),'exhaustArmHits',list(_exhaustArmHits.items()),'exhaustFixedHits',_exhaustFixedHits,flush=True)\n\n\npose_path='build/sessions/20261106-101153-431/physics-audit/catrina-rig-poses.csv'\nend_hashes={p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()for p in source_paths}\nresult={\n'sourceHashes':source_hashes,'hashesUnchanged':source_hashes==end_hashes,\n'poseSource':pose_path,'poseSha256':hashlib.sha256(pathlib.Path(pose_path).read_bytes()).hexdigest(),\n'poseRows':len(rows),'parts':len(M.parts),'triangles':sum(len(p['f'])for p in M.parts),'fixedBodyPartsTested':len(fixed),'newFrameCasingParts':len(_casingParts),'frontHeightSamples':65,\n'movingFixedHitCategories':[{'pair':list(k),'poseAndCommand':list(v)}for k,v in _moving_hits.items()],\n'casingMotionHitCategories':[{'pair':list(k),'pose':v}for k,v in _casingHits.items()],\n'maxRamPinMisalignmentDegrees':_max_pin_angle,\n'loadPathConnectedParts':len(seen),'loadPathTotalParts':len(loadparts),'loadPathUnconnectedParts':unconnected,\n'steelEnclosureHits':static_hits,'lidHits':lid_hits,'parcelShelfHits':shelf_hits,'lidGaps':lids,\n'bracketSleeveArmHits':[{ 'pair':str(k),'height':v}for k,v in _bracketHits.items()],\n'exhaustArmHits':[{ 'pair':str(k),'height':v}for k,v in _exhaustArmHits.items()],\n'exhaustFixedHits':_exhaustFixedHits}\nprint('FINAL_RESULT_JSON',json.dumps(result),flush=True)\n"
+  }
+}
+

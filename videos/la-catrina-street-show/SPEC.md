@@ -1,0 +1,12 @@
+# Street Show specification
+
+STATUS: Encoded film verified. Exact model passed independent scores 8.020 and 8.115 before capture. The final independent film review is PASS_WITH_LIMITATIONS with zero P0/P1 findings; final source documentation is restaged and the editable archive has its own external integrity receipt.
+
+GOAL: Show La Catrina cruising, lifting and landing convincingly on a real rendered street.
+OUTPUT: HyperFrames, 960x600, 30fps, 48 seconds / 1440 frames.
+LOOK: Native daylight city footage. Candy pink, champagne filigree, chrome, plum cabin. Preserve native material response; no color grading or bloom. Barlow Condensed bold title46px, Barlow subtitle19px. Warm white#fff7ed with a restrained dark text shadow for legibility. Title originx96,y60. No persistent overlay.
+OBJECTS: Whole-car framing in the wide action shots; a dedicated front-corner detail at 16–21 seconds keeps the featured wheel complete. Street tire contact and suspension travel remain visible. No separate service-bay insert is in this edit.
+MOTION: Actual car and camera supply the movement. Straight cuts at action beats. Titles settle within 12 frames then hold. No artificial shake or speed ramps. A front-hop section holds long enough to show both push-off and landing.
+SHOTS: Frames0–179 /0–6s rolling reveal;180–479 /6–16s front hops;480–629 /16–21s wheel and suspension detail;630–869 /21–29s left three-wheel glide;870–1109 /29–37s right three-wheel glide;1110–1439 /37–48s cruising exit. Six sources, played full-frame at1×. Opening title0.4–4.0s; closing title44.0–47.7s. No text during the tricks.
+BANNED: AI stand-in vehicle; physics body teleportation; cropped wheels; disguised bench motion as driving; decorative HUD; dense captions; frame borders; fake lens flare; looping stills; speed ramps that obscure timing.
+QA: Require two independent unrounded scores≥8 for the exact captured model before production capture. Then inspect first/middle/last frames of each cut, hop push-off/apex/landing, both lifted-wheel poses and the final rolling pose. Run full decode, exact duration/dimensions, bounded black-frame scan, native source correspondence and hashes, and audio peak/loudness measurement. These delivery checks passed, with 28 decoded native-source comparisons. Human listening and continuous real-time playback review are not claimed. The final independent review reports no P0/P1 findings. The native three-wheel shots are shaded; their wheel separation remains readable.

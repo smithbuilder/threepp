@@ -1,0 +1,464 @@
+{
+  "schemaVersion": 1,
+  "revision": 3,
+  "id": "vehicle.la-catrina",
+  "type": "gltf-model",
+  "file": "la-catrina.glb",
+  "sha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+  "units": "metres",
+  "up": "+Y",
+  "forward": "+Z",
+  "groundOffset": 0,
+  "runtimeDependencies": [],
+  "source": "Original authored geometry and small vector cameos. Roof, hood and deck paint use rectified source ornament masks plus bounded source grain, remapped to the supplied Candy and Champagne palette pigments; the side-spear scroll uses a paint-only source mask in a separate narrow UV field. All derive from the user-supplied La-Catrina-Master.jpg. Source hash, sampled regions and transforms are recorded in referencePaint. No external meshes copied.",
+  "license": "Original geometry and small vector cameos: project license. Top paint and side-spear scroll derive from user-supplied artwork; no independent public redistribution license is asserted for that artwork.",
+  "worldBounds": {
+    "min": [
+      -1.0870000123977661,
+      8.678436302922421e-09,
+      -2.8545000553131104
+    ],
+    "max": [
+      1.0870000123977661,
+      1.328992247581482,
+      2.4835705757141113
+    ],
+    "size": [
+      2.1740000247955322,
+      1.3289922389030457,
+      5.338070631027222
+    ]
+  },
+  "rig": {
+    "wheelCenters": {
+      "0": [
+        -0.765,
+        0.2891,
+        1.5113
+      ],
+      "1": [
+        0.765,
+        0.2891,
+        1.5113
+      ],
+      "2": [
+        -0.755,
+        0.2891,
+        -1.5113
+      ],
+      "3": [
+        0.755,
+        0.2891,
+        -1.5113
+      ]
+    },
+    "joints": {
+      "front_0_lower": {
+        "a": [
+          -0.18,
+          0.25,
+          1.5113
+        ],
+        "b": [
+          -0.715,
+          0.25,
+          1.5113
+        ]
+      },
+      "front_0_upper": {
+        "a": [
+          -0.18,
+          0.43,
+          1.5113
+        ],
+        "b": [
+          -0.715,
+          0.43,
+          1.5113
+        ]
+      },
+      "hydraulic_0": {
+        "a": [
+          -0.55,
+          0.86,
+          1.5113
+        ],
+        "b": [
+          -0.55,
+          0.27,
+          1.5113
+        ],
+        "barrelLength": 0.245,
+        "rodCupY": 0.55,
+        "coilLength": 0.28,
+        "rodLength": 0.245,
+        "cupRestDistance": 0.31,
+        "cupTravelMinimum": 0.28,
+        "cupTravelMaximum": 0.43,
+        "minimumSpringLength": 0.114,
+        "coilSolidHeight": 0.102,
+        "casingStartDistance": 0.03,
+        "casingShellLength": 0.215,
+        "fixedPinAxis": [
+          1,
+          0,
+          0
+        ],
+        "frameTowerPosts": [
+          [
+            -0.49,
+            1.2313
+          ],
+          [
+            -0.49,
+            1.7913000000000001
+          ]
+        ]
+      },
+      "front_1_lower": {
+        "a": [
+          0.18,
+          0.25,
+          1.5113
+        ],
+        "b": [
+          0.715,
+          0.25,
+          1.5113
+        ]
+      },
+      "front_1_upper": {
+        "a": [
+          0.18,
+          0.43,
+          1.5113
+        ],
+        "b": [
+          0.715,
+          0.43,
+          1.5113
+        ]
+      },
+      "hydraulic_1": {
+        "a": [
+          0.55,
+          0.86,
+          1.5113
+        ],
+        "b": [
+          0.55,
+          0.27,
+          1.5113
+        ],
+        "barrelLength": 0.245,
+        "rodCupY": 0.55,
+        "coilLength": 0.28,
+        "rodLength": 0.245,
+        "cupRestDistance": 0.31,
+        "cupTravelMinimum": 0.28,
+        "cupTravelMaximum": 0.43,
+        "minimumSpringLength": 0.114,
+        "coilSolidHeight": 0.102,
+        "casingStartDistance": 0.03,
+        "casingShellLength": 0.215,
+        "fixedPinAxis": [
+          1,
+          0,
+          0
+        ],
+        "frameTowerPosts": [
+          [
+            0.49,
+            1.2313
+          ],
+          [
+            0.49,
+            1.7913000000000001
+          ]
+        ]
+      },
+      "rear_2_lower": {
+        "a": [
+          -0.56,
+          0.33,
+          -0.45
+        ],
+        "b": [
+          -0.56,
+          0.33,
+          -1.5113
+        ]
+      },
+      "hydraulic_2": {
+        "a": [
+          -0.56,
+          0.86,
+          -1.5113
+        ],
+        "b": [
+          -0.56,
+          0.33,
+          -1.5113
+        ],
+        "barrelLength": 0.245,
+        "rodCupY": 0.55,
+        "coilLength": 0.22,
+        "rodLength": 0.245,
+        "cupRestDistance": 0.31,
+        "cupTravelMinimum": 0.28,
+        "cupTravelMaximum": 0.43,
+        "minimumSpringLength": 0.114,
+        "coilSolidHeight": 0.102,
+        "casingStartDistance": 0.03,
+        "casingShellLength": 0.215,
+        "fixedPinAxis": [
+          1,
+          0,
+          0
+        ],
+        "frameTowerPosts": [
+          [
+            -0.49,
+            -1.7913000000000001
+          ],
+          [
+            -0.49,
+            -1.8863
+          ]
+        ]
+      },
+      "rear_3_lower": {
+        "a": [
+          0.56,
+          0.33,
+          -0.45
+        ],
+        "b": [
+          0.56,
+          0.33,
+          -1.5113
+        ]
+      },
+      "hydraulic_3": {
+        "a": [
+          0.56,
+          0.86,
+          -1.5113
+        ],
+        "b": [
+          0.56,
+          0.33,
+          -1.5113
+        ],
+        "barrelLength": 0.245,
+        "rodCupY": 0.55,
+        "coilLength": 0.22,
+        "rodLength": 0.245,
+        "cupRestDistance": 0.31,
+        "cupTravelMinimum": 0.28,
+        "cupTravelMaximum": 0.43,
+        "minimumSpringLength": 0.114,
+        "coilSolidHeight": 0.102,
+        "casingStartDistance": 0.03,
+        "casingShellLength": 0.215,
+        "fixedPinAxis": [
+          1,
+          0,
+          0
+        ],
+        "frameTowerPosts": [
+          [
+            0.49,
+            -1.7913000000000001
+          ],
+          [
+            0.49,
+            -1.8863
+          ]
+        ]
+      },
+      "rear_panhard": {
+        "a": [
+          -0.6,
+          0.62,
+          -1.3
+        ],
+        "b": [
+          0.56,
+          0.35,
+          -1.3
+        ]
+      },
+      "rear_upper": {
+        "a": [
+          0.0,
+          0.46,
+          -0.45
+        ],
+        "b": [
+          0.0,
+          0.42,
+          -1.5113
+        ]
+      },
+      "driveshaft": {
+        "a": [
+          0.0,
+          0.3,
+          0.59
+        ],
+        "b": [
+          0.0,
+          0.2891,
+          -1.2913000000000001
+        ],
+        "outerTubeEnd": 1.6,
+        "slipMemberLength": 0.55,
+        "fixedMetalScale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "damper_0": {
+        "a": [
+          -0.48,
+          0.78,
+          1.6313
+        ],
+        "b": [
+          -0.3833,
+          0.28,
+          1.6313
+        ],
+        "mountNode": "front_0_lower",
+        "barrelEnd": 0.39,
+        "rodLength": 0.36,
+        "restEyeDistance": 0.5092650488694468,
+        "fixedMetalScale": [
+          1,
+          1,
+          1
+        ],
+        "mountMotionRatio": 0.38,
+        "movingEyeInboardOffset": 0,
+        "fixedPinAxis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bearingMisalignmentLimitDegrees": 30
+      },
+      "damper_1": {
+        "a": [
+          0.48,
+          0.78,
+          1.6313
+        ],
+        "b": [
+          0.3833,
+          0.28,
+          1.6313
+        ],
+        "mountNode": "front_1_lower",
+        "barrelEnd": 0.39,
+        "rodLength": 0.36,
+        "restEyeDistance": 0.5092650488694468,
+        "fixedMetalScale": [
+          1,
+          1,
+          1
+        ],
+        "mountMotionRatio": 0.38,
+        "movingEyeInboardOffset": 0,
+        "fixedPinAxis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bearingMisalignmentLimitDegrees": 30
+      },
+      "damper_2": {
+        "a": [
+          -0.2,
+          0.5,
+          -2.0
+        ],
+        "b": [
+          -0.4600000000000001,
+          0.35000000000000003,
+          -1.3414920000000001
+        ],
+        "mountNode": "rear_2_lower",
+        "barrelEnd": 0.665,
+        "rodLength": 0.66,
+        "restEyeDistance": 0.7236938482977452,
+        "fixedMetalScale": [
+          1,
+          1,
+          1
+        ],
+        "mountMotionRatio": 0.84,
+        "movingEyeInboardOffset": 0.1,
+        "fixedPinAxis": [
+          0.902258472810754,
+          -0.25062735355854276,
+          0.3508782949819598
+        ],
+        "bearingMisalignmentLimitDegrees": 30
+      },
+      "damper_3": {
+        "a": [
+          0.2,
+          0.5,
+          -2.0
+        ],
+        "b": [
+          0.4600000000000001,
+          0.35000000000000003,
+          -1.3414920000000001
+        ],
+        "mountNode": "rear_3_lower",
+        "barrelEnd": 0.665,
+        "rodLength": 0.66,
+        "restEyeDistance": 0.7236938482977452,
+        "fixedMetalScale": [
+          1,
+          1,
+          1
+        ],
+        "mountMotionRatio": 0.84,
+        "movingEyeInboardOffset": 0.1,
+        "fixedPinAxis": [
+          0.902258472810754,
+          -0.25062735355854276,
+          -0.3508782949819598
+        ],
+        "bearingMisalignmentLimitDegrees": 30
+      }
+    },
+    "clips": [
+      "hood_open",
+      "trunk_open"
+    ]
+  },
+  "files": [
+    "la-catrina.glb",
+    "la-catrina.json",
+    "asset.json",
+    "README.md",
+    "candy_scroll_side.png",
+    "champagne_side_ornament.png",
+    "reference_roof_lace.png",
+    "reference_hood_lace.png",
+    "reference_deck_lace.png",
+    "tire_sidewall_type.png",
+    "undercoat_flake_normal.png",
+    "undercoat_flake_roughness.png"
+  ],
+  "limitations": [
+    "Fictional game model inspired by a 1964 hardtop; not licensed vehicle CAD or manufacturing geometry.",
+    "Hydraulics and suspension are a reduced game approximation, not multibody linkage or certified mesh clearance.",
+    "Hydraulic hopping is implemented by the shared physical playground; portable service clips open the hood and trunk only."
+  ]
+}
