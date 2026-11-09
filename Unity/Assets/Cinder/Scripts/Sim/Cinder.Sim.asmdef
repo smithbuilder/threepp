@@ -1,0 +1,6 @@
+{
+  "name": "Cinder.Sim",
+  "rootNamespace": "Cinder.Sim",
+  "autoReferenced": true,
+  "noEngineReferences": true
+}

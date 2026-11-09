@@ -1,0 +1,117 @@
+{
+  "revision": "cinder-unity",
+  "assets": [
+    {
+      "id": "safari",
+      "source": "showcase/assets/safari-body.glb",
+      "sha256": "82795fe6ea71da661d85d43fda9c932226e9e3b5e53089c16f53271d271e93be",
+      "triangles": 213416,
+      "nodes": 157,
+      "materials": 57,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "2a3816c8eea7281bf7ae671375117203f7f64a43b6409761e234d72eab72a56a"
+    },
+    {
+      "id": "baja",
+      "source": "asset-library/models/baja-427/baja-427.glb",
+      "sha256": "f3aea63858c923f1de2ae97a922341758a978a2ddc3215a0fffbbfde6ac0f72a",
+      "triangles": 246048,
+      "nodes": 218,
+      "materials": 19,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "b8d680bd84afd1550ef35080abda3729282f30f90d536a0b6cb0c9dbbefce292"
+    },
+    {
+      "id": "switchback",
+      "source": "asset-library/models/switchback/switchback.glb",
+      "sha256": "2119b635e68f3c5ceb4237c04d22068b3a03daf59fd5c711313ce466590f3b12",
+      "triangles": 979990,
+      "nodes": 322,
+      "materials": 47,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "778a278b03732da70fc3a76087b2dd9e6ee00ace68ea9034f95d4cd8d67392ee"
+    },
+    {
+      "id": "catrina",
+      "source": "assets/unity/sources/catrina.glb",
+      "sha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "triangles": 309624,
+      "nodes": 330,
+      "materials": 46,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "9910e42337bd2ecc422924db73e8fe47ab5955f305d0fd103bbb81ddc5e4c599"
+    },
+    {
+      "id": "media-luna",
+      "source": "assets/unity/sources/media-luna.glb",
+      "sha256": "8aa58c0eaeec922cfe4c62258925c3bf66a9ee95f3e299b361f3854cdccc0da8",
+      "triangles": 199968,
+      "nodes": 302,
+      "materials": 37,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "1e75f390a936eeeacc2d5197239c2580ef182c7bc6cccc364b4acbaf28a615b8"
+    },
+    {
+      "id": "nocturne",
+      "source": "assets/unity/sources/nocturne.glb",
+      "sha256": "130a88244b3e639f2b1d6c47238052a1b02ff6f4dba6942eeb1886c26441d64b",
+      "triangles": 299596,
+      "nodes": 318,
+      "materials": 19,
+      "author": "SmithBuilder donor kit; original provenance remains beside source",
+      "date": "2026-11-08",
+      "parts": "Named glTF nodes preserved",
+      "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
+      "stagedSha256": "bae57b8bcaa5c35389248291a8e4bbdb57ba4ffb0bdf49693d6656c498ad6a94"
+    },
+    {
+      "id": "buggy",
+      "source": "tools/blender/cinder/create_kit.py",
+      "sha256": "4201d9c44208ec09ebffa6507ef2b90b55a12b8d89d713d705a3f5bd681b1713",
+      "author": "SmithBuilder",
+      "date": "2026-11-08",
+      "placement": "Metres, Y up, +Z forward",
+      "parts": "Named authored nodes",
+      "stagedSha256": "7bbdcbc787259e77df06e107fd2e07ef610203127962792fa1278a8d9fb17c78"
+    },
+    {
+      "id": "safari-running-gear",
+      "source": "tools/blender/cinder/create_kit.py",
+      "sha256": "6d13da0bdc61e6eae8393d6c71f7a30e5b92b0a9f2b00dbde9e97205651e2114",
+      "author": "SmithBuilder",
+      "date": "2026-11-08",
+      "placement": "Metres, Y up, +Z forward",
+      "parts": "Named authored nodes",
+      "stagedSha256": "c2d8ff3dec1c3b1c4e34e8244df740bae4dbba1d1c63ff82ae9bb7402fab8910"
+    },
+    {
+      "id": "city-kit",
+      "source": "tools/blender/cinder/create_kit.py",
+      "sha256": "f5ca8844a2312357ee6dc204921b6ba1b2d2710214e7191a44b49a09f6a2bfed",
+      "author": "SmithBuilder",
+      "date": "2026-11-08",
+      "placement": "Metres, Y up, +Z forward",
+      "parts": "Named authored nodes",
+      "stagedSha256": "64e23637d39d00c67d228596a56f84d28ab5f97acef2bd6f34f8e4c465e3ee02"
+    }
+  ],
+  "notes": [
+    "Named pivots and materials preserved; lowrider hero/mid/far adaptations recorded separately",
+    "Generated kit is an original Unity adaptation of donor dimensions, not identical procedural donor art"
+  ]
+}

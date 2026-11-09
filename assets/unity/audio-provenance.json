@@ -1,0 +1,49 @@
+{
+  "cues": [
+    {
+      "id": "engine",
+      "file": "Unity/Assets/Resources/Cinder/Audio/engine.wav",
+      "source": "tools/unity/make_audio.py",
+      "author": "SmithBuilder",
+      "license": "Original synthesized placeholder",
+      "date": "2026-11-08",
+      "integratedLUFS": -30.06,
+      "truePeakDBTP": -20.48,
+      "notes": "Measured with repeated cue. Human listening remains UNVERIFIED."
+    },
+    {
+      "id": "pump",
+      "file": "Unity/Assets/Resources/Cinder/Audio/pump.wav",
+      "source": "tools/unity/make_audio.py",
+      "author": "SmithBuilder",
+      "license": "Original synthesized placeholder",
+      "date": "2026-11-08",
+      "integratedLUFS": -29.04,
+      "truePeakDBTP": -22.64,
+      "notes": "Measured with repeated cue. Human listening remains UNVERIFIED."
+    },
+    {
+      "id": "landing",
+      "file": "Unity/Assets/Resources/Cinder/Audio/landing.wav",
+      "source": "tools/unity/make_audio.py",
+      "author": "SmithBuilder",
+      "license": "Original synthesized placeholder",
+      "date": "2026-11-08",
+      "integratedLUFS": -24.16,
+      "truePeakDBTP": -6.86,
+      "notes": "Measured with repeated cue. Human listening remains UNVERIFIED."
+    },
+    {
+      "id": "impact",
+      "file": "Unity/Assets/Resources/Cinder/Audio/impact.wav",
+      "source": "tools/unity/make_audio.py",
+      "author": "SmithBuilder",
+      "license": "Original synthesized placeholder",
+      "date": "2026-11-08",
+      "integratedLUFS": -25.12,
+      "truePeakDBTP": -9.6,
+      "notes": "Measured with repeated cue. Human listening remains UNVERIFIED."
+    }
+  ],
+  "playback": "All cues originate from simulation Events, distance-delayed by listener range /343 m/s"
+}

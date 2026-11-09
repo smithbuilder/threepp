@@ -1,0 +1,112 @@
+{
+  "assets": [
+    {
+      "id": "catrina",
+      "source": "assets/unity/sources/catrina.glb",
+      "sourceSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "sha256": "9910e42337bd2ecc422924db73e8fe47ab5955f305d0fd103bbb81ddc5e4c599",
+      "triangles": 309624,
+      "ratio": 0.38,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "329df054ce4ebf4c52245731dac233cb92abe96c0e052ed28b18c86ac199c9c4"
+    },
+    {
+      "id": "catrina-mid",
+      "source": "assets/unity/sources/catrina.glb",
+      "sourceSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "sha256": "ca87ea9522cda1f6e51d36e23cd517021315db4915e9ce79890bbc8aa4bdfa9b",
+      "triangles": 133354,
+      "ratio": 0.13,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "9a12c92697580d890836143f294561515c29a214915c5b68c685f4a0593d9d5d"
+    },
+    {
+      "id": "catrina-far",
+      "source": "assets/unity/sources/catrina.glb",
+      "sourceSha256": "8444acaabf320f15fc3157342f4d23baa0b03b701d99af365608f48c4c16cb3e",
+      "sha256": "5fc20f5670d2e7af157803c828f274f6efaa1c8b658691164c8873f5b7a357ae",
+      "triangles": 66365,
+      "ratio": 0.035,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "c426e18b51067d8c2bfbbb5fe28f5cbd92be610cfdcc6cc4b63b3fd24fa1542d"
+    },
+    {
+      "id": "media-luna",
+      "source": "assets/unity/sources/media-luna.glb",
+      "sourceSha256": "8aa58c0eaeec922cfe4c62258925c3bf66a9ee95f3e299b361f3854cdccc0da8",
+      "sha256": "1e75f390a936eeeacc2d5197239c2580ef182c7bc6cccc364b4acbaf28a615b8",
+      "triangles": 199968,
+      "ratio": 1,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "4fac2c83617b4b5b52054da29e823856ac207d7b8be1d583c0b79df60920b315"
+    },
+    {
+      "id": "media-luna-mid",
+      "source": "assets/unity/sources/media-luna.glb",
+      "sourceSha256": "8aa58c0eaeec922cfe4c62258925c3bf66a9ee95f3e299b361f3854cdccc0da8",
+      "sha256": "c229124714b9be734e0c9cbf50f85850e6966f74686a4bbdaf7c1c5acaa3cccb",
+      "triangles": 50947,
+      "ratio": 0.13,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "9b1d706460fabe417fc7ed07d5f1e7b373df58d31b630fd2a3a6be8457925581"
+    },
+    {
+      "id": "media-luna-far",
+      "source": "assets/unity/sources/media-luna.glb",
+      "sourceSha256": "8aa58c0eaeec922cfe4c62258925c3bf66a9ee95f3e299b361f3854cdccc0da8",
+      "sha256": "0ef3d5b116cecff9e43e173e5e52cc4f33015289091abf32aaa231c2f40aab0e",
+      "triangles": 35084,
+      "ratio": 0.035,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "ddfa3c8f6e6be023d511de12bb94f93bc5361c413cdb6ac84138c730a5a7a714"
+    },
+    {
+      "id": "nocturne",
+      "source": "assets/unity/sources/nocturne.glb",
+      "sourceSha256": "130a88244b3e639f2b1d6c47238052a1b02ff6f4dba6942eeb1886c26441d64b",
+      "sha256": "bae57b8bcaa5c35389248291a8e4bbdb57ba4ffb0bdf49693d6656c498ad6a94",
+      "triangles": 299596,
+      "ratio": 1,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "41371626c8c29c44554ad21279d1b2b9f34cf0b2cac5e696f400f032542907d6"
+    },
+    {
+      "id": "nocturne-mid",
+      "source": "assets/unity/sources/nocturne.glb",
+      "sourceSha256": "130a88244b3e639f2b1d6c47238052a1b02ff6f4dba6942eeb1886c26441d64b",
+      "sha256": "d4da831447046bfff4dd93fd907fd477f0ac035967cafecc4bb6c1205ecf4af7",
+      "triangles": 83525,
+      "ratio": 0.13,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "3ad6533f8538c27e96685f6ee110267a65eb5b7b193358b7294f59fb207b130a"
+    },
+    {
+      "id": "nocturne-far",
+      "source": "assets/unity/sources/nocturne.glb",
+      "sourceSha256": "130a88244b3e639f2b1d6c47238052a1b02ff6f4dba6942eeb1886c26441d64b",
+      "sha256": "59c8159d64abd307b5ad058e34f00aa2bfff61e2f9436a9300074b27f70f6241",
+      "triangles": 60366,
+      "ratio": 0.035,
+      "pivots": "Preserved named glTF nodes",
+      "author": "SmithBuilder offline density adaptation",
+      "date": "2026-11-08",
+      "exportSha256": "25f87fe56e8ea19172b0743254470c047457fb2036e9aa5e70b1f904423921dc"
+    }
+  ]
+}
