@@ -1,5 +1,7 @@
 # Cinder Unity
 
+Current r9 is a technical prototype. Visual acceptance is withdrawn after the native comparison; city, lighting and car finish need restoration. See `docs/unity/reassessment/REASSESSMENT.md`.
+
 The Unity migration centers on lowrider culture: La Catrina, Media Luna and Nocturne. Choose a car in the main garage, cruise Mercer, start a hydraulic session, or visit the workshop test grounds. Safari and buggy racing are deferred from this menu.
 
 The current build/review state is in [the handoff](docs/HANDOFF.md). `PLAY-CINDER-UNITY.cmd` launches the selected signed Windows player through the resource guard. `RUN-BUILD-RUNNER.cmd` builds it with Unity 6000.3.6f1 without opening the editor.

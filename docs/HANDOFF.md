@@ -1,10 +1,12 @@
 # Cinder Unity handoff
 
-November 9, 2026, Pacific Time. Current candidate: `cinder-unity-r9`. Independent architecture and presentation/gameplay review PASS for the reviewable prototype gate. Signed player and fresh evidence are bound to this exact revision.
+November 9, 2026, Pacific Time. Current player: `cinder-unity-r9`. **VISUAL ACCEPTANCE WITHDRAWN.** Oliver identified a regression in the city, lighting and cars. Fresh independent native-relative reviews confirm it. The technical simulation/finite mechanism results remain valid within their scope. r9 is a technical prototype and regression control, not an accepted visual replacement for the native title.
 
 ## Needs you
 
-Only the human playtest remains after the automated/reviewer gates: physical pad/keyboard behavior, input feel, heard audio, comfort, comprehension and enjoyment. Target-device 1080p/60 performance remains UNVERIFIED because automated runs retain the conservative 960 x 600 / 30 fps profile.
+No additional decision or access is needed for the reassessment. Visual restoration is required before another acceptance claim. Physical pad/keyboard behavior, input feel, heard audio, comfort, comprehension and enjoyment also remain UNVERIFIED. Target-device 1080p/60 remains UNVERIFIED under the conservative 960 x 600 / 30 fps profile.
+
+Start with `docs/unity/reassessment/REASSESSMENT.md` and `art-review/unity-reassessment/index.html`. Three fresh evaluators own the car, city and lighting reports. The November 9 reassessment changes documentation and evidence references only; it does not deliver a fixed player or change simulation/assets.
 
 ## What this is
 
@@ -39,7 +41,7 @@ The final packet is `evidence/cinder-unity-r9/review/`: six stills, a 69-second 
 
 The back-to-back control is the last fully reviewed r8 player on the same PC. Frame times include the 30 fps cap and PNG IO, so they cannot establish 1080p/60. Use external runtime-receipt working-set measurements; Unity Mono's internal Process.PeakWorkingSet64 returns zero here. Measured draw calls include shadow/post/UI work; renderer count is not draw-call count. Scene budget: <=700,000 submitted triangles and <=300 draws. Matched Catrina city result: 687,908 triangles, 685 maximum draws, so the triangle target is met and the draw target is NOT met. Current r9 versus r8: median 33.3314 versus 33.3307 ms, p99 33.6336 versus 33.6110 ms, external peak 298,438,656 versus 300,613,632 bytes. No material regression is established in this capped, short test. Draw reduction remains an optimization target; this is not performance acceptance for a paid release.
 
-Final r9 review: presentation 8.0/10, observable gameplay 8.2/10; independent architecture PASS. No P0/P1 remains within the reviewed scope. r8 presentation 7.8/10 failed and is retained as the control; r9 earns its own fresh verdict. Reports: `docs/unity/QUALITY-REVIEW-r9.md` and `docs/unity/ARCHITECTURE-REVIEW-r9.md`. This is Level 2, not the paid-release gate. See `docs/GAUNTLET.md` for the level/weakest-aspect rules.
+Historical r9 review: presentation 8.0/10 and observable gameplay 8.2/10; independent architecture PASS. Its broad presentation approval is superseded by Oliver's rejection and the fresh native-relative reassessment. It did not establish visual fidelity to the donor. Do not claim Level 2 acceptance while the reassessment P1 art issues remain. Original reports and evidence are retained unchanged: `docs/unity/QUALITY-REVIEW-r9.md`, `docs/unity/ARCHITECTURE-REVIEW-r9.md`. See `docs/GAUNTLET.md` for the amended visual gate.
 
 ## Provenance and coordination
 

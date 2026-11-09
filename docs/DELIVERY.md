@@ -1,6 +1,6 @@
 # Cinder Unity delivery: cinder-unity-r9
 
-November 9, 2026, Pacific Time. Reviewable lowrider prototype, Level 2 under `docs/GAUNTLET.md`.
+November 9, 2026, Pacific Time. **Historical delivery; visual acceptance withdrawn after Oliver's review.** Fresh native-relative evaluations identify major regressions in city content, lighting and vehicle finish. See `docs/unity/reassessment/REASSESSMENT.md` and `art-review/unity-reassessment/index.html`. The records below remain the original technical delivery evidence, not current Level 2 visual acceptance. No repaired player has been built in the reassessment.
 
 ## Needs you
 

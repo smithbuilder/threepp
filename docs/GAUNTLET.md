@@ -24,3 +24,16 @@ These levels are a project gate definition, not a claim that the port has attain
 ## Required regression dimensions
 
 Catalog and eight areas, exact tuning/dimensions, static support/weight/braking, grade hold/release, footprint and grip axes, actual flight and stable landing, no airborne drive/boost, wind-relative aero, hydraulics and speed interlocks, independent air channels, axle closure, full-state clone/restore/replay. Loaded rig tests additionally measure wheel attachments, dampers, rear links, ram seats, bellows rings and roof/coachwork endpoints. Host tests cover pad/menu bindings, settings, focus/pause, module frame placement and enter/exit cleanup.
+
+## Native-relative visual gate, added November 9, 2026
+
+Oliver rejected the r9 visual result. Its old presentation score is historical and cannot establish visual-fidelity acceptance. A functioning mechanism or menu does not compensate for a visibly degraded city, lighting or car finish.
+
+- Freeze the native reference and candidate source/model identities. Audit actual content parity before rendering changes. Declare source-version differences, including the historical Luna comparison.
+- Compare matched car state, camera transform/FOV, object pixel size, sun/sky direction, ground and resolution. Keep a neutral material setup and the actual Mercer street setup. Historical unmatched images can identify visible loss, but cannot isolate a shader cause.
+- Evaluate city construction, lighting/grounding and each lowrider's finish/readability separately. No averaging a failed aspect into a single whole-prototype score. Reviewers first describe observed defects and native-relative preservation, without a requested passing score.
+- Retain missing-content blockers and material/readability P1s until the exact new player proves them repaired. No acceptance from imported triangle counts, unchanged fingerprints, a brighter global grade, cropped hero shots or a different high-resolution beauty profile.
+- Final evidence stays proportional: three to six stills plus <=90 seconds of original player motion per candidate packet, exact bindings and replays. Separate focused diagnostic packets may address a car or environment segment before the final whole-candidate packet.
+- The current conservative resource/graphics guard and scene budgets remain binding. Restore static shade, calibrated material response and efficient authored detail before proposing extra real-time passes or higher caps. The 300-draw target remains unmet and disclosed.
+
+Current state: technical gates retained, visual-fidelity gate FAIL pending restoration. Fresh source-based assessments and image comparisons are in `docs/unity/reassessment/` and `art-review/unity-reassessment/`.

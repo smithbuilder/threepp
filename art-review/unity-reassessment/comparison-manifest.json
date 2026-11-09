@@ -1,0 +1,44 @@
+{
+  "datePacific": "2026-11-09",
+  "purpose": "Visual regression assessment, unchanged original images. No rendering fixes delivered.",
+  "r9PlayerSha256": "5cf25d276d9331f1c6aa01994bd641586eda28ec52efceac31e1d54d3898448e",
+  "comparisonLimits": "Historical native and Unity player evidence. Cameras, sun, pose and background differ. Demonstrates visible content/presentation regression; cannot isolate a shader cause or certify geometry parity by pixels.",
+  "images": [
+    {
+      "role": "native-reference",
+      "source": "docs/nocturne/review/native/street-cruise.png",
+      "file": "native-nocturne-street.png",
+      "sha256": "f8ce5028affb263c85289388d89c005821faa550c03e7df1b609093ab84579da"
+    },
+    {
+      "role": "Unity-r9",
+      "source": "art-review/unity-r9/06-nocturne-roof.png",
+      "file": "../unity-r9/06-nocturne-roof.png",
+      "sha256": "679d77ff76d435a0e1847a04e6f2c8342ad05ff27902970b6a05d5a1137dbba9"
+    },
+    {
+      "role": "native-reference",
+      "source": "docs/media-luna/review/native/street-raised.png",
+      "file": "native-luna-raised.png",
+      "sha256": "e023e839446f5a76506d300b4b0628da1f101519f1dbad391c0a1a51aa3384e6"
+    },
+    {
+      "role": "Unity-r9",
+      "source": "art-review/unity-r9/05-media-luna-lift.png",
+      "file": "../unity-r9/05-media-luna-lift.png",
+      "sha256": "e8fe92e7c0b527144fb69e892382c5a44c46ab34d8a73374f4804bbc458e9b70"
+    },
+    {
+      "role": "native-reference",
+      "source": "docs/la-catrina/review/studio/side.png",
+      "file": "native-catrina-side.png",
+      "sha256": "9491190515e515c41ea589d7ad60a761b716c08366164c1671f48b1bb2ef8a63"
+    },
+    {
+      "role": "Unity-r9",
+      "source": "art-review/unity-r9/04-catrina-hop.png",
+      "file": "../unity-r9/04-catrina-hop.png",
+      "sha256": "680c4dbe81c6c03b3b0dcef4f5d011ebec13e523029a06a7a0200c847f2aebda"
+    }
+  ]
+}
