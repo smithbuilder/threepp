@@ -4,7 +4,7 @@
 
 ## Verdict
 
-**No accepted candidate. Diagnostic presentation scores are recorded below; gameplay remains unscored pending motion and controls evidence.** Source inspection identifies concrete control and mechanical-view defects below. A successful compile or pure-sim probe cannot establish the presentation/gameplay gates.
+**No accepted candidate. Diagnostic presentation and scripted-menu scores are recorded below; the full gameplay verdict is pending fresh motion evidence.** Source inspection identifies concrete control and mechanical-view defects below. A successful compile or pure-sim probe cannot establish the presentation/gameplay gates.
 
 The current player direction is lowrider car culture: La Catrina, Media Luna and Nocturne, with Cruise Mercer, Hydraulic Session and Workshop. Safari/buggy racing is deferred. The older seven-vehicle donor audit remains useful technical context; its entire catalog is not the current player-facing menu requirement.
 
@@ -92,3 +92,66 @@ The revised masonry now reads as smaller brickwork and storefront divisions give
 The ten passing assertions establish injected PadState selection, session entry, pause, settings entry/return, garage return and quit/cancel state transitions. They do not establish physical controller/InputManager mapping, settings persistence across restart, focus-loss behavior, reset/reverse interaction, keyboard/mouse parity or human input feel. These remain unverified unless separately exercised.
 
 The flow performance file reports median 33.3369 ms, p99 142.7155 ms, 549,856 listed triangles, 228 mesh renderers and maximum measured draw calls 776. It includes PNG I/O and menu/car changes and is not a 1080p/60 benchmark. Its internal memory field remains zero, so use the external supervisor's actual peak. The measured draw counter exceeds the storyboard's 300-draw target; renderer count is not a substitute for actual draw calls. Record this budget miss openly and measure a stable driving scene before acceptance.
+
+### Diagnostic r6 menu and scripted controls packet
+
+Observed `evidence/cinder-unity-r6/20261109-004945-570-Capture/frame-0000.png` and UI sequence frames 8, 53, 83 and 163 at `evidence/cinder-unity-r6/20261109-004959-073-Capture/`. The runtime receipts bind player SHA256 `91E8FE3139DF5E6411C6D1ED5D400BF59C9A0EC5D0148377377620BE262CE49D`. Read the ten scripted PadState assertions, all PASS. The menu launch reports external peak working set 283,656,192 bytes; the scripted flow reports 381,247,488 bytes.
+
+**Diagnostic presentation: 7.0/10. Scripted menu/session behavior: 8.1/10. Full gameplay: pending fresh lowrider motion.** This is an observed menu-path score, not a physical gamepad feel or complete gameplay pass.
+
+The cream windshield defect is visibly repaired: the selected lowrider's cabin can now be seen through its front glass. Tree canopies now have diffuse leaves and branches rather than reflective plastic spheres. The whole car still fits the right picture area; the orange/cream UI has a coherent hierarchy. Pause frame 53 shows `KEEP CRUISING`, quit frame 163 shows `STAY HERE`, and frame 8 visibly switches to LB/RB/X hints. The ten passing state assertions and these actual images support the higher scripted-menu score.
+
+**Correction to an intermediate reviewer message:** the initial full-frame display of r6 frame 8 appeared to omit Settings/Quit. I tested the original PNG directly: cream text-pixel counts are identical and nonzero for every garage frame 0-19 and 118-124, and a native-resolution crop clearly shows both labels. The r6 missing-label finding and speculative font-rebuild advice are withdrawn. This is not a new defect. Separately cropped r4 pause/quit images genuinely have empty highlighted bars, so that older finding remains valid and the r6 evidence establishes its repair.
+
+Remaining presentation refinements are specific and finite:
+
+1. The ground-floor storefront glass still reads as large flat opaque cards. Give the visible shopfronts recessed door/window framing, a clear human-scale entrance and one legible sign/awning. This should improve street context without adding an unrelated crowd or new gameplay.
+2. La Catrina's body still reads dark plum from the garage view, with noisy narrow chrome highlights, rather than the donor's smooth rose/lacquer mass. Inspect the fresh side-motion shot before changing materials further. If the same mismatch remains, tune the broad paint reflection and small bright trim response in the actual player.
+3. The facade/window composition remains repetitive and materially simple beside the intricate cars. Keep new work limited to the visible street foreground: glass response, entrance reveals, curb/paving separation and the existing signs. No claim of photographic realism is required.
+
+There is no remaining confirmed P1 from the inspected r6 menu path. Physical input mapping, focus-loss pause, settings persistence after restart, audio listening and human comfort/enjoyment remain outside this synthetic UI test. Current flow performance reports 33.3319 ms median, 147.9545 ms p99 and 684 maximum capture draw calls. PNG I/O and manual/normal camera rendering affect this scope; ordinary gameplay draw cost needs its own bounded measurement. Never substitute mesh-renderer count for draw calls.
+
+### r6 lowrider motion and same-machine control
+
+Reviewed the following fresh runs, all bound by their runtime receipts to the same r6 player SHA256 `91E8FE3139DF5E6411C6D1ED5D400BF59C9A0EC5D0148377377620BE262CE49D`:
+
+| Run | Images inspected directly | Pose coverage read | Observed scope |
+|---|---|---|---|
+| `20261109-005431-743-Benchmark` | La Catrina frames 0, 60, 90, 120, 150, 179 | All six saved poses | Repeating front lift/hop, exposed working front hardware, body pitch, recovery and another lift. Whole-car side framing remains clear. |
+| `20261109-005453-024-Capture` | Media Luna frames 0, 60, 120, 179 | All six saved poses | Raised front hold with four supporting tires. The pump transition occurred during warmup and is not shown in the retained frames. |
+| `20261109-005514-375-Capture` | Nocturne frames 0, 90, 180, 300, 420, 540, 660, 780, 869 | All 29 saved poses | Full roof opening/deployment/stowing cycle, deck opening and closing, and return to roof-down cruise. The schematic roof moves as an assembly rather than a static swap. |
+
+**Combined r6 diagnostic presentation: 7.2/10. Observable menu/mechanism gameplay: 7.4/10. Verdict: still below the requested quality bar.** The presentation score increases slightly from the menu-only 7.0 because actual motion now demonstrates coherent attached hardware and an articulated roof. It does not erase the existing storefront/material limitations. The gameplay score incorporates the passing scripted menu path, actual repeating Catrina motion and complete Nocturne roof operation. It is not a full driving or physical-control approval.
+
+No new confirmed P1 mechanical failure is visible in these samples. Catrina's exposed front hardware follows the changing stance and the body recovers in the observed sequence. The roof cycle has distinct deck, deployment and closure stages and ends with a closed deck. Fine chrome/wire edges still alias, the paint reads muted burgundy/plum and the street's blank shopfronts remain the weakest presentation aspect. Nocturne's black silhouette and reflected hood are legible; the clear-glass repair remains visible.
+
+The missing motion coverage is finite and actionable:
+
+- Media Luna begins at front actuators approximately 0.304 m in its first saved pose and holds there throughout the take. Retain a neutral-to-pump-to-hold-to-lower sequence instead of spending the entire lift in warmup.
+- Nocturne remains in mode 0 with zero air actuator values throughout its roof take. Retain its separate four-corner air sequence; the roof film cannot establish air response.
+- The three retained motion takes are stationary, with displayed speed approximately 0 m/s. Add a short ordinary cruise with steering, braking and reverse. The UI probe's brief input injection is not a useful driving-quality demonstration.
+- Catrina's two distinct three-wheel stances need visible side/contact evidence if they are offered as migrated player modes.
+
+The same-PC control at `evidence/cinder-unity-r4/20261109-005420-488-Benchmark/` ran immediately before the r6 hop benchmark. Both are 180 retained frames with the same final fingerprint `972aede729b16d4d`, which supports identical simulated inputs/state for the comparison. In this bounded 960x600/30 PNG-capture workload:
+
+| Metric | r4 control | r6 candidate |
+|---|---:|---:|
+| Median frame interval | 33.3379 ms | 33.3297 ms |
+| p99 frame interval | 33.7767 ms | 33.6209 ms |
+| External peak working set | 276,971,520 bytes | 292,798,464 bytes |
+| Maximum recorded capture draws | 758 | 684 |
+
+The intervals are essentially at the capture cap; this does not demonstrate a meaningful gameplay-speed gain or 1080p/60. Candidate peak working set is about 15.1 MiB higher and capture draws are about 9.8% lower. Both performance files report an unusable internal zero-memory field; the external runtime receipts provide actual peak working sets. Human feel, heard audio, comfort, comprehension and enjoyment remain **UNVERIFIED**.
+
+### r7 street refinement diagnostic
+
+Observed `evidence/cinder-unity-r7/20261109-011450-741-Capture/frame-0000.png`. The runtime receipt binds player SHA256 `E603F1A90749B5662548BA64FD5043AA294D25CDFDB1A4DA6A6F2CF7758BA176`, normal exit and external peak working set 281,391,104 bytes. This is one paused garage frame, not a new motion verdict.
+
+Recessed doors, handles, pilasters, sills/lintels and awnings visibly improve the street's ground floor and human scale. The footer now reads `MERCER DISTRICT / AFTERNOON` rather than exposing implementation status inside the player flow. The car remains completely framed and the navigation is legible.
+
+Two concrete artifacts prevent accepting this diagnostic:
+
+1. The visible Motor Club and Coffee lettering is mirrored. Correct the outward text orientation on each facade side and check the actual player, not only the Blender transform.
+2. The paving material boundary forms a continuous row of bright diagonal sawteeth along the curb. The triangle-average-height material classification does not produce a clean street/sidewalk edge. Classify or author the boundary consistently and retain the authoritative shared ground geometry.
+
+No additional confirmed P1 is visible in this frame. Limit the next revision to these artifact repairs and fresh evidence. Fine chrome/wire aliasing and paint noise remain known P2 polish at the conservative 960-pixel capture profile; they do not justify expanding this migration into new features. The full review-flow coverage requested above is still required for the complete gameplay verdict.

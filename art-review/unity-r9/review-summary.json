@@ -1,0 +1,210 @@
+{
+  "revision": "cinder-unity-r9",
+  "player": {
+    "path": "builds/cinder-unity-r9/Cinder.exe",
+    "sha256": "5cf25d276d9331f1c6aa01994bd641586eda28ec52efceac31e1d54d3898448e",
+    "authenticode": {
+      "status": "Valid",
+      "subject": "CN=Oliver Smith, O=Oliver Smith, L=San Diego, S=ca, C=US",
+      "thumbprint": "A08442661C5E0FB332E3B5532382393E49D2D701"
+    }
+  },
+  "sourceManifest": {
+    "path": "evidence/cinder-unity-r9/source-manifest.json",
+    "sha256": "b75ae0ca3267fdf03644a7f82465c7caad97069dd2650f3d38e93347bd74750f",
+    "fingerprint": "14fa13c91317ac7b710f8e5b320b6ebee8fd4ed1a9eb5408c321e99f603962af",
+    "currentListedSourcesMatch": true
+  },
+  "gates": {
+    "simulationChecks": 204,
+    "loadedRigChecks": 495,
+    "uiChecks": [
+      "PASS RB selects Media Luna without starting page=garage vehicle=5 tick=0",
+      "PASS RB selects Nocturne page=garage vehicle=6 tick=0",
+      "PASS LB selects previous lowrider page=garage vehicle=5 tick=0",
+      "PASS A enters Mercer driving page= vehicle=5 tick=8",
+      "PASS Start pauses page=pause vehicle=5 tick=60",
+      "PASS pad enters settings while sim stays paused page=settings vehicle=5 tick=60",
+      "PASS B returns from settings page=pause vehicle=5 tick=60",
+      "PASS pad returns to lowrider garage page=garage vehicle=5 tick=0",
+      "PASS quit requires explicit confirmation page=quit vehicle=5 tick=10",
+      "PASS cancel quit returns to pause page=pause vehicle=5 tick=10"
+    ],
+    "probeSession": "evidence/cinder-unity-r9/20261109-013642-689-Probe"
+  },
+  "stills": [
+    {
+      "role": "menu",
+      "frame": 0,
+      "file": "01-garage.png",
+      "source": "evidence/cinder-unity-r9/20261109-013702-326-Capture/frame-0000.png",
+      "sourceSha256": "0959caf7b1f906fd43bf2785fdff989c4b35d60d97caa864c44fb2bd881972e3",
+      "sha256": "0959caf7b1f906fd43bf2785fdff989c4b35d60d97caa864c44fb2bd881972e3",
+      "reason": "Original garage menu capture"
+    },
+    {
+      "role": "ui",
+      "frame": 53,
+      "file": "02-pause.png",
+      "source": "evidence/cinder-unity-r9/20261109-013715-816-Capture/frame-0053.png",
+      "sourceSha256": "77611223b5d051f3c2a50c55ddad320d4ad4f170bf931b58a51a3e436e4a37fd",
+      "sha256": "77611223b5d051f3c2a50c55ddad320d4ad4f170bf931b58a51a3e436e4a37fd",
+      "reason": "Scripted pause check at captured frame 53"
+    },
+    {
+      "role": "ui",
+      "frame": 163,
+      "file": "03-quit-confirmation.png",
+      "source": "evidence/cinder-unity-r9/20261109-013715-816-Capture/frame-0163.png",
+      "sourceSha256": "47bd583c9ae1c601d386670a5aa4f6c9a1c0cd56f164d55af7b178d2d64534e2",
+      "sha256": "47bd583c9ae1c601d386670a5aa4f6c9a1c0cd56f164d55af7b178d2d64534e2",
+      "reason": "Scripted quit confirmation at captured frame 163"
+    },
+    {
+      "role": "catrina",
+      "frame": 360,
+      "file": "04-catrina-hop.png",
+      "source": "evidence/cinder-unity-r9/20261109-014106-738-Capture/frame-0360.png",
+      "sourceSha256": "680c4dbe81c6c03b3b0dcef4f5d011ebec13e523029a06a7a0200c847f2aebda",
+      "sha256": "680c4dbe81c6c03b3b0dcef4f5d011ebec13e523029a06a7a0200c847f2aebda",
+      "reason": "Highest recorded bodyY from the original pose JSON receipts",
+      "metric": "bodyY",
+      "measuredValue": 0.2634597238189763,
+      "poseReceipt": "evidence/cinder-unity-r9/20261109-014106-738-Capture/pose-0360.json",
+      "poseReceiptSha256": "b5ad8b9532ada2218d5f6fc673ee7dad531da12ff2efac1bd85c25d940237f1a"
+    },
+    {
+      "role": "luna",
+      "frame": 120,
+      "file": "05-media-luna-lift.png",
+      "source": "evidence/cinder-unity-r9/20261109-014145-481-Capture/frame-0120.png",
+      "sourceSha256": "e8fe92e7c0b527144fb69e892382c5a44c46ab34d8a73374f4804bbc458e9b70",
+      "sha256": "e8fe92e7c0b527144fb69e892382c5a44c46ab34d8a73374f4804bbc458e9b70",
+      "reason": "Highest recorded bodyY from the original pose JSON receipts",
+      "metric": "bodyY",
+      "measuredValue": 0.14073626796977157,
+      "poseReceipt": "evidence/cinder-unity-r9/20261109-014145-481-Capture/pose-0120.json",
+      "poseReceiptSha256": "e600a5ad7902a4b20f88aa973bf5652863fdc3dde35e0e6066af7f7676f99631"
+    },
+    {
+      "role": "nocturne",
+      "frame": 420,
+      "file": "06-nocturne-roof.png",
+      "source": "evidence/cinder-unity-r9/20261109-014206-100-Capture/frame-0420.png",
+      "sourceSha256": "679d77ff76d435a0e1847a04e6f2c8342ad05ff27902970b6a05d5a1137dbba9",
+      "sha256": "679d77ff76d435a0e1847a04e6f2c8342ad05ff27902970b6a05d5a1137dbba9",
+      "reason": "Highest recorded roofPhase from the original pose JSON receipts",
+      "metric": "roofPhase",
+      "measuredValue": 1.0,
+      "poseReceipt": "evidence/cinder-unity-r9/20261109-014206-100-Capture/pose-0420.json",
+      "poseReceiptSha256": "e82a1faa6d85e1023450f589a25f72ceb4e19fab393afa702e0ec17cb625e413"
+    }
+  ],
+  "proof": {
+    "file": "proof.mp4",
+    "sha256": "ea6bd9b799ef7ff14f3ca55fe11479ae4c15ec4ad708c0b5ae13e279356868b3",
+    "frames": 2070,
+    "fps": 30,
+    "durationSeconds": 69.0,
+    "dimensions": [
+      960,
+      600
+    ],
+    "sequence": [
+      {
+        "role": "ui",
+        "frames": 180,
+        "seconds": 6.0
+      },
+      {
+        "role": "catrina",
+        "frames": 780,
+        "seconds": 26.0
+      },
+      {
+        "role": "luna",
+        "frames": 240,
+        "seconds": 8.0
+      },
+      {
+        "role": "nocturne",
+        "frames": 870,
+        "seconds": 29.0
+      }
+    ],
+    "audio": "None. Original automated captures were silent.",
+    "decode": "PASS",
+    "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "command": [
+      "C:\\Users\\oliver\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+      "-hide_banner",
+      "-nostdin",
+      "-v",
+      "error",
+      "-n",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r9\\20261109-013715-816-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r9\\20261109-014106-738-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r9\\20261109-014145-481-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r9\\20261109-014206-100-Capture\\frame-%04d.png",
+      "-filter_complex_threads",
+      "1",
+      "-filter_complex",
+      "[0:v]setpts=PTS-STARTPTS,format=yuv420p[v0];[1:v]setpts=PTS-STARTPTS,format=yuv420p[v1];[2:v]setpts=PTS-STARTPTS,format=yuv420p[v2];[3:v]setpts=PTS-STARTPTS,format=yuv420p[v3];[v0][v1][v2][v3]concat=n=4:v=1:a=0[out]",
+      "-map",
+      "[out]",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "18",
+      "-threads",
+      "2",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-frames:v",
+      "2070",
+      "-movflags",
+      "+faststart",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r9\\review\\proof.mp4"
+    ]
+  },
+  "limitations": [
+    "Mechanical encoding and non-black frame checks do not establish visual approval or input feel.",
+    "These captures are 960x600 at 30 fps with PNG output. They do not establish 1080p/60 handheld performance.",
+    "Heard audio, comfort, comprehension, enjoyment and physical gamepad feel remain UNVERIFIED until Oliver plays.",
+    "The source capture sessions and their original receipts remain intact."
+  ],
+  "fullLocalPacket": "evidence/cinder-unity-r9/review/packet.json"
+}

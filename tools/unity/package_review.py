@@ -148,8 +148,16 @@ def main(argv=None):
     parser.add_argument("--revision", required=True)
     for role in EXPECTED:
         parser.add_argument(f"--{role}-session", required=True, type=Path)
+    parser.add_argument("--catrina-frames", type=int, default=180, help="Expected original Catrina capture count, from 1 to 900; default 180.")
+    parser.add_argument("--luna-frames", type=int, default=180, help="Expected original Media Luna capture count, from 1 to 900; default 180.")
     parser.add_argument("--output", type=Path, help="A new folder under evidence/<revision>; defaults to review. Existing folders are never overwritten.")
     args = parser.parse_args(argv)
+    expected_counts = dict(EXPECTED)
+    for role in ("catrina", "luna"):
+        count = getattr(args, role + "_frames")
+        require(1 <= count <= 900, f"Expected {role} capture count must be from 1 to 900.")
+        expected_counts[role] = count
+    require(sum(expected_counts[role] for role in ("ui", "catrina", "luna", "nocturne")) <= 90 * 30, "The original evidence sequences would exceed the 90-second proof limit.")
     require(re.fullmatch(r"cinder-unity-r\d+", args.revision), "Use an existing cinder-unity-rN revision.")
     revision_root = (ROOT / "evidence" / args.revision).resolve()
     require(revision_root.is_dir(), f"Revision evidence is missing: {revision_root}")
@@ -190,7 +198,7 @@ def main(argv=None):
     scan_logs(probe_session)
 
     sessions, metadata, input_paths = {}, {}, set()
-    for role, expected in EXPECTED.items():
+    for role, expected in expected_counts.items():
         session = inside(getattr(args, role + "_session"), revision_root)
         require(session.is_dir(), f"Missing {role} session: {session}")
         require(session not in sessions.values(), f"Each evidence role requires its own original capture session: {role}")
@@ -255,7 +263,7 @@ def main(argv=None):
         for role in video_roles:
             command += ["-threads", "1", "-framerate", "30", "-start_number", "0", "-i", str(sessions[role] / "frame-%04d.png")]
         filters = ";".join(f"[{i}:v]setpts=PTS-STARTPTS,format=yuv420p[v{i}]" for i in range(4)) + ";" + "".join(f"[v{i}]" for i in range(4)) + "concat=n=4:v=1:a=0[out]"
-        total_frames = sum(EXPECTED[role] for role in video_roles)
+        total_frames = sum(expected_counts[role] for role in video_roles)
         proof = output / "proof.mp4"
         command += ["-filter_complex_threads", "1", "-filter_complex", filters, "-map", "[out]", "-an", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-threads", "2", "-pix_fmt", "yuv420p", "-r", "30", "-frames:v", str(total_frames), "-movflags", "+faststart", str(proof)]
         run(command)
@@ -278,7 +286,7 @@ def main(argv=None):
             "build": build, "sourceManifest": {"path": relative(sources_path), "sha256": digest(sources_path), "fingerprint": sources["fingerprint"], "currentListedSourcesMatch": True},
             "gates": {"simulationChecks": sim_probe["Checks"], "loadedRigChecks": rig_probe["Checks"], "uiChecks": ui_lines, "probeSession": relative(probe_session)},
             "sessions": metadata, "stills": selected_rows,
-            "proof": {"file": proof.name, "sha256": digest(proof), "frames": total_frames, "fps": 30, "durationSeconds": duration, "dimensions": [960, 600], "sequence": [{"role": role, "frames": EXPECTED[role], "seconds": EXPECTED[role] / 30} for role in video_roles], "audio": "None. Original automated captures were silent.", "decode": "PASS", "ffmpeg": ffmpeg_version, "command": command},
+            "proof": {"file": proof.name, "sha256": digest(proof), "frames": total_frames, "fps": 30, "durationSeconds": duration, "dimensions": [960, 600], "sequence": [{"role": role, "frames": expected_counts[role], "seconds": expected_counts[role] / 30} for role in video_roles], "audio": "None. Original automated captures were silent.", "decode": "PASS", "ffmpeg": ffmpeg_version, "command": command},
             "limitations": ["Mechanical encoding and non-black frame checks do not establish visual approval or input feel.", "These captures are 960x600 at 30 fps with PNG output. They do not establish 1080p/60 handheld performance.", "Heard audio, comfort, comprehension, enjoyment and physical gamepad feel remain UNVERIFIED until Oliver plays.", "The source capture sessions and their original receipts remain intact."],
             "deliveryManifest": "delivery-manifest.json", "packagingTool": file_row(Path(__file__).resolve()),
         }

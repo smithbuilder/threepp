@@ -1,7 +1,7 @@
 """Blender 4.5 authored export for Cinder's Unity adaptation, metres/Y-up/+Z."""
 import bpy, math, sys, random
 from pathlib import Path
-from mathutils import Vector
+from mathutils import Vector, Matrix
 ROOT=Path(__file__).resolve().parents[3];OUT=ROOT/'build/unity-assets'
 def clear():
     bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
@@ -85,7 +85,8 @@ export('buggy')
 clear();brick=[mat('warm brick',(.24,.11,.065)),mat('sandstone',(.37,.30,.21)),mat('warehouse painted',(.16,.21,.22))];trim=mat('cream facade trim',(.60,.57,.48));glass=mat('blue black windows',(.035,.07,.09),.45,.18);asphalt=mat('road markings',(.63,.60,.44));wood=mat('planter wood',(.11,.075,.042));leaf=mat('street tree leaves',(.065,.15,.045),rough=.96);bark=mat('tree bark',(.11,.07,.04));metal=mat('street furniture',(.045,.055,.06),.6)
 buildings=[(-13,49,18,18,14.4),(-13,71,18,22,20.8),(-13,94,18,16,11.2),(14,52,16,24,10.8),(14,84,16,36,17.6),(-55,49,17,24,18),(-55,85,17,38,25),(55,52,17,30,21),(55,93,17,28,14),(-16,142,38,24,23),(32,145,28,30,31)]
 for j,(x,z,w,d,h) in enumerate(buildings):
-    box('building '+str(j),(x,.16+h/2,z),(w,h,d),brick[j%3],bevel=.08)
+    box('building '+str(j),(x,.16+3+(h-3)/2,z),(w,h-3,d),brick[j%3],bevel=.08)
+    box('recessed ground floor',(x,1.66,z),(w-.8,3,d-.8),glass)
     for y in [3.4+k*3.5 for k in range(int(h/3.5))]:
         for s in (-1,1):
             for zz in range(int(-d/2)+2,int(d/2),3):box('recessed glazing',(x+s*(w/2+.012),y,z+zz),(.04,1.9,1.6),glass)
@@ -96,12 +97,18 @@ for j,(x,z,w,d,h) in enumerate(buildings):
     for s in (-1,1):
         box('street awning',(x+s*(w/2+.35),2.9,z),(.9,.14,d*.7),brick[(j+1)%3])
         for zz in range(int(-d/2)+2,int(d/2)-1,4):
-            box('shopfront glazing',(x+s*(w/2+.03),1.45,z+zz),(.06,2.35,3.1),glass)
-            box('shopfront frame',(x+s*(w/2+.09),1.45,z+zz-1.62),(.12,2.5,.12),trim)
+            box('recessed shop glazing',(x+s*(w/2-.16),1.45,z+zz),(.035,2.35,3.1),glass)
+            box('stone shop pilaster',(x+s*(w/2+.04),1.58,z+zz-1.70),(.32,2.84,.23),trim,bevel=.025)
+            for yy in (.29,2.66):box('shop sill and lintel',(x+s*(w/2+.035),yy,z+zz),(.30,.15,3.3),trim)
+        box('entrance reveal',(x+s*(w/2-.03),1.4,z),(.10,2.45,1.16),wood)
+        box('entrance glazed door',(x+s*(w/2+.035),1.43,z),(.065,2.20,.91),glass)
+        for zz in (-.51,.51):box('door jamb',(x+s*(w/2+.075),1.42,z+zz),(.15,2.43,.075),metal)
+        link('door pull',(x+s*(w/2+.18),1.0,z+.26),(x+s*(w/2+.18),1.55,z+.26),.022,trim)
+        box('awning canvas valance',(x+s*(w/2+.78),2.77,z),(.08,.28,d*.7),brick[(j+1)%3])
         box('storefront signboard',(x+s*(w/2+.10),3.6,z),(.18,.80,min(d-2,11)),metal)
-        bpy.ops.object.text_add(location=xyz((x+s*(w/2+.205),3.48,z-4)))
-        text=bpy.context.object;text.data.body=['MERCER / COFFEE','MERCER / LOFTS','NORTH / SUPPLY','CINDER / MOTOR WORKS','BAY / WAREHOUSE','WEST / STUDIOS','MERCER / HOUSE','EAST / HOUSE','DOCK / STORAGE','NORTH / MILL','THE / EXCHANGE'][j]
-        text.data.size=.42;text.data.extrude=.002;text.rotation_euler=(math.pi/2,0,-s*math.pi/2);text.data.materials.append(trim);text.name='storefront lettering';bpy.context.view_layer.objects.active=text;bpy.ops.object.convert(target='MESH')
+        bpy.ops.object.text_add(location=xyz((x+s*(w/2+.205),3.6,z)))
+        text=bpy.context.object;text.data.body=['MERCER / COFFEE','MERCER / MOTOR CLUB','NORTH / SUPPLY','CINDER / MOTOR WORKS','BAY / WAREHOUSE','WEST / STUDIOS','MERCER / HOUSE','EAST / HOUSE','DOCK / STORAGE','NORTH / MILL','THE / EXCHANGE'][j]
+        text.data.size=.43;text.data.extrude=.002;text.data.align_x='CENTER';text.data.align_y='CENTER';text.rotation_mode='QUATERNION';text.rotation_quaternion=Matrix(((0,0,s),(s,0,0),(0,1,0))).to_quaternion();text.scale.x=-1;text.data.materials.append(trim);text.name='storefront lettering';bpy.context.view_layer.objects.active=text;bpy.ops.object.convert(target='MESH')
 for x in (-33,33):
     for z in range(20,123,8):box('lane dash',(x,.018,z),(.13,.018,3.5),asphalt)
 for z in (22,116):

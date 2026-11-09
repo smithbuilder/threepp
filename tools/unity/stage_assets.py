@@ -58,7 +58,7 @@ shutil.copy2(ROOT/'asset-library/environments/kloofendal-partly-cloudy/sky_1k.hd
 shutil.copy2(ROOT/'asset-library/materials/gravel-road/basecolor_1k.jpg',art/'gravel.jpg')
 shutil.copy2(ROOT/'asset-library/materials/forest-floor/basecolor_1k.jpg',art/'forest-floor.jpg')
 cityart=ROOT/'Unity/Assets/Resources/Cinder/City';cityart.mkdir(parents=True,exist_ok=True)
-for name in ('ph-asphalt-color.jpg','ph-asphalt-normal.jpg','ph-red-brick-color.jpg','ph-red-brick-normal.jpg','ph-buff-brick-color.jpg','ph-buff-brick-normal.jpg','ph-plaster-color.jpg','ph-plaster-normal.jpg'):
+for name in ('paving.jpg','ph-asphalt-color.jpg','ph-asphalt-normal.jpg','ph-red-brick-color.jpg','ph-red-brick-normal.jpg','ph-buff-brick-color.jpg','ph-buff-brick-normal.jpg','ph-plaster-color.jpg','ph-plaster-normal.jpg'):
     shutil.copy2(ROOT/'showcase/assets/city'/name,cityart/name)
 for path in OUT.glob('*/model.glb'):
     raw=path.read_bytes();size=struct.unpack_from('<I',raw,12)[0];doc=json.loads(raw[20:20+size]);tail=raw[20+size:]

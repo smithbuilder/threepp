@@ -102,12 +102,12 @@
     {
       "id": "city-kit",
       "source": "tools/blender/cinder/create_kit.py",
-      "sha256": "f5ca8844a2312357ee6dc204921b6ba1b2d2710214e7191a44b49a09f6a2bfed",
+      "sha256": "a3d3879b7f3d3ac590fb54a3a491c8523d7969856bcb3e71ea4c8cf579cad4d3",
       "author": "SmithBuilder",
       "date": "2026-11-08",
       "placement": "Metres, Y up, +Z forward",
       "parts": "Named authored nodes",
-      "stagedSha256": "64e23637d39d00c67d228596a56f84d28ab5f97acef2bd6f34f8e4c465e3ee02"
+      "stagedSha256": "bb8c7c28bea42a4fed3976cfcc8b4490bb4f3d155660c995f91c85b6893389c5"
     }
   ],
   "notes": [

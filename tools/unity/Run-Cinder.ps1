@@ -1,11 +1,11 @@
 param(
  [ValidateSet('Kit','Lods','Build','Probe','Capture','Benchmark','Play')][string]$Action='Probe',
- [ValidatePattern('^cinder-unity-r[0-9]+$')][string]$Revision='cinder-unity-r6',
+ [ValidatePattern('^cinder-unity-r[0-9]+$')][string]$Revision='cinder-unity-r9',
  [ValidateSet('safari','buggy','baja','switchback','catrina','media-luna','nocturne')][string]$Vehicle='catrina',
  [ValidateSet('playground','city','forest')][string]$World='city',
  [ValidateRange(0,7)][int]$Area=0,[ValidateRange(0,6)][int]$View=0,
  [ValidateRange(0,900)][int]$Frames=180,[ValidateRange(0,900)][int]$Warmup=120,
- [ValidateRange(0,8)][int]$Mode=0,[switch]$Drive,[switch]$Menu,[switch]$UiProbe,[switch]$Diagnostic,[switch]$RoofCycle
+ [ValidateRange(0,8)][int]$Mode=0,[switch]$Drive,[switch]$Menu,[switch]$UiProbe,[switch]$Diagnostic,[switch]$RoofCycle,[switch]$CultureFlow
 )
 $ErrorActionPreference='Stop'
 $root=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
@@ -44,7 +44,7 @@ try{
  if($Action -notin @('Build','Kit','Lods')){
   if((Get-AuthenticodeSignature $exe).Status -ne 'Valid'){throw 'Player needs a valid signature before execution'}
   if($Action -ne 'Probe' -and -not $Diagnostic){$pr=Join-Path $root "evidence/$Revision/latest-probe.json";if(-not(Test-Path $pr)){throw 'Run the exact-player probe first'};$accepted=Get-Content $pr -Raw|ConvertFrom-Json;if(-not $accepted.success -or $accepted.exeSha256 -ne (Get-FileHash $exe -Algorithm SHA256).Hash){throw 'Exact-player probe is missing or failed'}}
-  if($Action -ne 'Play'){$arguments+='-silent'};$arguments+=@('-vehicle',$Vehicle,'-world',$World,'-area',[string]$Area,'-mode',[string]$Mode,'-evidence',('"'+$session+'"'),'-watchdog',[string]($deadline-5),'-logFile',('"'+(Join-Path $session 'player.log')+'"'));if($Drive){$arguments+='-autodrive'};if($Menu -or $UiProbe){$arguments+='-menu'};if($UiProbe){$arguments+='-ui-probe'};if($RoofCycle){$arguments+='-roof-cycle'}
+  if($Action -ne 'Play'){$arguments+='-silent'};$arguments+=@('-vehicle',$Vehicle,'-world',$World,'-area',[string]$Area,'-mode',[string]$Mode,'-evidence',('"'+$session+'"'),'-watchdog',[string]($deadline-5),'-logFile',('"'+(Join-Path $session 'player.log')+'"'));if($Drive){$arguments+='-autodrive'};if($Menu -or $UiProbe){$arguments+='-menu'};if($UiProbe){$arguments+='-ui-probe'};if($RoofCycle){$arguments+='-roof-cycle'};if($CultureFlow){$arguments+=@('-review-script','culture-flow')}
  }
  $job=[ThreeppEvaluationJob]::new()
  $child=Start-Process -FilePath $exe -ArgumentList $arguments -WorkingDirectory $root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $session 'stdout.log') -RedirectStandardError (Join-Path $session 'stderr.log')
