@@ -10,7 +10,7 @@ Shader "Cinder/Body" {
  #include "UnityCG.cginc"
  #include "UnityStandardUtils.cginc"
  #include "UnityPBSLighting.cginc"
- half _Clearcoat,_CoatRoughness;float _CinderMaterialDiagnostic;
+ half _Clearcoat,_CoatRoughness,_Cull;float _CinderMaterialDiagnostic;
  struct SurfaceOutputCinder {fixed3 Albedo;float3 Normal;half3 Emission;half Metallic;half Smoothness;half Occlusion;fixed Alpha;float3 CoatNormal;float3 WorldPosition;};
  SurfaceOutputStandard BaseSurface(SurfaceOutputCinder s){SurfaceOutputStandard b=(SurfaceOutputStandard)0;b.Albedo=s.Albedo;b.Normal=normalize(s.Normal);b.Emission=s.Emission;b.Metallic=s.Metallic;b.Smoothness=s.Smoothness;b.Occlusion=s.Occlusion;b.Alpha=s.Alpha;return b;}
  // Screen-space normal variance filters subpixel highlights without changing the
@@ -33,12 +33,13 @@ Shader "Cinder/Body" {
  half4 top=UNITY_BRDF_PBS(half3(0,0,0),half3(.04,.04,.04),.96,smoothness,n,viewDir,gi.light,coat);half f=.04+.96*Pow5(1-saturate(dot(n,viewDir)));result.rgb=result.rgb*(1-_Clearcoat*f)+top.rgb*_Clearcoat;}return result;}
  void LightingCinder_GI(SurfaceOutputCinder s,UnityGIInput data,inout UnityGI gi){SurfaceOutputStandard b=BaseSurface(s);b.Smoothness=FilterSmoothness(b.Smoothness,b.Normal);LightingStandard_GI(b,data,gi);}
  sampler2D _MainTex,_MetallicGlossMap,_BumpMap;fixed4 _Color,_EmissionColor;half _Metallic,_Glossiness,_Cutoff,_BumpScale;
- struct Input {float2 uv_MainTex;fixed4 color:COLOR;float3 worldNormal;float3 worldPos;INTERNAL_DATA};
+ struct Input {float2 uv_MainTex;fixed4 color:COLOR;float3 worldNormal;float3 worldPos;float facing:VFACE;INTERNAL_DATA};
  void vert(inout appdata_full v,out Input o){UNITY_INITIALIZE_OUTPUT(Input,o);o.color=v.color;}
  void surf(Input IN,inout SurfaceOutputCinder o){fixed4 c=tex2D(_MainTex,IN.uv_MainTex)*_Color; o.Albedo=c.rgb*IN.color.rgb;o.Alpha=c.a;o.Occlusion=1;
  // Always declare the tangent-space normal output. Surface-shader variants
  // without a normal map still need the tangent frame for the world-space coat.
- o.Normal=float3(0,0,1);o.CoatNormal=WorldNormalVector(IN,float3(0,0,1));o.WorldPosition=IN.worldPos;
+ half faceSign=_Cull<.5&&IN.facing<0?-1:1;
+ o.Normal=float3(0,0,1);o.CoatNormal=WorldNormalVector(IN,float3(0,0,faceSign));o.WorldPosition=IN.worldPos;
  #ifdef CINDER_CUTOUT
  clip(c.a-_Cutoff);
  #endif
@@ -49,7 +50,7 @@ Shader "Cinder/Body" {
  #ifdef _NORMALMAP
  o.Normal=UnpackScaleNormal(tex2D(_BumpMap,IN.uv_MainTex),_BumpScale);
  #endif
- o.Emission=_EmissionColor.rgb; }
+ o.Normal*=faceSign;o.Emission=_EmissionColor.rgb; }
  ENDCG
  } FallBack "Standard"
 }

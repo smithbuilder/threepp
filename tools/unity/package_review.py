@@ -231,6 +231,11 @@ def main(argv=None):
     ui_lines = (sessions["ui"] / "ui-probe.txt").read_text(encoding="utf-8-sig").splitlines()
     require(len(ui_lines) == 10 and all(line.startswith("PASS ") for line in ui_lines), "The UI session needs all ten scripted checks passing.")
     require(any("Start pauses" in line for line in ui_lines) and any("quit requires explicit confirmation" in line for line in ui_lines), "The UI receipt does not cover pause and quit confirmation.")
+    roof_paths = sorted(sessions["nocturne"].glob("roof-render-*.json"))
+    require(roof_paths, "Actual graphics roof material receipts are required.")
+    roof_rows = [read_json(path) for path in roof_paths]
+    require(all(row.get("success") is True and row.get("device") == "Direct3D11" and row.get("mainCarActive") is True and row.get("canvasRenderers") == 3 for row in roof_rows), "A real-renderer roof material/population check failed.")
+    require(any(row.get("phase", 0) >= .999 and row.get("frustumParts") == 3 for row in roof_rows), "The fully raised three-part canvas was not in the review camera frustum.")
 
     selections = [
         {"role": "menu", "frame": 0, "name": "01-garage.png", "reason": "Original garage menu capture"},
@@ -258,6 +263,8 @@ def main(argv=None):
                     shutil.copy2(source, receipts / (role + "-" + name))
         for source in (latest_path, build_path, sources_path, probe_session / "probe.json", probe_session / "loaded-rig-probe.json", probe_session / "runtime-batch-probe.json", probe_session / "runtime-receipt.json"):
             shutil.copy2(source, receipts / ("probe-runtime-receipt.json" if source == probe_session / "runtime-receipt.json" else source.name))
+        for source in roof_paths:
+            shutil.copy2(source, receipts / ("nocturne-" + source.name))
         selected_rows = []
         for selected in selections:
             source = sessions[selected["role"]] / f"frame-{selected['frame']:04d}.png"

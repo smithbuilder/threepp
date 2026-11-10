@@ -101,6 +101,30 @@ namespace Cinder.View
             detail="phase="+N(phase)+" expectedVisible="+expectedVisible+" covers="+found+" originalRenderers="+renderers+" visibleTriangles="+visibleTriangles+" "+string.Join("; ",parts);
             return pass&&found==2;
         }
+        static bool RoofCanvas(Transform tier,out Material first,out string detail) {
+            first=null;int clothNodes=0,meshes=0;long triangles=0;bool sides=true;var parts=new List<string>();
+            for(int i=0;i<3;i++)foreach(var node in tier.GetComponentsInChildren<Transform>(true))if(node.name=="roof_cloth_"+i) {
+                clothNodes++;int population=0;
+                foreach(var renderer in node.GetComponentsInChildren<MeshRenderer>(true)) {
+                    var filter=renderer.GetComponent<MeshFilter>();if(!filter||!filter.sharedMesh)continue;
+                    var material=renderer.sharedMaterial;if(!first&&material)first=material;
+                    string shader=material?material.shader.name:"missing";bool hasCull=material&&material.HasProperty("_Cull");float cull=material?material.GetFloat("_Cull"):float.NaN;
+                    bool graphics=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
+                    sides&=material&&shader=="Cinder/Canvas"&&(!graphics||hasCull&&material.shader.isSupported)&&Mathf.Abs(cull)<.001f&&renderer.enabled&&renderer.gameObject.activeInHierarchy&&!renderer.forceRenderingOff;
+                    float minY=float.PositiveInfinity,maxY=float.NegativeInfinity;
+                    foreach(var vertex in filter.sharedMesh.vertices){float y=tier.InverseTransformPoint(filter.transform.TransformPoint(vertex)).y;minY=Mathf.Min(minY,y);maxY=Mathf.Max(maxY,y);}
+                    parts.Add(node.name+" material="+(material?material.name:"missing")+" id="+(material?material.GetInstanceID():0)+" shader="+shader+" supported="+(material&&material.shader.isSupported)+" hasCull="+hasCull+" cull="+N(cull)+" colour="+(material?material.color.ToString():"missing")+" queue="+(material?material.renderQueue:0)+" active="+renderer.gameObject.activeInHierarchy+" enabled="+renderer.enabled+" forceOff="+renderer.forceRenderingOff+" visible="+renderer.isVisible+" layer="+renderer.gameObject.layer+" shadowMode="+renderer.shadowCastingMode+" bounds="+renderer.bounds+" localY="+N(minY)+".."+N(maxY));
+                    if(renderer.enabled&&renderer.gameObject.activeInHierarchy) {meshes++;population++;triangles+=filter.sharedMesh.triangles.Length/3;}
+                }
+                sides&=population>0;
+            }
+            detail="clothNodes="+clothNodes+" activeMeshes="+meshes+" triangles="+triangles+" nativeDoubleSided="+sides+" "+string.Join("; ",parts);
+            return clothNodes==3&&meshes>0&&triangles>0&&sides;
+        }
+        public static bool InspectRoofCanvasGraphics(Transform tier,out string detail) {
+            if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Roof shader support requires a real graphics device");
+            return RoofCanvas(tier,out _,out detail);
+        }
         static SimState Fixture(SimState bind,VehicleTune tune,int sample)
         {
             var state=bind.Clone();string id=tune.Id;
@@ -183,6 +207,23 @@ namespace Cinder.View
                             view.Pose(bind);view.Panels(roofPhase,roofPhase);
                             bool covers=RoofCovers(selected,roofPhase,out string detail);
                             report.Check(key+" runtime roof-slot cover participation",covers,detail);
+                        }
+                        if(id=="nocturne") {
+                            view.Pose(bind);view.Panels(0,1);
+                            bool canvas=RoofCanvas(selected,out Material material,out string detail);
+                            report.Check(key+" deployed roof visible material policy",canvas,detail);
+                            bool repeat=RoofCanvas(selected,out _,out string repeatDetail);
+                            report.Lines.Add("INFO "+key+" read-only canvas repeat="+repeat+" "+repeatDetail);
+                            bool rejects=false,restored=false;
+                            if(material) {
+                                float original=material.GetFloat("_Cull");var originalShader=material.shader;
+                                report.Lines.Add("INFO "+key+" canvas saved originalCull="+N(original));
+                                try{material.shader=Shader.Find("Cinder/Body");material.SetFloat("_Cull",2);rejects=!RoofCanvas(selected,out _,out _);}
+                                finally{material.shader=originalShader;material.SetFloat("_Cull",original);}
+                                restored=RoofCanvas(selected,out _,out string restoreDetail);
+                                report.Lines.Add("INFO "+key+" canvas after restore "+restoreDetail);
+                            }
+                            report.Check(key+" roof single-sided material tripwire",rejects&&restored,"rejects="+rejects+" restored="+restored);
                         }
                         completedTiers++;
                     }

@@ -1,12 +1,12 @@
 param(
  [ValidateSet('Kit','Lods','RestoreCity','SkinScale','Build','Probe','Capture','Benchmark','Play')][string]$Action='Probe',
- [ValidatePattern('^cinder-unity-r[0-9]+$')][string]$Revision='cinder-unity-r20',
+ [ValidatePattern('^cinder-unity-r[0-9]+$')][string]$Revision='cinder-unity-r24',
  [ValidateSet('safari','buggy','baja','switchback','catrina','media-luna','nocturne')][string]$Vehicle='catrina',
  [ValidateSet('playground','city','forest')][string]$World='city',
  [ValidateRange(0,7)][int]$Area=0,[ValidateRange(0,6)][int]$View=0,
  [ValidateRange(0,900)][int]$Frames=180,[ValidateRange(0,900)][int]$Warmup=120,
  [ValidateRange(0,8)][int]$Mode=0,[switch]$Drive,[switch]$Menu,[switch]$UiProbe,[switch]$Diagnostic,[switch]$RoofCycle,[switch]$CultureFlow,[switch]$SkyReflectionControl,[switch]$ColourProbe,
- [ValidateSet('','standard','ambient','reflection-off','reflection-direction','coat-normal','cube-lod0','cube-filtered','cube-decode','white-coat','sun-radiance')][string]$MaterialControl=''
+ [ValidateSet('','standard','ambient','reflection-off','reflection-direction','coat-normal','cube-lod0','cube-filtered','cube-decode','white-coat','sun-radiance','roof-visibility','roof-hidden')][string]$MaterialControl=''
 )
 $ErrorActionPreference='Stop'
 $root=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))

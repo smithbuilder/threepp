@@ -45,8 +45,15 @@ namespace Cinder.Editor
             for(int i=0;i<(d.materials?.Length??0);i++)
             {
                 var mat=AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Cinder/Generated/"+id+"/material-"+i+".mat");
-                if(!mat||!mat.HasProperty("_Clearcoat"))continue;
+                if(!mat)continue;
                 var gm=d.materials[i];var p=gm.pbrMetallicRoughness??new Pbr();var coat=gm.extensions?.KHR_materials_clearcoat;
+                // Native NocturneRig applies DoubleSide after loading its GLB.
+                // A dedicated fabric adapter uses Standard PBS and explicit
+                // Cull Off, preserving donor colour/metal/roughness and texture.
+                // Actual D3D visibility is verified separately in the player.
+                bool canvas=(id=="nocturne"||id.StartsWith("nocturne-",StringComparison.Ordinal))&&gm.name!=null&&gm.name.IndexOf("canvas",StringComparison.OrdinalIgnoreCase)>=0;
+                if(canvas){var shader=Shader.Find("Cinder/Canvas");if(!shader)throw new InvalidOperationException("Native Nocturne canvas shader missing");mat.shader=shader;mat.SetFloat("_Cull",0);mat.SetFloat("_Metallic",p.metallicFactor);}
+                if(!mat.HasProperty("_Clearcoat"))continue;
                 mat.SetFloat("_Clearcoat",coat?.clearcoatFactor??0);
                 mat.SetFloat("_CoatRoughness",coat?.clearcoatRoughnessFactor??0);
                 if(mat.HasProperty("_BumpScale"))mat.SetFloat("_BumpScale",gm.normalTexture?.scale??1);
