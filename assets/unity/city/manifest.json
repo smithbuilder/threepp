@@ -1,0 +1,616 @@
+{
+  "version": 1,
+  "id": "mercer-city",
+  "datePacific": "2026-11-09",
+  "author": "SmithBuilder native city; exact offline conversion for Unity",
+  "nativeTriangles": 566118,
+  "triangles": 383961,
+  "materialBatches": 25,
+  "meshCount": 26,
+  "meshes": [
+    {
+      "name": "ground.asphalt",
+      "vertices": 34755,
+      "triangles": 11585,
+      "material": "city.asphalt",
+      "receiveCarShadow": true
+    },
+    {
+      "name": "static.asphalt",
+      "vertices": 24,
+      "triangles": 12,
+      "material": "city.asphalt",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.awning",
+      "vertices": 96,
+      "triangles": 48,
+      "material": "city.awning",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.bark",
+      "vertices": 69744,
+      "triangles": 76030,
+      "material": "city.bark",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.brass",
+      "vertices": 1056,
+      "triangles": 528,
+      "material": "city.brass",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.brick-buff",
+      "vertices": 8904,
+      "triangles": 4452,
+      "material": "city.brick-buff",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.brick-red",
+      "vertices": 9120,
+      "triangles": 4560,
+      "material": "city.brick-red",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.curtain",
+      "vertices": 36768,
+      "triangles": 18384,
+      "material": "city.curtain",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.dark",
+      "vertices": 49752,
+      "triangles": 24876,
+      "material": "city.dark",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.frame",
+      "vertices": 65280,
+      "triangles": 32640,
+      "material": "city.frame",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.glass",
+      "vertices": 120672,
+      "triangles": 60336,
+      "material": "city.glass",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.lamp",
+      "vertices": 192,
+      "triangles": 96,
+      "material": "city.lamp",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.leaf",
+      "vertices": 114072,
+      "triangles": 57036,
+      "material": "city.leaf",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.litglass",
+      "vertices": 2976,
+      "triangles": 1488,
+      "material": "city.litglass",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.metal",
+      "vertices": 23612,
+      "triangles": 12088,
+      "material": "city.metal",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "ground.paving",
+      "vertices": 115734,
+      "triangles": 38578,
+      "material": "city.paving",
+      "receiveCarShadow": true
+    },
+    {
+      "name": "static.plaster",
+      "vertices": 6208,
+      "triangles": 3236,
+      "material": "city.plaster",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.red",
+      "vertices": 400,
+      "triangles": 224,
+      "material": "city.red",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.repair",
+      "vertices": 120,
+      "triangles": 96,
+      "material": "city.repair",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.roof",
+      "vertices": 624,
+      "triangles": 312,
+      "material": "city.roof",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.sign",
+      "vertices": 336,
+      "triangles": 168,
+      "material": "city.sign",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.soil",
+      "vertices": 1320,
+      "triangles": 660,
+      "material": "city.soil",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.stone",
+      "vertices": 68448,
+      "triangles": 34224,
+      "material": "city.stone",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.white",
+      "vertices": 4032,
+      "triangles": 2016,
+      "material": "city.white",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.wood",
+      "vertices": 384,
+      "triangles": 192,
+      "material": "city.wood",
+      "receiveCarShadow": false
+    },
+    {
+      "name": "static.yellow",
+      "vertices": 192,
+      "triangles": 96,
+      "material": "city.yellow",
+      "receiveCarShadow": false
+    }
+  ],
+  "groundReduction": {
+    "nativeTriangles": 232320,
+    "reducedTriangles": 50163,
+    "leaves": 12408,
+    "heightErrorAtAllOriginalVerticesMetres": 0,
+    "maximumLinearColourErrorAtAllOriginalVertices": 0.007741659879684448,
+    "linearColourTolerance": 0.012,
+    "preserved": "Every nonflat half-metre curb cell, original diagonal, sampled heights, exact material boundaries; topology stitching prevents T-junction geometry cracks. Sim unchanged."
+  },
+  "sourceFiles": [
+    {
+      "source": "showcase/CityBlock.hpp",
+      "frozen": "assets/unity/city/source/CityBlock.hpp",
+      "sha256": "0452fee41c9280703630b93131611e20395c8c3168892af4699eb853cf292413"
+    },
+    {
+      "source": "showcase/CityLayout.hpp",
+      "frozen": "assets/unity/city/source/CityLayout.hpp",
+      "sha256": "d044a72ffd436d98dd1d1a4fb4ca035b52c9b4cca51921a174dfb60a86571a29"
+    },
+    {
+      "source": "showcase/PlaygroundTerrain.hpp",
+      "frozen": "assets/unity/city/source/PlaygroundTerrain.hpp",
+      "sha256": "a3d1d665c1083983fe72bb7cabcb04da40285975bdc59bd2f9ae36916ebc3411"
+    },
+    {
+      "source": "showcase/RallyForest.hpp",
+      "frozen": "assets/unity/city/source/RallyForest.hpp",
+      "sha256": "0707bd6cfa2ce368625ea3388504655550a42e3d4c3ec33448db7677eb97397f"
+    },
+    {
+      "source": "tools/cinder-city-export/export_city.cpp",
+      "frozen": "assets/unity/city/source/export_city.cpp",
+      "sha256": "6458bd96856a0d1bd96bb4fb570761dab3f7e1e24342b690fe7bcdd8b5df5fb3"
+    },
+    {
+      "source": "tools/cinder-city-export/package_city.py",
+      "frozen": "assets/unity/city/source/package_city.py",
+      "sha256": "995f300c0efd128e94d59b38fa544893d1c609472f10307bdad976a5869871a9"
+    },
+    {
+      "source": "include/threepp/extras/vegetation/TreeGenerator.hpp",
+      "frozen": "assets/unity/city/source/include/threepp/extras/vegetation/TreeGenerator.hpp",
+      "sha256": "87d5f4418db5520bf7e69a29f334af837007c9d18b9ee93fefeb63dfe50b4081"
+    },
+    {
+      "source": "include/threepp/extras/vegetation/TreeTextures.hpp",
+      "frozen": "assets/unity/city/source/include/threepp/extras/vegetation/TreeTextures.hpp",
+      "sha256": "0a8aa8dc56ea444cdcf1f8ef2aac1180b20092ae01c1f3013d5a1c07bb70872a"
+    },
+    {
+      "source": "include/threepp/extras/core/NoiseUtils.hpp",
+      "frozen": "assets/unity/city/source/include/threepp/extras/core/NoiseUtils.hpp",
+      "sha256": "cd627b98c89f04c81008f0af991a7037252b2426023840f46286faf8706ddb33"
+    },
+    {
+      "source": "include/threepp/extras/core/TextureBake.hpp",
+      "frozen": "assets/unity/city/source/include/threepp/extras/core/TextureBake.hpp",
+      "sha256": "947dceead5c97c58f0f75106c3693385a4d1493c9904bbd04dce1bc29d9ecb56"
+    }
+  ],
+  "textures": [
+    {
+      "file": "ph-asphalt-color.jpg",
+      "source": "showcase/assets/city/ph-asphalt-color.jpg",
+      "sha256": "99b6f6bdfbd09279f3f550ac9593336df541aa2319537566eeb3e737d8512010",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-asphalt-normal.jpg",
+      "source": "showcase/assets/city/ph-asphalt-normal.jpg",
+      "sha256": "b745fd20cfb775ae907786ff0ffe200cedf73f3a6ef4e60c637b85b08e0a4f9a",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-asphalt-roughness.jpg",
+      "source": "showcase/assets/city/ph-asphalt-roughness.jpg",
+      "sha256": "147891957807bb03cc565c9daa8a16a4af7713449a0f475c638f78f833ad0646",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-bark-color.jpg",
+      "source": "showcase/assets/city/ph-bark-color.jpg",
+      "sha256": "4e302eeb6a66d50880484a08bd2c6e43974eb1636397d94d9c8bc54d508c2c1b",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-bark-normal.jpg",
+      "source": "showcase/assets/city/ph-bark-normal.jpg",
+      "sha256": "af36a887dc9cac3ea70902bc6e26b1d3f2608f39f96880f6e7766d93fefe43f5",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-bark-roughness.jpg",
+      "source": "showcase/assets/city/ph-bark-roughness.jpg",
+      "sha256": "778135a767d90cdcdc486d4351956652c41645b8fd205ee86d73bfd7134bd1de",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-buff-brick-color.jpg",
+      "source": "showcase/assets/city/ph-buff-brick-color.jpg",
+      "sha256": "cb691df78201bd292c1004a796b76ef8ee9895548fb545a4a4d6d77903eeec01",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-buff-brick-normal.jpg",
+      "source": "showcase/assets/city/ph-buff-brick-normal.jpg",
+      "sha256": "9bca29b5277b4d5be16ed2198ab705f2d754dfba509e9aec567ab4d2ed8a0981",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-buff-brick-roughness.jpg",
+      "source": "showcase/assets/city/ph-buff-brick-roughness.jpg",
+      "sha256": "7fc63700443845bd6065bc47aa79e6782ba555870c23c0e6426638ac15133752",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-red-brick-color.jpg",
+      "source": "showcase/assets/city/ph-red-brick-color.jpg",
+      "sha256": "6a1233ec0186703de830354d89f122991e61e67fb67e0846c7eaf6c5aefea902",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-red-brick-normal.jpg",
+      "source": "showcase/assets/city/ph-red-brick-normal.jpg",
+      "sha256": "8afbe3919308b168a6b7235fe7b930f670cfffa1a34de39ee790d55c9d7bda09",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-red-brick-roughness.jpg",
+      "source": "showcase/assets/city/ph-red-brick-roughness.jpg",
+      "sha256": "a23342b02e6c5af106aaece16130aa9153a801cb1a84d5f3e0d06ce248677f38",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "native-leaf-cluster.png",
+      "source": "Native vegetation::makeLeafClusterTexture(256,427,{.40,.50,.22},Lobed,12,2), exported CPU pixels",
+      "sha256": "624aa064d470c92034efdcc06498d0c92d2075b5f9e1acbb4cf6c072c7a3af33",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "paving.jpg",
+      "source": "showcase/assets/city/paving.jpg",
+      "sha256": "0c4f0596ed0ed2ebaeeee3fbd39695df52d806598e28649b30b6124572fe8a3c",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "paving-normal.png",
+      "source": "showcase/assets/city/paving-normal.png",
+      "sha256": "d3ac05b1bfa21a33a63ecd0e8491b20936d774f5797b0382ae975205f4552106",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "paving-roughness.jpg",
+      "source": "showcase/assets/city/paving-roughness.jpg",
+      "sha256": "80b80e4ed4264cefe88aa19b187f09537db20c9ec27a90b9a359c429332c9d0f",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-plaster-color.jpg",
+      "source": "showcase/assets/city/ph-plaster-color.jpg",
+      "sha256": "c455b6513a37908480eedd59f697719649aca97d3c76525718a77d7d600e2d22",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-plaster-normal.jpg",
+      "source": "showcase/assets/city/ph-plaster-normal.jpg",
+      "sha256": "f827876a78beebdbfca173ded1cd448117b433a0f9772a7c866bca91cb27884a",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-plaster-roughness.jpg",
+      "source": "showcase/assets/city/ph-plaster-roughness.jpg",
+      "sha256": "bc72ae4ba0d4330af80bc140dab4e3d97f850b9e545b36d21ccb9d9ffa5ef420",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-cracked-color.jpg",
+      "source": "showcase/assets/city/ph-cracked-color.jpg",
+      "sha256": "1aa5ce99f58a625c71d48cfc3e68b65ca85ccb00f39e045c0a928608a0ea25ed",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-cracked-normal.jpg",
+      "source": "showcase/assets/city/ph-cracked-normal.jpg",
+      "sha256": "42a1c381b53204e83a982db2864479a30bc127bbdeebb1006f8ee51bff099df3",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "ph-cracked-roughness.jpg",
+      "source": "showcase/assets/city/ph-cracked-roughness.jpg",
+      "sha256": "70ba3edc65525eb4dc366cf010ca7ae0bd34e0251ff0225c2dad627a873d0712",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "signs.png",
+      "source": "showcase/assets/city/signs.png",
+      "sha256": "8754933666346dbdc7894ae7d8da0a8c038cf88fadd3060dde317a3fe7a48d27",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "paint-wear.png",
+      "source": "showcase/assets/city/paint-wear.png",
+      "sha256": "b2b291fc276c846608f6a5ed2db4a61e5b26a68778b7025a045e36eec8806358",
+      "nativeRepeat": [
+        1.0,
+        1.0
+      ],
+      "nativeOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "file": "asphalt.jpg",
+      "source": "showcase/assets/city/asphalt.jpg",
+      "sha256": "101a680dcecebb4e5612ec1dc4abf55d0795d8008ff7c196668dec7f356b6a98",
+      "role": "Frozen constructor input, superseded by PBR map in final native material"
+    },
+    {
+      "file": "brick.jpg",
+      "source": "showcase/assets/city/brick.jpg",
+      "sha256": "321964b6f59f5f796a5caf083ebedc04682675269e903e529adbbd95b44f1460",
+      "role": "Frozen constructor input, superseded by PBR map in final native material"
+    },
+    {
+      "file": "buff-brick.jpg",
+      "source": "showcase/assets/city/buff-brick.jpg",
+      "sha256": "ebe9c2d06260fdf727defa8be20554664693a18c1028c398e5ae95472dd20fe0",
+      "role": "Frozen constructor input, superseded by PBR map in final native material"
+    },
+    {
+      "file": "concrete.jpg",
+      "source": "showcase/assets/city/concrete.jpg",
+      "sha256": "a644884b8263eec613c990c5971c6c3ba499fff972baa66be050fd732cb134ae",
+      "role": "Frozen constructor input, superseded by PBR map in final native material"
+    }
+  ],
+  "glb": "mercer-city.glb",
+  "sha256": "5e72ee0027ded63d87e599b0e0af5e98be019f5d8c080602acff3e6022eb599d",
+  "coverage": {
+    "nativeBuildings": 11,
+    "nativeContextShells": 15,
+    "scope": "All native facade, window treatment, roof/service, street furniture, roadwear, signs, boundary, context and trees exported. Only ground tessellation reduced in accepted asset; full original CPU control retained."
+  },
+  "runtime": "Geometry/material data only; no native runtime, scene/controller or physics embedded. Authoritative Unity Sim terrain unchanged.",
+  "samplers": {
+    "photographicAndPaint": "Repeat",
+    "nativeLeafAtlas": "ClampToEdge",
+    "patchScope": "Only glTF sampler metadata changed; entire binary chunk byte-identical to preserved v1."
+  },
+  "conversionTool": {
+    "source": "tools/cinder-city-export/package_city.py",
+    "frozen": "assets/unity/city/source/package_city.py",
+    "sha256": "995f300c0efd128e94d59b38fa544893d1c609472f10307bdad976a5869871a9"
+  },
+  "linkedNativeLibrary": {
+    "source": "build/windows-gl/src/Release/threepp.lib",
+    "sha256": "64242c0b857688399d33c7dbf6818d438ecb18ec7d9bd70f2eacf489410e8b81",
+    "bytes": 76693922
+  }
+}

@@ -1,0 +1,687 @@
+{
+  "version": 1,
+  "materials": [
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.577580451965332,
+        0.5972017645835876,
+        0.5972017645835876
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "asphalt",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-asphalt-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-asphalt-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-asphalt-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.asphalt",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 1.0
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.042311400175094604,
+        0.11953841149806976,
+        0.09758734703063965
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "awning",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.awning",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "bark",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-bark-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-bark-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-bark-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.bark",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.38132601976394653,
+        0.2622506618499756,
+        0.0802198126912117
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "brass",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.6499999761581421,
+      "name": "city.brass",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.3499999940395355
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "brick-buff",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-buff-brick-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-buff-brick-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-buff-brick-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.brick-buff",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.9399999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "brick-red",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-red-brick-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-red-brick-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-red-brick-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.brick-red",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.9399999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.38132601976394653,
+        0.366252601146698,
+        0.29177069664001465
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "curtain",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.curtain",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.949999988079071
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.015996290370821953,
+        0.02217387966811657,
+        0.021219005808234215
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "dark",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.dark",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.33245158195495605,
+        0.30946895480155945,
+        0.2541520893573761
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "frame",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.15000000596046448,
+      "name": "city.frame",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.6200000047683716
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.13286828994750977,
+        0.19461780786514282,
+        0.2015562355518341
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "glass",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.25,
+      "name": "city.glass",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.1899999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        0.7681511640548706,
+        0.35153263807296753
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.6000000238418579,
+        0.3622964024543762,
+        0.09907930344343185
+      ],
+      "id": "lamp",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.lamp",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.4000000059604645
+    },
+    {
+      "alphaCutoff": 0.36000001430511475,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": true,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "leaf",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/native-leaf-cluster.png",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.leaf",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.9300000071525574
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.1499597728252411,
+        0.1441284567117691,
+        0.10702309757471085
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.012303641997277737,
+        0.009036400355398655,
+        0.004650390241295099
+      ],
+      "id": "litglass",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.11999999731779099,
+      "name": "city.litglass",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.3799999952316284
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.03433980047702789,
+        0.045186202973127365,
+        0.043735016137361526
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "metal",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.550000011920929,
+      "name": "city.metal",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.5799999833106995
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "paving",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/paving.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/paving-normal.png",
+        "roughness": "Assets/Resources/Cinder/CityRestored/paving-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.paving",
+      "normalScale": [
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "roughness": 0.9399999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.7991027235984802,
+        0.7529422044754028,
+        0.6239603757858276
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "plaster",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-plaster-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-plaster-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-plaster-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.plaster",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.9300000071525574
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.38132601976394653,
+        0.05780542269349098,
+        0.021219005808234215
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "red",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.red",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.19806930422782898,
+        0.21223072707653046,
+        0.20863685011863708
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "repair",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-cracked-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-cracked-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-cracked-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.repair",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.9399999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.11953841149806976,
+        0.12743765115737915,
+        0.11697065085172653
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "roof",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-plaster-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-plaster-normal.jpg",
+        "roughness": "Assets/Resources/Cinder/CityRestored/ph-plaster-roughness.jpg"
+      },
+      "metalness": 0.0,
+      "name": "city.roof",
+      "normalScale": [
+        0.550000011920929,
+        0.550000011920929
+      ],
+      "roughness": 0.9399999976158142
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "sign",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/signs.png",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.sign",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.75
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.04666508361697197,
+        0.05126945301890373,
+        0.03433980047702789
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "soil",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.soil",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.4507858455181122,
+        0.4341537058353424,
+        0.35153263807296753
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "stone",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/ph-plaster-color.jpg",
+        "normal": "Assets/Resources/Cinder/CityRestored/ph-plaster-normal.jpg",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.stone",
+      "normalScale": [
+        0.20000000298023224,
+        0.20000000298023224
+      ],
+      "roughness": 0.8500000238418579
+    },
+    {
+      "alphaCutoff": 0.4000000059604645,
+      "color": [
+        0.5840784311294556,
+        0.5583403706550598,
+        0.44520124793052673
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "white",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/paint-wear.png",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.white",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.9700000286102295
+    },
+    {
+      "alphaCutoff": 0.0,
+      "color": [
+        0.19120167195796967,
+        0.08650045096874237,
+        0.038204364478588104
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "wood",
+      "maps": {
+        "color": "",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.wood",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.8799999952316284
+    },
+    {
+      "alphaCutoff": 0.4000000059604645,
+      "color": [
+        0.5394794940948486,
+        0.32314324378967285,
+        0.05448026955127716
+      ],
+      "doubleSided": false,
+      "emissive": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "yellow",
+      "maps": {
+        "color": "Assets/Resources/Cinder/CityRestored/paint-wear.png",
+        "normal": "",
+        "roughness": ""
+      },
+      "metalness": 0.0,
+      "name": "city.yellow",
+      "normalScale": [
+        1.0,
+        1.0
+      ],
+      "roughness": 0.9599999785423279
+    }
+  ],
+  "uvConvention": "glTF TEXCOORD_0=(nativeU,1-nativeV); Unity importer restores(nativeU,nativeV). Original source image bytes preserved; generated native texture rows converted to top-down PNG.",
+  "sunDirection": [
+    -0.6331052184104919,
+    0.743008017539978,
+    -0.21706460416316986
+  ],
+  "skyRotationRadians": 3.409547805786133
+}
