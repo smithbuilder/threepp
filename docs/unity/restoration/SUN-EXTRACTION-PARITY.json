@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "scope": "Pure CPU same-input native C++ EnvSunExtract.cpp versus managed NativeEnvironmentSun.Extract; full output pixels and extracted direction/energy/radius compared. No Unity/game/editor launch.",
+  "fixtures": [
+    {
+      "fixture": "white",
+      "found": false,
+      "clampedFloats": 0,
+      "maxAbsoluteDifference": 0.0,
+      "maxRelativeDifference": 0.0,
+      "inputSha256": "b211ef84e0caa6508d3a1b48b4073a9600cea30ed893e15fc6c50abfbc353eaf"
+    },
+    {
+      "fixture": "compact-sun-halo",
+      "found": true,
+      "clampedFloats": 32768,
+      "maxAbsoluteDifference": 0.0,
+      "maxRelativeDifference": 0.0,
+      "inputSha256": "8f554178b9747948084f207e932b21b3e6f8e5d031d793ebd4f0907be9fb1a93"
+    },
+    {
+      "fixture": "broad-cloud",
+      "found": false,
+      "clampedFloats": 0,
+      "maxAbsoluteDifference": 0.0,
+      "maxRelativeDifference": 0.0,
+      "inputSha256": "40d6cad08d6440451c1112da2b9e1591d73bea6ae79b75387099ec42b5220447"
+    },
+    {
+      "fixture": "dark",
+      "found": false,
+      "clampedFloats": 0,
+      "maxAbsoluteDifference": 0.0,
+      "maxRelativeDifference": 0.0,
+      "inputSha256": "ca272eeee75f67bf0deecfb9f5c45d961b2d89162ef3342751cad50794a61287"
+    }
+  ]
+}

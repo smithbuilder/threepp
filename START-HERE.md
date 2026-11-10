@@ -1,6 +1,6 @@
 # Cinder Unity
 
-Current r9 is a technical prototype. Visual acceptance is withdrawn after the native comparison; city, lighting and car finish need restoration. See `docs/unity/reassessment/REASSESSMENT.md`.
+Current r24 restores the native city, lighting and lowrider character. It is a reviewed prototype: city 6/10, cars and lighting 7/10, below the broader presentation target. See [the actual-player gallery](art-review/unity-r24/index.html) and [delivery details](docs/DELIVERY.md).
 
 The Unity migration centers on lowrider culture: La Catrina, Media Luna and Nocturne. Choose a car in the main garage, cruise Mercer, start a hydraulic session, or visit the workshop test grounds. Safari and buggy racing are deferred from this menu.
 

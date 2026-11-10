@@ -1,0 +1,109 @@
+{
+  "revision": "cinder-unity-r24",
+  "playerSha256": "7d78c95234b8c21a2f2a48e544eb888f43d52612d0c8680c7d6319128caa256a",
+  "sourceFingerprint": "0e57c2129876c7765692f3fd50d0cfe0cd3a02d73c826f93c48c89c2c1c86d97",
+  "sourceCodeCommit": "0b3e518d7d2f9d73e641026db7bb059d58bfbb3f",
+  "deliveryManifestSha256": "2a1dcd8e6d2eaace339cfb67fa0862485237c93d01c92cc54e8a7c746092900a",
+  "proofSha256": "fcfae11118690490ec3719ab8c67bcb7ce34862bd867a226d74517716f0321c2",
+  "proofSeconds": 69,
+  "proofFrames": 2070,
+  "technicalChecks": {
+    "sim": 204,
+    "loadedRig": 495,
+    "runtime": 154,
+    "menu": 10
+  },
+  "reviewScores": {
+    "city": 6,
+    "catrina": 7,
+    "luna": 7,
+    "nocturne": 7,
+    "lighting": 7
+  },
+  "scope": "Native-relative preservation repairs supported within sampled reviews; broader Level2>=8 art target is not met. Human controls/audio/enjoyment/handheld performance unverified.",
+  "stills": [
+    {
+      "role": "menu",
+      "frame": 0,
+      "file": "01-garage.png",
+      "source": "evidence/cinder-unity-r24/20261109-232942-508-Capture/frame-0000.png",
+      "sourceSha256": "c5b8e5a84082c82f0fa462b0bff508916257a21c451e2a82ea390201b97d92bc",
+      "sha256": "c5b8e5a84082c82f0fa462b0bff508916257a21c451e2a82ea390201b97d92bc",
+      "reason": "Original garage menu capture"
+    },
+    {
+      "role": "ui",
+      "frame": 53,
+      "file": "02-pause.png",
+      "source": "evidence/cinder-unity-r24/20261109-232945-387-Capture/frame-0053.png",
+      "sourceSha256": "76c8b6ce4e52e41f6d3fc8a828d924faac84c5ac264be4d8174a1d914cee2d30",
+      "sha256": "76c8b6ce4e52e41f6d3fc8a828d924faac84c5ac264be4d8174a1d914cee2d30",
+      "reason": "Scripted pause check at captured frame 53"
+    },
+    {
+      "role": "ui",
+      "frame": 163,
+      "file": "03-quit-confirmation.png",
+      "source": "evidence/cinder-unity-r24/20261109-232945-387-Capture/frame-0163.png",
+      "sourceSha256": "ab7ce67b7103d2266d6dc973b04f7cee8bf24b8d79ed85fbe402a28bcdc71a82",
+      "sha256": "ab7ce67b7103d2266d6dc973b04f7cee8bf24b8d79ed85fbe402a28bcdc71a82",
+      "reason": "Scripted quit confirmation at captured frame 163"
+    },
+    {
+      "role": "catrina",
+      "frame": 360,
+      "file": "04-catrina-three-wheel.png",
+      "source": "evidence/cinder-unity-r24/20261109-233004-812-Capture/frame-0360.png",
+      "sourceSha256": "58da43715b94f9ee851baf33903e1ed9d25705f996c627ea67a914447683ec6c",
+      "sha256": "58da43715b94f9ee851baf33903e1ed9d25705f996c627ea67a914447683ec6c",
+      "reason": "Highest recorded bodyY from the original pose JSON receipts",
+      "metric": "bodyY",
+      "measuredValue": 0.2634597238189763,
+      "poseReceipt": "evidence/cinder-unity-r24/20261109-233004-812-Capture/pose-0360.json",
+      "poseReceiptSha256": "b5ad8b9532ada2218d5f6fc673ee7dad531da12ff2efac1bd85c25d940237f1a"
+    },
+    {
+      "role": "luna",
+      "frame": 120,
+      "file": "05-media-luna-lift.png",
+      "source": "evidence/cinder-unity-r24/20261109-233043-279-Capture/frame-0120.png",
+      "sourceSha256": "12cbecb4ad1d8ccf811db3fdb37ecb93dfc0bdf412d21c07bfebdca80d8ee31b",
+      "sha256": "12cbecb4ad1d8ccf811db3fdb37ecb93dfc0bdf412d21c07bfebdca80d8ee31b",
+      "reason": "Highest recorded bodyY from the original pose JSON receipts",
+      "metric": "bodyY",
+      "measuredValue": 0.14073626796977157,
+      "poseReceipt": "evidence/cinder-unity-r24/20261109-233043-279-Capture/pose-0120.json",
+      "poseReceiptSha256": "e600a5ad7902a4b20f88aa973bf5652863fdc3dde35e0e6066af7f7676f99631"
+    },
+    {
+      "role": "nocturne",
+      "frame": 420,
+      "file": "06-nocturne-roof.png",
+      "source": "evidence/cinder-unity-r24/20261109-232445-070-Capture/frame-0420.png",
+      "sourceSha256": "2060a963c15d06260fa4f21983a75055292cf0f2bf47fda06038cc80fd1d8b7c",
+      "sha256": "2060a963c15d06260fa4f21983a75055292cf0f2bf47fda06038cc80fd1d8b7c",
+      "reason": "Highest recorded roofPhase from the original pose JSON receipts",
+      "metric": "roofPhase",
+      "measuredValue": 1.0,
+      "poseReceipt": "evidence/cinder-unity-r24/20261109-232445-070-Capture/pose-0420.json",
+      "poseReceiptSha256": "e82a1faa6d85e1023450f589a25f72ceb4e19fab393afa702e0ec17cb625e413"
+    }
+  ],
+  "separateFocusedChecks": [
+    {
+      "file": "focused/nocturne-raised-side.png",
+      "source": "evidence/cinder-unity-r24/20261109-232351-864-Capture/frame-0000.png",
+      "sha256": "caf1bc581cf775907a561292e088d671e6e3583b8094afe0d1bcbcc709aabef3"
+    },
+    {
+      "file": "focused/nocturne-hidden-control.png",
+      "source": "evidence/cinder-unity-r24/20261109-232418-478-Capture/frame-0000.png",
+      "sha256": "8fad70e0bfd6fdef3ce9cbc1952a570536946025d60ca29f2ad6f0d7622431ba"
+    },
+    {
+      "file": "focused/mercer-overview.png",
+      "source": "evidence/cinder-unity-r24/20261109-233103-714-Capture/frame-0000.png",
+      "sha256": "1d6bf296f3e30cf694eeea24727c7f6540298ee6eb07469eb74820cd5786403c"
+    }
+  ]
+}

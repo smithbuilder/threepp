@@ -96,3 +96,45 @@ The current checkout supports several hypotheses. It is not a frame capture of G
 - Add a short fixed camera pan and slow car roll to judge brightwork stability; sampled stills cannot assess shimmer. Show loaded tires and a lifted wheel together. Record native-relative verdict and absolute quality independently, without prescribing a score the reviewer must reach.
 
 These repairs can stay within the selected Unity Built-in route. The inspected evidence does not justify an engine/pipeline change or vehicle remodel. It does justify withdrawing any claim that r9 already preserves the native cars' presentation quality.
+
+---
+
+## R12 restoration feedback, before final candidate
+
+November 9, 2026. This addendum preserves the failed r9 assessment above. It evaluates **only the four r12 original player stills below**, not a subsequent optimization build. No game/editor was launched and no runtime/assets were changed by this evaluator. Runtime probe results reported by the coordinator are outside this aesthetic judgment.
+
+Images opened at their original 960 x 600 size:
+
+- `evidence/cinder-unity-r12/20261109-211047-236-Capture/frame-0000.png` — menu.
+- `evidence/cinder-unity-r12/20261109-211101-137-Capture/frame-0000.png` — Catrina, cruise low.
+- `evidence/cinder-unity-r12/20261109-211116-035-Capture/frame-0000.png` — Luna, lowered front.
+- `evidence/cinder-unity-r12/20261109-211130-951-Capture/frame-0000.png` — Nocturne, cruise height, open top.
+
+For the comparison I reopened native Catrina `studio/side.png` and `studio/front.png`, native Luna `native/street-cruise.png`, and native Nocturne `native/street-cruise.png` and `native/hero.png` in the paths listed above. The existing Luna source-version confound remains. Cameras, lighting and street directions are still not exact matches.
+
+### Actual improvements
+
+**This is a substantial visual recovery from r9.** It is visible in the actual images, not merely supported by a list of rendering changes.
+
+- Catrina again has a saturated rose upper body and distinguishable pale lower panels. The menu hood ornament/lace reads as deliberate decoration rather than a vague dark finish. Gold side ornament and the door medallion are legible in the closer view. The ribbed cabin is visible. The roof/hood paint and the door paint now read as related surfaces.
+- Luna again presents a deliberate palette: dark petrol green body, pale sage roof/frame, ivory whitewall and warm brown/tan seats. The glazing no longer reduces the entire cabin to a gray block. Its fender shapes catch broad highlights, and the curved shell is much easier to read. The hubcap's sky-blue reflection also has a more coherent large shape; its blue hue was present in the native street reference too.
+- All three cars separate from the asphalt. There is a visibly attached dark contact/underbody shadow, and tires meet a readable road plane rather than disappearing into the r9 dark band. The current parked stance does not look weightless. This does not certify contact shading through a lift/hop/roll sequence, which these four stills do not show.
+- The menu car is somewhat larger and benefits greatly from the restored street. Its roughly 430-pixel width still limits fine inspection, but the frame now communicates the vehicle's color and decoration without asking the viewer to imagine them.
+
+### Remaining findings
+
+| Priority | Finding visible in r12 | Native-relative implication / next verification |
+| --- | --- | --- |
+| P1 | Nocturne's long side remains a nearly uniform black slab bounded by very bright trim. Native `street-cruise.png` has a broad charcoal side gradient and a readable upper shoulder; even the very black native studio hero has a long soft reflected band that models the side. | Color identity is restored to black, but coachwork form is still undersold. Test a matched neutral reflection setup before changing black albedo. A broad controlled reflection/value gradient is more relevant than making the whole car gray. Different camera/light direction remains a confound, so this is a presentation defect in this frame, not proof of bad source paint. |
+| P1 | Catrina's long bright trim, wheel-arch edges and wheel spokes still break into intense white dots/jagged segments; Nocturne's beltline/rocker trim and wheels have the same harsh emphasis. | Finish has improved more than brightwork stability. Native is imperfect too, but Catrina's native side has quieter continuous trim and a less conspicuously glittering wheel at a comparable image scale. Judge this at equal vehicle width and with a slow pan/roll; these stills prove spatial breakup, not temporal shimmer. |
+| P2 | Luna's lower door and rear skirt are darker and more uniform than the native street reference; subtle green contouring is reduced. | Far less severe than r9 and the roof/whitewall/cabin hierarchy is now effective. Confirm under matched light before adjusting material values, especially given the differing Luna source version. |
+| P2 | Nocturne's burgundy seats are now visible as burgundy strips/shapes, but the low exterior camera gives little view of the ribbing, belts, dashboard or cabin depth. | R9's dark cabin problem has improved; full interior preservation remains unproven in this packet. An intentionally higher open-cabin view is needed. Do not claim missing interior meshes from this shot. |
+| P2 | Large metal bumpers now have dark/light range, but Catrina/Nocturne bright trim dominates the much quieter paint. | Tune/read the entire material hierarchy together. Do not solve glitter by turning all chrome matte. |
+
+**Current absolute impression:** a credible stylized automotive prototype, substantially more coherent than r9, with an unresolved finish pass. Catrina is closest to recovering its original character; Luna has recovered the important palette and body readability; Nocturne is the weakest because the large dark coachwork lacks a useful reflected gradient. I do not yet claim native-equivalent finish across all three cars.
+
+### What the final candidate must demonstrate
+
+Keep these r12 images. The next build needs its own images from the same cameras/poses to reveal any batching/rig/normal regression; an unchanged source asset or passed pose probe is not visual proof. In addition, show Nocturne with a broad readable reflection across the side, Catrina's trim and spokes in a slow camera move, and one useful cabin close view per car. Include at least one real raised pose/contact comparison so the restored grounding is tested beyond parked ride height. Compare native and Unity at the same vehicle pixel width and similar lighting before reporting parity.
+
+This feedback gives no approval to the planned r13 or another future candidate. The runtime draw-budget issue reported by the coordinator is separate from this car-art judgment; optimizing it must preserve the surfaces and poses that are finally reviewed.

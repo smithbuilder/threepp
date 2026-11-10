@@ -1,52 +1,52 @@
 # Cinder Unity handoff
 
-November 9, 2026, Pacific Time. Current player: `cinder-unity-r9`. **VISUAL ACCEPTANCE WITHDRAWN.** Oliver identified a regression in the city, lighting and cars. Fresh independent native-relative reviews confirm it. The technical simulation/finite mechanism results remain valid within their scope. r9 is a technical prototype and regression control, not an accepted visual replacement for the native title.
+November 9, 2026, Pacific Time. Current signed player: **cinder-unity-r24**. Native-relative city, lighting and lowrider preservation repairs are independently supported in the inspected views. **Broader Level 2 art approval is not granted:** city 6/10, cars and lighting 7/10. Publish this as the explicitly authorized prototype, not a production-quality release.
 
 ## Needs you
 
-No additional decision or access is needed for the reassessment. Visual restoration is required before another acceptance claim. Physical pad/keyboard behavior, input feel, heard audio, comfort, comprehension and enjoyment also remain UNVERIFIED. Target-device 1080p/60 remains UNVERIFIED under the conservative 960 x 600 / 30 fps profile.
+No additional permission or product decision is pending. Oliver authorized commit, merge, GitHub main push and a new private-Patcher Cinder release. Physical controls, input feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED until he plays.
 
-Start with `docs/unity/reassessment/REASSESSMENT.md` and `art-review/unity-reassessment/index.html`. Three fresh evaluators own the car, city and lighting reports. The November 9 reassessment changes documentation and evidence references only; it does not deliver a fixed player or change simulation/assets.
+Publication checkpoint: full package prepared as `r-mwadnquf-eb902ae9`; GitHub integration and live signed selection verification are being completed. See `docs/DELIVERY.md` and the final publication receipt for the resulting state. The rejected r20 package was never uploaded and remains marked REJECTED.
 
-## What this is
+## Play and scope
 
-A Unity 6000.3.6f1 Windows x64 port focused on lowrider culture. The garage offers La Catrina, Media Luna and Nocturne; cruise Mercer, use the car's hydraulic/air session or drive the workshop test grounds. Safari and buggy racing are deferred from the player-facing menu, as Oliver requested. The seven donor vehicle tunes and eight areas remain in regression coverage. The optional developer forest preview is not a port of the legacy forest controller.
+`PLAY-CINDER-UNITY.cmd` selects the current signed r24 player through the guarded runner. `START-HERE.md` has controls. The garage centers La Catrina, Media Luna and Nocturne: Mercer cruise, hydraulic/air sessions and workshop test grounds. Safari/buggy racing is deferred. Seven donor tune definitions and eight areas remain in pure simulation coverage; the three lowriders and their hero/mid/far art tiers ship.
 
-The C++ engine, native launchers, other lanes' dirty source and donor models are preserved. Three frozen lowrider GLBs under `assets/unity/sources/` make the front-door port reproducible without the other lanes' uncommitted files. No other project was modified. Earlier r1-r7 players are preserved under `build/_archive/players/`; `builds/` keeps only r8 control and r9 current.
+Unity 6000.3.6f1, Built-in forward, Linear, D3D11, Windows x64, Mono, .NET Standard 2.1. The pure C# double simulation advances at 60 Hz with four 240 Hz internal substeps. View and host remain separate behind IGameModule. This preserves tuning and physical rules, not bitwise Bullet handling parity.
 
-## Architecture and verified scope
+## What changed
 
-- `Unity/Assets/Cinder/Scripts/Sim/`: pure C# doubles, seeded state, 60 Hz game ticks with four 240 Hz internal substeps. `Cinder.Sim.asmdef` forbids engine references. State clone/restore and full fingerprints are tested.
-- `Host/`: standard `IGameModule` contract, standalone accumulator, copied Windowseat Input Manager axes, gamepad/keyboard/mouse UI, saved settings, focus pause and quit confirmation.
-- `View/`: authoritative wheel and chassis pose, physical linkage adapters, separate render detail tiers, explicit glazing, lacquer response and camera-space interface. Shader polish never changes the simulation.
-- The managed solver retains tuning and physical rules; it is not a claim of bitwise Bullet handling parity. Human handling approval is pending.
+- Faithful native Mercer export: all non-ground geometry and authored shade, 25 materials, 11 detailed buildings, 15 context shells, trees, furniture and road detail. Adaptive visual ground reduces city geometry from 566,118 to 383,961 triangles. Original lattice heights are exact; finite linear colour error is at most 0.007742. Simulation terrain is unchanged.
+- Exact donor roughness/normal/coat values replace r9 clamps. Non-normal-mapped paint has a valid world coat normal. Display-space FXAA stabilizes fine chrome. Cameras clamp after framing overrides, fixing the underground three-wheel view.
+- Original HDR sky convention, native one-sun extraction, calibrated diffuse SH and hybrid original mirror / sun-clamped rough reflections. C++/C# extractor fixtures match exactly. GPU reflection strength is 0.649902 for intended linear 0.65; sun RGB matches native units within 0.0004.
+- One-weight rigid batches preserve real moving owners and switched roof covers. The omitted native two-sided canvas rule now has an explicit Standard fabric adapter. Headless structural tests and actual D3D checks are separate; normal/hidden cloth controls establish visible canvas contribution.
 
-The last exact player probes pass 204 simulation checks plus 495 loaded-rig checks across all nine lowrider tiers. The scripted PadState/menu flow passes ten assertions. This does not prove physical device input. Loaded mechanics use finite sampled travel/steering, not exhaustive continuous triangle clearance; see the independent reports for limits.
+## Exact identity and evidence
 
-`docs/unity/MECHANICAL-ADAPTATIONS.md` documents the explicit 10 mm Media Luna shackle-pivot installation correction and Nocturne hidden-scale/bellows fixes. Donor files remain untouched. Failed roof, leaf, material, framing and menu packets remain under `evidence/`; older players/imports are preserved under `build/_archive/`.
+Player SHA256: `7d78c95234b8c21a2f2a48e544eb888f43d52612d0c8680c7d6319128caa256a`.
+Source fingerprint: `0e57c2129876c7765692f3fd50d0cfe0cd3a02d73c826f93c48c89c2c1c86d97`.
+Runtime source commit: `0b3e518d7d2f9d73e641026db7bb059d58bfbb3f`.
 
-Player SHA256: `5CF25D276D9331F1C6AA01994BD641586EDA28EC52EFCEAC31E1D54D3898448E`. Source fingerprint: `14fa13c91317ac7b710f8e5b320b6ebee8fd4ed1a9eb5408c321e99f603962af`. Full delivery details are in `docs/DELIVERY.md`.
+Exact probes pass **204 simulation + 495 loaded-rig + 154 batching/camera/material checks**; ten scripted menu checks also pass. Sim and loaded reports remain byte-identical to r9. The prior 148 runtime checks remain; six native canvas-policy/tripwire checks were added. All nine detail tiers have finite sampled geometry/mechanics checks; runtime vertex error stays below 0.000032 metres. Twenty-four camera assertions preserve at least 0.35 metres clearance at both 22-degree rolls in a nonidentity host frame.
 
-## Build, check and play
+Real D3D proof covers the hero Nocturne canvas, with 29 periodic receipts: supported shader, declared Cull property, zero Cull value, three active renderers and all three parts in the camera frustum at full deployment. Mid/far have structural/source checks, not independently rendered tier acceptance. GPU normals and exhaustive continuous triangle clearance are not established.
 
-Use `PLAY-CINDER-UNITY.cmd` for the selected signed player. The guarded play visit is bounded to five minutes. Controls are in `START-HERE.md`. The intended normal default is desktop borderless, 60 fps, v-sync off; automated review stays hidden, silent and bounded.
+`evidence/cinder-unity-r24/review/` contains six unchanged stills, a 69-second silent original-player clip, exact replays/pose receipts, full source/player/evidence hashes and a delivery manifest. `art-review/unity-r24/index.html` is the local gallery. The roof visibility controls are separate focused diagnostics; they do not enter the six-still main packet. The packager rejects diagnostic flags and requires real graphics roof receipts. Roof/service phases are host visual state; simulation replay inputs alone do not reproduce those phases, so retain periodic pose receipts and the driver arguments.
 
-For a new revision, run `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r10`. The preparation helper stages frozen sources and creates missing authored kits/detail tiers. The build refuses a used revision name and never opens the editor UI. Signing uses the established local Patcher signing helper, then run `tools/unity/Run-Cinder.ps1 -Action Probe -Revision <new-id>` before any capture/play. The exact-executable probe receipt is required by the launch guard.
+Independent final reports: `docs/unity/QUALITY-REVIEW-r24.md`, `ARCHITECTURE-REVIEW-r24.md`, and `docs/unity/restoration/*-REVIEW-r24.md`. Retain failed r9/r16/r17/r18/r20/r21/r22 evidence and corrected r20 review findings. An initially ambiguous low-angle canopy reading was resolved with matched hidden-cloth controls; do not infer visible coverage from pose values alone.
 
-Do not launch another editor/player while another Unity workload is active. All runs use the shared native evaluation mutex, process exclusion, 4 GiB free RAM / 15 GiB disk checks, 2 GiB process job, cool-down, pause markers and watchdog. Never clear pause files or delete old outputs to force a run.
+Build: zero errors and four retained shader compiler warning records (body/FXAA potentially-uninitialized diagnostics). Do not report zero warnings. Measured Catrina active geometry is 693,585 triangles and maximum draws 212 in the matched capped test; full action take peaks at 216 draws. This is an active geometry tally, not GPU all-pass submitted triangles. Final r24 versus r20 control: median 33.3465/33.3333 ms, p99 39.1596/34.9487 ms, external peak 435,875,840/437,104,640 bytes. The p99 is worse in this short PNG-IO/capped sample; no target-device performance approval follows.
 
-## Review and evidence
+## Remaining art and parity limits
 
-The final packet is `evidence/cinder-unity-r9/review/`: six stills, a 69-second silent native proof clip, raw session bindings and hashes. Replays contain initial state and actual fixed-tick inputs. The input-only culture flow covers hop, both three-wheel stances, forward/steer/brake/reverse, Luna pump/hold/lower and Nocturne air/roof motion. This is regression evidence, not a human playtest.
+The city needs populated/social character and a distinctive lowrider gathering destination. Fine chrome, reflection finish, glass/roof contrast and interior showcase remain P2 work. Native lamp-off/toggle and some service-removal helpers are not fully ported; current emissive defaults follow the GLB. Do not claim exhaustive native runtime-feature parity. The experimental CPU local-city reflection bake was rejected and is opt-in diagnostic only; normal play uses corrected sky lighting. Unity filtering/BRDFs remain different from native.
 
-The back-to-back control is the last fully reviewed r8 player on the same PC. Frame times include the 30 fps cap and PNG IO, so they cannot establish 1080p/60. Use external runtime-receipt working-set measurements; Unity Mono's internal Process.PeakWorkingSet64 returns zero here. Measured draw calls include shadow/post/UI work; renderer count is not draw-call count. Scene budget: <=700,000 submitted triangles and <=300 draws. Matched Catrina city result: 687,908 triangles, 685 maximum draws, so the triangle target is met and the draw target is NOT met. Current r9 versus r8: median 33.3314 versus 33.3307 ms, p99 33.6336 versus 33.6110 ms, external peak 298,438,656 versus 300,613,632 bytes. No material regression is established in this capped, short test. Draw reduction remains an optimization target; this is not performance acceptance for a paid release.
+## Build, guards and preservation
 
-Historical r9 review: presentation 8.0/10 and observable gameplay 8.2/10; independent architecture PASS. Its broad presentation approval is superseded by Oliver's rejection and the fresh native-relative reassessment. It did not establish visual fidelity to the donor. Do not claim Level 2 acceptance while the reassessment P1 art issues remain. Original reports and evidence are retained unchanged: `docs/unity/QUALITY-REVIEW-r9.md`, `docs/unity/ARCHITECTURE-REVIEW-r9.md`. See `docs/GAUNTLET.md` for the amended visual gate.
+Build a new unique revision through `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r25`, sign with the established Patcher signing helper, run the exact-player probe, then capture/package/review. Never reuse revision outputs. Publication procedure: `docs/unity/release/PATCHER-PUBLICATION.md`.
 
-## Provenance and coordination
+Automated runs remain hidden, silent, bounded and serialized: 960 x 600 / 30 fps, no MSAA, one 512 shadow, 2 GiB process job, 4 GiB free RAM, 15 GiB disk, cooldown, pauses, shared mutex and watchdog. Never clear a pause, kill another project or raise graphics caps. Guarded user play is five minutes.
 
-Asset and audio records are under `assets/unity/`. Audio is original synthesized placeholder material with measured gains; automated takes are silent and listening is UNVERIFIED. Portable environment sources retain their original license records. Video files and player builds stay out of git.
+`builds/` retains r24 and rejected-but-reviewed r20 control; older players are preserved under `build/_archive/players/`. Native C++ work, legacy launchers and other lanes' dirty vehicle files remain untouched and excluded from Unity commits. Videos stay local and off GitHub. No other project was modified.
 
-Playbook doctor succeeded using normal network access: own seat `z2-codex@agents.playbook`, GB10 endpoint healthy. No matching Unity migration ticket existed. Assist notes `cmw8z79u100a7le01wb9avswr` and final `cmw92u1gp00afle01gea8pe5e` on the related native Nocturne task record the separate port without changing its ownership/status. No unrelated Bridge thread was used. Local source is on `codex/unity-lowrider-port`; native dirty work is intentionally outside this port's commits.
-
-Packaging note: when launching `package_review.py` from PowerShell 7, remove `PSModulePath` only from that shell process environment first. Windows PowerShell then uses its own signature-check module. The helper must still report a Valid signature; never bypass the check.
+Playbook task `cmw9qrsq000alle018qlbcxni`, verified seat `z2-codex@agents.playbook`. The canonical Windows helper shim invokes unavailable `py`; use its installed Python implementation with the existing Python 3.11 executable. No matching active Cinder Bridge thread was found; do not post to unrelated threads. For packaging from PowerShell 7, remove PSModulePath only from that process so child Windows PowerShell uses its own signature module. Keep actual signature verification enabled.
