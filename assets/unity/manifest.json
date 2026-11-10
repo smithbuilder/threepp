@@ -64,7 +64,7 @@
       "date": "2026-11-08",
       "parts": "Named glTF nodes preserved",
       "placement": "Metres, Y up, +Z forward. No runtime embedded engine.",
-      "stagedSha256": "1e75f390a936eeeacc2d5197239c2580ef182c7bc6cccc364b4acbaf28a615b8"
+      "stagedSha256": "092eee99f5bceb17b4b7efd7e9c05a3b7efb86ad8051b4f261a2666e80f02e4f"
     },
     {
       "id": "nocturne",
@@ -82,7 +82,7 @@
     {
       "id": "buggy",
       "source": "tools/blender/cinder/create_kit.py",
-      "sha256": "4201d9c44208ec09ebffa6507ef2b90b55a12b8d89d713d705a3f5bd681b1713",
+      "sha256": "7bbdcbc787259e77df06e107fd2e07ef610203127962792fa1278a8d9fb17c78",
       "author": "SmithBuilder",
       "date": "2026-11-08",
       "placement": "Metres, Y up, +Z forward",
@@ -92,7 +92,7 @@
     {
       "id": "safari-running-gear",
       "source": "tools/blender/cinder/create_kit.py",
-      "sha256": "6d13da0bdc61e6eae8393d6c71f7a30e5b92b0a9f2b00dbde9e97205651e2114",
+      "sha256": "c2d8ff3dec1c3b1c4e34e8244df740bae4dbba1d1c63ff82ae9bb7402fab8910",
       "author": "SmithBuilder",
       "date": "2026-11-08",
       "placement": "Metres, Y up, +Z forward",
@@ -100,18 +100,19 @@
       "stagedSha256": "c2d8ff3dec1c3b1c4e34e8244df740bae4dbba1d1c63ff82ae9bb7402fab8910"
     },
     {
-      "id": "city-kit",
-      "source": "tools/blender/cinder/create_kit.py",
-      "sha256": "a3d3879b7f3d3ac590fb54a3a491c8523d7969856bcb3e71ea4c8cf579cad4d3",
-      "author": "SmithBuilder",
-      "date": "2026-11-08",
-      "placement": "Metres, Y up, +Z forward",
-      "parts": "Named authored nodes",
-      "stagedSha256": "bb8c7c28bea42a4fed3976cfcc8b4490bb4f3d155660c995f91c85b6893389c5"
+      "id": "mercer-city",
+      "source": "assets/unity/city/mercer-city.glb",
+      "sha256": "5e72ee0027ded63d87e599b0e0af5e98be019f5d8c080602acff3e6022eb599d",
+      "triangles": 383961,
+      "author": "SmithBuilder native Mercer, frozen offline export",
+      "date": "2026-11-09",
+      "parts": "All native material batches and authored vertex shade; adaptive visual ground only",
+      "placement": "Native metres, Y up, +Z; physics surface unchanged",
+      "stagedSha256": "6a05ce8c66ebdbb507da4850cd61866a2a1efd3a0592769267970176978434e9"
     }
   ],
   "notes": [
     "Named pivots and materials preserved; lowrider hero/mid/far adaptations recorded separately",
-    "Generated kit is an original Unity adaptation of donor dimensions, not identical procedural donor art"
+    "Mercer city is a frozen native visual export; adaptive ground validation and full material provenance are in assets/unity/city/manifest.json"
   ]
 }

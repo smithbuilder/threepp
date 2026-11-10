@@ -27,6 +27,9 @@ for key,src in sources.items():
         for prim in mesh['primitives']:
             prim.setdefault('indices',-1);prim.setdefault('material',-1);prim.setdefault('mode',4)
             for attr in ('NORMAL','TEXCOORD_0','COLOR_0','TANGENT'):prim['attributes'].setdefault(attr,-1)
+    for texture in doc.get('textures',[]):texture.setdefault('sampler',-1)
+    for sampler in doc.get('samplers',[]):
+        for sampler_key,value in (('wrapS',10497),('wrapT',10497),('minFilter',9987),('magFilter',9729)):sampler.setdefault(sampler_key,value)
     for im in doc.get('images',[]):im.setdefault('bufferView',-1)
     for m in doc.get('materials',[]):
         m.setdefault('alphaCutoff',.5);p=m.setdefault('pbrMetallicRoughness',{});p.setdefault('metallicFactor',1);p.setdefault('roughnessFactor',1)
@@ -60,6 +63,16 @@ shutil.copy2(ROOT/'asset-library/materials/forest-floor/basecolor_1k.jpg',art/'f
 cityart=ROOT/'Unity/Assets/Resources/Cinder/City';cityart.mkdir(parents=True,exist_ok=True)
 for name in ('paving.jpg','ph-asphalt-color.jpg','ph-asphalt-normal.jpg','ph-red-brick-color.jpg','ph-red-brick-normal.jpg','ph-buff-brick-color.jpg','ph-buff-brick-normal.jpg','ph-plaster-color.jpg','ph-plaster-normal.jpg'):
     shutil.copy2(ROOT/'showcase/assets/city'/name,cityart/name)
+# Faithful frozen Mercer export includes native static shading and every material.
+city_source=ROOT/'assets/unity/city/mercer-city.glb'
+if city_source.exists():
+    cityout=OUT/'mercer-city';cityout.mkdir(exist_ok=True)
+    shutil.copy2(city_source,cityout/'model.glb')
+    restored=ROOT/'Unity/Assets/Resources/Cinder/CityRestored';restored.mkdir(parents=True,exist_ok=True)
+    for texture in (ROOT/'assets/unity/city/textures').iterdir():
+        if texture.is_file():shutil.copy2(texture,restored/texture.name)
+    city_manifest=json.loads((ROOT/'assets/unity/city/manifest.json').read_text())
+    rows.append(dict(id='mercer-city',source='assets/unity/city/mercer-city.glb',sha256=hashlib.sha256(city_source.read_bytes()).hexdigest(),triangles=city_manifest['triangles'],author='SmithBuilder native Mercer, frozen offline export',date='2026-11-09',parts='All native material batches and authored vertex shade; adaptive visual ground only',placement='Native metres, Y up, +Z; physics surface unchanged'))
 for path in OUT.glob('*/model.glb'):
     raw=path.read_bytes();size=struct.unpack_from('<I',raw,12)[0];doc=json.loads(raw[20:20+size]);tail=raw[20+size:]
     for n in doc.get('nodes',[]):n.setdefault('mesh',-1)
@@ -67,6 +80,9 @@ for path in OUT.glob('*/model.glb'):
         for p in m['primitives']:
             p.setdefault('indices',-1);p.setdefault('material',-1);p.setdefault('mode',4)
             for a in ('NORMAL','TEXCOORD_0','COLOR_0','TANGENT'):p['attributes'].setdefault(a,-1)
+    for texture in doc.get('textures',[]):texture.setdefault('sampler',-1)
+    for sampler in doc.get('samplers',[]):
+        for sampler_key,value in (('wrapS',10497),('wrapT',10497),('minFilter',9987),('magFilter',9729)):sampler.setdefault(sampler_key,value)
     for im in doc.get('images',[]):im.setdefault('bufferView',-1)
     for m in doc.get('materials',[]):
         m.setdefault('normalTexture',{'index':-1});m['normalTexture'].setdefault('scale',1);m.setdefault('alphaCutoff',.5)
@@ -83,5 +99,5 @@ if lodfile.exists():
     for row in lods['assets']:
         row.setdefault('exportSha256',row['sha256']);row['sha256']=hashlib.sha256((OUT/row['id']/'model.glb').read_bytes()).hexdigest()
     lodfile.write_text(json.dumps(lods,indent=2)+'\n')
-target=ROOT/'assets/unity/manifest.json';target.write_text(json.dumps(dict(revision='cinder-unity',assets=rows,notes=['Named pivots and materials preserved; lowrider hero/mid/far adaptations recorded separately','Generated kit is an original Unity adaptation of donor dimensions, not identical procedural donor art']),indent=2)+'\n')
+target=ROOT/'assets/unity/manifest.json';target.write_text(json.dumps(dict(revision='cinder-unity',assets=rows,notes=['Named pivots and materials preserved; lowrider hero/mid/far adaptations recorded separately','Mercer city is a frozen native visual export; adaptive ground validation and full material provenance are in assets/unity/city/manifest.json']),indent=2)+'\n')
 print(json.dumps(rows,indent=2))

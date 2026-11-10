@@ -12,7 +12,7 @@ namespace Cinder.Editor
     // Fail closed on skins, sparse/compressed geometry and unsupported modes.
     public static class GlbImport
     {
-        [Serializable] class Doc { public Node[] nodes;public GMesh[] meshes;public Accessor[] accessors;public BufferView[] bufferViews;public GMat[] materials;public GImage[] images;public GTexture[] textures;public object[] skins; }
+        [Serializable] class Doc { public Node[] nodes;public GMesh[] meshes;public Accessor[] accessors;public BufferView[] bufferViews;public GMat[] materials;public GImage[] images;public GTexture[] textures;public GSampler[] samplers;public object[] skins; }
         [Serializable] class Node {public string name;public int mesh=-1;public int[] children;public float[] translation,rotation,scale,matrix;}
         [Serializable] class GMesh {public string name;public Prim[] primitives;}
         [Serializable] class Prim {public Attr attributes;public int indices=-1,material=-1;public int mode=4;}
@@ -25,7 +25,8 @@ namespace Cinder.Editor
         [Serializable] class Pbr {public float[] baseColorFactor;public Tex baseColorTexture,metallicRoughnessTexture;public float metallicFactor=1,roughnessFactor=1;}
         [Serializable] class Tex {public int index=-1;public float scale=1;}
         [Serializable] class GImage {public int bufferView=-1;public string uri,mimeType;}
-        [Serializable] class GTexture {public int source;}
+        [Serializable] class GTexture {public int source;public int sampler=-1;}
+        [Serializable] class GSampler {public int magFilter=-1,minFilter=-1,wrapS=10497,wrapT=10497;}
         static float[] Values(Doc d,byte[] bin,int index)
         {
             if(index<0)return null;var a=d.accessors[index];if(a.bufferView<0)throw new Exception("Sparse/empty accessor unsupported");var v=d.bufferViews[a.bufferView];if(v.buffer!=0)throw new Exception("External geometry buffer unsupported");
@@ -35,28 +36,89 @@ namespace Cinder.Editor
             return r;
         }
         static Vector3[] V3(float[] a){if(a==null)return null;var r=new Vector3[a.Length/3];for(int i=0;i<r.Length;i++)r[i]=new Vector3(a[i*3],a[i*3+1],a[i*3+2]);return r;}
-        public static void RefreshCoat(string source,string id){byte[] raw=File.ReadAllBytes(source);var d=JsonUtility.FromJson<Doc>(System.Text.Encoding.UTF8.GetString(raw,20,BitConverter.ToInt32(raw,12)));for(int i=0;i<(d.materials?.Length??0);i++){var mat=AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Cinder/Generated/"+id+"/material-"+i+".mat");if(!mat||!mat.HasProperty("_Clearcoat"))continue;var coat=d.materials[i].extensions?.KHR_materials_clearcoat;mat.SetFloat("_Clearcoat",coat?.clearcoatFactor??0);mat.SetFloat("_CoatRoughness",coat!=null?Mathf.Max(.10f,coat.clearcoatRoughnessFactor):.06f);if(coat!=null&&coat.clearcoatFactor>.1f&&mat.HasProperty("_BumpScale"))mat.SetFloat("_BumpScale",Mathf.Min(mat.GetFloat("_BumpScale"),.12f));if(mat.HasProperty("_Metallic")&&mat.GetFloat("_Metallic")>.9f)mat.SetFloat("_Glossiness",Mathf.Min(mat.GetFloat("_Glossiness"),.86f));EditorUtility.SetDirty(mat);}}
+        // Refresh exact authored values. Reflection filtering and the coat shader own
+        // stability; material identity must not drift into arbitrary global clamps.
+        public static void RefreshCoat(string source,string id)
+        {
+            byte[] raw=File.ReadAllBytes(source);
+            var d=JsonUtility.FromJson<Doc>(System.Text.Encoding.UTF8.GetString(raw,20,BitConverter.ToInt32(raw,12)));
+            for(int i=0;i<(d.materials?.Length??0);i++)
+            {
+                var mat=AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Cinder/Generated/"+id+"/material-"+i+".mat");
+                if(!mat||!mat.HasProperty("_Clearcoat"))continue;
+                var gm=d.materials[i];var p=gm.pbrMetallicRoughness??new Pbr();var coat=gm.extensions?.KHR_materials_clearcoat;
+                mat.SetFloat("_Clearcoat",coat?.clearcoatFactor??0);
+                mat.SetFloat("_CoatRoughness",coat?.clearcoatRoughnessFactor??0);
+                if(mat.HasProperty("_BumpScale"))mat.SetFloat("_BumpScale",gm.normalTexture?.scale??1);
+                if(mat.HasProperty("_Glossiness"))mat.SetFloat("_Glossiness",1-p.roughnessFactor);
+                EditorUtility.SetDirty(mat);
+            }
+        }
+        static TextureWrapMode Wrap(int gltf)=>gltf==33071?TextureWrapMode.Clamp:gltf==33648?TextureWrapMode.Mirror:TextureWrapMode.Repeat;
+        static void Sampler(Doc d,Tex reference,TextureImporter importer)
+        {
+            int n=d.textures[reference.index].sampler;
+            var sampler=n>=0&&d.samplers!=null&&n<d.samplers.Length?d.samplers[n]:null;
+            importer.wrapModeU=Wrap(sampler?.wrapS??10497);importer.wrapModeV=Wrap(sampler?.wrapT??10497);
+            int filter=sampler?.minFilter??9987;
+            importer.filterMode=filter==9728||filter==9984||filter==9986?FilterMode.Point:filter==9729?FilterMode.Bilinear:FilterMode.Trilinear;
+            importer.anisoLevel=4;
+        }
         public static void Import(string source,string id)
         {
             string dir="Assets/Resources/Cinder/Generated/"+id;Directory.CreateDirectory(dir);
             byte[] raw=File.ReadAllBytes(source);if(BitConverter.ToUInt32(raw,0)!=0x46546c67||BitConverter.ToUInt32(raw,4)!=2)throw new Exception("glTF 2 binary required");
             int jlen=BitConverter.ToInt32(raw,12);string json=System.Text.Encoding.UTF8.GetString(raw,20,jlen);if(json.Contains("\"sparse\"")||json.Contains("KHR_draco_mesh_compression")||json.Contains("\"skins\""))throw new Exception("Unsupported compressed/skinned asset");
-            var d=JsonUtility.FromJson<Doc>(json);int bstart=20+jlen+8;byte[] bin=raw.Skip(bstart).ToArray();var images=new Dictionary<int,Texture2D>();
-            Func<Tex,Texture2D> image=reference=>{
-                if(reference==null||reference.index<0||d.textures==null||reference.index>=d.textures.Length)return null;int n=d.textures[reference.index].source;if(images.TryGetValue(n,out var exists))return exists;var im=d.images[n];byte[] bytes;
+            var d=JsonUtility.FromJson<Doc>(json);int bstart=20+jlen+8;byte[] bin=raw.Skip(bstart).ToArray();
+            var encodedImages=new Dictionary<int,byte[]>();var images=new Dictionary<string,Texture2D>();
+            Func<Tex,byte[]> encoded=reference=>{
+                if(reference==null||reference.index<0||d.textures==null||reference.index>=d.textures.Length)return null;
+                int n=d.textures[reference.index].source;if(encodedImages.TryGetValue(n,out var existing))return existing;
+                if(d.images==null||n<0||n>=d.images.Length)throw new Exception("Invalid material image source");
+                var im=d.images[n];byte[] bytes;
                 if(im.bufferView>=0){var v=d.bufferViews[im.bufferView];bytes=bin.Skip(v.byteOffset).Take(v.byteLength).ToArray();}
-                else if(im.uri.StartsWith("data:"))bytes=Convert.FromBase64String(im.uri.Substring(im.uri.IndexOf(',')+1));else bytes=File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(source),im.uri));
-                string path=dir+"/image-"+n+".png";var tex=new Texture2D(2,2);if(!tex.LoadImage(bytes))throw new Exception("Texture decode failed");File.WriteAllBytes(path,tex.EncodeToPNG());UnityEngine.Object.DestroyImmediate(tex);AssetDatabase.ImportAsset(path);var ti=(TextureImporter)AssetImporter.GetAtPath(path);ti.maxTextureSize=1024;ti.textureCompression=TextureImporterCompression.Compressed;ti.SaveAndReimport();var result=AssetDatabase.LoadAssetAtPath<Texture2D>(path);images[n]=result;return result;};
+                else if(im.uri!=null&&im.uri.StartsWith("data:"))bytes=Convert.FromBase64String(im.uri.Substring(im.uri.IndexOf(',')+1));
+                else bytes=File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(source),im.uri??throw new Exception("Image URI missing")));
+                encodedImages[n]=bytes;return bytes;
+            };
+            // An image may be used as albedo, normal and data with different samplers.
+            // Separate role assets keep one binding from mutating another binding's import.
+            Func<Tex,string,Texture2D> image=(reference,role)=>{
+                var bytes=encoded(reference);if(bytes==null)return null;
+                string key=reference.index+"-"+role;if(images.TryGetValue(key,out var existing))return existing;
+                string path=dir+"/image-"+key+".png";
+                var tex=new Texture2D(2,2,TextureFormat.RGBA32,false,role!="color");
+                if(!tex.LoadImage(bytes))throw new Exception("Texture decode failed");
+                File.WriteAllBytes(path,tex.EncodeToPNG());UnityEngine.Object.DestroyImmediate(tex);AssetDatabase.ImportAsset(path);
+                var ti=(TextureImporter)AssetImporter.GetAtPath(path);ti.maxTextureSize=1024;
+                ti.textureType=role=="normal"?TextureImporterType.NormalMap:TextureImporterType.Default;
+                ti.sRGBTexture=role=="color";ti.textureCompression=TextureImporterCompression.CompressedHQ;
+                ti.mipmapEnabled=true;Sampler(d,reference,ti);ti.SaveAndReimport();
+                var result=AssetDatabase.LoadAssetAtPath<Texture2D>(path);images[key]=result;return result;
+            };
             var mats=new List<Material>();foreach(var gm in d.materials??Array.Empty<GMat>()){
                 var p=gm.pbrMetallicRoughness??new Pbr();var mat=new Material(Shader.Find(gm.alphaMode=="BLEND"?"Cinder/Glass":"Cinder/Body")){name=gm.name};
-                var c=p.baseColorFactor;mat.color=c!=null?new Color(c[0],c[1],c[2],c[3]).gamma:Color.white;mat.mainTexture=image(p.baseColorTexture);mat.SetFloat("_Metallic",p.metallicFactor);mat.SetFloat("_Glossiness",1-p.roughnessFactor);
+                var c=p.baseColorFactor;mat.color=c!=null?new Color(c[0],c[1],c[2],c[3]).gamma:Color.white;mat.mainTexture=image(p.baseColorTexture,"color");mat.SetFloat("_Metallic",p.metallicFactor);mat.SetFloat("_Glossiness",1-p.roughnessFactor);
                 if(gm.alphaMode=="BLEND"){mat.SetFloat("_Mode",2);mat.SetOverrideTag("RenderType","Transparent");mat.SetInt("_SrcBlend",(int)BlendMode.SrcAlpha);mat.SetInt("_DstBlend",(int)BlendMode.OneMinusSrcAlpha);mat.SetInt("_ZWrite",0);mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");mat.EnableKeyword("_ALPHABLEND_ON");mat.renderQueue=3000;}
                 else if(gm.alphaMode=="MASK"){mat.SetFloat("_Cutoff",gm.alphaCutoff);mat.EnableKeyword("CINDER_CUTOUT");mat.renderQueue=2450;}
                 if(mat.HasProperty("_Cull"))mat.SetInt("_Cull",gm.doubleSided?0:2);
                 if(gm.emissiveFactor!=null){var e=gm.emissiveFactor;mat.SetColor("_EmissionColor",new Color(e[0],e[1],e[2]));mat.EnableKeyword("_EMISSION");}
-                var normal=image(gm.normalTexture);if(normal){var ni=(TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(normal));ni.textureType=TextureImporterType.NormalMap;ni.SaveAndReimport();mat.SetTexture("_BumpMap",normal);mat.SetFloat("_BumpScale",gm.normalTexture.scale);mat.EnableKeyword("_NORMALMAP");}
+                var normal=image(gm.normalTexture,"normal");if(normal){mat.SetTexture("_BumpMap",normal);mat.SetFloat("_BumpScale",gm.normalTexture.scale);mat.EnableKeyword("_NORMALMAP");}
                 // glTF green=roughness, blue=metal. Unity red=metal, alpha=smoothness.
-                var mr=image(p.metallicRoughnessTexture);if(mr){var mi=(TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(mr));mi.isReadable=true;mi.sRGBTexture=false;mi.SaveAndReimport();var px=mr.GetPixels();for(int k=0;k<px.Length;k++)px[k]=new Color(px[k].b*p.metallicFactor,0,0,1-px[k].g*p.roughnessFactor);var packed=new Texture2D(mr.width,mr.height,TextureFormat.RGBA32,true,true);packed.SetPixels(px);packed.Apply();string mp=dir+"/packed-"+mats.Count+".png";File.WriteAllBytes(mp,packed.EncodeToPNG());UnityEngine.Object.DestroyImmediate(packed);AssetDatabase.ImportAsset(mp);var mpi=(TextureImporter)AssetImporter.GetAtPath(mp);mpi.sRGBTexture=false;mpi.SaveAndReimport();mat.SetTexture("_MetallicGlossMap",AssetDatabase.LoadAssetAtPath<Texture2D>(mp));mat.EnableKeyword("_METALLICGLOSSMAP");}
+                var mrBytes=encoded(p.metallicRoughnessTexture);
+                if(mrBytes!=null)
+                {
+                    // Read original, linear data pixels before any GPU/block compression.
+                    var mr=new Texture2D(2,2,TextureFormat.RGBA32,false,true);
+                    if(!mr.LoadImage(mrBytes))throw new Exception("Metal/roughness image decode failed");
+                    var px=mr.GetPixels();for(int k=0;k<px.Length;k++)px[k]=new Color(px[k].b*p.metallicFactor,0,0,1-px[k].g*p.roughnessFactor);
+                    var packed=new Texture2D(mr.width,mr.height,TextureFormat.RGBA32,true,true);packed.SetPixels(px);packed.Apply();
+                    string mp=dir+"/packed-"+mats.Count+".png";File.WriteAllBytes(mp,packed.EncodeToPNG());
+                    UnityEngine.Object.DestroyImmediate(mr);UnityEngine.Object.DestroyImmediate(packed);AssetDatabase.ImportAsset(mp);
+                    var mpi=(TextureImporter)AssetImporter.GetAtPath(mp);mpi.sRGBTexture=false;mpi.maxTextureSize=1024;
+                    mpi.textureCompression=TextureImporterCompression.Uncompressed;mpi.mipmapEnabled=true;Sampler(d,p.metallicRoughnessTexture,mpi);mpi.SaveAndReimport();
+                    mat.SetTexture("_MetallicGlossMap",AssetDatabase.LoadAssetAtPath<Texture2D>(mp));mat.EnableKeyword("_METALLICGLOSSMAP");
+                }
                 AssetDatabase.CreateAsset(mat,dir+"/material-"+mats.Count+".mat");mat.name=gm.name;EditorUtility.SetDirty(mat);mats.Add(mat);
             }
             var fallback=new Material(Shader.Find("Cinder/Body"));var meshGroups=new List<(Mesh,Material)>[d.meshes.Length];long triangles=0;

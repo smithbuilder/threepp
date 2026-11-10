@@ -30,7 +30,13 @@ namespace Cinder.View {
         static Vector3 V(DVec3 p) {return new Vector3((float)p.X,(float)p.Y,(float)p.Z);}
         static Quaternion Q(DQuat p) {return new Quaternion((float)p.X,(float)p.Y,(float)p.Z,(float)p.W);}
         static Quaternion Aim(Vector3 old,Vector3 next) {return old.sqrMagnitude<1e-12f||next.sqrMagnitude<1e-12f?Quaternion.identity:Quaternion.FromToRotation(old,next);}
-        Transform Find(string name) {nodes.TryGetValue(name,out var t);return t;}
+        readonly HashSet<Transform> poseBindings=new HashSet<Transform>();
+        readonly HashSet<Transform> visibilityBindings=new HashSet<Transform>();
+        public bool IsVisibilityBinding(Transform node)=>visibilityBindings.Contains(node);
+        void SetVisibility(Transform node,bool visible){visibilityBindings.Add(node);node.gameObject.SetActive(visible);}
+        public bool IsPoseBinding(Transform node)=>poseBindings.Contains(node);
+        public bool IsDeformedMesh(Mesh mesh)=>owned.Contains(mesh);
+        Transform Find(string name) {nodes.TryGetValue(name,out var t);if(t)poseBindings.Add(t);return t;}
         Transform Need(string name) {var t=Find(name);if(!t)throw new InvalidOperationException("Missing "+id+" moving mechanism: "+name);return t;}
         Vector3 B(string name) {return bind[Need(name)];}
         Vector3 L(string name) {return local[Need(name)];}
@@ -194,7 +200,7 @@ namespace Cinder.View {
         }
         void PoseRoof(float t) {
             var root=Find("roof_root");if(!root)return;Vector3 roofRest=bind[root];float open=t<.12f?t/.12f:t>.86f?(1-t)/.14f:1;Rotate("deck_hinge",Quaternion.AngleAxis(-1.12f*Mathf.Rad2Deg*Mathf.Clamp01(open),Vector3.right));
-            for(int i=0;i<2;i++){var cover=Find("roof_slot_cover_"+i);if(cover)cover.gameObject.SetActive(t<.02f);}float finish=Mathf.Clamp01((t-.78f)/.08f);Rotate("finish_panel",Quaternion.AngleAxis(-3*Mathf.Rad2Deg*finish*finish*(3-2*finish),Vector3.right));
+            for(int i=0;i<2;i++){var cover=Find("roof_slot_cover_"+i);if(cover)SetVisibility(cover,t<.02f);}float finish=Mathf.Clamp01((t-.78f)/.08f);Rotate("finish_panel",Quaternion.AngleAxis(-3*Mathf.Rad2Deg*finish*finish*(3-2*finish),Vector3.right));
             float deploy=Mathf.Clamp01((t-.18f)/.60f);deploy=deploy*deploy*(3-2*deploy);Point("roof_root",roofRest);Rotate("roof_root",Quaternion.identity);root.localScale=Vector3.one;root.gameObject.SetActive(true);Vector3[] restBows=new Vector3[3],live=new Vector3[3];Quaternion[] bowQ=new Quaternion[3];
             for(int i=0;i<3;i++){string bow="roof_bow_"+i;if(!Find(bow))return;restBows[i]=B(bow);live[i]=Vector3.Lerp(new Vector3(0,.705f+i*.032f,-2.03f-i*.035f),restBows[i],deploy);live[i].y+=.52f*Mathf.Sin(deploy*Mathf.PI);bowQ[i]=Quaternion.AngleAxis((1-deploy)*90,Vector3.right);Point(bow,live[i]);Rotate(bow,bowQ[i]);Need(bow).localScale=Vector3.one;}
             for(int i=0;i<3;i++){var node=Find("roof_cloth_"+i);if(!node)continue;node.localPosition=Vector3.zero;node.localRotation=Quaternion.identity;node.localScale=Vector3.one;

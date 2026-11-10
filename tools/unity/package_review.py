@@ -195,6 +195,9 @@ def main(argv=None):
         require(report.get("Success") is True and int(report.get("Checks", 0)) > 0, f"The {label} gate has not passed.")
         require(report.get("Lines") and all(not line.startswith("FAIL ") for line in report["Lines"]), f"The {label} report contains a failed check.")
     require(int(latest.get("simChecks", 0)) == sim_probe["Checks"] and int(latest.get("rigChecks", 0)) == rig_probe["Checks"], "Latest-probe check counts disagree with their actual reports.")
+    batch_probe = read_json(probe_session / "runtime-batch-probe.json")
+    require(batch_probe.get("Success") is True and int(batch_probe.get("Checks", 0)) > 0, "Runtime batched-geometry gate has not passed.")
+    require(int(latest.get("runtimeBatchChecks", 0)) == batch_probe["Checks"], "Runtime batch check count disagrees with its report.")
     scan_logs(probe_session)
 
     sessions, metadata, input_paths = {}, {}, set()
@@ -204,6 +207,15 @@ def main(argv=None):
         require(session not in sessions.values(), f"Each evidence role requires its own original capture session: {role}")
         receipt = read_json(session / "runtime-receipt.json")
         require(receipt.get("action") == "Capture" and receipt.get("normal") is True and receipt.get("revision") == args.revision, f"The {role} capture did not finish normally for this revision.")
+        launch_args = receipt.get("launchArguments", [])
+        forbidden = {"-material-control", "-colour-probe", "-local-reflection-diagnostic", "-sky-reflections-only"}
+        require(not forbidden.intersection(launch_args), f"Diagnostic flags cannot enter the {role} review take.")
+        material_path, render_path = session / "material-control.json", session / "render-diagnostics.json"
+        if material_path.exists():
+            require(read_json(material_path).get("control") == "none", f"The {role} take uses a material diagnostic.")
+        if render_path.exists():
+            render = read_json(render_path)
+            require(not render.get("colourControl", False) and render.get("materialControl", "none") == "none", f"The {role} take uses a render diagnostic.")
         require(receipt.get("vehicle") == VEHICLES[role] and receipt.get("world") == "city", f"Unexpected vehicle or world in {role} capture.")
         require(str(receipt.get("exeSha256", "")).lower() == exe_hash and Path(receipt.get("exe", "")).resolve() == exe.resolve(), f"The {role} capture is bound to another player.")
         frames = sorted(session.glob("frame-*.png"))
@@ -225,7 +237,7 @@ def main(argv=None):
         {"role": "ui", "frame": 53, "name": "02-pause.png", "reason": "Scripted pause check at captured frame 53"},
         {"role": "ui", "frame": 163, "name": "03-quit-confirmation.png", "reason": "Scripted quit confirmation at captured frame 163"},
     ]
-    for role, metric, name in (("catrina", "bodyY", "04-catrina-hop.png"), ("luna", "bodyY", "05-media-luna-lift.png"), ("nocturne", "roofPhase", "06-nocturne-roof.png")):
+    for role, metric, name in (("catrina", "bodyY", "04-catrina-three-wheel.png"), ("luna", "bodyY", "05-media-luna-lift.png"), ("nocturne", "roofPhase", "06-nocturne-roof.png")):
         selected = select_pose(sessions[role], metric)
         selections.append(dict(selected, role=role, name=name, reason="Highest recorded " + metric + " from the original pose JSON receipts"))
     for role in ("catrina", "luna", "nocturne"):
@@ -244,7 +256,7 @@ def main(argv=None):
                 source = session / name
                 if source.is_file():
                     shutil.copy2(source, receipts / (role + "-" + name))
-        for source in (latest_path, build_path, sources_path, probe_session / "probe.json", probe_session / "loaded-rig-probe.json", probe_session / "runtime-receipt.json"):
+        for source in (latest_path, build_path, sources_path, probe_session / "probe.json", probe_session / "loaded-rig-probe.json", probe_session / "runtime-batch-probe.json", probe_session / "runtime-receipt.json"):
             shutil.copy2(source, receipts / ("probe-runtime-receipt.json" if source == probe_session / "runtime-receipt.json" else source.name))
         selected_rows = []
         for selected in selections:
@@ -284,7 +296,7 @@ def main(argv=None):
             "revision": args.revision, "createdUtc": datetime.now(timezone.utc).isoformat(), "status": "mechanical-evidence-verified",
             "player": {"path": relative(exe), "sha256": exe_hash, "authenticode": signed},
             "build": build, "sourceManifest": {"path": relative(sources_path), "sha256": digest(sources_path), "fingerprint": sources["fingerprint"], "currentListedSourcesMatch": True},
-            "gates": {"simulationChecks": sim_probe["Checks"], "loadedRigChecks": rig_probe["Checks"], "uiChecks": ui_lines, "probeSession": relative(probe_session)},
+            "gates": {"simulationChecks": sim_probe["Checks"], "loadedRigChecks": rig_probe["Checks"], "runtimeBatchChecks": batch_probe["Checks"], "uiChecks": ui_lines, "probeSession": relative(probe_session)},
             "sessions": metadata, "stills": selected_rows,
             "proof": {"file": proof.name, "sha256": digest(proof), "frames": total_frames, "fps": 30, "durationSeconds": duration, "dimensions": [960, 600], "sequence": [{"role": role, "frames": expected_counts[role], "seconds": expected_counts[role] / 30} for role in video_roles], "audio": "None. Original automated captures were silent.", "decode": "PASS", "ffmpeg": ffmpeg_version, "command": command},
             "limitations": ["Mechanical encoding and non-black frame checks do not establish visual approval or input feel.", "These captures are 960x600 at 30 fps with PNG output. They do not establish 1080p/60 handheld performance.", "Heard audio, comfort, comprehension, enjoyment and physical gamepad feel remain UNVERIFIED until Oliver plays.", "The source capture sessions and their original receipts remain intact."],
