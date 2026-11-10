@@ -133,3 +133,8 @@ This is the private Patcher publication route. Public customer export is a separ
 - `C:/Users/oliver/Projects/patcher/scripts/prepare-customer-release.mjs`
 
 The current native and Unity safety rules remain in `SAFETY.md`, `AGENTS.md`, `docs/HANDOFF.md` and `tools/unity/Run-Cinder.ps1`.
+
+
+## Completed r24 publication
+
+November 9, 2026, 11:47 PM Pacific: this procedure published the independently reviewed prototype as Cinder `r-mwadnquf-eb902ae9`. The exact signed catalog/owner envelope and full downloadable archive hash verify. GitHub main and candidate tag were pushed and verified. `PUBLICATION-r24.json` records exact identities and scope. This does not grant Level 2 art, physical play or public customer-export approval.

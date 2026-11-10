@@ -4,7 +4,7 @@ November 9, 2026, Pacific Time. Original native-relative visual regressions are 
 
 ## Needs you
 
-Use Patcher's Cinder entry after publication, or `PLAY-CINDER-UNITY.cmd` locally. Physical controls, feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. The conservative automated profile is not a human playtest.
+Use Patcher's Cinder entry to play, or `PLAY-CINDER-UNITY.cmd` locally. Physical controls, feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. The conservative automated profile is not a human playtest.
 
 ## Playable scope
 
@@ -23,7 +23,7 @@ Lowrider culture garage with La Catrina, Media Luna and Nocturne, Mercer cruise,
 | Local silent proof | `evidence/cinder-unity-r24/review/proof.mp4` |
 | Proof SHA256 | `fcfae11118690490ec3719ab8c67bcb7ce34862bd867a226d74517716f0321c2` |
 | Committed gallery | `art-review/unity-r24/index.html` |
-| Prepared Patcher release | `r-mwadnquf-eb902ae9` |
+| Published Patcher release | `r-mwadnquf-eb902ae9` |
 | Patcher archive SHA256 | `ef54d45ab04b5cb50d71e7c66e1f4237a346fdacc37071f203d28ebac0d84eed` |
 | Portable inventory | 147 files; 443,822,811 unpacked bytes |
 
@@ -60,6 +60,6 @@ The full Catrina action take peaks at 216 draws, below the 300 target. Earlier r
 
 ## Publication and limits
 
-The full signed player is prepared for private Patcher product `cinder`, title `Cinder`, main line. Entry is `Cinder.exe` with only `-module cinder-drive`, opening the garage. Actual-player artwork is 41,167 bytes. The new prepared package has no detected private filenames, raw footage, source checkout or diagnostic launch flags. Live promotion and GitHub verification are recorded in the final publication receipt; do not confuse preparation with publication.
+The full signed player is published as private Patcher product `cinder`, title `Cinder`, main line. Entry is `Cinder.exe` with only `-module cinder-drive`, opening the garage. Actual-player artwork is 41,167 bytes. The new prepared package has no detected private filenames, raw footage, source checkout or diagnostic launch flags. Live promotion is verified: the selected catalog signature and exact owner envelope match the prepared package; the full HTTPS archive stream matches its declared size and SHA256. GitHub main and the candidate tag were verified at `6010234e`. The 13 preexisting game main selections remain unchanged. See `docs/unity/release/PUBLICATION-r24.json`. A physical installation is not claimed.
 
 Native lamp control/default-off parity and some service-removal features remain partial. City social life/destination identity, finish/chrome/glass polish, physical play and target-device checks are future work. Audio remains original synthesized placeholder material with measured gains, not a listened approval. No public customer export was performed.

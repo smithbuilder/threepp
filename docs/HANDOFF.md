@@ -6,7 +6,7 @@ November 9, 2026, Pacific Time. Current signed player: **cinder-unity-r24**. Nat
 
 No additional permission or product decision is pending. Oliver authorized commit, merge, GitHub main push and a new private-Patcher Cinder release. Physical controls, input feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED until he plays.
 
-Publication checkpoint: full package prepared as `r-mwadnquf-eb902ae9`; GitHub integration and live signed selection verification are being completed. See `docs/DELIVERY.md` and the final publication receipt for the resulting state. The rejected r20 package was never uploaded and remains marked REJECTED.
+Published November 9 at 11:47 PM Pacific: GitHub main fast-forward integration and tag `cinder-unity-r24` verified at candidate commit `6010234e`; Patcher Cinder selects immutable release `r-mwadnquf-eb902ae9`. The signed catalog, exact owner envelope, local inventory and streamed 173,241,783-byte archive SHA256 all verify. The 13 preexisting game main selections are unchanged. Receipt: `docs/unity/release/PUBLICATION-r24.json`. The rejected r20 package was never uploaded and remains marked REJECTED.
 
 ## Play and scope
 

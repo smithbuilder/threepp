@@ -1,0 +1,50 @@
+{
+  "kind": "cinder-private-patcher-publication",
+  "published": true,
+  "utc": "2026-11-10T07:47:23.870Z",
+  "server": "https://promaxgb10.tail3b2a94.ts.net:8444",
+  "gameId": "cinder",
+  "releaseId": "r-mwadnquf-eb902ae9",
+  "version": "cinder-unity-r24",
+  "entryPoint": "Cinder.exe",
+  "args": [
+    "-module",
+    "cinder-drive"
+  ],
+  "playerSha256": "7d78c95234b8c21a2f2a48e544eb888f43d52612d0c8680c7d6319128caa256a",
+  "manifestSha256": "2476ae5e8b64fe870891abe70dd056b83dcbb8dce8e241a4424e591a67db5f22",
+  "archive": {
+    "sha256": "ef54d45ab04b5cb50d71e7c66e1f4237a346fdacc37071f203d28ebac0d84eed",
+    "size": 173241783,
+    "unpackedSize": 443822811
+  },
+  "streamedArchiveSha256": "ef54d45ab04b5cb50d71e7c66e1f4237a346fdacc37071f203d28ebac0d84eed",
+  "streamedArchiveBytes": 173241783,
+  "selectedCatalogSignatureVerified": true,
+  "exactOwnerEnvelopeVerified": true,
+  "localArchiveInventoryVerified": true,
+  "otherSelectionChanges": [],
+  "publicCustomerExportPerformed": false,
+  "physicalInstallationVerified": false,
+  "github": {
+    "repository": "https://github.com/smithbuilder/threepp",
+    "integrationBranch": "main",
+    "integration": "fast-forward",
+    "candidateCommit": "6010234e99df9de37ab4fea5f1b8b98635126eb7",
+    "runtimeSourceCommit": "0b3e518d7d2f9d73e641026db7bb059d58bfbb3f",
+    "candidateTag": "cinder-unity-r24",
+    "newBlobAudit": {
+      "sourceCommit": "6010234e99df9de37ab4fea5f1b8b98635126eb7",
+      "range": "origin/main..HEAD",
+      "newBlobCount": 294,
+      "newVideoBlobs": [],
+      "blobsAtLeast100MiB": [],
+      "largestNewBlob": {
+        "path": "assets/unity/city/mercer-city.glb",
+        "bytes": 54254640
+      },
+      "result": "PASS"
+    }
+  },
+  "reviewScope": "Prototype publication authorized by Oliver; native-relative repairs supported within independent sampled scope. City6/cars7/lighting7 remain below Level2>=8 art target. Human and target-device checks unverified."
+}
