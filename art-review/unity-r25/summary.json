@@ -120,5 +120,37 @@
   },
   "deliveryManifestSha256": "a18062de6c8ad3400cf0744bfbf41814540c66c84bc8b642b92628069713f48c",
   "verdict": "Scoped prototype refinement; city6 cars7 lighting7; not Level2 art approval",
-  "limits": "Physical input, listened audio, enjoyment and handheld1080p60 unverified; reviewers sampled frames, did not continuously watch clip."
+  "limits": "Physical input, listened audio, enjoyment and handheld1080p60 unverified; reviewers sampled frames, did not continuously watch clip.",
+  "publication": {
+    "kind": "cinder-private-patcher-publication",
+    "published": true,
+    "utc": "2026-11-11T15:54:30.924Z",
+    "server": "https://promaxgb10.tail3b2a94.ts.net:8444",
+    "gameId": "cinder",
+    "releaseId": "r-mwcamd7w-04b70463",
+    "version": "cinder-unity-r25",
+    "priorReleaseId": "r-mwadnquf-eb902ae9",
+    "entryPoint": "Cinder.exe",
+    "args": [
+      "-module",
+      "cinder-drive"
+    ],
+    "playerSha256": "8c662a95e18c2c4bf2a478e7795b72d3fa2927d1d7d3dd9844596d5f427b7ae3",
+    "manifestSha256": "0f61739645dd4fda85710af4d90db39af0729ae330d4ed4b6bf9d7deeb1c7340",
+    "archive": {
+      "sha256": "58bccd427e19646385deee20e7995abc28b911c60f0abc731cdbd972fa36d7d3",
+      "size": 173242597,
+      "unpackedSize": 443843163
+    },
+    "streamedArchiveSha256": "58bccd427e19646385deee20e7995abc28b911c60f0abc731cdbd972fa36d7d3",
+    "streamedArchiveBytes": 173242597,
+    "selectedCatalogSignatureVerified": true,
+    "exactOwnerEnvelopeVerified": true,
+    "localArchiveInventoryVerified": true,
+    "otherSelectionChanges": [],
+    "otherProductCount": 13,
+    "publicCustomerExportPerformed": false,
+    "physicalInstallationVerified": false
+  },
+  "candidateCommit": "d68fa06a5161dd9b90da0a24cf36e5e555eb32c7"
 }

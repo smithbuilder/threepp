@@ -138,3 +138,7 @@ The current native and Unity safety rules remain in `SAFETY.md`, `AGENTS.md`, `d
 ## Completed r24 publication
 
 November 9, 2026, 11:47 PM Pacific: this procedure published the independently reviewed prototype as Cinder `r-mwadnquf-eb902ae9`. The exact signed catalog/owner envelope and full downloadable archive hash verify. GitHub main and candidate tag were pushed and verified. `PUBLICATION-r24.json` records exact identities and scope. This does not grant Level 2 art, physical play or public customer-export approval.
+
+## Completed r25 publication
+
+November 11, 2026, 7:54 AM Pacific: new immutable Cinder release r-mwcamd7w-04b70463 (cinder-unity-r25) replaces r24 on the private main selection. Exact signed catalog/owner envelope, complete inventory and streamed archive verify. Prior r24 remains available for rollback. All13 other selections are unchanged. GitHub main/candidate tag d68fa06a is verified; local checks ran and the integration commit requested skip-ci. PUBLICATION-r25.json records the identities and limits. No public customer export or physical-device acceptance is claimed.

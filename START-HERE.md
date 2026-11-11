@@ -4,7 +4,7 @@ Current r25 adds local tyre contact shading, restrained highlight glow and highe
 
 The Unity migration centers on lowrider culture: La Catrina, Media Luna and Nocturne. Choose a car in the main garage, cruise Mercer, start a hydraulic session, or visit the workshop test grounds. Safari and buggy racing are deferred from this menu.
 
-`PLAY-CINDER-UNITY.cmd` explicitly selects the signed r25 Windows player through the resource guard. The current Patcher publication state is in [the handoff](docs/HANDOFF.md). `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r26` builds a new unique revision with Unity 6000.3.6f1 without opening the editor.
+`PLAY-CINDER-UNITY.cmd` explicitly selects the signed r25 Windows player through the resource guard. Refresh Patcher and select **Cinder** for published r25. The verified release receipt is in [the handoff](docs/HANDOFF.md). `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r26` builds a new unique revision with Unity 6000.3.6f1 without opening the editor.
 
 ## Controls
 

@@ -6,7 +6,7 @@ November 11, 2026, Pacific. Current reviewed signed player: **cinder-unity-r25**
 
 No permission is pending. Physical controls, input feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. Reviewers inspected original stills and sampled sequence frames; they did not continuously watch the whole clip. Automated full decode is separate evidence.
 
-GitHub/private Patcher publication is being finalized under Oliver's existing authorization. r24 remains the live selection until the r25 publication receipt is verified. Check `docs/unity/release/PUBLICATION-r25.json` for the completed transfer. Prior r24 release is `r-mwadnquf-eb902ae9` and is retained for rollback.
+Published November 11 at 7:54 AM Pacific under Oliver's existing authorization. GitHub main and candidate tag cinder-unity-r25 were verified at d68fa06a. Private Patcher Cinder selects r-mwcamd7w-04b70463. Signed catalog, exact owner envelope, 147-file inventory and the full 173,242,597-byte downloadable archive hash verify. All 13 other product selections are unchanged. See docs/unity/release/PUBLICATION-r25.json. Prior r24 release r-mwadnquf-eb902ae9 remains available for rollback. No hosted Actions run appeared for the skip-ci integration commit.
 
 ## Play and scope
 

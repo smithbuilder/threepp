@@ -6,7 +6,7 @@ November 11, 2026, Pacific. A signed Unity lighting refinement adapted from Oliv
 
 ## Play
 
-Run PLAY-CINDER-UNITY.cmd for the guarded signed r25 player. It opens the La Catrina/Media Luna/Nocturne garage. Choose Mercer cruising, hydraulics/air or workshop tests. Safari/buggy racing stays deferred. START-HERE.md lists controls. Patcher publication status and exact release are recorded in unity/release/PUBLICATION-r25.json once verified; prior r24 remains available for rollback.
+Run PLAY-CINDER-UNITY.cmd for the guarded signed r25 player. It opens the La Catrina/Media Luna/Nocturne garage. Choose Mercer cruising, hydraulics/air or workshop tests. Safari/buggy racing stays deferred. START-HERE.md lists controls. Refresh Patcher and select Cinder for published r25, release r-mwcamd7w-04b70463. Signed catalog, exact owner envelope and streamed archive match the reviewed package; the other 13 selections are unchanged. [Publication receipt](unity/release/PUBLICATION-r25.json). Prior r24 remains available for rollback. GitHub main and tag cinder-unity-r25 are integrated at d68fa06a.
 
 ## Independent verdict
 
