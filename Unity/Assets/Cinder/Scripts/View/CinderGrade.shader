@@ -30,7 +30,7 @@ Shader "Cinder/Grade" {
  float4 filtered(v2f_img i):SV_Target {float3 display=ApplyFXAA(_MainTex,abs(_MainTex_TexelSize.xy),i.uv).rgb;
  // Two independent static hashes give zero-mean triangular noise, bounded to
  // half one display byte. Screen-anchored noise avoids temporal grain/shimmer.
- float2 p=floor(i.pos.xy);float a=frac(52.9829189*frac(dot(p,float2(.06711056,.00583715))));float b=frac(52.9829189*frac(dot(p+float2(17,59),float2(.06711056,.00583715))));
+ float2 p=floor(i.pos.xy);float a=frac(52.9829189*frac(dot(p,float2(.06711056,.00583715))));float b=frac(47.117379*frac(dot(p+float2(17,59),float2(.01398123,.09731261))));
  display=saturate(display+(a+b-1)*_DitherStrength);return float4(GammaToLinearSpace(display),1);}
  ENDCG
  }

@@ -114,6 +114,7 @@ namespace Cinder.View {
    foreach(var lod in lods){lod.Item1.localPosition=Car.localPosition;lod.Item1.localRotation=Car.localRotation;if(lod.Item1.gameObject.activeSelf){lod.Item2.Pose(s,sim.Tune);lod.Item2.PosePanels(panelPhase,roofPhase);}}
   }
   void PoseContactLighting(SimState s){
+   if(contactGround.Count==0)return;
    // View-only approximation of indirect occlusion at the actual tread support.
    // Re-sample the posed tread, rather than sticking a shadow under an airborne
    // hub. The sim remains authoritative; this never writes its state or forces.
