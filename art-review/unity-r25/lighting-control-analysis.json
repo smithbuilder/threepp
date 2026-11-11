@@ -1,0 +1,65 @@
+{
+  "scope": "Matched static D3D11 Catrina, View1, Warm120. No inference of subjective improvement.",
+  "comparisons": {
+    "normal": {
+      "session": "20261111-073934-014-Capture",
+      "maxAbsByte": 0,
+      "meanAbsByte": 0.0,
+      "pixelsChanged": 0,
+      "pixelsAboveOneByte": 0,
+      "bboxAboveOneByte": null,
+      "hudChangedPixels": 0
+    },
+    "legacy": {
+      "session": "20261111-073950-835-Capture",
+      "maxAbsByte": 104,
+      "meanAbsByte": 0.4532922453703704,
+      "pixelsChanged": 352551,
+      "pixelsAboveOneByte": 24128,
+      "bboxAboveOneByte": [
+        0,
+        0,
+        959,
+        599
+      ],
+      "hudChangedPixels": 7698
+    },
+    "bloom-off": {
+      "session": "20261111-074007-654-Capture",
+      "maxAbsByte": 104,
+      "meanAbsByte": 0.1417488425925926,
+      "pixelsChanged": 26363,
+      "pixelsAboveOneByte": 13297,
+      "bboxAboveOneByte": [
+        3,
+        50,
+        919,
+        431
+      ],
+      "hudChangedPixels": 0
+    },
+    "contact-off": {
+      "session": "20261111-074024-458-Capture",
+      "maxAbsByte": 23,
+      "meanAbsByte": 0.003417824074074074,
+      "pixelsChanged": 685,
+      "pixelsAboveOneByte": 448,
+      "bboxAboveOneByte": [
+        282,
+        377,
+        716,
+        440
+      ],
+      "hudChangedPixels": 0
+    },
+    "dither-off": {
+      "session": "20261111-074041-262-Capture",
+      "maxAbsByte": 1,
+      "meanAbsByte": 0.16111979166666668,
+      "pixelsChanged": 215184,
+      "pixelsAboveOneByte": 0,
+      "bboxAboveOneByte": null,
+      "hudChangedPixels": 3989
+    }
+  }
+}

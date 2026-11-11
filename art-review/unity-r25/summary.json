@@ -1,0 +1,124 @@
+{
+  "revision": "cinder-unity-r25",
+  "player": {
+    "path": "builds/cinder-unity-r25/Cinder.exe",
+    "sha256": "8c662a95e18c2c4bf2a478e7795b72d3fa2927d1d7d3dd9844596d5f427b7ae3",
+    "authenticode": {
+      "status": "Valid",
+      "subject": "CN=Oliver Smith, O=Oliver Smith, L=San Diego, S=ca, C=US",
+      "thumbprint": "C4CCAF1984D06EC8FCA1213AE172003AC96EA211"
+    }
+  },
+  "build": {
+    "revision": "cinder-unity-r25",
+    "sourceFingerprint": "6ece4aa5250168c45f204df361b4f0d32f31dfc30bbde9ae3603cd93108c74b7",
+    "unity": "6000.3.6f1",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 4
+  },
+  "sourceCommit": "1bdc5719",
+  "proof": {
+    "file": "proof.mp4",
+    "sha256": "84faa9584c8c70bfeb1ab6c460c8358a4af077d4deb9bb468311c1f06d4897be",
+    "frames": 2070,
+    "fps": 30,
+    "durationSeconds": 69.0,
+    "dimensions": [
+      960,
+      600
+    ],
+    "sequence": [
+      {
+        "role": "ui",
+        "frames": 180,
+        "seconds": 6.0
+      },
+      {
+        "role": "catrina",
+        "frames": 780,
+        "seconds": 26.0
+      },
+      {
+        "role": "luna",
+        "frames": 240,
+        "seconds": 8.0
+      },
+      {
+        "role": "nocturne",
+        "frames": 870,
+        "seconds": 29.0
+      }
+    ],
+    "audio": "None. Original automated captures were silent.",
+    "decode": "PASS",
+    "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "command": [
+      "C:\\Users\\oliver\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+      "-hide_banner",
+      "-nostdin",
+      "-v",
+      "error",
+      "-n",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r25\\20261111-074111-071-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r25\\20261111-074130-473-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r25\\20261111-074209-487-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r25\\20261111-074229-898-Capture\\frame-%04d.png",
+      "-filter_complex_threads",
+      "1",
+      "-filter_complex",
+      "[0:v]setpts=PTS-STARTPTS,format=yuv420p[v0];[1:v]setpts=PTS-STARTPTS,format=yuv420p[v1];[2:v]setpts=PTS-STARTPTS,format=yuv420p[v2];[3:v]setpts=PTS-STARTPTS,format=yuv420p[v3];[v0][v1][v2][v3]concat=n=4:v=1:a=0[out]",
+      "-map",
+      "[out]",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "18",
+      "-threads",
+      "2",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-frames:v",
+      "2070",
+      "-movflags",
+      "+faststart",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r25\\review\\proof.mp4"
+    ]
+  },
+  "deliveryManifestSha256": "a18062de6c8ad3400cf0744bfbf41814540c66c84bc8b642b92628069713f48c",
+  "verdict": "Scoped prototype refinement; city6 cars7 lighting7; not Level2 art approval",
+  "limits": "Physical input, listened audio, enjoyment and handheld1080p60 unverified; reviewers sampled frames, did not continuously watch clip."
+}

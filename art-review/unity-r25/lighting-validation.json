@@ -1,0 +1,132 @@
+{
+  "revision": "cinder-unity-r25",
+  "probeByteIdenticalToR24": {
+    "probe.json": true,
+    "loaded-rig-probe.json": true
+  },
+  "footprintSamples": 252,
+  "unsupportedWheelSamples": 8,
+  "unsupportedNonzeroFailures": [],
+  "colourPatchSamples": {
+    "0": {
+      "r25": [
+        0,
+        0,
+        0
+      ],
+      "legacy": [
+        0,
+        0,
+        0
+      ],
+      "maxDelta": 0
+    },
+    "1": {
+      "r25": [
+        126,
+        126,
+        126
+      ],
+      "legacy": [
+        126,
+        126,
+        126
+      ],
+      "maxDelta": 0
+    },
+    "2": {
+      "r25": [
+        226,
+        226,
+        226
+      ],
+      "legacy": [
+        226,
+        226,
+        226
+      ],
+      "maxDelta": 0
+    },
+    "3": {
+      "r25": [
+        200,
+        0,
+        2
+      ],
+      "legacy": [
+        200,
+        0,
+        2
+      ],
+      "maxDelta": 0
+    },
+    "4": {
+      "r25": [
+        63,
+        196,
+        30
+      ],
+      "legacy": [
+        63,
+        196,
+        30
+      ],
+      "maxDelta": 0
+    },
+    "5": {
+      "r25": [
+        0,
+        0,
+        191
+      ],
+      "legacy": [
+        0,
+        0,
+        191
+      ],
+      "maxDelta": 0
+    }
+  },
+  "performance": {
+    "r24": {
+      "revision": "cinder-unity-r24",
+      "vehicle": "catrina",
+      "world": "city",
+      "fingerprint": "972aede729b16d4d",
+      "scope": "Conservative 960x600/30 capture with PNG IO. Not a 1080p/60 handheld benchmark.",
+      "frames": 180,
+      "medianMs": 33.3342,
+      "p99Ms": 42.4247,
+      "peakWorkingSetBytes": 0,
+      "triangles": 693585,
+      "renderers": 82,
+      "maximumDrawCalls": 216,
+      "drawCounterAvailable": true,
+      "handheldVerified": false,
+      "externalPeakWorkingSetBytes": 436973568
+    },
+    "r25": {
+      "revision": "cinder-unity-r25",
+      "vehicle": "catrina",
+      "world": "city",
+      "fingerprint": "972aede729b16d4d",
+      "scope": "Conservative 960x600/30 capture with PNG IO. Not a 1080p/60 handheld benchmark.",
+      "frames": 180,
+      "medianMs": 33.3425,
+      "p99Ms": 35.1378,
+      "peakWorkingSetBytes": 0,
+      "triangles": 693585,
+      "renderers": 82,
+      "maximumDrawCalls": 219,
+      "drawCounterAvailable": true,
+      "handheldVerified": false,
+      "externalPeakWorkingSetBytes": 426602496
+    }
+  },
+  "actualR24StaticComparison": {
+    "session": "evidence\\cinder-unity-r24\\20261111-074827-521-Capture",
+    "stateMatch": true,
+    "legacyR25MaxByteDelta": 30,
+    "legacyChangedPixels": 832
+  }
+}

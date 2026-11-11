@@ -1,10 +1,10 @@
 # Cinder Unity
 
-Current r24 restores the native city, lighting and lowrider character. It is a reviewed prototype: city 6/10, cars and lighting 7/10, below the broader presentation target. See [the actual-player gallery](art-review/unity-r24/index.html) and [delivery details](docs/DELIVERY.md).
+Current r25 adds local tyre contact shading, restrained highlight glow and higher precision colour filtering to the restored native city and lowriders. It is a reviewed prototype: city 6/10, cars and lighting 7/10, below the broader presentation target. See [the matched actual-player comparison](art-review/unity-r25/index.html) and [delivery details](docs/DELIVERY.md).
 
 The Unity migration centers on lowrider culture: La Catrina, Media Luna and Nocturne. Choose a car in the main garage, cruise Mercer, start a hydraulic session, or visit the workshop test grounds. Safari and buggy racing are deferred from this menu.
 
-Refresh Patcher and select **Cinder** to play the published r24 prototype. The current build/review state is in [the handoff](docs/HANDOFF.md). `PLAY-CINDER-UNITY.cmd` launches the selected signed Windows player through the resource guard. `RUN-BUILD-RUNNER.cmd` builds it with Unity 6000.3.6f1 without opening the editor.
+`PLAY-CINDER-UNITY.cmd` explicitly selects the signed r25 Windows player through the resource guard. The current Patcher publication state is in [the handoff](docs/HANDOFF.md). `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r26` builds a new unique revision with Unity 6000.3.6f1 without opening the editor.
 
 ## Controls
 

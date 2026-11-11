@@ -1,65 +1,40 @@
-# Cinder Unity prototype delivery: cinder-unity-r24
+# Cinder r25 delivery
 
-November 9, 2026, Pacific Time. Original native-relative visual regressions are repaired in the inspected scope. This is an authorized **prototype publication**. Absolute art remains below the Level 2 threshold: city 6/10, cars and lighting 7/10. The old r9 visual approval remains withdrawn, and the failed r20 packet is preserved.
+November 11, 2026, Pacific. A signed Unity lighting refinement adapted from Oliver's Windowseat assessment. Local tyre contact, restrained HDR highlight bloom, half-precision display filtering and static sub-byte output dither join the existing native city/PBR restoration. Simulation, sun, sky, diffuse/reflection calibration, lowrider menu and donor assets are preserved.
 
-## Needs you
+[Actual-player gallery and matched r24 comparison](../art-review/unity-r25/index.html). [Handoff](HANDOFF.md). [Adaptation brief](unity/LIGHTING-ASSESSMENT-ADAPTATION.md).
 
-Use Patcher's Cinder entry to play, or `PLAY-CINDER-UNITY.cmd` locally. Physical controls, feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. The conservative automated profile is not a human playtest.
+## Play
 
-## Playable scope
+Run PLAY-CINDER-UNITY.cmd for the guarded signed r25 player. It opens the La Catrina/Media Luna/Nocturne garage. Choose Mercer cruising, hydraulics/air or workshop tests. Safari/buggy racing stays deferred. START-HERE.md lists controls. Patcher publication status and exact release are recorded in unity/release/PUBLICATION-r25.json once verified; prior r24 remains available for rollback.
 
-Lowrider culture garage with La Catrina, Media Luna and Nocturne, Mercer cruise, hydraulic/air sessions, coachwork inspection and workshop grounds. Menu/pad/keyboard/mouse navigation, saved display/look settings, pause/focus pause, return to garage and quit confirmation are implemented. Safari/buggy racing is deferred. Native engine and vehicle source work remain preserved.
+## Independent verdict
 
-## Identity and deliverables
+Two independent visual evaluators support the scoped prototype refinement, with no demonstrated new P1 in their inspected output. Lighting remains **7/10**, cars **7/10**, city **6/10**. **Broader Level 2 art approval remains NOT MET.** Bloom still spills onto a few dark upholstery pixels; this is retained P2 finish work, with strength 0.10 as the reviewer's upper bound. These small effects do not resolve the city's generic storefronts, sparse social character or coarse foliage.
 
-| Item | Exact value |
-| --- | --- |
-| Signed player | `builds/cinder-unity-r24/Cinder.exe` |
-| Player SHA256 | `7d78c95234b8c21a2f2a48e544eb888f43d52612d0c8680c7d6319128caa256a` |
-| Source fingerprint | `0e57c2129876c7765692f3fd50d0cfe0cd3a02d73c826f93c48c89c2c1c86d97` |
-| Runtime source commit | `0b3e518d7d2f9d73e641026db7bb059d58bfbb3f` |
-| Packet | `evidence/cinder-unity-r24/review/packet.json` |
-| Delivery manifest SHA256 | `2a1dcd8e6d2eaace339cfb67fa0862485237c93d01c92cc54e8a7c746092900a` |
-| Local silent proof | `evidence/cinder-unity-r24/review/proof.mp4` |
-| Proof SHA256 | `fcfae11118690490ec3719ab8c67bcb7ce34862bd867a226d74517716f0321c2` |
-| Committed gallery | `art-review/unity-r24/index.html` |
-| Published Patcher release | `r-mwadnquf-eb902ae9` |
-| Patcher archive SHA256 | `ef54d45ab04b5cb50d71e7c66e1f4237a346fdacc37071f203d28ebac0d84eed` |
-| Portable inventory | 147 files; 443,822,811 unpacked bytes |
+Reports: [lighting](unity/LIGHTING-VISUAL-REVIEW-r25.md), [quality](unity/LIGHTING-QUALITY-REVIEW-r25.md), [technical binding](unity/LIGHTING-TECHNICAL-REVIEW-r25.md). Reviewers sampled original sequence frames; no continuous whole-film visual approval is claimed.
 
-The proof contains 2,070 unchanged source frames at 960 x 600 / 30 fps, 69 seconds, no fabricated audio or motion: six seconds menu flow, 26 Catrina, eight Luna, 29 Nocturne. Full decode, contiguous frame checks, source/current-file checks, signing and all manifest bindings pass. Videos/builds/raw evidence stay off GitHub; six selected stills and separate focused controls are committed.
+## Exact package and checks
 
-## Independent review and checks
+- Executable: builds/cinder-unity-r25/Cinder.exe, valid Authenticode signature.
+- Player SHA256: `8c662a95e18c2c4bf2a478e7795b72d3fa2927d1d7d3dd9844596d5f427b7ae3`.
+- Source fingerprint: `6ece4aa5250168c45f204df361b4f0d32f31dfc30bbde9ae3603cd93108c74b7`.
+- Unity 6000.3.6f1 build: zero errors, four existing compiler warning records.
+- Exact-player probes: 204 simulation, 495 rig and 154 runtime checks pass, byte-identical reports to r24. Ten scripted menu checks pass.
+- Six original stills, silent 69-second/2,070-frame clip, full decode and source/player/evidence hashes: evidence/cinder-unity-r25/review/. Video remains off GitHub.
+- Twenty-nine actual D3D hero roof checks pass. 280 periodic footprint vectors are finite/bounded; all eight sampled unsupported tyre weights are zero. This is finite evidence, not exhaustive raster/continuous-contact validation.
+- Six control-patch samples retain exact display values; dither-only output differs by at most one byte. No proven perceptual banding gain is claimed.
 
-| Scope | Result |
-| --- | --- |
-| Pure simulation | 204 PASS, unchanged from r9 |
-| Loaded mechanics | 495 PASS, nine car tiers, unchanged report |
-| Runtime batching/camera/material policy | 154 PASS, including six new canvas checks |
-| Scripted menu flow | 10 PASS; physical device remains unverified |
-| Hero Nocturne real graphics | 29 D3D receipts pass; full-deployment canvas in frustum |
-| City / cars / lighting art | 6 / 7 each / 7 out of 10; native-relative preservation supported |
-| Broad Level 2 art gate | NOT MET; no production approval |
-| Build | Zero errors, four retained shader warnings, Valid Authenticode |
+## Paired conservative measurements
 
-Read the independently owned final reports under `docs/unity/` and `docs/unity/restoration/`. Technical component PASS does not approve whole-game quality. Roof contribution is supported by matched normal/hidden renderer images; mid/far GPU visibility, GPU-normal parity and exhaustive continuous mechanical clearance are not certified.
-
-## Measured performance
-
-Same PC, same Catrina city/mode/camera, 180 frames after 60 warmup frames, back-to-back r24 then reviewed r20 control. Both final state fingerprints are `972aede729b16d4d`.
-
-| Metric | r24 | r20 control |
+| Measure | r24 control | r25 |
 | --- | ---: | ---: |
-| Median ms | 33.3465 | 33.3333 |
-| p99 ms | 39.1596 | 34.9487 |
-| External peak bytes | 435,875,840 | 437,104,640 |
-| Active geometry triangles | 693,585 | 693,585 |
-| Measured maximum draws | 212 | 212 |
+| Median frame interval | 33.3342 ms | 33.3425 ms |
+| P99 frame interval | 42.4247 ms | 35.1378 ms |
+| External peak process memory | 436,973,568 B | 426,602,496 B |
+| Maximum draws | 216 | 219 |
+| Active geometry tally | 693,585 triangles | 693,585 triangles |
 
-The full Catrina action take peaks at 216 draws, below the 300 target. Earlier r12's matched test measured 585 draws before moving-part batching. Triangle values are active geometry counts, not all-pass GPU submitted triangles. The short capped PNG-IO test has a worse r24 p99; it cannot establish 1080p/60 handheld performance or uncapped game speed.
+Both exact players ran the same Catrina path/profile with identical final fingerprint. These short capped PNG-IO samples do not prove speed, GPU headroom, submitted triangle count or handheld 1080p/60 performance. Raw temporary colour storage rises approximately 4.896 MB. Existing graphics/resource guards remain binding.
 
-## Publication and limits
-
-The full signed player is published as private Patcher product `cinder`, title `Cinder`, main line. Entry is `Cinder.exe` with only `-module cinder-drive`, opening the garage. Actual-player artwork is 41,167 bytes. The new prepared package has no detected private filenames, raw footage, source checkout or diagnostic launch flags. Live promotion is verified: the selected catalog signature and exact owner envelope match the prepared package; the full HTTPS archive stream matches its declared size and SHA256. GitHub main and the candidate tag were verified at `6010234e`. The 13 preexisting game main selections remain unchanged. See `docs/unity/release/PUBLICATION-r24.json`. A physical installation is not claimed.
-
-Native lamp control/default-off parity and some service-removal features remain partial. City social life/destination identity, finish/chrome/glass polish, physical play and target-device checks are future work. Audio remains original synthesized placeholder material with measured gains, not a listened approval. No public customer export was performed.
+Physical controls, input feel, heard audio, comfort, comprehension, enjoyment, target-device performance, mid/far rendered canvas acceptance and exhaustive native feature/handling parity remain UNVERIFIED. Old deliveries, failed reviews and captures remain preserved; r20 player was archived without deletion. Native dirty work is excluded from this change.
