@@ -208,14 +208,14 @@ def main(argv=None):
         receipt = read_json(session / "runtime-receipt.json")
         require(receipt.get("action") == "Capture" and receipt.get("normal") is True and receipt.get("revision") == args.revision, f"The {role} capture did not finish normally for this revision.")
         launch_args = receipt.get("launchArguments", [])
-        forbidden = {"-material-control", "-colour-probe", "-local-reflection-diagnostic", "-sky-reflections-only"}
+        forbidden = {"-material-control", "-lighting-control", "-colour-probe", "-local-reflection-diagnostic", "-sky-reflections-only"}
         require(not forbidden.intersection(launch_args), f"Diagnostic flags cannot enter the {role} review take.")
         material_path, render_path = session / "material-control.json", session / "render-diagnostics.json"
         if material_path.exists():
             require(read_json(material_path).get("control") == "none", f"The {role} take uses a material diagnostic.")
         if render_path.exists():
             render = read_json(render_path)
-            require(not render.get("colourControl", False) and render.get("materialControl", "none") == "none", f"The {role} take uses a render diagnostic.")
+            require(not render.get("colourControl", False) and render.get("materialControl", "none") == "none" and render.get("lightingControl", "none") == "none", f"The {role} take uses a render diagnostic.")
         require(receipt.get("vehicle") == VEHICLES[role] and receipt.get("world") == "city", f"Unexpected vehicle or world in {role} capture.")
         require(str(receipt.get("exeSha256", "")).lower() == exe_hash and Path(receipt.get("exe", "")).resolve() == exe.resolve(), f"The {role} capture is bound to another player.")
         frames = sorted(session.glob("frame-*.png"))

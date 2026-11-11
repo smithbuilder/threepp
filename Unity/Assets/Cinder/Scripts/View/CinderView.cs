@@ -17,10 +17,15 @@ namespace Cinder.View {
   readonly List<(SkinnedMeshRenderer Renderer,MeshFilter[] Sources)> rigidBatches=new List<(SkinnedMeshRenderer,MeshFilter[])>();
   float panelPhase,roofPhase;
   Transform[] wheels=new Transform[4],spins=new Transform[4],steers=new Transform[4];
+  readonly List<MeshRenderer> contactGround=new List<MeshRenderer>();
+  readonly MaterialPropertyBlock contactProperties=new MaterialPropertyBlock();
+  readonly Vector4[] contacts=new Vector4[4],contactAxes=new Vector4[4];
+  public Vector4[] ContactFootprints=>(Vector4[])contacts.Clone();
   public static Vector3 V(DVec3 v)=>new Vector3((float)v.X,(float)v.Y,(float)v.Z);public static Quaternion Q(DQuat q)=>new Quaternion((float)q.X,(float)q.Y,(float)q.Z,(float)q.W);
   public CinderView(ModuleContext ctx,VehicleSim simulation,int selectedWorld){
    sim=simulation;world=selectedWorld;Root=new GameObject("Cinder module view").transform;if(ctx.World!=null)Root.SetParent(ctx.World.Root,false);Root.localPosition=ctx.Frame.Origin;Root.localRotation=ctx.Frame.Rotation;Root.localScale=Vector3.one*ctx.Frame.Scale;
    if(world!=1)BuildGround();var environment=SpawnKit(world==1?"mercer-city":"playground-kit",Root);if(world==1)foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=renderer.transform.name.StartsWith("ground.",StringComparison.Ordinal);}
+   if(world==1)foreach(var r in environment.GetComponentsInChildren<MeshRenderer>())if(r.transform.name.StartsWith("ground.",StringComparison.Ordinal))contactGround.Add(r);
    if(world==1&&StandaloneHost.Has("-local-reflection-diagnostic")){var cube=Resources.Load<Cubemap>("Cinder/city-reflection-filtered");if(!cube)throw new Exception("Missing offline city reflection bake");var local=new GameObject("Mercer fixed reflection");local.transform.SetParent(Root,false);local.transform.localPosition=new Vector3(-31,.85f,65);var probe=local.AddComponent<ReflectionProbe>();probe.mode=ReflectionProbeMode.Custom;probe.customBakedTexture=cube;probe.boxProjection=true;probe.size=new Vector3(35,16,50);probe.center=Vector3.zero;probe.blendDistance=2;probe.importance=10;probe.intensity=1;}
    if(world==2)BuildForest();
    Car=SpawnKit(sim.Tune.Id,Root).transform;
@@ -105,7 +110,31 @@ namespace Cinder.View {
     var casing=Find("damper_"+i);var rod=Find("damper_"+i+"_rod");var marker=Find("damper_mount_"+i);if(casing&&rod&&marker){Vector3 a=rest[casing],b=Car.InverseTransformPoint(marker.position),old=rest[rod];Point(casing,a);Rotate(casing,Quaternion.FromToRotation(old,b-a));rod.localPosition=old.normalized*Vector3.Distance(a,b);}
    }
    mechanisms.Pose(s,sim.Tune);
+   PoseContactLighting(s);
    foreach(var lod in lods){lod.Item1.localPosition=Car.localPosition;lod.Item1.localRotation=Car.localRotation;if(lod.Item1.gameObject.activeSelf){lod.Item2.Pose(s,sim.Tune);lod.Item2.PosePanels(panelPhase,roofPhase);}}
+  }
+  void PoseContactLighting(SimState s){
+   // View-only approximation of indirect occlusion at the actual tread support.
+   // Re-sample the posed tread, rather than sticking a shadow under an airborne
+   // hub. The sim remains authoritative; this never writes its state or forces.
+   for(int i=0;i<4;i++){
+    var pose=WheelKinematics.Pose(sim.Tune,i,s.Travel,s.Steer);var hub=s.Position+s.Rotation.Rotate(s.WheelLocal[i]);
+    double gap=double.PositiveInfinity;DVec3 point=DVec3.Zero;
+    for(int row=-1;row<=1;row++)for(int arc=-3;arc<=3;arc++){
+     double a=arc*.24;var tread=hub+s.Rotation.Rotate(pose.Rotation.Rotate(new DVec3(row*sim.Tune.TyreHalfWidth*.70,-sim.Tune.TyreRadius*Math.Cos(a),sim.Tune.TyreRadius*Math.Sin(a))));
+     double h=sim.Terrain.Height(tread.X,tread.Z),distance=tread.Y-h;
+     if(distance<gap){gap=distance;point=new DVec3(tread.X,h,tread.Z);}
+    }
+    float weight=s.Grounded[i]?1-Mathf.SmoothStep(0,1,Mathf.InverseLerp(.015f,.12f,(float)Math.Max(0,gap))):0;
+    contacts[i]=new Vector4((float)point.X,(float)point.Y,(float)point.Z,weight);
+    var direction=s.Rotation.Rotate(pose.Rotation.Rotate(new DVec3(0,0,1)));var axis=new Vector2((float)direction.X,(float)direction.Z).normalized;
+    contactAxes[i]=new Vector4(axis.x,axis.y,(float)sim.Tune.TyreHalfWidth+.12f,.32f);
+   }
+   string control=StandaloneHost.Arg("-lighting-control","none");
+   contactProperties.SetFloat("_CinderContactEnabled",control=="legacy"||control=="contact-off"?0:1);
+   contactProperties.SetMatrix("_CinderWorldToModule",Root.worldToLocalMatrix);
+   contactProperties.SetVectorArray("_CinderContacts",contacts);contactProperties.SetVectorArray("_CinderContactAxes",contactAxes);
+   foreach(var r in contactGround)r.SetPropertyBlock(contactProperties);
   }
   public void Panels(float openness,float roofT){panelPhase=openness;roofPhase=roofT;mechanisms.PosePanels(openness,roofT);foreach(var lod in lods)if(lod.Item1.gameObject.activeSelf)lod.Item2.PosePanels(openness,roofT);}
   Vector3 ExteriorCameraPosition(Vector3 desired){

@@ -6,7 +6,8 @@ param(
  [ValidateRange(0,7)][int]$Area=0,[ValidateRange(0,6)][int]$View=0,
  [ValidateRange(0,900)][int]$Frames=180,[ValidateRange(0,900)][int]$Warmup=120,
  [ValidateRange(0,8)][int]$Mode=0,[switch]$Drive,[switch]$Menu,[switch]$UiProbe,[switch]$Diagnostic,[switch]$RoofCycle,[switch]$CultureFlow,[switch]$SkyReflectionControl,[switch]$ColourProbe,
- [ValidateSet('','standard','ambient','reflection-off','reflection-direction','coat-normal','cube-lod0','cube-filtered','cube-decode','white-coat','sun-radiance','roof-visibility','roof-hidden')][string]$MaterialControl=''
+ [ValidateSet('','standard','ambient','reflection-off','reflection-direction','coat-normal','cube-lod0','cube-filtered','cube-decode','white-coat','sun-radiance','roof-visibility','roof-hidden')][string]$MaterialControl='',
+ [ValidateSet('','legacy','bloom-off','contact-off','dither-off')][string]$LightingControl=''
 )
 $ErrorActionPreference='Stop'
 $root=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
@@ -47,7 +48,7 @@ try{
  if($Action -notin @('Build','Kit','Lods','RestoreCity','SkinScale')){
   if((Get-AuthenticodeSignature $exe).Status -ne 'Valid'){throw 'Player needs a valid signature before execution'}
   if($Action -ne 'Probe' -and -not $Diagnostic){$pr=Join-Path $root "evidence/$Revision/latest-probe.json";if(-not(Test-Path $pr)){throw 'Run the exact-player probe first'};$accepted=Get-Content $pr -Raw|ConvertFrom-Json;if(-not $accepted.success -or $accepted.exeSha256 -ne (Get-FileHash $exe -Algorithm SHA256).Hash){throw 'Exact-player probe is missing or failed'}}
-  if($Action -ne 'Play'){$arguments+='-silent'};$arguments+=@('-vehicle',$Vehicle,'-world',$World,'-area',[string]$Area,'-mode',[string]$Mode,'-evidence',('"'+$session+'"'),'-watchdog',[string]($deadline-5),'-logFile',('"'+(Join-Path $session 'player.log')+'"'));if($Drive){$arguments+='-autodrive'};if($Menu -or $UiProbe){$arguments+='-menu'};if($UiProbe){$arguments+='-ui-probe'};if($RoofCycle){$arguments+='-roof-cycle'};if($CultureFlow){$arguments+=@('-review-script','culture-flow')};if($SkyReflectionControl){$arguments+='-sky-reflections-only'};if($ColourProbe){$arguments+='-colour-probe'};if($MaterialControl){if($Action -notin @('Capture','Benchmark')){throw 'Material controls require a bounded graphics capture'};$arguments+=@('-material-control',$MaterialControl)}
+  if($Action -ne 'Play'){$arguments+='-silent'};$arguments+=@('-vehicle',$Vehicle,'-world',$World,'-area',[string]$Area,'-mode',[string]$Mode,'-evidence',('"'+$session+'"'),'-watchdog',[string]($deadline-5),'-logFile',('"'+(Join-Path $session 'player.log')+'"'));if($Drive){$arguments+='-autodrive'};if($Menu -or $UiProbe){$arguments+='-menu'};if($UiProbe){$arguments+='-ui-probe'};if($RoofCycle){$arguments+='-roof-cycle'};if($CultureFlow){$arguments+=@('-review-script','culture-flow')};if($SkyReflectionControl){$arguments+='-sky-reflections-only'};if($ColourProbe){$arguments+='-colour-probe'};if($LightingControl){if($Action -notin @('Capture','Benchmark')){throw 'Lighting controls require a bounded graphics capture'};$arguments+=@('-lighting-control',$LightingControl)};if($MaterialControl){if($Action -notin @('Capture','Benchmark')){throw 'Material controls require a bounded graphics capture'};$arguments+=@('-material-control',$MaterialControl)}
  }
  $job=[ThreeppEvaluationJob]::new()
  $child=Start-Process -FilePath $exe -ArgumentList $arguments -WorkingDirectory $root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $session 'stdout.log') -RedirectStandardError (Join-Path $session 'stderr.log')
