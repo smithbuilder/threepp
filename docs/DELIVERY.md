@@ -2,7 +2,7 @@
 
 November 11, 2026, Pacific. New sunset lighting for the existing lowrider city. Peach/lavender sky, low warm key, cool readable fill and warm street fixtures illuminate the same geometry. Car identities and driving rules remain intact. Original daylight is retained as a profile control.
 
-[Actual-player gallery, daylight/sunset and lamp controls](../art-review/unity-r28/index.html). [Handoff](HANDOFF.md). PLAY-CINDER-UNITY.cmd selects the signed r28 player. The garage focuses on La Catrina, Media Luna and Nocturne; Mercer cruise, hydraulic/air sessions and workshop remain playable. Safari/buggy racing is deferred. Private Patcher publication is pending the verified PUBLICATION-r28.json receipt; prior r25 remains available for rollback.
+[Actual-player gallery, daylight/sunset and lamp controls](../art-review/unity-r28/index.html). [Handoff](HANDOFF.md). PLAY-CINDER-UNITY.cmd selects the signed r28 player. The garage focuses on La Catrina, Media Luna and Nocturne; Mercer cruise, hydraulic/air sessions and workshop remain playable. Safari/buggy racing is deferred. Published to GitHub main/tag cinder-unity-r28 (candidate 9c808d7c) and private Patcher Cinder release r-mwd2tile-cd8ae582. Signed catalog/owner envelope, full inventory and streamed archive SHA256 verify; the other 13 selections are unchanged. [Receipt](unity/release/PUBLICATION-r28.json). Prior r25 remains available for rollback.
 
 ## Independent result
 

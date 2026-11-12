@@ -142,3 +142,7 @@ November 9, 2026, 11:47 PM Pacific: this procedure published the independently r
 ## Completed r25 publication
 
 November 11, 2026, 7:54 AM Pacific: new immutable Cinder release r-mwcamd7w-04b70463 (cinder-unity-r25) replaces r24 on the private main selection. Exact signed catalog/owner envelope, complete inventory and streamed archive verify. Prior r24 remains available for rollback. All13 other selections are unchanged. GitHub main/candidate tag d68fa06a is verified; local checks ran and the integration commit requested skip-ci. PUBLICATION-r25.json records the identities and limits. No public customer export or physical-device acceptance is claimed.
+
+## Completed r28 sunset publication
+
+November 11, 2026, 9:06 PM Pacific: Cinder r-mwd2tile-cd8ae582 selects cinder-unity-r28, candidate/tag 9c808d7c. Independent lighting7.5/10 supports scoped prototype retention, not broader Level2 art. Signed catalog/exact owner envelope,147file inventory and full188119308byte archive hash verified. Prior r25 stays intact for rollback; all13 other selections are unchanged. PUBLICATION-r28.json records exact identities. A waiting read-only verifier was stopped by its confirmed own PID and retried with progress/timeout; no second promotion or service change occurred. No public customer export or physical-device acceptance.

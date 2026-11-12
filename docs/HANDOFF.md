@@ -1,14 +1,14 @@
 # Cinder Unity handoff
 
-November 11, 2026, Pacific. Current reviewed signed candidate: **cinder-unity-r28**. Mercer now has the requested approximately 6 PM look before darkness: colourful sunset, low warm sun, readable cool fill and existing streetlights illuminating nearby surfaces. Both independent visual reviews support prototype retention: **lighting 7.5/10, car preservation 7/10, city art 6/10**. Broader Level 2 art remains NOT MET.
+November 11, 2026, Pacific. Current reviewed signed player: **cinder-unity-r28**. Mercer now has the requested approximately 6 PM look before darkness: colourful sunset, low warm sun, readable cool fill and existing streetlights illuminating nearby surfaces. Both independent visual reviews support prototype retention: **lighting 7.5/10, car preservation 7/10, city art 6/10**. Broader Level 2 art remains NOT MET.
 
 ## Needs you
 
-No permission is pending. Physical controls, feel, listened audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. Reviewers inspected stills and sampled sequence frames, not continuous whole-film playback. Existing publication authorization covers the GitHub/private-Patcher update; live r25 stays selected until the new r28 publication receipt is verified.
+No permission is pending. Physical controls, feel, listened audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. Reviewers inspected stills and sampled sequence frames, not continuous whole-film playback. Published November 11 at 9:06 PM Pacific. GitHub main and candidate tag cinder-unity-r28 were verified at 9c808d7c. Private Patcher Cinder selects r-mwd2tile-cd8ae582. Signed catalog, exact owner envelope, 147-file inventory and the full 188119308-byte streamed archive hash match the reviewed package. The other 13 selections are unchanged. Receipt: docs/unity/release/PUBLICATION-r28.json. Prior r25 release r-mwcamd7w-04b70463 remains available for rollback. The local-tested skip-ci commit started no hosted workflow run.
 
 ## Play and profile
 
-PLAY-CINDER-UNITY.cmd selects signed r28 explicitly through the resource guard. Refresh Patcher once publication is verified. START-HERE.md contains controls. The lowrider garage, Mercer cruise, hydraulic/air sessions and workshop are preserved; safari/buggy racing remains deferred. City uses the new evening profile; workshop/forest keep original daylight. This is fixed art direction, not a day/night or astronomical clock simulation.
+PLAY-CINDER-UNITY.cmd selects signed r28 explicitly through the resource guard. Refresh Patcher and select Cinder for published r28. START-HERE.md contains controls. The lowrider garage, Mercer cruise, hydraulic/air sessions and workshop are preserved; safari/buggy racing remains deferred. City uses the new evening profile; workshop/forest keep original daylight. This is fixed art direction, not a day/night or astronomical clock simulation.
 
 Unity 6000.3.6f1, Built-in forward, Linear, D3D11, Windows x64, Mono, .NET Standard 2.1. Pure simulation, donor geometry and physical material factors are unchanged. Previous restoration/delivery details remain in docs/unity/HANDOFF-r25.md and DELIVERY-r25.md.
 

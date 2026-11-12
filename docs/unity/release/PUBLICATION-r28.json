@@ -1,0 +1,31 @@
+{
+  "kind": "cinder-private-patcher-publication",
+  "published": true,
+  "utc": "2026-11-12T05:06:09.050Z",
+  "server": "https://promaxgb10.tail3b2a94.ts.net:8444",
+  "gameId": "cinder",
+  "releaseId": "r-mwd2tile-cd8ae582",
+  "version": "cinder-unity-r28",
+  "priorReleaseId": "r-mwcamd7w-04b70463",
+  "entryPoint": "Cinder.exe",
+  "args": [
+    "-module",
+    "cinder-drive"
+  ],
+  "playerSha256": "bbea8c386456dd9c07dd2348c5b2dd23618aa741bdba69dd14088990aead2aa8",
+  "manifestSha256": "9ede8a0c6dadcf1ca3e4bfe6e1b9c38749e81d53cf4701c0441a1c97f09bb169",
+  "archive": {
+    "sha256": "d7a3085015beb3e6f0cd9796fccc2241ae4275b4a1d7fc5c2ac845d1c973e012",
+    "size": 188119308,
+    "unpackedSize": 524500759
+  },
+  "streamedArchiveSha256": "d7a3085015beb3e6f0cd9796fccc2241ae4275b4a1d7fc5c2ac845d1c973e012",
+  "streamedArchiveBytes": 188119308,
+  "selectedCatalogSignatureVerified": true,
+  "exactOwnerEnvelopeVerified": true,
+  "localArchiveInventoryVerified": true,
+  "otherSelectionChanges": [],
+  "otherProductCount": 13,
+  "publicCustomerExportPerformed": false,
+  "physicalInstallationVerified": false
+}
