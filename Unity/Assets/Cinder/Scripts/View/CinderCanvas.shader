@@ -12,13 +12,15 @@ Shader "Cinder/Canvas" {
   Tags {"RenderType"="Opaque" "Queue"="Geometry"}
   Cull Off
   CGPROGRAM
-  #pragma surface surf Standard fullforwardshadows addshadow
+  #pragma surface surf EveningStandard fullforwardshadows addshadow
   #pragma target 3.0
+  #include "CinderEveningLighting.cginc"
   sampler2D _MainTex;
   fixed4 _Color;
   half _Metallic,_Glossiness;
-  struct Input {float2 uv_MainTex;float facing:VFACE;};
-  void surf(Input IN,inout SurfaceOutputStandard o){
+  struct Input {float2 uv_MainTex;float3 worldPos;float facing:VFACE;};
+  void surf(Input IN,inout SurfaceOutputEveningStandard o){
+   o.WorldPosition=IN.worldPos;o.LampVisibility0=1;o.LampVisibility1=1;
    fixed4 fabric=tex2D(_MainTex,IN.uv_MainTex)*_Color;
    o.Albedo=fabric.rgb;o.Alpha=fabric.a;
    o.Normal=float3(0,0,IN.facing>=0?1:-1);

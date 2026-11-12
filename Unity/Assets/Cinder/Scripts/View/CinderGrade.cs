@@ -5,6 +5,7 @@ namespace Cinder.View {
   Material material;
   public string EvidenceDirectory;
   public bool ColourControl;
+  public float BloomStrength=.10f;
   Texture2D control;
   bool recorded;
   [System.Serializable] sealed class Diagnostic {public string inputFormat,targetFormat,colorSpace,materialControl,lightingControl;public bool inputSrgb,targetSrgb,colourControl;public float[] centerLinearRgb,sampleCoordinates,linearSamples;}
@@ -42,7 +43,7 @@ namespace Cinder.View {
      material.SetTexture("_NearBloom",near);Graphics.Blit(wide,glow,material,4);
     }
     material.SetTexture("_BloomTex",glow?(Texture)glow:Texture2D.blackTexture);
-    material.SetFloat("_BloomStrength",bloom?.10f:0);
+    material.SetFloat("_BloomStrength",bloom?BloomStrength:0);
     material.SetFloat("_DitherStrength",!legacy&&lighting!="dither-off"?.5f/255:0);
     Graphics.Blit(input,display,material,0);
     GL.sRGBWrite=QualitySettings.activeColorSpace==ColorSpace.Linear&&(!target||target.sRGB);Graphics.Blit(display,target,material,1);

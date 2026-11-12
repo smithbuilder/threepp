@@ -208,7 +208,7 @@ def main(argv=None):
         receipt = read_json(session / "runtime-receipt.json")
         require(receipt.get("action") == "Capture" and receipt.get("normal") is True and receipt.get("revision") == args.revision, f"The {role} capture did not finish normally for this revision.")
         launch_args = receipt.get("launchArguments", [])
-        forbidden = {"-material-control", "-lighting-control", "-colour-probe", "-local-reflection-diagnostic", "-sky-reflections-only"}
+        forbidden = {"-lamp-review", "-city-lighting", "-material-control", "-lighting-control", "-colour-probe", "-local-reflection-diagnostic", "-sky-reflections-only"}
         require(not forbidden.intersection(launch_args), f"Diagnostic flags cannot enter the {role} review take.")
         material_path, render_path = session / "material-control.json", session / "render-diagnostics.json"
         if material_path.exists():

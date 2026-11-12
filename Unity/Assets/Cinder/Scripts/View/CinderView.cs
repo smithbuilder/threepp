@@ -24,8 +24,17 @@ namespace Cinder.View {
   public static Vector3 V(DVec3 v)=>new Vector3((float)v.X,(float)v.Y,(float)v.Z);public static Quaternion Q(DQuat q)=>new Quaternion((float)q.X,(float)q.Y,(float)q.Z,(float)q.W);
   public CinderView(ModuleContext ctx,VehicleSim simulation,int selectedWorld){
    sim=simulation;world=selectedWorld;Root=new GameObject("Cinder module view").transform;if(ctx.World!=null)Root.SetParent(ctx.World.Root,false);Root.localPosition=ctx.Frame.Origin;Root.localRotation=ctx.Frame.Rotation;Root.localScale=Vector3.one*ctx.Frame.Scale;
-   if(world!=1)BuildGround();var environment=SpawnKit(world==1?"mercer-city":"playground-kit",Root);if(world==1)foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=renderer.transform.name.StartsWith("ground.",StringComparison.Ordinal);}
+   if(world!=1)BuildGround();var environment=SpawnKit(world==1?(CityEveningLighting.SunsetCity(world)?"mercer-city-sunset":"mercer-city"):"playground-kit",Root);if(world==1)foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=renderer.transform.name.StartsWith("ground.",StringComparison.Ordinal);}
    if(world==1)foreach(var r in environment.GetComponentsInChildren<MeshRenderer>())if(r.transform.name.StartsWith("ground.",StringComparison.Ordinal))contactGround.Add(r);
+   if(CityEveningLighting.SunsetCity(world))foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){
+    var materials=renderer.sharedMaterials;bool changed=false;
+    for(int i=0;i<materials.Length;i++)if(materials[i]&&materials[i].name=="city.lamp"){
+     var lamp=new Material(materials[i]);owned.Add(lamp);bool emission=StandaloneHost.Arg("-city-lighting")!="emission-off";
+     lamp.SetColor("_EmissionColor",emission?new Color(5,3.1f,1.35f,1).gamma:Color.black);materials[i]=lamp;changed=true;
+    }
+    if(changed)renderer.sharedMaterials=materials;
+   }
+
    if(world==1&&StandaloneHost.Has("-local-reflection-diagnostic")){var cube=Resources.Load<Cubemap>("Cinder/city-reflection-filtered");if(!cube)throw new Exception("Missing offline city reflection bake");var local=new GameObject("Mercer fixed reflection");local.transform.SetParent(Root,false);local.transform.localPosition=new Vector3(-31,.85f,65);var probe=local.AddComponent<ReflectionProbe>();probe.mode=ReflectionProbeMode.Custom;probe.customBakedTexture=cube;probe.boxProjection=true;probe.size=new Vector3(35,16,50);probe.center=Vector3.zero;probe.blendDistance=2;probe.importance=10;probe.intensity=1;}
    if(world==2)BuildForest();
    Car=SpawnKit(sim.Tune.Id,Root).transform;
@@ -147,8 +156,8 @@ namespace Cinder.View {
   public void GarageCamera(Camera camera,float orbit){Vector3 aim=Car.TransformPoint(new Vector3(0,.65f,0));Vector3 local=Quaternion.Euler(0,(orbit-24)*.35f,0)*new Vector3(-5.4f,1.9f,6.2f);camera.transform.position=ExteriorCameraPosition(Car.TransformPoint(local));camera.transform.LookAt(aim,Root.up);camera.transform.LookAt(aim-camera.transform.right*2.65f+Root.up*.25f,Root.up);camera.fieldOfView=48;camera.nearClipPlane=.06f;camera.farClipPlane=450;Car.gameObject.SetActive(true);foreach(var lod in lods)lod.Item1.gameObject.SetActive(false);}
   public void Camera(Camera camera,int mode,float yaw,float pitch){
    Vector3 aim=Car.TransformPoint(new Vector3(0,.8f,0));Vector3 local;
-   switch(mode){case 1:local=new Vector3(5,1.0f,1.4f);break;case 2:local=new Vector3(-4,1.6f,5);break;case 3:local=new Vector3(0,12,-7);break;case 4:local=new Vector3(2.4f,.68f,(float)sim.Tune.HalfWheelbase);aim=Car.TransformPoint(new Vector3(0,.42f,(float)sim.Tune.HalfWheelbase));break;case 5:local=new Vector3(2.5f,.7f,-(float)sim.Tune.HalfWheelbase);aim=Car.TransformPoint(new Vector3(0,.45f,-(float)sim.Tune.HalfWheelbase));break;case 6:local=new Vector3(-.36f,1.18f,-.38f);aim=Car.TransformPoint(new Vector3(-.36f,1.05f,15));break;default:local=Quaternion.Euler(pitch,yaw,0)*new Vector3(0,1.5f,-7);break;}
-   Vector3 desired=Car.TransformPoint(local);camera.fieldOfView=mode==6?73:48;camera.nearClipPlane=.06f;camera.farClipPlane=450;
+   switch(mode){case 7:local=new Vector3(-9,2.6f,12);aim=Car.TransformPoint(new Vector3(0,2.6f,-12));break;case 1:local=new Vector3(5,1.0f,1.4f);break;case 2:local=new Vector3(-4,1.6f,5);break;case 3:local=new Vector3(0,12,-7);break;case 4:local=new Vector3(2.4f,.68f,(float)sim.Tune.HalfWheelbase);aim=Car.TransformPoint(new Vector3(0,.42f,(float)sim.Tune.HalfWheelbase));break;case 5:local=new Vector3(2.5f,.7f,-(float)sim.Tune.HalfWheelbase);aim=Car.TransformPoint(new Vector3(0,.45f,-(float)sim.Tune.HalfWheelbase));break;case 6:local=new Vector3(-.36f,1.18f,-.38f);aim=Car.TransformPoint(new Vector3(-.36f,1.05f,15));break;default:local=Quaternion.Euler(pitch,yaw,0)*new Vector3(0,1.5f,-7);break;}
+   Vector3 desired=Car.TransformPoint(local);camera.fieldOfView=mode==6?73:mode==7?58:48;camera.nearClipPlane=.06f;camera.farClipPlane=450;
    // Native lowrider review camera convention, retained for direct art comparisons.
    if(sim.State.Vehicle>=4&&mode<=2){string id=sim.Tune.Id;float fov=48;Vector3 eye=local;Vector3 target=new Vector3(0,id=="catrina"?.65f:id=="media-luna"?.78f:.45f,0);
     if(id=="catrina"){eye=mode==0?new Vector3(-3.8f,3.1f,-6.3f):mode==1?new Vector3(-5.6f,1.25f,3.2f):new Vector3(-3.9f,3.1f,5.8f);fov=mode==1?39:42;}

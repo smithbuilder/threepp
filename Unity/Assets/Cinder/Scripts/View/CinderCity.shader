@@ -9,16 +9,17 @@ Shader "Cinder/City" {
  }
  SubShader { Tags {"RenderType"="Opaque"} Cull [_Cull]
  CGPROGRAM
- #pragma surface surf Standard fullforwardshadows vertex:vert
+ #pragma surface surf EveningStandard fullforwardshadows vertex:vert
  #pragma target 3.0
  #pragma shader_feature_local CINDER_CUTOUT
  #pragma shader_feature_local _NORMALMAP
  #include "UnityStandardUtils.cginc"
+ #include "CinderEveningLighting.cginc"
  float _CinderContactEnabled;float4x4 _CinderWorldToModule;float4 _CinderContacts[4],_CinderContactAxes[4];
  sampler2D _MainTex,_BumpMap,_RoughnessMap;fixed4 _Color;half3 _EmissionColor;half _Metallic,_Glossiness,_Roughness,_HasRoughnessMap,_BumpScale,_Cutoff;
- struct Input {float2 uv_MainTex;fixed4 color:COLOR;float3 worldPos;float3 worldNormal;INTERNAL_DATA};
- void vert(inout appdata_full v,out Input o){UNITY_INITIALIZE_OUTPUT(Input,o);o.color=v.color;}
- void surf(Input IN,inout SurfaceOutputStandard o){fixed4 c=tex2D(_MainTex,IN.uv_MainTex)*_Color;
+ struct Input {float2 uv_MainTex;fixed4 color:COLOR;float3 worldPos;float3 worldNormal;float4 lamp0;float4 lamp1;INTERNAL_DATA};
+ void vert(inout appdata_full v,out Input o){UNITY_INITIALIZE_OUTPUT(Input,o);o.color=v.color;o.lamp0=v.texcoord2;o.lamp1=v.texcoord3;}
+ void surf(Input IN,inout SurfaceOutputEveningStandard o){fixed4 c=tex2D(_MainTex,IN.uv_MainTex)*_Color;o.WorldPosition=IN.worldPos;o.LampVisibility0=IN.lamp0;o.LampVisibility1=IN.lamp1;
  #ifdef CINDER_CUTOUT
  clip(c.a-_Cutoff);
  #endif

@@ -94,3 +94,8 @@ Unity/Assets/Resources/Cinder/ambient-sh.json*
 Unity/Assets/Resources/Cinder/sky-reflection-native.asset*
 Unity/Assets/Resources/Cinder/sky-reflection-sun-clamped.exr*
 Unity/Assets/Resources/Cinder/environment-sun.json*
+
+# Reproducible six-pm environment and city derivatives (editor CPU bake).
+/Unity/Assets/Resources/Cinder/sunset-*
+/Unity/Assets/Resources/Cinder/Generated/mercer-city-sunset/
+/Unity/Assets/Resources/Cinder/Generated/mercer-city-sunset.meta

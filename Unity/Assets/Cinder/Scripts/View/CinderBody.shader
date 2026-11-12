@@ -10,6 +10,7 @@ Shader "Cinder/Body" {
  #include "UnityCG.cginc"
  #include "UnityStandardUtils.cginc"
  #include "UnityPBSLighting.cginc"
+ #include "CinderEveningLighting.cginc"
  half _Clearcoat,_CoatRoughness,_Cull;float _CinderMaterialDiagnostic;
  struct SurfaceOutputCinder {fixed3 Albedo;float3 Normal;half3 Emission;half Metallic;half Smoothness;half Occlusion;fixed Alpha;float3 CoatNormal;float3 WorldPosition;};
  SurfaceOutputStandard BaseSurface(SurfaceOutputCinder s){SurfaceOutputStandard b=(SurfaceOutputStandard)0;b.Albedo=s.Albedo;b.Normal=normalize(s.Normal);b.Emission=s.Emission;b.Metallic=s.Metallic;b.Smoothness=s.Smoothness;b.Occlusion=s.Occlusion;b.Alpha=s.Alpha;return b;}
@@ -21,7 +22,10 @@ Shader "Cinder/Body" {
  #if UNITY_SPECCUBE_BOX_PROJECTION
  g.reflUVW=BoxProjectedCubemapDirection(g.reflUVW,s.WorldPosition,unity_SpecCube0_ProbePosition,unity_SpecCube0_BoxMin,unity_SpecCube0_BoxMax);
  #endif
- UnityIndirect coat=(UnityIndirect)0;coat.diffuse=0;coat.specular=Unity_GlossyEnvironment(UNITY_PASS_TEXCUBE(unity_SpecCube0),unity_SpecCube0_HDR,g);
+ UnityIndirect coat=(UnityIndirect)0;coat.diffuse=0;
+ #if !defined(UNITY_PASS_FORWARDADD)
+ coat.specular=Unity_GlossyEnvironment(UNITY_PASS_TEXCUBE(unity_SpecCube0),unity_SpecCube0_HDR,g);
+ #endif
  // Capture-only controls expose the actual GPU lookup before tone mapping.
  if(_CinderMaterialDiagnostic==1)return half4(g.reflUVW*.5+.5,1);
  if(_CinderMaterialDiagnostic==2)return half4(n*.5+.5,1);
@@ -30,7 +34,10 @@ Shader "Cinder/Body" {
  if(_CinderMaterialDiagnostic==5)return half4(unity_SpecCube0_HDR.x,unity_SpecCube0_HDR.y,unity_SpecCube0_HDR.w,1);
  if(_CinderMaterialDiagnostic==7)return half4(_LightColor0.rgb,1);
  if(_CinderMaterialDiagnostic==6){UnityLight dark=(UnityLight)0;dark.color=0;dark.dir=gi.light.dir;coat.specular=1;return UNITY_BRDF_PBS(half3(0,0,0),half3(.04,.04,.04),.96,smoothness,n,viewDir,dark,coat);}
- half4 top=UNITY_BRDF_PBS(half3(0,0,0),half3(.04,.04,.04),.96,smoothness,n,viewDir,gi.light,coat);half f=.04+.96*Pow5(1-saturate(dot(n,viewDir)));result.rgb=result.rgb*(1-_Clearcoat*f)+top.rgb*_Clearcoat;}return result;}
+ half4 top=UNITY_BRDF_PBS(half3(0,0,0),half3(.04,.04,.04),.96,smoothness,n,viewDir,gi.light,coat);half f=.04+.96*Pow5(1-saturate(dot(n,viewDir)));result.rgb=result.rgb*(1-_Clearcoat*f)+top.rgb*_Clearcoat;}
+ half3 practical=CinderPractical(s.Albedo,s.Metallic,b.Smoothness,b.Normal,viewDir,s.WorldPosition,1,1);
+ if(_Clearcoat>.001){float3 n=normalize(s.CoatNormal);half f=.04+.96*Pow5(1-saturate(dot(n,viewDir)));practical=practical*(1-_Clearcoat*f)+CinderPractical(0,0,FilterSmoothness(1-_CoatRoughness,n),n,viewDir,s.WorldPosition,1,1)*_Clearcoat;}
+ result.rgb+=practical;return result;}
  void LightingCinder_GI(SurfaceOutputCinder s,UnityGIInput data,inout UnityGI gi){SurfaceOutputStandard b=BaseSurface(s);b.Smoothness=FilterSmoothness(b.Smoothness,b.Normal);LightingStandard_GI(b,data,gi);}
  sampler2D _MainTex,_MetallicGlossMap,_BumpMap;fixed4 _Color,_EmissionColor;half _Metallic,_Glossiness,_Cutoff,_BumpScale;
  struct Input {float2 uv_MainTex;fixed4 color:COLOR;float3 worldNormal;float3 worldPos;float facing:VFACE;INTERNAL_DATA};
