@@ -1,0 +1,17 @@
+{
+  "probe.json": {
+    "rawByteIdentical": true,
+    "identicalAfterOnlyTransientInstanceIdNormalization": true,
+    "changedLines": 0
+  },
+  "loaded-rig-probe.json": {
+    "rawByteIdentical": true,
+    "identicalAfterOnlyTransientInstanceIdNormalization": true,
+    "changedLines": 0
+  },
+  "runtime-batch-probe.json": {
+    "rawByteIdentical": false,
+    "identicalAfterOnlyTransientInstanceIdNormalization": true,
+    "changedLines": 9
+  }
+}

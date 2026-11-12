@@ -1,50 +1,48 @@
 # Cinder Unity handoff
 
-November 11, 2026, Pacific. Current reviewed signed player: **cinder-unity-r25**. Oliver asked to incorporate the useful principles from his supplied Windowseat lighting assessment. The limited refinement is independently supported. **Level 2 art remains NOT MET: lighting 7/10, cars 7/10, city 6/10.** Local highlight spill onto dark upholstery remains P2 finish work.
+November 11, 2026, Pacific. Current reviewed signed candidate: **cinder-unity-r28**. Mercer now has the requested approximately 6 PM look before darkness: colourful sunset, low warm sun, readable cool fill and existing streetlights illuminating nearby surfaces. Both independent visual reviews support prototype retention: **lighting 7.5/10, car preservation 7/10, city art 6/10**. Broader Level 2 art remains NOT MET.
 
 ## Needs you
 
-No permission is pending. Physical controls, input feel, heard audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. Reviewers inspected original stills and sampled sequence frames; they did not continuously watch the whole clip. Automated full decode is separate evidence.
+No permission is pending. Physical controls, feel, listened audio, comfort, comprehension, enjoyment and handheld 1080p/60 remain UNVERIFIED. Reviewers inspected stills and sampled sequence frames, not continuous whole-film playback. Existing publication authorization covers the GitHub/private-Patcher update; live r25 stays selected until the new r28 publication receipt is verified.
 
-Published November 11 at 7:54 AM Pacific under Oliver's existing authorization. GitHub main and candidate tag cinder-unity-r25 were verified at d68fa06a. Private Patcher Cinder selects r-mwcamd7w-04b70463. Signed catalog, exact owner envelope, 147-file inventory and the full 173,242,597-byte downloadable archive hash verify. All 13 other product selections are unchanged. See docs/unity/release/PUBLICATION-r25.json. Prior r24 release r-mwadnquf-eb902ae9 remains available for rollback. No hosted Actions run appeared for the skip-ci integration commit.
+## Play and profile
 
-## Play and scope
+PLAY-CINDER-UNITY.cmd selects signed r28 explicitly through the resource guard. Refresh Patcher once publication is verified. START-HERE.md contains controls. The lowrider garage, Mercer cruise, hydraulic/air sessions and workshop are preserved; safari/buggy racing remains deferred. City uses the new evening profile; workshop/forest keep original daylight. This is fixed art direction, not a day/night or astronomical clock simulation.
 
-`PLAY-CINDER-UNITY.cmd` explicitly selects r25 through the guarded runner. The source runner's optional default remains r24 as a preserved control; pass `-Revision` explicitly. The menu centers La Catrina, Media Luna and Nocturne, Mercer cruising, hydraulic/air sessions and workshop tests. Safari/buggy racing stays deferred. See START-HERE.md for controls and art-review/unity-r25/index.html for the matched comparison, six original stills and local silent 69-second proof.
+Unity 6000.3.6f1, Built-in forward, Linear, D3D11, Windows x64, Mono, .NET Standard 2.1. Pure simulation, donor geometry and physical material factors are unchanged. Previous restoration/delivery details remain in docs/unity/HANDOFF-r25.md and DELIVERY-r25.md.
 
-Unity 6000.3.6f1, Built-in forward, Linear, D3D11, Windows x64, Mono, .NET Standard 2.1. Pure simulation and donor assets are unchanged. Seven tune definitions/eight areas retain probe coverage; only three lowrider art families ship. Prior restoration details and limits remain in docs/unity/HANDOFF-r24.md and DELIVERY-r24.md.
+## Lighting implementation and rejected iterations
 
-## What changed
+- Offline authored HDR sky retains licensed native cloud structure after old-sun removal. Peach/rose is concentrated sunward; the broad anti-sun/lower environment is neutral/cyan with a brighter urban-ground return, preserving metallic paint identity. Visible sky/mirror0 sun and analytic key share a direction/energy policy; diffuse SH/rough mips are disc-free. Original daylight remains intact.
+- New sun direction normalized(0.70,0.20,-0.685), linear colour(1,0.62,0.35), intensity2.4/pi. Reflection strength remains linear0.65 through calibrated API encoding. A separately recorded constant cool SH fill(0.075,0.11,0.16) is authored ambient light, not a physically solved spatial bounce.
+- Separate sunset city prefab clones26 meshes with383961triangles, preserving geometry/normals/existingUVs/materials. It replaces only old static directional shade, keeping authored AO/variation. Five-ray long shadows are approximate vertex shading over the existing adaptive ground. UV2/3 carry eight static building lamp-visibility weights.
+- Eight original lamp heads gain warm HDR undersides and bounded normal/material-dependent direct PBR illumination in the existing base pass. No new Unity Light component, geometry, shadow map or ForwardAdd pass. Intensity28, range16module metres, smooth cone/cutoff, Frame-aware positions/up/distance scaling. Coated pixels can evaluate16 direct BRDFs. Static visibility is vertex/11-box based; moving car/bench/foliage occlusion is not fully shadow mapped.
+- Road overlay batches repair / white / yellow / asphalt / dark now receive the existing directional car shadow and contact AO as well as ground.*. This fixes bright repair polygons inside car shadows. White/dark batches include some non-road pieces; height/normal gates localize contact AO. Static shadow casting stays off. Policy applies to both Mercer profiles.
+- Sunset bloom0.06, existing native tone/displayFXAA preserved. New sunset garage angle avoids the strongest mirror-sun hood glare and the menu says EARLYEVENING. Fine highlight/Nocturne front-quarter flattening remainsP2.
 
-- Four small tyre footprints affect only Mercer ground indirect light. Actual posed tread samples and authoritative support flags set the position/strength; height/normal gates restrict bleed, and unsupported tyres get zero weight. No added geometry, light, shadow map or render pass. Per-renderer properties respect the host Frame; non-city worlds skip the work.
-- Soft-knee HDR bloom uses half/quarter-resolution targets and three extra blits before the unchanged native tone transform. Scalar extraction/capping preserves source RGB ratios before spatial mixing. Strength is 0.10, considered an upper bound by the reviewer. Dark cabin spill is real: one Catrina control pixel changes by 104 bytes; paired cockpit views show no broad veil. It is P2, not claimed absent.
-- Display-encoded colour stays half precision through existing FXAA. Static output dither is bounded to half a display byte. The actual dither-only comparison changes output by at most one byte; six sampled control-patch interiors match legacy. No demonstrated perceptual banding improvement is claimed.
-- Sun, HDR sky, diffuse SH, reflection strength, original PBR material factors and exposure remain calibrated. The Windowseat cabin/toon/contour/tunnel changes do not apply. Extra atmosphere, moving cloud shadows and new lamp behavior are deferred.
+r26 was retained as a borderline dark/glare experiment. r27 full packet was explicitly rejected on twoP1s: Luna became navy/plum and repair overlays punched holes through the car shadow. r28 closes both in matched actual frames; Nocturne side confirms dark blue-grey identity survives its pale reflected hood. Preserve all failed code/player/derivative/evidence packets. See SUNSET-ITERATION-r26.md, SUNSET-ITERATION-r27.md and LIGHTING-VISUAL-REVIEW-r27.md. No material repaint/exposure clamp was used to hide them.
 
-## Exact identity and proof
+## Exact identity and verification
 
-Signed player SHA256: `8c662a95e18c2c4bf2a478e7795b72d3fa2927d1d7d3dd9844596d5f427b7ae3`.
-Source fingerprint: `6ece4aa5250168c45f204df361b4f0d32f31dfc30bbde9ae3603cd93108c74b7`.
-Runtime implementation commits: `76e5e09e`, `1bdc5719`.
+Player SHA256: bbea8c386456dd9c07dd2348c5b2dd23618aa741bdba69dd14088990aead2aa8.
+Source fingerprint: baf3a961c9ac75792e9150a4d3c16e9c8ebb8f042252a78be594cb575fe9580e.
+Runtime implementation checkpoint:0ec89d0e, following7be72a57/5d4af194. Build succeeded with0 errors and4 retained Body/FXAA compiler warning records. No warning-free claim.
 
-Build succeeded: zero errors, four existing Body/FXAA compiler warning records. The first restricted build stalled/crashed in local licensing before output; its failed log is retained. The guarded retry with existing licence access succeeded. No pause was cleared, no other project killed, no graphics cap raised.
+Exact204simulation +495loaded-rig +154runtime checks and10menu checks pass. Sim/loaded reports are raw byte-identical to r25. Runtime report changes9lines solely in transient material-instance IDs; normalization of only those IDs gives exact equality. All 18 Sim sources remain unchanged. Headless probes use world 0/daylight and do not prove the new sunset garage angle or receiver policy; actual frames do.
 
-Exact probes pass **204 simulation + 495 loaded-rig + 154 runtime checks**, plus ten scripted menu checks. All three probe JSONs are byte-identical to r24. The technical reviewer rehashed 5,331 sources, 147 player files, 62 delivery files and 2,234 original evidence files without drift. All 18 Sim manifest entries are unchanged. All 70 final periodic poses match r24 ticks/fingerprints; all 280 footprint vectors are finite/bounded and all eight sampled unsupported tyre weights are zero. Sampling is not continuous GPU contact-coverage proof.
+Independent technical audit verified5411source,147player,62delivery and2239original-evidence file hashes with no drift;70normal pose ticks/fingerprints match r25. All8 sampled unsupported tyre weights are zero;29 real D3D heroNocturne canvas checks pass. Mid/far GPU canvas and exhaustive continuous mechanical/lighting coverage remain unverified.
 
-`evidence/cinder-unity-r25/review/` contains six unchanged stills, a 2,070-frame/69-second silent original-player clip, exact receipts/replays and delivery hashes. Twenty-nine real D3D hero Nocturne canvas receipts pass. Mid/far GPU canvas acceptance remains unverified, as in r24. The packager rejects diagnostic material/lighting/colour/reflection controls. The separate actual-r24 same-camera take has identical state; r25 legacy mode is not byte-exact to r24 (832 changed pixels, maximum 30 bytes). Do not substitute the legacy switch for the actual player control.
+Normal packet:evidence/cinder-unity-r28/review,6 unchanged stills and one silent69 second/2070 frame original-player clip, full decode/source/player/evidence hashes. Gallery:art-review/unity-r28/index.html. Focused lamp-review drive is a diagnostic initialZ49, separate from the normal69 second packet; cockpit is a normal camera6 take. Packager rejects diagnostic flags. Reports:LIGHTING-VISUAL-REVIEW-r28.md, SUNSET-QUALITY-REVIEW-r28.md, SUNSET-TECHNICAL-REVIEW-r28.md.
 
-Independent reports: docs/unity/LIGHTING-VISUAL-REVIEW-r25.md, LIGHTING-QUALITY-REVIEW-r25.md and LIGHTING-TECHNICAL-REVIEW-r25.md. Keep prior failed packets/reviews.
+## Cost, guards and next work
 
-## Measured limits
+Paired Catrina mode1 r25/r28: median33.3414/33.3378ms, p9936.0492/35.0822ms, draws219/219, active geometry693585/693585. External peak436563968/462155776bytes (+25591808bytes). This is short capped960x600/30 PNG-IO evidence, not isolated GPU speed/headroom or handheld approval. City geometry/material count is unchanged, but new vertex attributes and shader work cost memory/bandwidth/ALU.
 
-Matched Catrina capped runs, r24 then r25: median 33.3342 / 33.3425 ms; p99 42.4247 / 35.1378 ms; external peak 436,973,568 / 426,602,496 bytes; maximum draws 216 / 219. Both tally 693,585 active geometry triangles and the same final fingerprint. This is a short 960 x 600 / 30 fps PNG-IO test, not isolated GPU timing, all-pass submitted triangles or evidence that r25 is faster. Bloom adds approximately 4.896 MB raw temporary colour storage and more bandwidth despite the lower observed process peak in one pair.
+Existing hidden/silent/bounded/sequential guards stay binding:960x600/30,no MSAA,one 512 shadow,2 GiBprocess job,4 GiBfreeRAM/15 GiBdisk,cooldown,all pause markers,mutex/watchdog. Never clear a pause or kill another project. Build a new unique revision with RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r29; sign, exact-probe, capture, review. Always pass Revision explicitly to the source runner (its old optional defaultr24 is archived). Do not edit manifest-listed sources after a final build and claim the old player covers them.
 
-Automated runs stay hidden, silent, bounded and serialized: 960 x 600 / 30, no MSAA, one 512 shadow, 2 GiB process job, at least 4 GiB free RAM/15 GiB disk, cooldown, pause checks, shared mutex and watchdog. User play stays five minutes. Build a new unique revision with `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r26`, sign, probe, capture and get fresh review. Do not edit source-manifest-listed files after a final build and claim that build covers the edits.
+builds/ retains r25 control and r28. r24/r26/r27 players and failed CPU derivatives are archived under build/_archive. No user file was deleted. Other lanes' dirty native work remains untouched and excluded. Videos stay local/off GitHub. No other project was modified.
 
-## Remaining work and preservation
+Remaining P2: coarse long/static shadows, approximate dynamic lamp occlusion, pale reflections/fine chrome/roof glass contrast and nonexhaustive temporal shimmer/bloom assessment. City still needs richer storefront/social character and better foliage. Native lamp-toggle/service helpers remain partial. This profile is not exhaustive native handling/feature parity or production art.
 
-The city still needs a distinctive social gathering place, richer storefront character and better foliage. Fine chrome/glass/canvas finish remains P2. Native lamp-off/toggle and some service-removal helpers are partial. The rejected local-city reflection bake stays opt-in diagnostic. No exhaustive native feature, Bullet handling, moving clearance or subjective quality acceptance follows.
-
-builds/ now retains r24 control and r25; r20 was preserved under build/_archive/players/cinder-unity-r20. No user file was deleted. Other lanes' dirty native source/assets are untouched and excluded from commits. Videos stay local/off GitHub. No other project was modified.
-
-Playbook task cmw9qrsq000alle018qlbcxni, verified seat z2-codex@agents.playbook. The standard helper now works. Active Bridge thread: gen-cinder-unity-r9-visual-regression-independent-native-com. For Python packaging from PowerShell 7, remove PSModulePath only from the packaging process so child Windows PowerShell uses its signature module; keep verification enabled.
+Playbook taskcmw9qrsq000alle018qlbcxni, own seatz2-codex@agents.playbook. Active Bridge threadgen-cinder-unity-r9-visual-regression-independent-native-com. Standard helper works; no service-account/key workaround. For packaging from PowerShell7, remove PSModulePath only from that process so child WindowsPowerShell uses its signature module; keep actual signature verification.

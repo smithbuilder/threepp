@@ -38,4 +38,6 @@ Oliver rejected the r9 visual result. Its old presentation score is historical a
 
 Current r24 state: finite technical checks pass and independent sampled native-relative preservation repairs are supported. City 6/10, cars and lighting 7/10 keep the broader Level 2 art gate NOT MET. The authorized Patcher publication is explicitly a prototype. Final reports and proof are in `docs/unity/`, `docs/unity/restoration/` and `art-review/unity-r24/`; rejected reassessment evidence remains intact.
 
-November 11 r25 refinement: independent scoped retention, lighting7/cars7/city6, no broader Level2 approval. Three extra bloom blits; paired draws216/219 and active geometry693585. Preserve local bloom-spill P2 and exact-player review boundaries. See docs/unity/LIGHTING-*-REVIEW-r25.md and art-review/unity-r25/.
+November 11 r25 refinement: independent scoped retention, lighting7/cars7/city6, no broader Level 2 approval. Three extra bloom blits; paired draws216/219 and active geometry693585. Preserve local bloom-spill P2 and exact-player review boundaries. See docs/unity/LIGHTING-*-REVIEW-r25.md and art-review/unity-r25/.
+
+November 11 r28 sunset: independentlighting 7.5/car preservation 7/city art 6, scopedprototype retention only. Failedr26/r27 preserved; r27palette/road-shadow P1s corrected in actualr28. Paired219draws/693585activegeometry unchanged, externalpeak+25591808B; noGPU/handheld claim. Finalreports and art-review/unity-r28 record limits.

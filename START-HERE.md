@@ -1,10 +1,10 @@
 # Cinder Unity
 
-Current r25 adds local tyre contact shading, restrained highlight glow and higher precision colour filtering to the restored native city and lowriders. It is a reviewed prototype: city 6/10, cars and lighting 7/10, below the broader presentation target. See [the matched actual-player comparison](art-review/unity-r25/index.html) and [delivery details](docs/DELIVERY.md).
+Current r28 sets Mercer around 6 PM, before dark: sunset sky, warm low sunlight, readable cool shade and glowing streetlights. Independent lighting review is 7.5/10; car preservation7/10 and city art6/10 keep the broader art target unmet. See [the actual-player sunset comparison](art-review/unity-r28/index.html) and [delivery details](docs/DELIVERY.md).
 
 The Unity migration centers on lowrider culture: La Catrina, Media Luna and Nocturne. Choose a car in the main garage, cruise Mercer, start a hydraulic session, or visit the workshop test grounds. Safari and buggy racing are deferred from this menu.
 
-`PLAY-CINDER-UNITY.cmd` explicitly selects the signed r25 Windows player through the resource guard. Refresh Patcher and select **Cinder** for published r25. The verified release receipt is in [the handoff](docs/HANDOFF.md). `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r26` builds a new unique revision with Unity 6000.3.6f1 without opening the editor.
+`PLAY-CINDER-UNITY.cmd` explicitly selects the signed r28 Windows player through the resource guard. Refresh Patcher and select **Cinder** for reviewed r28. The verified release receipt is in [the handoff](docs/HANDOFF.md). `RUN-BUILD-RUNNER.cmd -Revision cinder-unity-r29` builds a new unique revision with Unity 6000.3.6f1 without opening the editor.
 
 ## Controls
 

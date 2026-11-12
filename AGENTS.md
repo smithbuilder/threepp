@@ -13,6 +13,7 @@ Read [the current handoff](docs/HANDOFF.md) before editing.
 | 2026-11-09 | Oliver rejected r9 city, lighting and cars as a visual step backward. Compare against native references and restore fidelity before another visual acceptance claim. |
 | 2026-11-09 | Oliver authorized the restoration followed by commit, merge, GitHub main push and a new Cinder release on the private Patcher hub. |
 | 2026-11-11 | Oliver requested adapting the supplied Windowseat lighting assessment to this Unity port. Preserve Cinder PBR/native calibration; incorporate applicable principles and obtain fresh independent review. |
+| 2026-11-11 | Oliver requested Mercer around 6 PM, not dark yet, with sunset colours and streetlights starting on. City uses an authored evening environment; original daylight and physical paint factors remain preserved controls. |
 | Existing | Preserve C++ engine work and all other lanes' uncommitted vehicle work. Videos stay off GitHub. |
 
 The Unity port lives in `Unity/`; donor C++ and assets remain intact. Do not stage unrelated work. Build and run through `tools/unity/Run-Cinder.ps1`. Automated runs are hidden, silent, bounded and serialized. Check all pause markers and available resources before every editor or player launch. Existing `SAFETY.md` graphics caps remain binding; high-resolution performance acceptance needs a separately authorized evaluation profile.

@@ -1,0 +1,128 @@
+{
+  "revision": "cinder-unity-r28",
+  "player": {
+    "path": "builds/cinder-unity-r28/Cinder.exe",
+    "sha256": "bbea8c386456dd9c07dd2348c5b2dd23618aa741bdba69dd14088990aead2aa8",
+    "authenticode": {
+      "status": "Valid",
+      "subject": "CN=Oliver Smith, O=Oliver Smith, L=San Diego, S=ca, C=US",
+      "thumbprint": "C4CCAF1984D06EC8FCA1213AE172003AC96EA211"
+    }
+  },
+  "build": {
+    "revision": "cinder-unity-r28",
+    "sourceFingerprint": "baf3a961c9ac75792e9150a4d3c16e9c8ebb8f042252a78be594cb575fe9580e",
+    "unity": "6000.3.6f1",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 4
+  },
+  "proof": {
+    "file": "proof.mp4",
+    "sha256": "32d1dfc8efb94ce0ed41c03d2f35eacb48a18a0f8cd2cd69b829ed1764e357db",
+    "frames": 2070,
+    "fps": 30,
+    "durationSeconds": 69.0,
+    "dimensions": [
+      960,
+      600
+    ],
+    "sequence": [
+      {
+        "role": "ui",
+        "frames": 180,
+        "seconds": 6.0
+      },
+      {
+        "role": "catrina",
+        "frames": 780,
+        "seconds": 26.0
+      },
+      {
+        "role": "luna",
+        "frames": 240,
+        "seconds": 8.0
+      },
+      {
+        "role": "nocturne",
+        "frames": 870,
+        "seconds": 29.0
+      }
+    ],
+    "audio": "None. Original automated captures were silent.",
+    "decode": "PASS",
+    "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "command": [
+      "C:\\Users\\oliver\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+      "-hide_banner",
+      "-nostdin",
+      "-v",
+      "error",
+      "-n",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r28\\20261111-204832-479-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r28\\20261111-204842-036-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r28\\20261111-204920-549-Capture\\frame-%04d.png",
+      "-threads",
+      "1",
+      "-framerate",
+      "30",
+      "-start_number",
+      "0",
+      "-i",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r28\\20261111-204941-030-Capture\\frame-%04d.png",
+      "-filter_complex_threads",
+      "1",
+      "-filter_complex",
+      "[0:v]setpts=PTS-STARTPTS,format=yuv420p[v0];[1:v]setpts=PTS-STARTPTS,format=yuv420p[v1];[2:v]setpts=PTS-STARTPTS,format=yuv420p[v2];[3:v]setpts=PTS-STARTPTS,format=yuv420p[v3];[v0][v1][v2][v3]concat=n=4:v=1:a=0[out]",
+      "-map",
+      "[out]",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "18",
+      "-threads",
+      "2",
+      "-pix_fmt",
+      "yuv420p",
+      "-r",
+      "30",
+      "-frames:v",
+      "2070",
+      "-movflags",
+      "+faststart",
+      "C:\\Users\\oliver\\Projects\\engine-threepp\\evidence\\cinder-unity-r28\\review\\proof.mp4"
+    ]
+  },
+  "deliveryManifestSha256": "cc471c7f4aaa22f40cf5f992ec9b5e8a2c56034445b8f81118344fddc0128dfa",
+  "reviewStatus": "Scoped prototype retention supported; lighting7.5/cars7/cityart6, broaderLevel2notmet",
+  "focusedControls": {
+    "sunset-city.png": "evidence\\cinder-unity-r28\\20261111-204729-477-Capture\\frame-0000.png",
+    "lamps-on.png": "evidence\\cinder-unity-r28\\20261111-205023-250-Capture\\frame-0000.png",
+    "lamps-off.png": "evidence\\cinder-unity-r28\\20261111-205040-078-Capture\\frame-0000.png",
+    "daylight-city.png": "evidence\\cinder-unity-r28\\20261111-205056-911-Capture\\frame-0000.png"
+  }
+}
