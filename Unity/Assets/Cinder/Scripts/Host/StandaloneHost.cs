@@ -160,7 +160,7 @@ namespace Cinder.Host {
     Button(64,526,548,"CRUISE MERCER",()=>StartDrive(1));Button(64,600,548,selected==6?"AIR SESSION":"HYDRAULIC SESSION",()=>{mode=1;StartDrive(1);});Button(64,674,548,"WORKSHOP / TEST GROUNDS",()=>StartDrive(0));Button(64,748,548,"SETTINGS",()=>{returnPage="garage";page="settings";focus=0;});Button(64,822,548,"QUIT",()=>{returnPage="garage";page="quit";focus=0;});
     Fill(new Rect(745,820,width-809,188),new Color(.035f,.05f,.055f,.90f));Label(776,839,width-870,32,"THE CURRENT GARAGE",eyebrow);Label(776,878,width-870,62,module.Sim.Tune.Name,big);Label(776,951,width-870,36,padHints?"LB / RB choose   X coachwork":"Q / E choose   F1 coachwork",small);
     Button(width-244,866,72,"<",()=>CycleCar(-1));Button(width-156,866,72,">",()=>CycleCar(1));
-    Label(64,989,560,55,"MERCER DISTRICT / AFTERNOON",small);return;
+    Label(64,989,560,55,CityEveningLighting.SunsetCity(world)?"MERCER DISTRICT / EARLY EVENING":"MERCER DISTRICT / AFTERNOON",small);return;
    }
    float left=(width-760)/2;Label(left,120,900,90,page=="pause"?"TAKE A BREATHER":page=="settings"?"MAKE IT YOURS":page=="quit"?"LEAVE THE STREET?":"DRIVE COMPLETE",big);
    if(page=="pause"){

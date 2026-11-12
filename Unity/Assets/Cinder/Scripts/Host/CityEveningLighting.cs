@@ -26,7 +26,7 @@ namespace Cinder.Host {
    var sh=new SphericalHarmonicsL2();for(int c=0;c<3;c++)for(int i=0;i<9;i++){float value=asset.coefficients[c*9+i];if(float.IsNaN(value)||float.IsInfinity(value))throw new InvalidOperationException("Nonfinite environment SH");sh[c,i]=value;}
    RenderSettings.ambientMode=AmbientMode.Skybox;RenderSettings.ambientIntensity=1;RenderSettings.ambientProbe=sh;
    float scale=Mathf.Max(.001f,frame.TransformVector(Vector3.up).magnitude);
-   var lamps=new Vector4[8];int k=0;foreach(float x in new[]{-23.7f,23.7f,-44.7f,44.7f})foreach(float z in new[]{49f,85f}){var p=frame.TransformPoint(new Vector3(x+(x<0?-1.35f:1.35f),5.24f,z));lamps[k++]=new Vector4(p.x,p.y,p.z,48*scale*scale);}
+   var lamps=new Vector4[8];int k=0;foreach(float x in new[]{-23.7f,23.7f,-44.7f,44.7f})foreach(float z in new[]{49f,85f}){var p=frame.TransformPoint(new Vector3(x+(x<0?-1.35f:1.35f),5.24f,z));lamps[k++]=new Vector4(p.x,p.y,p.z,28*scale*scale);}
    Shader.SetGlobalVectorArray("_CinderStreetLamps",lamps);Shader.SetGlobalVector("_CinderLampUp",frame.up);Shader.SetGlobalFloat("_CinderLampScale",scale);Shader.SetGlobalVector("_CinderLampColour",new Vector4(1,.66f,.32f,1));
    bool practicals=sunset&&StandaloneHost.Arg("-city-lighting")!="lamps-off";
    Shader.SetGlobalFloat("_CinderLampsEnabled",practicals?1:0);
