@@ -24,8 +24,8 @@ namespace Cinder.View {
   public static Vector3 V(DVec3 v)=>new Vector3((float)v.X,(float)v.Y,(float)v.Z);public static Quaternion Q(DQuat q)=>new Quaternion((float)q.X,(float)q.Y,(float)q.Z,(float)q.W);
   public CinderView(ModuleContext ctx,VehicleSim simulation,int selectedWorld){
    sim=simulation;world=selectedWorld;Root=new GameObject("Cinder module view").transform;if(ctx.World!=null)Root.SetParent(ctx.World.Root,false);Root.localPosition=ctx.Frame.Origin;Root.localRotation=ctx.Frame.Rotation;Root.localScale=Vector3.one*ctx.Frame.Scale;
-   if(world!=1)BuildGround();var environment=SpawnKit(world==1?(CityEveningLighting.SunsetCity(world)?"mercer-city-sunset":"mercer-city"):"playground-kit",Root);if(world==1)foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=renderer.transform.name.StartsWith("ground.",StringComparison.Ordinal);}
-   if(world==1)foreach(var r in environment.GetComponentsInChildren<MeshRenderer>())if(r.transform.name.StartsWith("ground.",StringComparison.Ordinal))contactGround.Add(r);
+   if(world!=1)BuildGround();var environment=SpawnKit(world==1?(CityEveningLighting.SunsetCity(world)?"mercer-city-sunset":"mercer-city"):"playground-kit",Root);if(world==1)foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=RoadReceiver(renderer.transform.name);}
+   if(world==1)foreach(var r in environment.GetComponentsInChildren<MeshRenderer>())if(RoadReceiver(r.transform.name))contactGround.Add(r);
    if(CityEveningLighting.SunsetCity(world))foreach(var renderer in environment.GetComponentsInChildren<MeshRenderer>()){
     var materials=renderer.sharedMaterials;bool changed=false;
     for(int i=0;i<materials.Length;i++)if(materials[i]&&materials[i].name=="city.lamp"){
@@ -48,6 +48,7 @@ namespace Cinder.View {
    foreach(var mf in Root.GetComponentsInChildren<MeshFilter>()){Triangles+=mf.sharedMesh.triangles.Length/3;}Renderers=Root.GetComponentsInChildren<MeshRenderer>().Length;
    mechanisms=new RigMechanisms(Car,sim.Tune.Id);Pose(sim.State);Panels(1,1);Panels(0,0);if(sim.State.Vehicle>=4){BatchFixedBody(Car,mechanisms);foreach(string suffix in new[]{"-mid","-far"}){string key=sim.Tune.Id+suffix;var prefab=Resources.Load<GameObject>("Cinder/Generated/"+key+"/"+key);if(prefab){var t=UnityEngine.Object.Instantiate(prefab,Root,false).transform;var rig=new RigMechanisms(t,sim.Tune.Id);t.localPosition=Car.localPosition;t.localRotation=Car.localRotation;rig.Pose(sim.State,sim.Tune);rig.PosePanels(1,1);rig.PosePanels(0,0);BatchFixedBody(t,rig);lods.Add((t,rig));t.gameObject.SetActive(false);}}}Pose(sim.State);
   }
+  static bool RoadReceiver(string name)=>name.StartsWith("ground.",StringComparison.Ordinal)||name=="static.repair"||name=="static.white"||name=="static.yellow"||name=="static.asphalt"||name=="static.dark";
   GameObject SpawnKit(string id,Transform parent){var prefab=Resources.Load<GameObject>("Cinder/Generated/"+id+"/"+id);if(!prefab)throw new Exception("Missing authored kit "+id+". Run guarded builder.");return UnityEngine.Object.Instantiate(prefab,parent,false);}
   Material GroundMaterial(){var m=new Material(Shader.Find("Cinder/Body")){color=world==1?Color.white:new Color(.6f,.53f,.40f)};m.mainTexture=Resources.Load<Texture2D>(world==1?"Cinder/City/ph-asphalt-color":"Cinder/gravel");m.SetFloat("_Glossiness",.13f);owned.Add(m);return m;}
   void BatchFixedBody(Transform car,RigMechanisms rig){
